@@ -193,7 +193,7 @@ public class Instance {
 	// Boolean that returns true if the relationshipList contains input.
 	public boolean checkRelationship (String sourceChecked, String destinationChecked) {
 		for (int i = 0; i<relationshipList.length; i++) {
-			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(sourceDestination))
+			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(destinationChecked))
 				return true;
 		}
 		return false;
@@ -203,7 +203,7 @@ public class Instance {
 	public int countRelationship (String sourceChecked, String destinationChecked) {
 		int count = 0;
 		for (int i = 0; i<relationshipList.length; i++) {
-			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(sourceDestination))
+			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(destinationChecked))
 				count++;
 		}
 		return count;
