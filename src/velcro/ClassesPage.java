@@ -1,3 +1,12 @@
+/**
+ * Filename: ClassesPage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Page containing buttons and layout of Classes page in GUI.
+ * 
+ */
+
 package velcro;
 
 import javax.swing.JFrame;
@@ -10,11 +19,14 @@ import javax.swing.JButton;
 
 public class ClassesPage {
 
+	// Required JFrame constructor and attributes.
 	JFrame classPage = new JFrame();
 	private JTextField textField;
 	private JTextField txtuseOnlyFor;
 
+	// ClassesPage constructor.
 	ClassesPage() {
+		// Buttons and labels for GUI.
 		classPage.setTitle("Velcro CSCI 420 :: Classes");
 		classPage.setBounds(100, 100, 700, 500);
 		classPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,6 +69,7 @@ public class ClassesPage {
 		lblReplaceClassName.setBounds(411, 63, 159, 45);
 		classPage.getContentPane().add(lblReplaceClassName);
 		
+		// Button to return to landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnHomepage.setBounds(265, 359, 159, 69);
@@ -83,7 +96,5 @@ public class ClassesPage {
 		classPage.getContentPane().add(btnListContents);
 		
 		classPage.setVisible(true);
-		
-		
 	}
 }

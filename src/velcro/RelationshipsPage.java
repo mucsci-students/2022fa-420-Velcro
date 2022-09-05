@@ -1,3 +1,12 @@
+/**
+ * Filename: RelationshipsPage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: A page for managing Relationships in the Instance.
+ * 
+ */
+
 package velcro;
 
 import javax.swing.JFrame;
@@ -10,10 +19,12 @@ import javax.swing.JButton;
 
 public class RelationshipsPage {
 
+	// JFrame creation and needed attributes.
 	JFrame relationPage = new JFrame();
 	private JTextField textField;
 	private JTextField txtuseOnlyFor;
 
+	// Constructor.
 	RelationshipsPage() {
 		relationPage.setTitle("Velcro CSCI 420 :: Relationships");
 		relationPage.setBounds(100, 100, 700, 500);
@@ -31,12 +42,14 @@ public class RelationshipsPage {
 		txtuseOnlyFor.setColumns(10);
 		txtuseOnlyFor.setBounds(369, 119, 255, 51);
 		relationPage.getContentPane().add(txtuseOnlyFor);
-		
+
+		// TODO: Button to add relationship to Instance (see Instance.addRelationship()).
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(150, 247, 159, 69);
 		relationPage.getContentPane().add(btnNewButton);
 		
+		// TODO: Button to remove relationship from Instance (see Instance.removeRelationship()).
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDelete.setBounds(389, 247, 159, 69);
@@ -52,6 +65,7 @@ public class RelationshipsPage {
 		lblReplaceClassName.setBounds(409, 63, 191, 45);
 		relationPage.getContentPane().add(lblReplaceClassName);
 		
+		// Button returns to landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnHomepage.setBounds(265, 359, 159, 69);
@@ -64,7 +78,5 @@ public class RelationshipsPage {
 		relationPage.getContentPane().add(btnHomepage);
 		
 		relationPage.setVisible(true);
-		
-		
 	}
 }

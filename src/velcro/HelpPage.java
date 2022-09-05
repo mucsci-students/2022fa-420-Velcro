@@ -1,3 +1,12 @@
+/**
+ * Filename: HelpPage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Help page for navigating GUI.
+ * 
+ */
+
 package velcro;
 
 import javax.swing.JFrame;
@@ -11,16 +20,20 @@ import javax.swing.SwingConstants;
 
 public class HelpPage {
 
+	// Required JFrame and attributes.
 	JFrame helpPage = new JFrame();
 	private JTextField txtuseOnlyFor;
 	private JLabel lblNewLabel;
 
+	// Constructor for help page.
 	HelpPage() {
+		// Buttons and text for GUI.
 		helpPage.setTitle("Velcro CSCI 420 :: Help");
 		helpPage.setBounds(100, 100, 700, 500);
 		helpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		helpPage.getContentPane().setLayout(null);
 		
+		// Button for returning to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnHomepage.setBounds(265, 359, 159, 69);
@@ -40,7 +53,5 @@ public class HelpPage {
 		helpPage.getContentPane().add(lblNewLabel);
 		
 		helpPage.setVisible(true);
-		
-		
 	}
 }

@@ -1,3 +1,12 @@
+/**
+ * Filename: LoadPage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: A page for loading Json files into the GUI.
+ * 
+ */
+
 package velcro;
 
 import javax.swing.JFrame;
@@ -27,9 +36,10 @@ public class LoadPage {
 		textField.setColumns(10);
 		loadPage.getContentPane().add(textField);
 		
+		// Opens a browser to navigate to the target Json file.
 		JButton btnNewButton = new JButton("Browse...");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(265, 242, 159, 69);
+		btnNewButton.setBounds(265, 204, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent evt) {
 	            JFileChooser chooser = new JFileChooser();
@@ -54,7 +64,7 @@ public class LoadPage {
 		
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnHomepage.setBounds(265, 359, 159, 69);
+		btnHomepage.setBounds(265, 364, 159, 69);
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadPage.dispose();
@@ -63,8 +73,17 @@ public class LoadPage {
 			}});
 		loadPage.getContentPane().add(btnHomepage);
 		
-		loadPage.setVisible(true);
+		// Button that loads the Json file at the given address.
+		// TODO: use Gson to translate file contents and load into current Instance.
+		JButton btnNewButton_1 = new JButton("Load");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnNewButton_1.setBounds(265, 284, 159, 69);
+		loadPage.getContentPane().add(btnNewButton_1);
 		
-		
+		loadPage.setVisible(true);	
 	}
 }

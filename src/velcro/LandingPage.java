@@ -3,8 +3,7 @@
  * 
  * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
  * Course: CSCI 420 (Section 01) 
- * Date: September 1st, 2022
- * Description: A mockup GUI.
+ * Description: A GUI for the group project UML editor.
  * 
  */
 

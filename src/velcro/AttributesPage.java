@@ -1,3 +1,12 @@
+/**
+ * Filename: AttributesPage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: A page for interfacing with Attributes options.
+ * 
+ */
+
 package velcro;
 
 import java.awt.EventQueue;
@@ -17,6 +26,7 @@ public class AttributesPage {
 	private JTextField textField;
 	private JTextField txtuseOnlyFor;
 
+	// Page buttons & layout.
 	AttributesPage() {
 		attributesPage.setTitle("Velcro CSCI 420 :: Attributes");
 		attributesPage.setBounds(100, 100, 700, 500);
@@ -35,16 +45,19 @@ public class AttributesPage {
 		txtuseOnlyFor.setBounds(369, 119, 255, 51);
 		attributesPage.getContentPane().add(txtuseOnlyFor);
 		
+		// TODO: Button to add attributes (see Interface.addAttributes()).
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(54, 247, 159, 69);
 		attributesPage.getContentPane().add(btnNewButton);
 		
+		// TODO: Button to delete attributes (see Interface.removeAttributes()).
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDelete.setBounds(265, 247, 159, 69);
 		attributesPage.getContentPane().add(btnDelete);
 		
+		// TODO: Button to rename attributes.
 		JButton btnRename = new JButton("Rename");
 		btnRename.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnRename.setBounds(472, 247, 159, 69);
@@ -60,6 +73,7 @@ public class AttributesPage {
 		lblReplaceClassName.setBounds(411, 63, 159, 45);
 		attributesPage.getContentPane().add(lblReplaceClassName);
 		
+		// Button to return to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnHomepage.setBounds(265, 359, 159, 69);

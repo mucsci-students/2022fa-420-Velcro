@@ -1,3 +1,12 @@
+/**
+ * Filename: SavePage.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: A page for exporting the current Instance into a Json file.
+ * 
+ */
+
 package velcro;
 
 import javax.swing.JFrame;
@@ -20,10 +29,11 @@ import javax.swing.JButton;
 
 public class SavePage {
 
+	// JFrame creation and required attributes.
 	JFrame savePage = new JFrame();
 	private JTextField textField;
-	private JTextField txtuseOnlyFor;
 
+	// Constructor.
 	SavePage(Instance thisInstance) {
 		savePage.setTitle("Velcro CSCI 420 :: Save");
 		savePage.setBounds(100, 100, 700, 500);
@@ -36,16 +46,13 @@ public class SavePage {
 		textField.setColumns(10);
 		savePage.getContentPane().add(textField);
 
+		// Creates a file named whatever is input into the textfield, translates the Instance into Json, and saves it into the file.
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(265, 242, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				try {
-//					String[] classes = {"1", "2", "3"};
-//					String[] attributes = {"1", "2", "3"};
-//					String[] relationships = {"1", "2", "3"};
-//					Instance test = new Instance(classes, attributes, relationships);		
+				try {	
 					if (!textField.getText().equals("")) {
 						String newName = affixJson(textField.getText());
 						File file = new File(newName);
@@ -65,6 +72,7 @@ public class SavePage {
 		lblNewLabel.setBounds(297, 75, 120, 45);
 		savePage.getContentPane().add(lblNewLabel);
 
+		// Button that returns to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnHomepage.setBounds(265, 359, 159, 69);
@@ -80,6 +88,7 @@ public class SavePage {
 		savePage.setVisible(true);
 	}
 
+	// Ensures the input file name ends in .json.
 	public static String affixJson(String input) {
 		if (input.length() > 5 && input.substring(input.length() - 5).equals(".json")) {
 			return input;
