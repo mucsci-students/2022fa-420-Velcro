@@ -25,7 +25,7 @@ public class RelationshipsPage {
 	private JTextField txtuseOnlyFor;
 
 	// Constructor.
-	RelationshipsPage() {
+	RelationshipsPage(Instance thisInstance) {
 		relationPage.setTitle("Velcro CSCI 420 :: Relationships");
 		relationPage.setBounds(100, 100, 700, 500);
 		relationPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,7 +72,7 @@ public class RelationshipsPage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				relationPage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}});
 		relationPage.getContentPane().add(btnHomepage);

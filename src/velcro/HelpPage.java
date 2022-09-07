@@ -26,7 +26,7 @@ public class HelpPage {
 	private JLabel lblNewLabel;
 
 	// Constructor for help page.
-	HelpPage() {
+	HelpPage(Instance thisInstance) {
 		// Buttons and text for GUI.
 		helpPage.setTitle("Velcro CSCI 420 :: Help");
 		helpPage.setBounds(100, 100, 700, 500);
@@ -40,7 +40,7 @@ public class HelpPage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				helpPage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}});
 		helpPage.getContentPane().add(btnHomepage);

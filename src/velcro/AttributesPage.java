@@ -27,7 +27,7 @@ public class AttributesPage {
 	private JTextField txtuseOnlyFor;
 
 	// Page buttons & layout.
-	AttributesPage() {
+	AttributesPage(Instance thisInstance) {
 		attributesPage.setTitle("Velcro CSCI 420 :: Attributes");
 		attributesPage.setBounds(100, 100, 700, 500);
 		attributesPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +49,11 @@ public class AttributesPage {
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(54, 247, 159, 69);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				thisInstance.addAttribute(textField.getText());
+				//System.out.println(thisInstance.attributeList[0].name);
+			}});
 		attributesPage.getContentPane().add(btnNewButton);
 		
 		// TODO: Button to delete attributes (see Interface.removeAttributes()).
@@ -80,7 +85,7 @@ public class AttributesPage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				attributesPage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}});
 		attributesPage.getContentPane().add(btnHomepage);

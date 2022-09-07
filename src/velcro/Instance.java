@@ -32,6 +32,12 @@ public class Instance {
 		relationshipList = relationships;
 	}
 	
+	Instance(Instance input) {
+		this.classList = input.classList;
+		this.attributeList = input.attributeList;
+		this.relationshipList = input.relationshipList;
+	}
+	
 	// Adds an input class to the Classes array.
 	public void addClass (String elementAdded) {
 		 Classes[] output = Arrays.copyOf(classList, classList.length+1);
@@ -99,9 +105,17 @@ public class Instance {
 	
 	// Adds an input Attribute to the AttributesList array.
 	public void addAttribute (String elementAdded) {
-		 Attributes[] output = Arrays.copyOf(attributeList, attributeList.length+1);
-		 output[attributeList.length] = new Attributes(elementAdded);
+		 Attributes[] output = new Attributes[1];
+	     output[0] = new Attributes(elementAdded);
 		 this.attributeList = output;
+		 
+//		 if (this.attributeList.length > 0) {
+//			Attributes[] output = Arrays.copyOf(this.attributeList, this.attributeList.length+1);
+//		  	output[this.attributeList.length] = new Attributes(elementAdded);
+//		 	this.attributeList = output;
+//		 } else {
+//			
+//		 }
 	}
 	
 	// Removes an input Attribute from the AttributesList array.

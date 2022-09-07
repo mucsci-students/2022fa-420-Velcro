@@ -30,6 +30,7 @@ public class LandingPage {
 	private JButton btnNewButton_5;
 	private JButton btnNewButton_6;
 
+
 	Instance thisInstance = new Instance();
 	
 	/**
@@ -54,12 +55,16 @@ public class LandingPage {
 	public LandingPage() {
 		initialize();
 	}
+	
+	public LandingPage(Instance input) {
+		thisInstance = input;
+		initialize();
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-		
 		homepage = new JFrame();
 		homepage.setTitle("Velcro CSCI 420 :: Homepage");
 		homepage.setBounds(100, 100, 700, 500);
@@ -72,7 +77,7 @@ public class LandingPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
-				ClassesPage classScreen = new ClassesPage();
+				ClassesPage classScreen = new ClassesPage(thisInstance);
 			}});
 		homepage.getContentPane().add(btnNewButton);
 		
@@ -82,7 +87,7 @@ public class LandingPage {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
-				AttributesPage attributesScreen = new AttributesPage();
+				AttributesPage attributesScreen = new AttributesPage(thisInstance);
 			}});
 		homepage.getContentPane().add(btnNewButton_1);
 		
@@ -92,7 +97,7 @@ public class LandingPage {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
-				RelationshipsPage relationsPage = new RelationshipsPage();
+				RelationshipsPage relationsPage = new RelationshipsPage(thisInstance);
 			}});
 		homepage.getContentPane().add(btnNewButton_2);
 		
@@ -112,7 +117,7 @@ public class LandingPage {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
-				LoadPage loadScreen = new LoadPage();
+				LoadPage loadScreen = new LoadPage(thisInstance);
 			}});
 		homepage.getContentPane().add(btnNewButton_4);
 		
@@ -122,7 +127,7 @@ public class LandingPage {
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
-				HelpPage helpScreen = new HelpPage();
+				HelpPage helpScreen = new HelpPage(thisInstance);
 			}});
 		homepage.getContentPane().add(btnNewButton_5);
 		

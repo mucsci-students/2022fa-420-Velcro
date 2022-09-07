@@ -79,7 +79,7 @@ public class SavePage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				savePage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}
 		});

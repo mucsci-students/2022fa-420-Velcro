@@ -24,7 +24,7 @@ public class LoadPage {
 	private JTextField textField;
 	private JTextField txtuseOnlyFor;
 
-	LoadPage() {
+	LoadPage(Instance thisInstance) {
 		loadPage.setTitle("Velcro CSCI 420 :: Load");
 		loadPage.setBounds(100, 100, 700, 500);
 		loadPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +68,7 @@ public class LoadPage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadPage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}});
 		loadPage.getContentPane().add(btnHomepage);

@@ -25,7 +25,7 @@ public class ClassesPage {
 	private JTextField txtuseOnlyFor;
 
 	// ClassesPage constructor.
-	ClassesPage() {
+	ClassesPage(Instance thisInstance) {
 		// Buttons and labels for GUI.
 		classPage.setTitle("Velcro CSCI 420 :: Classes");
 		classPage.setBounds(100, 100, 700, 500);
@@ -76,7 +76,7 @@ public class ClassesPage {
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				classPage.dispose();
-				LandingPage window = new LandingPage();
+				LandingPage window = new LandingPage(thisInstance);
 				window.homepage.setVisible(true);
 			}});
 		classPage.getContentPane().add(btnHomepage);
