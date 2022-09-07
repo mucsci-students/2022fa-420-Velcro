@@ -169,7 +169,7 @@ public class Instance {
 	// Boolean that returns whether AttributesList contains input.
 	public boolean checkAttribute (String elementChecked) {
 		if (this.attributeList == null)
-			return 0;
+			return false;
 		for (int i = 0; i<attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementChecked))
 				return true;
