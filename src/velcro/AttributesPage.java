@@ -52,7 +52,6 @@ public class AttributesPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thisInstance.addAttribute(textField.getText());
-				//System.out.println(thisInstance.attributeList[0].name);
 			}});
 		attributesPage.getContentPane().add(btnNewButton);
 		

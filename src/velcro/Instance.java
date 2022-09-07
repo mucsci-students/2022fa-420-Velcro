@@ -40,13 +40,21 @@ public class Instance {
 	
 	// Adds an input class to the Classes array.
 	public void addClass (String elementAdded) {
-		 Classes[] output = Arrays.copyOf(classList, classList.length+1);
-		 output[classList.length] = new Classes(elementAdded);
-		 this.classList = output;
+		 if (this.classList != null) {
+			Classes[] output = Arrays.copyOf(this.classList, this.classList.length+1);
+		  	output[this.classList.length] = new Classes(elementAdded);
+		 	this.classList = output;
+		 } else {
+			 Classes[] output = new Classes[1];
+			 output[0] = new Classes(elementAdded);
+			 this.classList = output;
+		 }
 	}
 	
 	// Removes an input class from the Classes array.
 	public void removeClass (String elementRemoved) {
+		if (this.classList == null)
+			return;
 		Classes[] output = new Classes[classList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< classList.length; i++) {
@@ -62,6 +70,8 @@ public class Instance {
 	
 	// Overloaded removeClass, to accept Classes as input for future development.
 	public void removeClass (Classes input) {
+		if (this.classList == null)
+			return;
 		Classes[] output = new Classes[classList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< classList.length; i++) {
@@ -77,6 +87,8 @@ public class Instance {
 
 	// Boolean that returns true if Classes array contains input.
 	public boolean checkClass (String elementChecked) {
+		if (this.classList == null)
+			return false;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].getName().equals(elementChecked))
 				return true;
@@ -86,6 +98,8 @@ public class Instance {
 	
 	// Overloaded checkClass that accepts an input Classes object, for future development.
 	public boolean checkClass (Classes elementChecked) {
+		if (this.classList == null)
+			return false;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].equals(elementChecked))
 				return true;
@@ -95,6 +109,8 @@ public class Instance {
 	
 	// Returns number of Classes objects matching input.
 	public int countClass (String elementChecked) {
+		if (this.classList == null)
+			return 0;
 		int count = 0;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].getName().equals(elementChecked))
@@ -105,21 +121,21 @@ public class Instance {
 	
 	// Adds an input Attribute to the AttributesList array.
 	public void addAttribute (String elementAdded) {
-		 Attributes[] output = new Attributes[1];
-	     output[0] = new Attributes(elementAdded);
-		 this.attributeList = output;
-		 
-//		 if (this.attributeList.length > 0) {
-//			Attributes[] output = Arrays.copyOf(this.attributeList, this.attributeList.length+1);
-//		  	output[this.attributeList.length] = new Attributes(elementAdded);
-//		 	this.attributeList = output;
-//		 } else {
-//			
-//		 }
+		 if (this.attributeList != null) {
+			Attributes[] output = Arrays.copyOf(this.attributeList, this.attributeList.length+1);
+		  	output[this.attributeList.length] = new Attributes(elementAdded);
+		 	this.attributeList = output;
+		 } else {
+			 Attributes[] output = new Attributes[1];
+			 output[0] = new Attributes(elementAdded);
+			 this.attributeList = output;
+		 }
 	}
 	
 	// Removes an input Attribute from the AttributesList array.
 	public void removeAttribute (String elementRemoved) {
+		if (this.attributeList == null)
+			return;
 		Attributes[] output = new Attributes[attributeList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< attributeList.length; i++) {
@@ -135,6 +151,8 @@ public class Instance {
 	
 	// Overloaded removeAttributes, that accepts an Attributes object as input.
 	public void removeAttribute (Attributes input) {
+		if (this.attributeList == null)
+			return;
 		Attributes[] output = new Attributes[attributeList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< attributeList.length; i++) {
@@ -150,6 +168,8 @@ public class Instance {
 	
 	// Boolean that returns whether AttributesList contains input.
 	public boolean checkAttribute (String elementChecked) {
+		if (this.attributeList == null)
+			return 0;
 		for (int i = 0; i<attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementChecked))
 				return true;
@@ -159,6 +179,8 @@ public class Instance {
 	
 	// Returns count of Attributes in AttributesList that matches input.
 	public int countAttribute (String elementChecked) {
+		if (this.attributeList == null)
+			return 0;
 		int count = 0;
 		for (int i = 0; i<attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementChecked))
@@ -169,13 +191,21 @@ public class Instance {
 	
 	// Adds a relationship to RelationshipsList array.
 	public void addRelationship (String source, String destination) {
-		 Relationships[] output = Arrays.copyOf(relationshipList, relationshipList.length+1);
-		 output[relationshipList.length] = new Relationships(source, destination);
-		 this.relationshipList = output;
+		 if (this.relationshipList != null) {
+			Relationships[] output = Arrays.copyOf(this.relationshipList, this.relationshipList.length+1);
+		  	output[this.relationshipList.length] = new Relationships(source, destination);
+		 	this.relationshipList = output;
+		 } else {
+			 Relationships[] output = new Relationships[1];
+			 output[0] = new Relationships(source, destination);
+			 this.relationshipList = output;
+		 }
 	}
 
 	// Removes the first relationship matching given input source and destination.
 	public void removeRelationship (String sourceRemoved, String destinationRemoved) {
+		if (this.relationshipList == null)
+			return;
 		Relationships[] output = new Relationships[relationshipList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< relationshipList.length; i++) {
@@ -191,6 +221,8 @@ public class Instance {
 	
 	// Overloaded removeRelationship method; accepts Relationships as input, for future development.
 	public void removeRelationship (Relationships input) {
+		if (this.relationshipList == null)
+			return;
 		Relationships[] output = new Relationships[relationshipList.length-1];
 		boolean atMostOnce = true;
 		for (int i = 0, j = 0; i< relationshipList.length; i++) {
@@ -206,6 +238,8 @@ public class Instance {
 	
 	// Boolean that returns true if the relationshipList contains input.
 	public boolean checkRelationship (String sourceChecked, String destinationChecked) {
+		if (this.relationshipList == null)
+			return false;
 		for (int i = 0; i<relationshipList.length; i++) {
 			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(destinationChecked))
 				return true;
