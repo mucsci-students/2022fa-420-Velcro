@@ -77,6 +77,17 @@ public class AttributesPage {
 		lblReplaceClassName.setBounds(411, 63, 159, 45);
 		attributesPage.getContentPane().add(lblReplaceClassName);
 		
+		// Help button to list available operations
+		JButton helpButton = new JButton("Help");
+		helpButton = setFont(new Font("Tahoma", Font.PLAIN, 15));
+		helpButton.setBounds(370, 260, 210, 60);
+		helpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				homepage.dispose();
+				AttrubutesHelp helpScreen = new AttrbutesHelp(thisInstance);
+			}});
+		homepage.getContentPane().add(helpButton);
+		
 		// Button to return to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
