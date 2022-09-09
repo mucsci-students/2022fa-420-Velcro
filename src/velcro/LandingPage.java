@@ -17,6 +17,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LandingPage {
 
@@ -140,5 +144,30 @@ public class LandingPage {
 				System.exit(0);
 			}});
 		homepage.getContentPane().add(btnNewButton_6);
+		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Homepage Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		String s = "<html>Classes:&#9Add, Delete, Rename, and List Classes and their contents<br> Attributes:&#9Add/Delete attributes to/from classes, and Rename attributes<br> Relationships: Add and Delete Relationships between two Classes<br> Save:&#9Save current instance in a JSON file format<br> Load:&#9Load JSON files from directory<br> Exit:&#9Close the application</html>";		
+							
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+								 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JOptionPane.showMessageDialog(homepage, s);
+		}
+					 
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+					 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+					 
+		});
+		homepage.getContentPane().add(lblNewLabel_1);
 	}
 }
