@@ -11,6 +11,7 @@ package velcro;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -43,16 +44,36 @@ public class RelationshipsPage {
 		txtuseOnlyFor.setBounds(369, 119, 255, 51);
 		relationPage.getContentPane().add(txtuseOnlyFor);
 
-		// TODO: Button to add relationship to Instance (see Instance.addRelationship()).
+		// Button to add relationship to Instance.
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(150, 247, 159, 69);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
+					return;
+				}
+				thisInstance.addRelationship(textField.getText(), txtuseOnlyFor.getText());
+				JOptionPane.showMessageDialog(relationPage, "Relationship added successfully.");
+			}});
 		relationPage.getContentPane().add(btnNewButton);
 		
-		// TODO: Button to remove relationship from Instance (see Instance.removeRelationship()).
+		// Button to remove relationship from Instance.
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDelete.setBounds(389, 247, 159, 69);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
+					return;
+				}
+				if (thisInstance.removeRelationship(textField.getText(), txtuseOnlyFor.getText()))
+					JOptionPane.showMessageDialog(relationPage, "Relationship removed successfully.");
+				else
+					JOptionPane.showMessageDialog(relationPage, "Relationship removal failed, relationship not found.");
+			}});
 		relationPage.getContentPane().add(btnDelete);
 		
 		JLabel lblNewLabel = new JLabel("Source Class Name");

@@ -28,4 +28,13 @@ public class Attributes {
 	public boolean equals(Attributes input) {
 		return (input.name.equals(this.name));
 	}
+	
+	// Renames Attribute.
+	public boolean rename(String newName) {
+		if (newName.equals(""))
+			return false;
+		this.name = newName;
+		return true;
+	}
+	
 }

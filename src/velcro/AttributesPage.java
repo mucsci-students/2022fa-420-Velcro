@@ -13,6 +13,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -45,26 +46,59 @@ public class AttributesPage {
 		txtuseOnlyFor.setBounds(369, 119, 255, 51);
 		attributesPage.getContentPane().add(txtuseOnlyFor);
 		
-		// TODO: Button to add attributes (see Interface.addAttributes()).
+		// Button to add attributes.
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("")) {
+					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
+					return;
+				}
 				thisInstance.addAttribute(textField.getText());
+				JOptionPane.showMessageDialog(attributesPage, "Attribute added successfully.");
 			}});
 		attributesPage.getContentPane().add(btnNewButton);
 		
-		// TODO: Button to delete attributes (see Interface.removeAttributes()).
+		// Button to delete attributes.
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDelete.setBounds(265, 247, 159, 69);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("")) {
+					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
+					return;
+				}
+				if (thisInstance.removeAttribute(textField.getText()))
+					JOptionPane.showMessageDialog(attributesPage, "Attribute removed successfully.");
+				else
+					JOptionPane.showMessageDialog(attributesPage, "Attribute removal failed, attribute not found.");
+			}});
 		attributesPage.getContentPane().add(btnDelete);
 		
-		// TODO: Button to rename attributes.
+		// Button to rename attributes.
 		JButton btnRename = new JButton("Rename");
 		btnRename.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnRename.setBounds(472, 247, 159, 69);
+		btnRename.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
+					return;
+				}
+				Attributes orig = thisInstance.getAttribute(textField.getText());
+				if (orig == null) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
+					return;
+				}
+				if (orig.rename(txtuseOnlyFor.getText())) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute renamed successfully.");
+				} else {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
+				}
+			}});
 		attributesPage.getContentPane().add(btnRename);
 		
 		JLabel lblNewLabel = new JLabel("Attribute Name");
