@@ -52,37 +52,45 @@ public class Instance {
 	}
 	
 	// Removes an input class from the Classes array.
-	public void removeClass (String elementRemoved) {
+	public boolean removeClass (String elementRemoved) {
 		if (this.classList == null)
-			return;
+			return false;
 		Classes[] output = new Classes[classList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< classList.length; i++) {
-			if (atMostOnce && classList[i].getName().equals(elementRemoved)) {
-				atMostOnce = false;
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< classList.length; i++) {
+			if (classList[i].getName().equals(elementRemoved)) {
+				found = true;
 				continue;
 			}
 			output[j] = classList[i];
 			j++;
 		}
-		this.classList = output;
+		if (found) {
+			this.classList = output;
+			return true;
+		} else
+			return false;
 	}
 	
 	// Overloaded removeClass, to accept Classes as input for future development.
-	public void removeClass (Classes input) {
+	public boolean removeClass (Classes input) {
 		if (this.classList == null)
-			return;
+			return false;
 		Classes[] output = new Classes[classList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< classList.length; i++) {
-			if (atMostOnce && classList[i].equals(input)) {
-				atMostOnce = false;
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< classList.length; i++) {
+			if (classList[i].equals(input)) {
+				found = true;
 				continue;
 			}
 			output[j] = classList[i];
 			j++;
 		}
-		this.classList = output;
+		if (found) {
+			this.classList = output;
+			return true;
+		} else 
+			return false;
 	}
 
 	// Boolean that returns true if Classes array contains input.
@@ -105,6 +113,17 @@ public class Instance {
 				return true;
 		}
 		return false;
+	}
+	
+	// Returns matching Classes.
+	public Classes getClass (String elementChecked) {
+		if (this.classList == null)
+			return null;
+		for (int i = 0; i<classList.length; i++) {
+			if (classList[i].getName().equals(elementChecked))
+				return classList[i];
+		}
+		return null;
 	}
 	
 	// Returns number of Classes objects matching input.
@@ -133,20 +152,24 @@ public class Instance {
 	}
 	
 	// Removes an input Attribute from the AttributesList array.
-	public void removeAttribute (String elementRemoved) {
+	public boolean removeAttribute (String elementRemoved) {
 		if (this.attributeList == null)
-			return;
+			return false;
 		Attributes[] output = new Attributes[attributeList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< attributeList.length; i++) {
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementRemoved)) {
-				atMostOnce = false;
+				found = true;
 				continue;
 			}
 			output[j] = attributeList[i];
 			j++;
 		}
-		this.attributeList = output;
+		if (found) {
+			this.attributeList = output;
+			return true;
+		} else
+			return false;
 	}
 	
 	// Overloaded removeAttributes, that accepts an Attributes object as input.
@@ -154,16 +177,21 @@ public class Instance {
 		if (this.attributeList == null)
 			return;
 		Attributes[] output = new Attributes[attributeList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< attributeList.length; i++) {
-			if (atMostOnce && attributeList[i].equals(input)) {
-				atMostOnce = false;
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< attributeList.length; i++) {
+			if (attributeList[i].equals(input)) {
+				found = true;
 				continue;
 			}
 			output[j] = attributeList[i];
 			j++;
 		}
-		this.attributeList = output;
+		if (found) {
+			this.attributeList = output;
+			return;
+		}
+		else
+			return;
 	}
 	
 	// Boolean that returns whether AttributesList contains input.
@@ -175,6 +203,17 @@ public class Instance {
 				return true;
 		}
 		return false;
+	}
+	
+	// Returns matching Attribute.
+	public Attributes getAttribute (String elementChecked) {
+		if (this.attributeList == null)
+			return null;
+		for (int i = 0; i<attributeList.length; i++) {
+			if (attributeList[i].getName().equals(elementChecked))
+				return attributeList[i];
+		}
+		return null;
 	}
 	
 	// Returns count of Attributes in AttributesList that matches input.
@@ -203,37 +242,45 @@ public class Instance {
 	}
 
 	// Removes the first relationship matching given input source and destination.
-	public void removeRelationship (String sourceRemoved, String destinationRemoved) {
+	public boolean removeRelationship (String sourceRemoved, String destinationRemoved) {
 		if (this.relationshipList == null)
-			return;
+			return false;
 		Relationships[] output = new Relationships[relationshipList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< relationshipList.length; i++) {
-			if (atMostOnce && relationshipList[i].getSource().equals(sourceRemoved) && relationshipList[i].getDestination().equals(destinationRemoved)) {
-				atMostOnce = false;
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< relationshipList.length; i++) {
+			if (relationshipList[i].getSource().equals(sourceRemoved) && relationshipList[i].getDestination().equals(destinationRemoved)) {
+				found = true;
 				continue;
 			}
 			output[j] = relationshipList[i];
 			j++;
 		}
-		this.relationshipList = output;
+		if (found) {
+			this.relationshipList = output;
+			return true;
+		} else
+			return false;
 	}
 	
 	// Overloaded removeRelationship method; accepts Relationships as input, for future development.
-	public void removeRelationship (Relationships input) {
+	public boolean removeRelationship (Relationships input) {
 		if (this.relationshipList == null)
-			return;
+			return false;
 		Relationships[] output = new Relationships[relationshipList.length-1];
-		boolean atMostOnce = true;
-		for (int i = 0, j = 0; i< relationshipList.length; i++) {
-			if (atMostOnce && relationshipList[i].equals(input)) {
-				atMostOnce = false;
+		boolean found = false;
+		for (int i = 0, j = 0; !found && i< relationshipList.length; i++) {
+			if (relationshipList[i].equals(input)) {
+				found = true;
 				continue;
 			}
 			output[j] = relationshipList[i];
 			j++;
 		}
-		this.relationshipList = output;
+		if (found) {
+			this.relationshipList = output;
+			return true;
+		} else 
+			return false;
 	}
 	
 	// Boolean that returns true if the relationshipList contains input.
@@ -247,6 +294,17 @@ public class Instance {
 		return false;
 	}
 	
+	// Returns matching Relationship.
+	public Relationships getRelationship (String source, String destination) {
+		if (this.classList == null)
+			return null;
+		for (int i = 0; i<relationshipList.length; i++) {
+			if (relationshipList[i].getSource().equals(source) && relationshipList[i].getDestination().equals(destination))
+				return relationshipList[i];
+		}
+		return null;
+	}
+	
 	// Returns count of relationships matching input.
 	public int countRelationship (String sourceChecked, String destinationChecked) {
 		int count = 0;
@@ -257,10 +315,28 @@ public class Instance {
 		return count;
 	}
 	
+	// Returns String of list of classes.
+	public String classListToString() {
+		String output = "";
+		for (int i = 0; i<classList.length; i++) {
+			output += classList[i].getName();
+			output += "\n";
+		}
+		return output;
+	}
+	
 	// Returns object as Json-formatted String.
 	public String printToJson() {
 		Gson gson = new Gson(); 
 		return gson.toJson(this);
+	}
+	
+	// Copies Instance object into this Instance.
+	public void copy(Instance source) {
+		this.attributeList = source.attributeList;
+		this.classList = source.classList;
+		this.relationshipList = source.relationshipList;
+		return;
 	}
 	
 }

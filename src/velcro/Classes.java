@@ -26,4 +26,13 @@ public class Classes {
 	public boolean equals(Classes input) {
 		return (input.name.equals(this.name));
 	}
+	
+	// Renames Class.
+	public boolean rename(String newName) {
+		if (newName.equals(""))
+			return false;
+		this.name = newName;
+		return true;
+	}
+	
 }
