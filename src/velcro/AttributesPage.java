@@ -103,12 +103,12 @@ public class AttributesPage {
 		
 		JLabel lblNewLabel = new JLabel("Attribute Name");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel.setBounds(129, 63, 115, 45);
+		lblNewLabel.setBounds(115, 63, 150, 45);
 		attributesPage.getContentPane().add(lblNewLabel);
 		
 		JLabel lblReplaceClassName = new JLabel("Rename Attribute Name");
 		lblReplaceClassName.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblReplaceClassName.setBounds(411, 63, 159, 45);
+		lblReplaceClassName.setBounds(400, 63, 204, 45);
 		attributesPage.getContentPane().add(lblReplaceClassName);
 		
 		// Button to return to the landing page.
