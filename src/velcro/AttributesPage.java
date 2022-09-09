@@ -123,8 +123,30 @@ public class AttributesPage {
 			}});
 		attributesPage.getContentPane().add(btnHomepage);
 		
-		attributesPage.setVisible(true);
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Attributes Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
 		
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			 
+           	@Override
+            	public void mouseClicked(MouseEvent e) {
+            		JOptionPane.showMessageDialog(attributesPage, "<html>To add an Attribute, enter a unique attribute name in the left-most textbox and press the 'Add' button. The action will fail if there is already an attribute with that name or if the entered name if invalid.<br>To delete an Attribute, enter the name of the attribute that you wish to delete in the textbox beneath 'Attribute Name' and press the 'Delete' button. The action will fail if there is no attribute with the given name.<br> To rename an Attribute, enter the current name of the attribute that you wish to change in the textbox beneath 'Attribute Name', then type the name that you wish to change it to in the textbox beneath 'Change Attribute'. To initiate the action, hit the 'Rename' button once both the current and new names have been entered. The action will fail if there is no existing attribute with the given name or if the new name being entered is either already in use or is invalid.</html>");
+            	}
+ 
+            	@Override
+            	public void mouseExited(MouseEvent e) {
+            	}
+ 
+            	@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+ 
+        });
+	attributesPage.getContentPane().add(lblNewLabel_1);
 		
+	attributesPage.setVisible(true);	
 	}
 }
