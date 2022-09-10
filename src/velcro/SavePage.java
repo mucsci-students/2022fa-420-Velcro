@@ -19,6 +19,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
@@ -79,6 +82,31 @@ public class SavePage {
 			}
 		});
 		savePage.getContentPane().add(btnHomepage);
+		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Save Page Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		String s = "<html>Save: Save file by entering a filename in the textbox.<br> '.json' extension will be added automatically to filename if not entered by user.<br> This action will fail if a file already exists with the entered name or<br> or if the entered filename is invalid.</html>";		
+									
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+									 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JOptionPane.showMessageDialog(savePage, s);
+		}
+							 
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+							 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+							 
+		});
+		savePage.getContentPane().add(lblNewLabel_1);
 
 		savePage.setVisible(true);
 	}
