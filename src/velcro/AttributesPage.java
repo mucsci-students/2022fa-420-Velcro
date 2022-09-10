@@ -94,13 +94,21 @@ public class AttributesPage {
 		btnRename.setBounds(472, 247, 159, 69);
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Checks for empty text boxes.
 				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
 					return;
 				}
+				// Checks for attribute existing.
 				Attributes orig = thisInstance.getAttribute(textField.getText());
 				if (orig == null) {
 					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
+					return;
+				}
+				// Checks if rename is already taken.
+				Attributes orig2 = thisInstance.getAttribute(txtuseOnlyFor.getText());
+				if (orig2 != null) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
 					return;
 				}
 				if (orig.rename(txtuseOnlyFor.getText())) {

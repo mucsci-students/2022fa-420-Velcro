@@ -102,6 +102,11 @@ public class ClassesPage {
 					JOptionPane.showMessageDialog(classPage, "Class not found.");
 					return;
 				}
+				Classes orig2 = thisInstance.getClass(textField2.getText());
+				if (orig2 != null) {
+					JOptionPane.showMessageDialog(classPage, "Class already exists!");
+					return;
+				}
 				if (orig.rename(textField2.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Class renamed successfully.");
 				} else {
