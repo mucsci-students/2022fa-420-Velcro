@@ -60,6 +60,12 @@ public class AttributesPage {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
+				// Checks if Attribute already exists.
+				Attributes orig = thisInstance.getAttribute(textField.getText());
+				if (orig != null) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
+					return;
+				}
 				thisInstance.addAttribute(textField.getText());
 				JOptionPane.showMessageDialog(attributesPage, "Attribute added successfully.");
 			}});
