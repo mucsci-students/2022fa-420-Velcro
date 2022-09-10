@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RelationshipsPage {
 
@@ -97,6 +99,31 @@ public class RelationshipsPage {
 				window.homepage.setVisible(true);
 			}});
 		relationPage.getContentPane().add(btnHomepage);
+		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Relationship Page Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		String s = "<html>Add: Enter name of the source class into 'Source' field, enter name of destination class into 'Destination' field<br> and click the 'Add' button.<br> This action will fail if a Relationship already exists with the given Source and Destination classes<br> Delete: Enter name of source class into 'Source' field, enter name of destination class into 'Destination' field, and click the 'Delete' button.<br> This action will fail if no Relationship exists with the given Source and Destination class names.</html>";		
+									
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+									 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JOptionPane.showMessageDialog(relationPage, s);
+		}
+							 
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+							 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+							 
+		});
+		relationPage.getContentPane().add(lblNewLabel_1);
 		
 		relationPage.setVisible(true);
 	}
