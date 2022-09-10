@@ -14,6 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import com.google.gson.Gson;
 
@@ -111,6 +117,31 @@ public class LoadPage {
 			}
 		});
 		loadPage.getContentPane().add(btnNewButton_1);
+		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Load Page Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		String s = "<html>Load a JSON file by either entering the pathname<br> in the textbox or by browsing your file system</html>";		
+								
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+									 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JOptionPane.showMessageDialog(loadPage, s);
+		}
+						 
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+							 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+							 
+		});
+		loadPage.getContentPane().add(lblNewLabel_1);
 		
 		// Makes page visible.
 		loadPage.setVisible(true);	
