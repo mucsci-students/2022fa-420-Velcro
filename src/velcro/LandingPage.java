@@ -31,7 +31,6 @@ public class LandingPage {
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
-	private JButton btnNewButton_5;
 	private JButton btnNewButton_6;
 
 
@@ -77,7 +76,7 @@ public class LandingPage {
 		
 		JButton btnNewButton = new JButton("Classes");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(76, 48, 207, 57);
+		btnNewButton.setBounds(76, 57, 207, 57);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
@@ -87,7 +86,7 @@ public class LandingPage {
 		
 		btnNewButton_1 = new JButton("Attributes");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_1.setBounds(358, 48, 207, 57);
+		btnNewButton_1.setBounds(358, 57, 207, 57);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
@@ -97,7 +96,7 @@ public class LandingPage {
 		
 		btnNewButton_2 = new JButton("Relationships");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_2.setBounds(76, 147, 207, 57);
+		btnNewButton_2.setBounds(76, 190, 207, 57);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
@@ -107,7 +106,7 @@ public class LandingPage {
 		
 		btnNewButton_3 = new JButton("Save");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_3.setBounds(358, 147, 207, 57);
+		btnNewButton_3.setBounds(358, 190, 207, 57);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
@@ -117,7 +116,7 @@ public class LandingPage {
 		
 		btnNewButton_4 = new JButton("Load");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_4.setBounds(76, 249, 207, 57);
+		btnNewButton_4.setBounds(358, 319, 207, 57);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
@@ -125,19 +124,9 @@ public class LandingPage {
 			}});
 		homepage.getContentPane().add(btnNewButton_4);
 		
-		btnNewButton_5 = new JButton("Help");
-		btnNewButton_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_5.setBounds(358, 249, 207, 57);
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				homepage.dispose();
-				HelpPage helpScreen = new HelpPage(thisInstance);
-			}});
-		homepage.getContentPane().add(btnNewButton_5);
-		
 		btnNewButton_6 = new JButton("Exit");
 		btnNewButton_6.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_6.setBounds(215, 365, 207, 57);
+		btnNewButton_6.setBounds(76, 319, 207, 57);
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				homepage.dispose();
