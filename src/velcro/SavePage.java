@@ -6,7 +6,6 @@
  * Description: A page for exporting the current Instance into a Json file.
  * 
  */
-
 package velcro;
 
 import javax.swing.JFrame;
@@ -19,11 +18,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+
+import javax.swing.JOptionPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
 public class SavePage {
-
 	// JFrame creation and required attributes.
 	JFrame savePage = new JFrame();
 	private JTextField textField;
@@ -34,24 +37,29 @@ public class SavePage {
 		savePage.setBounds(100, 100, 700, 500);
 		savePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		savePage.getContentPane().setLayout(null);
-
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		textField.setBounds(223, 131, 258, 51);
 		textField.setColumns(10);
 		savePage.getContentPane().add(textField);
-
+		
 		// Creates a file named whatever is input into the textfield, translates the Instance into Json, and saves it into the file.
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(265, 242, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				try {	
+				try {
+					// Check to make sure field isn't blank.
 					if (!textField.getText().equals("")) {
 						String newName = affixJson(textField.getText());
-						File file = new File(newName);
-						BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+						File newFile = new File(newName);
+						// Check to make sure file doesn't already exist.
+						if (newFile.exists()) {
+							JOptionPane.showMessageDialog(savePage, "File already exists!");
+							return;
+						}
+						BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
 						writer.append(thisInstance.printToJson());
 						writer.close();
 					}
@@ -61,12 +69,10 @@ public class SavePage {
 			}
 		});
 		savePage.getContentPane().add(btnNewButton);
-
 		JLabel lblNewLabel = new JLabel("Save File As...");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setBounds(297, 75, 120, 45);
 		savePage.getContentPane().add(lblNewLabel);
-
 		// Button that returns to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -79,6 +85,31 @@ public class SavePage {
 			}
 		});
 		savePage.getContentPane().add(btnHomepage);
+
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Save Page Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		String s = "<html>Save: Save file by entering a filename in the textbox.<br> '.json' extension will be added automatically to filename if not entered by user.<br> This action will fail if a file already exists with the entered name or<br> or if the entered filename is invalid.</html>";
+
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(savePage, s);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+		});
+		savePage.getContentPane().add(lblNewLabel_1);
 
 		savePage.setVisible(true);
 	}
