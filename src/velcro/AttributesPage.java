@@ -9,6 +9,8 @@
 
 package velcro;
 
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,7 +20,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import javax.swing.JButton;
 
 public class AttributesPage {
@@ -54,6 +58,12 @@ public class AttributesPage {
 			public void actionPerformed(ActionEvent e) {
 				if (textField.getText().equals("")) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
+					return;
+				}
+				// Checks if Attribute already exists.
+				Attributes orig = thisInstance.getAttribute(textField.getText());
+				if (orig != null) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
 					return;
 				}
 				thisInstance.addAttribute(textField.getText());
@@ -123,8 +133,32 @@ public class AttributesPage {
 			}});
 		attributesPage.getContentPane().add(btnHomepage);
 		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Attributes Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29);
+		
+		String s = "<html>'Attribute Name' : Field1 &#9 'Rename Attribute Name' : Field2<br>To add an Attribute, enter a unique attribute name in Field1 and press the 'Add' button.<br> The action will fail if there is already an attribute with that name or if the entered name if invalid.<br> To delete an Attribute, enter the name of the attribute that you wish to delete in Field1 and press the 'Delete' button.<br> The action will fail if there is no attribute with the given name.<br>To rename an Attribute, enter the current name of the attribute that you wish to change in Field1,<br> and the name that you wish to change it to in Field2.<br> To initiate the action, hit the 'Rename' button once both fields have been entered. The action will fail if there is no<br> existing attribute with the given name or if the new name being entered is either already in use or is invalid.</html>";
+		
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			 
+            	@Override
+            	public void mouseClicked(MouseEvent e) {
+            		JOptionPane.showMessageDialog(attributesPage, s);
+            	}
+ 
+            	@Override
+            	public void mouseExited(MouseEvent e) {
+            	}
+ 
+            	@Override
+           	public void mouseEntered(MouseEvent e) {
+            	}
+ 
+        	});
+		attributesPage.getContentPane().add(lblNewLabel_1);
+		
 		attributesPage.setVisible(true);
-		
-		
 	}
 }
