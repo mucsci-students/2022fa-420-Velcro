@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClassesPage {
 
@@ -52,8 +54,15 @@ public class ClassesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Checks for empty text field.
 				if (textField.getText().equals("")) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
+					return;
+				}
+				// Checks for Class already existing.
+				Classes orig = thisInstance.getClass(textField.getText());
+				if (orig != null) {
+					JOptionPane.showMessageDialog(classPage, "Class already exists!");
 					return;
 				}
 				thisInstance.addClass(textField.getText());
@@ -159,6 +168,31 @@ public class ClassesPage {
 		}});		
 		Classes orig = thisInstance.getClass(textField.getText());
 		classPage.getContentPane().add(btnListContents);
+		
+		// Help text with help info message.
+		JLabel lblNewLabel_1 = new JLabel("Help");
+		lblNewLabel_1.setToolTipText("Class Page Help");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(623, 11, 51, 29); 
+		String s = "<html>'Class Name' : Field1 &#9 'Rename Class Name' : Field2 <br>To add classes, enter a unique classname in Field1 and click the 'Add' button.<br> The action will fail if the classname entered is already in use or is invalid.<br> To delete classes, enter the name of the class you want to delete in Field1 and click the 'Delete' button.<br> The action will fail if no class exists with the entered classname.<br> To rename a class, enter the name of the existing class Field1 and enter the new name you want it to have in Field2.<br> Once both fields are filled, click the 'Rename' button.<br> The action will fail if there is no existing class with a name matching what was entered in Field1, or if the name<br> entered in Field2 is already in use or is invalid.</html>";		
+									
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+										 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			JOptionPane.showMessageDialog(classPage, s);
+		}
+							 
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+							 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+							 
+		});
+		classPage.getContentPane().add(lblNewLabel_1);
 		
 		classPage.setVisible(true);
 	}
