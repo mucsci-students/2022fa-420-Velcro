@@ -296,7 +296,7 @@ public class Instance {
 	
 	// Returns matching Relationship.
 	public Relationships getRelationship (String source, String destination) {
-		if (this.classList == null)
+		if (this.relationshipList == null)
 			return null;
 		for (int i = 0; i<relationshipList.length; i++) {
 			if (relationshipList[i].getSource().equals(source) && relationshipList[i].getDestination().equals(destination))

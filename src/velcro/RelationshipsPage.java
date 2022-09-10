@@ -56,6 +56,11 @@ public class RelationshipsPage {
 					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
 					return;
 				}
+				Relationships orig = thisInstance.getRelationship(textField.getText(), txtuseOnlyFor.getText());
+				if (orig != null) {
+					JOptionPane.showMessageDialog(relationPage, "Relationship already exists!");
+					return;			
+				}
 				thisInstance.addRelationship(textField.getText(), txtuseOnlyFor.getText());
 				JOptionPane.showMessageDialog(relationPage, "Relationship added successfully.");
 			}});
