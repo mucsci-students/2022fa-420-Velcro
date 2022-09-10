@@ -54,8 +54,15 @@ public class ClassesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Checks for empty text field.
 				if (textField.getText().equals("")) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
+					return;
+				}
+				// Checks for Class already existing.
+				Classes orig = thisInstance.getClass(textField.getText());
+				if (orig != null) {
+					JOptionPane.showMessageDialog(classPage, "Class already exists!");
 					return;
 				}
 				thisInstance.addClass(textField.getText());
