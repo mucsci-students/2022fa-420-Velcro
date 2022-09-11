@@ -62,6 +62,7 @@ public class SavePage {
 						BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
 						writer.append(thisInstance.printToJson());
 						writer.close();
+						JOptionPane.showMessageDialog(savePage, "File saved successfully.");
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

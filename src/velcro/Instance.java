@@ -9,6 +9,9 @@
 
 package velcro;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -339,4 +342,16 @@ public class Instance {
 		return;
 	}
 	
+	// Loads Json into this Instance
+	public Instance loadJson(String fileAddress) throws FileNotFoundException, IOException {
+		Gson gson = new Gson();
+		try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
+			Instance newInstance = gson.fromJson(br, Instance.class); 
+			this.copy(newInstance);
+			return this;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
