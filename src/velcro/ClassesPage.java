@@ -12,13 +12,18 @@ package velcro;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 public class ClassesPage {
 
@@ -55,7 +60,7 @@ public class ClassesPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text field.
-				if (textField.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -76,7 +81,7 @@ public class ClassesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -93,7 +98,7 @@ public class ClassesPage {
 		btnRename.setBounds(472, 247, 159, 69);
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || textField2.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(textField2.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class and new name.");
 					return;
 				}
@@ -137,9 +142,9 @@ public class ClassesPage {
 			}});
 		classPage.getContentPane().add(btnHomepage);
 		
-		// Button to display class list.
-		JButton btnClassList = new JButton("Class List");
-		btnClassList.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		// Button to display class list and contents.
+		JButton btnClassList = new JButton("All Class Contents");
+		btnClassList.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnClassList.setBounds(54, 359, 159, 69);
 		btnClassList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,29 +152,48 @@ public class ClassesPage {
 					JOptionPane.showMessageDialog(classPage, "No current classes.");
 					return;
 				}
-				String output = thisInstance.classListToString();
-				JOptionPane.showMessageDialog(classPage, output);
+				// Aborts if classList is empty or null
+		        if (thisInstance.classList == null || thisInstance.classList.length == 0){
+		        	JOptionPane.showMessageDialog(classPage, "No classes currently exist!");
+		        	return;
+				}
+
+		        // Draws a table outlining existing class's contents in dialog
+				DefaultTableModel model = new DefaultTableModel();
+		        model.addColumn("Name");
+		        for (int i = 0; i<thisInstance.classList.length; i++) {
+		        	model.addRow(new Object[]{thisInstance.classList[i].getName()});
+		        }
+		        JTable table = new JTable(model);
+				JOptionPane.showMessageDialog(null, new JScrollPane(table));		
 			}
 		});
 		classPage.getContentPane().add(btnClassList);
 		
 		// Button to display Class contents.
-		JButton btnListContents = new JButton("List Contents");
+		JButton btnListContents = new JButton("Class Contents");
 		btnListContents.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnListContents.setBounds(472, 359, 159, 69);
 		btnListContents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("")) {
+				// Checks for empty text field.
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
+				// Checks if named class exists.
 				Classes orig = thisInstance.getClass(textField.getText());
 				if (orig == null) {
 					JOptionPane.showMessageDialog(classPage, "Class not found.");
 					return;			
 				}
-				String output = "Name: " + orig.getName();
-				JOptionPane.showMessageDialog(classPage, output);					
+
+		        // Draws a table outlining existing class's contents in dialog
+				DefaultTableModel model = new DefaultTableModel();
+		        model.addColumn("Name");
+		        model.addRow(new Object[]{orig.getName()});
+		        JTable table = new JTable(model);
+				JOptionPane.showMessageDialog(null, new JScrollPane(table));			
 		}});		
 		Classes orig = thisInstance.getClass(textField.getText());
 		classPage.getContentPane().add(btnListContents);
@@ -200,5 +224,10 @@ public class ClassesPage {
 		classPage.getContentPane().add(lblNewLabel_1);
 		
 		classPage.setVisible(true);
+	}
+	
+	private static boolean containsAlphaNumeric(String input) {
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		return p.matcher(input).find();
 	}
 }
