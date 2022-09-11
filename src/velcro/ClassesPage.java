@@ -12,7 +12,11 @@ package velcro;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,6 +106,11 @@ public class ClassesPage {
 					JOptionPane.showMessageDialog(classPage, "Class not found.");
 					return;
 				}
+				Classes orig2 = thisInstance.getClass(textField2.getText());
+				if (orig2 != null) {
+					JOptionPane.showMessageDialog(classPage, "Class already exists!");
+					return;
+				}
 				if (orig.rename(textField2.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Class renamed successfully.");
 				} else {
@@ -132,9 +141,9 @@ public class ClassesPage {
 			}});
 		classPage.getContentPane().add(btnHomepage);
 		
-		// Button to display class list.
-		JButton btnClassList = new JButton("Class List");
-		btnClassList.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		// Button to display class list and contents.
+		JButton btnClassList = new JButton("All Class Contents");
+		btnClassList.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnClassList.setBounds(54, 359, 159, 69);
 		btnClassList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,29 +151,48 @@ public class ClassesPage {
 					JOptionPane.showMessageDialog(classPage, "No current classes.");
 					return;
 				}
-				String output = thisInstance.classListToString();
-				JOptionPane.showMessageDialog(classPage, output);
+				// Aborts if classList is empty or null
+		        if (thisInstance.classList == null || thisInstance.classList.length == 0){
+		        	JOptionPane.showMessageDialog(classPage, "No classes currently exist!");
+		        	return;
+				}
+
+		        // Draws a table outlining existing class's contents in dialog
+				DefaultTableModel model = new DefaultTableModel();
+		        model.addColumn("Name");
+		        for (int i = 0; i<thisInstance.classList.length; i++) {
+		        	model.addRow(new Object[]{thisInstance.classList[i].getName()});
+		        }
+		        JTable table = new JTable(model);
+				JOptionPane.showMessageDialog(null, new JScrollPane(table));		
 			}
 		});
 		classPage.getContentPane().add(btnClassList);
 		
 		// Button to display Class contents.
-		JButton btnListContents = new JButton("List Contents");
+		JButton btnListContents = new JButton("Class Contents");
 		btnListContents.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnListContents.setBounds(472, 359, 159, 69);
 		btnListContents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Checks for empty text field.
 				if (textField.getText().equals("")) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
+				// Checks if named class exists.
 				Classes orig = thisInstance.getClass(textField.getText());
 				if (orig == null) {
 					JOptionPane.showMessageDialog(classPage, "Class not found.");
 					return;			
 				}
-				String output = "Name: " + orig.getName();
-				JOptionPane.showMessageDialog(classPage, output);					
+
+		        // Draws a table outlining existing class's contents in dialog
+				DefaultTableModel model = new DefaultTableModel();
+		        model.addColumn("Name");
+		        model.addRow(new Object[]{orig.getName()});
+		        JTable table = new JTable(model);
+				JOptionPane.showMessageDialog(null, new JScrollPane(table));			
 		}});		
 		Classes orig = thisInstance.getClass(textField.getText());
 		classPage.getContentPane().add(btnListContents);
