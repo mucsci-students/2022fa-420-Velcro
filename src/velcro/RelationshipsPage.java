@@ -23,7 +23,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+// Added-rename-checks
 import java.util.regex.Pattern;
+=======
+// develop
 
 public class RelationshipsPage {
 
@@ -135,6 +138,7 @@ public class RelationshipsPage {
 		});
 		relationPage.getContentPane().add(lblNewLabel_1);
 		
+// Added-rename-checks
 		JButton btnListAll = new JButton("List All");
 		btnListAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,6 +162,8 @@ public class RelationshipsPage {
 		btnListAll.setBounds(465, 247, 159, 69);
 		relationPage.getContentPane().add(btnListAll);
 		
+=======
+// develop
 		relationPage.setVisible(true);
 	}	
 	
