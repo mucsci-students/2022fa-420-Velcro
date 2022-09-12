@@ -53,7 +53,8 @@ public class AttributesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!containsAlphaNumeric(textField.getText())) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
+
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
@@ -74,7 +75,7 @@ public class AttributesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!containsAlphaNumeric(textField.getText())) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
@@ -92,7 +93,8 @@ public class AttributesPage {
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text boxes.
-				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
+
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
 					return;
 				}

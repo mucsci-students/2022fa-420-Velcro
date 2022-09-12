@@ -60,7 +60,7 @@ public class ClassesPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text field.
-				if (!containsAlphaNumeric(textField.getText())) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -81,7 +81,7 @@ public class ClassesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!containsAlphaNumeric(textField.getText())) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -98,7 +98,7 @@ public class ClassesPage {
 		btnRename.setBounds(472, 247, 159, 69);
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(textField2.getText())) {
+				if (textField.getText().equals("") || textField2.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(textField2.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class and new name.");
 					return;
 				}
@@ -148,16 +148,11 @@ public class ClassesPage {
 		btnClassList.setBounds(54, 359, 159, 69);
 		btnClassList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (thisInstance.classList == null) {
-					JOptionPane.showMessageDialog(classPage, "No current classes.");
-					return;
-				}
 				// Aborts if classList is empty or null
 		        if (thisInstance.classList == null || thisInstance.classList.length == 0){
 		        	JOptionPane.showMessageDialog(classPage, "No classes currently exist!");
 		        	return;
 				}
-
 		        // Draws a table outlining existing class's contents in dialog
 				DefaultTableModel model = new DefaultTableModel();
 		        model.addColumn("Name");

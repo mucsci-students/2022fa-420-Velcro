@@ -102,10 +102,9 @@ public class LoadPage {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Instance newInstance = loadJson(textField.getText());
-					thisInstance.attributeList = newInstance.attributeList;
-					thisInstance.relationshipList = newInstance.relationshipList;
-					thisInstance.classList = newInstance.classList;
+					Instance newInstance = new Instance();
+					newInstance.loadJson(textField.getText());
+					thisInstance.copy(newInstance);
 					JOptionPane.showMessageDialog(loadPage, "Json file loaded.");
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
@@ -145,17 +144,5 @@ public class LoadPage {
 		
 		// Makes page visible.
 		loadPage.setVisible(true);	
-	}
-	
-	// Loads the Json of an indicated file address, returns an Instance object.
-	private static Instance loadJson(String fileAddress) throws FileNotFoundException, IOException {
-		Gson gson = new Gson();
-		try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
-			Instance newInstance = gson.fromJson(br, Instance.class); 
-			return newInstance;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
