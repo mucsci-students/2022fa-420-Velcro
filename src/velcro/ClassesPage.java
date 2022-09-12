@@ -81,6 +81,10 @@ public class ClassesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (thisInstance.classList == null || thisInstance.classList.length == 0) {
+					JOptionPane.showMessageDialog(classPage, "No classes currently!");
+					return;
+				}
 				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;

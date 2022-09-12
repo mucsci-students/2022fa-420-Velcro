@@ -75,6 +75,10 @@ public class AttributesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (thisInstance.attributeList == null || thisInstance.attributeList.length == 0) {
+						JOptionPane.showMessageDialog(attributesPage, "No attributes currently!");
+						return;
+				}
 				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
