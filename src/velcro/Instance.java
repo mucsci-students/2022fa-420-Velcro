@@ -56,7 +56,7 @@ public class Instance {
 	
 	// Removes an input class from the Classes array.
 	public boolean removeClass (String elementRemoved) {
-		if (this.classList == null)
+		if (this.classList == null  || this.classList.length == 0)
 			return false;
 		Classes[] output = new Classes[classList.length-1];
 		boolean found = false;
@@ -77,7 +77,7 @@ public class Instance {
 	
 	// Overloaded removeClass, to accept Classes as input for future development.
 	public boolean removeClass (Classes input) {
-		if (this.classList == null)
+		if (this.classList == null  || this.classList.length == 0)
 			return false;
 		Classes[] output = new Classes[classList.length-1];
 		boolean found = false;
@@ -98,7 +98,7 @@ public class Instance {
 
 	// Boolean that returns true if Classes array contains input.
 	public boolean checkClass (String elementChecked) {
-		if (this.classList == null)
+		if (this.classList == null   || this.classList.length == 0)
 			return false;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].getName().equals(elementChecked))
@@ -109,7 +109,7 @@ public class Instance {
 	
 	// Overloaded checkClass that accepts an input Classes object, for future development.
 	public boolean checkClass (Classes elementChecked) {
-		if (this.classList == null)
+		if (this.classList == null   || this.classList.length == 0)
 			return false;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].equals(elementChecked))
@@ -120,7 +120,7 @@ public class Instance {
 	
 	// Returns matching Classes.
 	public Classes getClass (String elementChecked) {
-		if (this.classList == null)
+		if (this.classList == null   || this.classList.length == 0)
 			return null;
 		for (int i = 0; i<classList.length; i++) {
 			if (classList[i].getName().equals(elementChecked))
@@ -131,7 +131,7 @@ public class Instance {
 	
 	// Returns number of Classes objects matching input.
 	public int countClass (String elementChecked) {
-		if (this.classList == null)
+		if (this.classList == null   || this.classList.length == 0)
 			return 0;
 		int count = 0;
 		for (int i = 0; i<classList.length; i++) {
@@ -156,7 +156,7 @@ public class Instance {
 	
 	// Removes an input Attribute from the AttributesList array.
 	public boolean removeAttribute (String elementRemoved) {
-		if (this.attributeList == null)
+		if (this.attributeList == null  || this.attributeList.length == 0)
 			return false;
 		Attributes[] output = new Attributes[attributeList.length-1];
 		boolean found = false;
@@ -177,7 +177,7 @@ public class Instance {
 	
 	// Overloaded removeAttributes, that accepts an Attributes object as input.
 	public void removeAttribute (Attributes input) {
-		if (this.attributeList == null)
+		if (this.attributeList == null || this.attributeList.length == 0)
 			return;
 		Attributes[] output = new Attributes[attributeList.length-1];
 		boolean found = false;
@@ -199,7 +199,7 @@ public class Instance {
 	
 	// Boolean that returns whether AttributesList contains input.
 	public boolean checkAttribute (String elementChecked) {
-		if (this.attributeList == null)
+		if (this.attributeList == null || this.attributeList.length == 0)
 			return false;
 		for (int i = 0; i<attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementChecked))
@@ -210,7 +210,7 @@ public class Instance {
 	
 	// Returns matching Attribute.
 	public Attributes getAttribute (String elementChecked) {
-		if (this.attributeList == null)
+		if (this.attributeList == null  || this.attributeList.length == 0)
 			return null;
 		for (int i = 0; i<attributeList.length; i++) {
 			if (attributeList[i].getName().equals(elementChecked))
@@ -221,7 +221,7 @@ public class Instance {
 	
 	// Returns count of Attributes in AttributesList that matches input.
 	public int countAttribute (String elementChecked) {
-		if (this.attributeList == null)
+		if (this.attributeList == null  || this.attributeList.length == 0)
 			return 0;
 		int count = 0;
 		for (int i = 0; i<attributeList.length; i++) {
@@ -246,7 +246,7 @@ public class Instance {
 
 	// Removes the first relationship matching given input source and destination.
 	public boolean removeRelationship (String sourceRemoved, String destinationRemoved) {
-		if (this.relationshipList == null)
+		if (this.relationshipList == null || this.relationshipList.length == 0)
 			return false;
 		Relationships[] output = new Relationships[relationshipList.length-1];
 		boolean found = false;
@@ -267,7 +267,7 @@ public class Instance {
 	
 	// Overloaded removeRelationship method; accepts Relationships as input, for future development.
 	public boolean removeRelationship (Relationships input) {
-		if (this.relationshipList == null)
+		if (this.relationshipList == null || this.relationshipList.length == 0)
 			return false;
 		Relationships[] output = new Relationships[relationshipList.length-1];
 		boolean found = false;
@@ -288,7 +288,7 @@ public class Instance {
 	
 	// Boolean that returns true if the relationshipList contains input.
 	public boolean checkRelationship (String sourceChecked, String destinationChecked) {
-		if (this.relationshipList == null)
+		if (this.relationshipList == null || this.relationshipList.length == 0)
 			return false;
 		for (int i = 0; i<relationshipList.length; i++) {
 			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(destinationChecked))
@@ -299,7 +299,7 @@ public class Instance {
 	
 	// Returns matching Relationship.
 	public Relationships getRelationship (String source, String destination) {
-		if (this.relationshipList == null)
+		if (this.relationshipList == null || this.relationshipList.length == 0)
 			return null;
 		for (int i = 0; i<relationshipList.length; i++) {
 			if (relationshipList[i].getSource().equals(source) && relationshipList[i].getDestination().equals(destination))
@@ -311,6 +311,8 @@ public class Instance {
 	// Returns count of relationships matching input.
 	public int countRelationship (String sourceChecked, String destinationChecked) {
 		int count = 0;
+		if (this.relationshipList == null || this.relationshipList.length == 0)
+			return 0;
 		for (int i = 0; i<relationshipList.length; i++) {
 			if (relationshipList[i].getSource().equals(sourceChecked) && relationshipList[i].getDestination().equals(destinationChecked))
 				count++;
