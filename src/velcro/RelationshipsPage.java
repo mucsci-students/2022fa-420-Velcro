@@ -12,13 +12,21 @@ package velcro;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+// Added-rename-checks
+import java.util.regex.Pattern;
+=======
+// develop
 
 public class RelationshipsPage {
 
@@ -49,10 +57,10 @@ public class RelationshipsPage {
 		// Button to add relationship to Instance.
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnNewButton.setBounds(150, 247, 159, 69);
+		btnNewButton.setBounds(66, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
 					return;
 				}
@@ -69,10 +77,10 @@ public class RelationshipsPage {
 		// Button to remove relationship from Instance.
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnDelete.setBounds(389, 247, 159, 69);
+		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
 					return;
 				}
@@ -130,6 +138,37 @@ public class RelationshipsPage {
 		});
 		relationPage.getContentPane().add(lblNewLabel_1);
 		
+// Added-rename-checks
+		JButton btnListAll = new JButton("List All");
+		btnListAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Aborts if relationshipList is empty or null
+		        if (thisInstance.relationshipList == null || thisInstance.relationshipList.length == 0){
+		        	JOptionPane.showMessageDialog(relationPage, "No relationships currently exist!");
+		        	return;
+				}
+		        // Draws a table outlining existing relationships in dialog
+				DefaultTableModel model = new DefaultTableModel();
+		        model.addColumn("Source");
+		        model.addColumn("Destination");
+		        for (int i = 0; i<thisInstance.relationshipList.length; i++) {
+		        	model.addRow(new Object[]{thisInstance.relationshipList[i].source, thisInstance.relationshipList[i].destination});
+		        }
+		        JTable table = new JTable(model);
+				JOptionPane.showMessageDialog(null, new JScrollPane(table));
+			}
+		});
+		btnListAll.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnListAll.setBounds(465, 247, 159, 69);
+		relationPage.getContentPane().add(btnListAll);
+		
+=======
+// develop
 		relationPage.setVisible(true);
+	}	
+	
+	private static boolean containsAlphaNumeric(String input) {
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		return p.matcher(input).find();
 	}
 }

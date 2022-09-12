@@ -9,10 +9,6 @@
 
 package velcro;
 
-import java.awt.Cursor;
-import java.awt.Desktop;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
+import java.util.regex.Pattern;
+
 import javax.swing.JButton;
 
 public class AttributesPage {
@@ -56,7 +53,7 @@ public class AttributesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
@@ -77,7 +74,7 @@ public class AttributesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
@@ -94,13 +91,21 @@ public class AttributesPage {
 		btnRename.setBounds(472, 247, 159, 69);
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+				// Checks for empty text boxes.
+				if (!containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
 					return;
 				}
+				// Checks for attribute existing.
 				Attributes orig = thisInstance.getAttribute(textField.getText());
 				if (orig == null) {
 					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
+					return;
+				}
+				// Checks if rename is already taken.
+				Attributes orig2 = thisInstance.getAttribute(txtuseOnlyFor.getText());
+				if (orig2 != null) {
+					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
 					return;
 				}
 				if (orig.rename(txtuseOnlyFor.getText())) {
@@ -160,5 +165,11 @@ public class AttributesPage {
 		attributesPage.getContentPane().add(lblNewLabel_1);
 		
 		attributesPage.setVisible(true);
+		
+	}
+	
+	private static boolean containsAlphaNumeric(String input) {
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		return p.matcher(input).find();
 	}
 }
