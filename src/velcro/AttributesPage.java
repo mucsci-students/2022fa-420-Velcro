@@ -54,6 +54,7 @@ public class AttributesPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
+
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
@@ -93,6 +94,7 @@ public class AttributesPage {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text boxes.
 				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
+
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
 					return;
 				}

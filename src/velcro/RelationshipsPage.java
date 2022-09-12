@@ -135,6 +135,8 @@ public class RelationshipsPage {
 		});
 		relationPage.getContentPane().add(lblNewLabel_1);
 		
+
+// Added-rename-checks
 		JButton btnListAll = new JButton("List All");
 		btnListAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,7 +159,6 @@ public class RelationshipsPage {
 		btnListAll.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnListAll.setBounds(465, 247, 159, 69);
 		relationPage.getContentPane().add(btnListAll);
-		
 		relationPage.setVisible(true);
 	}	
 	

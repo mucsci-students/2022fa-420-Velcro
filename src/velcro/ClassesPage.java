@@ -153,7 +153,6 @@ public class ClassesPage {
 		        	JOptionPane.showMessageDialog(classPage, "No classes currently exist!");
 		        	return;
 				}
-
 		        // Draws a table outlining existing class's contents in dialog
 				DefaultTableModel model = new DefaultTableModel();
 		        model.addColumn("Name");
