@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 public class ClassesPage {
 
@@ -59,7 +60,7 @@ public class ClassesPage {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text field.
-				if (textField.getText().equals("")) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -80,7 +81,7 @@ public class ClassesPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("")) {
+				if (textField.getText().equals("") || !containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -97,7 +98,7 @@ public class ClassesPage {
 		btnRename.setBounds(472, 247, 159, 69);
 		btnRename.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || textField2.getText().equals("")) {
+				if (textField.getText().equals("") || textField2.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(textField2.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class and new name.");
 					return;
 				}
@@ -147,10 +148,6 @@ public class ClassesPage {
 		btnClassList.setBounds(54, 359, 159, 69);
 		btnClassList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (thisInstance.classList == null) {
-					JOptionPane.showMessageDialog(classPage, "No current classes.");
-					return;
-				}
 				// Aborts if classList is empty or null
 		        if (thisInstance.classList == null || thisInstance.classList.length == 0){
 		        	JOptionPane.showMessageDialog(classPage, "No classes currently exist!");
@@ -176,7 +173,7 @@ public class ClassesPage {
 		btnListContents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Checks for empty text field.
-				if (textField.getText().equals("")) {
+				if (!containsAlphaNumeric(textField.getText())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
 				}
@@ -223,5 +220,10 @@ public class ClassesPage {
 		classPage.getContentPane().add(lblNewLabel_1);
 		
 		classPage.setVisible(true);
+	}
+	
+	private static boolean containsAlphaNumeric(String input) {
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		return p.matcher(input).find();
 	}
 }

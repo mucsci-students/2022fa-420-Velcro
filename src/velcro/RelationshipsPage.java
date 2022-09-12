@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 public class RelationshipsPage {
 
@@ -56,7 +57,7 @@ public class RelationshipsPage {
 		btnNewButton.setBounds(66, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
 					return;
 				}
@@ -76,7 +77,7 @@ public class RelationshipsPage {
 		btnDelete.setBounds(265, 247, 159, 69);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("")) {
+				if (textField.getText().equals("") || txtuseOnlyFor.getText().equals("") || !containsAlphaNumeric(textField.getText()) || !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 					JOptionPane.showMessageDialog(relationPage, "Please enter a source and destination.");
 					return;
 				}
@@ -158,5 +159,10 @@ public class RelationshipsPage {
 		relationPage.getContentPane().add(btnListAll);
 		
 		relationPage.setVisible(true);
+	}	
+	
+	private static boolean containsAlphaNumeric(String input) {
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		return p.matcher(input).find();
 	}
 }
