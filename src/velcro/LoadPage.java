@@ -101,6 +101,10 @@ public class LoadPage {
 		btnNewButton_1.setBounds(265, 284, 159, 69);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().equals("")) {
+					JOptionPane.showMessageDialog(loadPage, "Enter a file name or address.");
+					return;
+				}
 				try {
 					Instance newInstance = new Instance();
 					newInstance.loadJson(textField.getText());
