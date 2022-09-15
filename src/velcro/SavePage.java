@@ -31,7 +31,7 @@ public class SavePage {
 	JFrame savePage = new JFrame();
 	private JTextField textField;
 
-	// Constructor.
+	// Constructor with Instance parameter, to preserve current data
 	SavePage(Instance thisInstance) {
 		savePage.setTitle("Velcro CSCI 420 :: Save");
 		savePage.setBounds(100, 100, 700, 500);
@@ -70,10 +70,13 @@ public class SavePage {
 			}
 		});
 		savePage.getContentPane().add(btnNewButton);
+		
+		// Save as... label
 		JLabel lblNewLabel = new JLabel("Save File As...");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel.setBounds(297, 75, 120, 45);
 		savePage.getContentPane().add(lblNewLabel);
+		
 		// Button that returns to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -94,6 +97,7 @@ public class SavePage {
 		lblNewLabel_1.setBounds(623, 11, 51, 29);
 		String s = "<html>Save: Save file by entering a filename in the textbox.<br> '.json' extension will be added automatically to filename if not entered by user.<br> This action will fail if a file already exists with the entered name or<br> or if the entered filename is invalid.</html>";
 
+		// Help link. Overrides are required, as Swing doesn't natively support clickable text
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -116,7 +120,7 @@ public class SavePage {
 	}
 
 	// Ensures the input file name ends in .json.
-	public static String affixJson(String input) {
+	private static String affixJson(String input) {
 		if (input.length() > 5 && input.substring(input.length() - 5).equals(".json")) {
 			return input;
 		}
