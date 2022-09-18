@@ -24,6 +24,18 @@ public class Relationships {
 		return source;
 	}
 	
+	// Sets relationship source
+	public void setSource(String newName) {
+		this.source = newName;
+		return;
+	}
+	
+	// Sets relationship destination
+	public void setDestination(String newName) {
+		this.destination = newName;
+		return;
+	}
+	
 	// Returns destination as String.
 	public String getDestination() {
 		return destination;

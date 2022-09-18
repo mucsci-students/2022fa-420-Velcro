@@ -73,6 +73,46 @@ public class SavePage extends JPanel {
 		savePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		savePage.getContentPane().setLayout(null);
 
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textField.setBounds(223, 131, 258, 51);
+		textField.setColumns(10);
+		savePage.getContentPane().add(textField);
+		
+		// Creates a file named whatever is input into the textfield, translates the Instance into Json, and saves it into the file.
+		JButton btnNewButton = new JButton("Save");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnNewButton.setBounds(265, 242, 159, 69);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				try {
+					// Check to make sure field isn't blank.
+					if (!textField.getText().equals("")) {
+						String newName = affixJson(textField.getText());
+						File newFile = new File(newName);
+						// Check to make sure file doesn't already exist.
+						if (newFile.exists()) {
+							JOptionPane.showMessageDialog(savePage, "File already exists!");
+							return;
+						}
+						BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
+						writer.append(thisInstance.printToJson());
+						writer.close();
+						JOptionPane.showMessageDialog(savePage, "File saved successfully.");
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		savePage.getContentPane().add(btnNewButton);
+		
+		// Save as... label
+		JLabel lblNewLabel = new JLabel("Save File As...");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel.setBounds(297, 75, 120, 45);
+		savePage.getContentPane().add(lblNewLabel);
+		
 		// Button that returns to the landing page.
 		JButton btnHomepage = new JButton("Homepage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -95,6 +135,7 @@ public class SavePage extends JPanel {
 
 		// Help link. Overrides are required, as Swing doesn't natively support
 		// clickable text
+		// Help link. Overrides are required, as Swing doesn't natively support clickable text
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 
 			@Override
