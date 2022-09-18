@@ -13,6 +13,7 @@ package velcro;
 
 public class Attributes {
 	String name;
+	String parentClass;
 	
 	// Attributes constructor.
 	Attributes(String name) {
@@ -23,6 +24,7 @@ public class Attributes {
 	public String getName() {
 		return name;
 	}
+
 	
 	// Returns boolean of whether input Attributes object equals this Attributes object.
 	public boolean equals(Attributes input) {
