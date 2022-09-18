@@ -28,6 +28,7 @@ public class Instance {
 
 	// Overloaded constructor; for use with loading option or other import
 	// strategies.
+  
 	Instance(Instance input) {
 		if (input.classList == null || input.classList.length == 0)
 			return;
@@ -167,6 +168,7 @@ public class Instance {
 	public Instance copy(Instance source) {
 		Instance newInstance = new Instance(source);
 		return newInstance;
+
 	}
 
 	// Loads Json into this Instance

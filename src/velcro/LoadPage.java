@@ -107,6 +107,7 @@ public class LoadPage {
 					JOptionPane.showMessageDialog(loadPage, "Enter a file name or address.");
 					return;
 				}
+        
 				// Tries to load indicated file
 				try {
 					Instance newInstance = new Instance();
