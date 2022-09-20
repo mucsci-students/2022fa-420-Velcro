@@ -39,7 +39,7 @@ public class AttributesPage {
 		JComboBox<String> comboBox = new JComboBox<String>(model);
 		DefaultComboBoxModel<String> model_1 = new DefaultComboBoxModel<String>();
 		JComboBox<String> comboBox_1 = new JComboBox<String>(model_1);
-		
+
 		attributesPage.setTitle("Velcro CSCI 420 :: Attributes");
 		attributesPage.setBounds(100, 100, 700, 500);
 		attributesPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,24 +64,28 @@ public class AttributesPage {
 					thisClass = thisInstance.getClass(comboBox.getSelectedItem().toString());
 				} catch (NullPointerException e1) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter classes first.");
-					return;					
+					return;
 				}
 				
 				// Checks if combo box field is somehow empty
-				if (comboBox.getSelectedItem().toString().equals("") || !containsAlphaNumeric(comboBox.getSelectedItem().toString())) {
+				if (comboBox_1.getSelectedItem().toString().equals("")
+						|| !containsAlphaNumeric(comboBox_1.getSelectedItem().toString())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
 				// Checks if Attribute already exists.
-				Attributes orig = thisClass.getAttribute(comboBox.getSelectedItem().toString());
-				if (orig != null) {
-					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
+				try {
+					Attributes orig = thisClass.getAttribute(comboBox_1.getSelectedItem().toString());
+					String test = orig.getName();
+				} catch (NullPointerException e1) {
+					// Adds attribute, updates combo box
+					thisClass.addAttribute(comboBox_1.getSelectedItem().toString());
+					model_1.addElement(comboBox_1.getSelectedItem().toString());
+					JOptionPane.showMessageDialog(attributesPage, "Attribute added successfully.");
 					return;
 				}
-				// Adds attribute, updates combo box
-				thisClass.addAttribute(comboBox.getSelectedItem().toString());
-				model_1.addElement(comboBox.getSelectedItem().toString());
-				JOptionPane.showMessageDialog(attributesPage, "Attribute added successfully.");
+
+				JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
 			}
 		});
 		attributesPage.getContentPane().add(btnNewButton);
@@ -98,24 +102,24 @@ public class AttributesPage {
 					thisClass = thisInstance.getClass(comboBox.getSelectedItem().toString());
 				} catch (NullPointerException e1) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter classes first.");
-					return;					
+					return;
 				}
 				// Tests if any attributes already exist
 				if (thisClass.attributeList == null || thisClass.attributeList.length == 0) {
 					JOptionPane.showMessageDialog(attributesPage, "No attributes currently!");
 					return;
 				}
-				// Checks to see if combo box is somehow empty
-				if (comboBox.getSelectedItem().toString().equals("") || !containsAlphaNumeric(comboBox.getSelectedItem().toString())) {
+				// Checks to see if combo box is empty
+				if (comboBox_1.getSelectedItem().toString().equals("")
+						|| !containsAlphaNumeric(comboBox_1.getSelectedItem().toString())) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute name.");
 					return;
 				}
 				// Removes attribute, updates combo box
-				if (thisClass.removeAttribute(comboBox.getSelectedItem().toString())) {
-					model_1.removeElement(comboBox.getSelectedItem().toString());
+				if (thisClass.removeAttribute(comboBox_1.getSelectedItem().toString())) {
+					model_1.removeElement(comboBox_1.getSelectedItem().toString());
 					JOptionPane.showMessageDialog(attributesPage, "Attribute removed successfully.");
-				}
-				else
+				} else
 					JOptionPane.showMessageDialog(attributesPage, "Attribute removal failed, attribute not found.");
 			}
 		});
@@ -133,39 +137,46 @@ public class AttributesPage {
 					thisClass = thisInstance.getClass(comboBox.getSelectedItem().toString());
 				} catch (NullPointerException e1) {
 					JOptionPane.showMessageDialog(attributesPage, "Please enter classes first.");
-					return;					
+					return;
 				}
 				// Checks for empty text box.
-				if (comboBox.getSelectedItem().toString().equals("") || txtuseOnlyFor.getText().equals("")
-						|| !containsAlphaNumeric(comboBox.getSelectedItem().toString())
+				if (comboBox_1.getSelectedItem().toString().equals("") || txtuseOnlyFor.getText().equals("")
+						|| !containsAlphaNumeric(comboBox_1.getSelectedItem().toString())
 						|| !containsAlphaNumeric(txtuseOnlyFor.getText())) {
 
 					JOptionPane.showMessageDialog(attributesPage, "Please enter an attribute and new name.");
 					return;
 				}
-			
-				// Checks for attribute existing.
-				Classes orig = thisInstance.getClass(comboBox.getSelectedItem().toString());
-				if (orig == null) {
+
+				// Checks if Attribute exists.
+				try {
+					Attributes orig = thisClass.getAttribute(comboBox_1.getSelectedItem().toString());
+					String test = orig.getName();
+				} catch (NullPointerException e1) {
 					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
 					return;
 				}
+				
 				// Checks if rename is already taken.
 				Attributes orig2 = thisClass.getAttribute(txtuseOnlyFor.getText());
-				if (orig2 != null) {
-					JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
-					return;
+				try {
+					String test2 = orig2.getName();
+				} catch (NullPointerException e1) {
+					// Renames attribute, updates Attribute combo box
+					Attributes orig3 = thisClass.getAttribute(comboBox_1.getSelectedItem().toString());
+					if (orig3.rename(txtuseOnlyFor.getText())) {
+						model_1.addElement(txtuseOnlyFor.getText());
+						model_1.removeElement(comboBox_1.getSelectedItem().toString());
+						comboBox_1.setSelectedItem(txtuseOnlyFor.getText());
+						JOptionPane.showMessageDialog(attributesPage, "Attribute renamed successfully.");
+						return;
+					} else {
+						JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
+						return;
+					}	
 				}
-				// Renames attribute, updates Attribute combo box
-				Attributes orig3 = thisClass.getAttribute(comboBox.getSelectedItem().toString());
-				if (orig3.rename(txtuseOnlyFor.getText())) {
-					model_1.addElement(txtuseOnlyFor.getText());
-					model_1.removeElement(comboBox.getSelectedItem().toString());
-					comboBox_1.setSelectedItem(txtuseOnlyFor.getText());
-					JOptionPane.showMessageDialog(attributesPage, "Attribute renamed successfully.");
-				} else {
-					JOptionPane.showMessageDialog(attributesPage, "Attribute not found.");
-				}
+				JOptionPane.showMessageDialog(attributesPage, "Attribute already exists!");
+				return;
 			}
 		});
 		attributesPage.getContentPane().add(btnRename);
@@ -229,22 +240,23 @@ public class AttributesPage {
 		comboBox.setBounds(400, 119, 231, 51);
 		comboBox.setModel(model);
 		attributesPage.getContentPane().add(comboBox);
-		
+
 		// Class label.
 		JLabel lblClass = new JLabel("Class");
 		lblClass.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblClass.setBounds(491, 74, 51, 23);
 		attributesPage.getContentPane().add(lblClass);
-		
+
 		comboBox_1.setEditable(true);
 		comboBox_1.setBounds(54, 119, 255, 51);
 		attributesPage.getContentPane().add(comboBox_1);
-		
+
 		// Initially populates Attributes combo box
 		Classes thisClass;
 		try {
 			thisClass = thisInstance.getClass(comboBox.getSelectedItem().toString());
-			if (thisInstance.getClass(comboBox.getSelectedItem().toString()) != null && thisInstance.classList.length != 0) {
+			if (thisInstance.getClass(comboBox.getSelectedItem().toString()) != null
+					&& thisInstance.classList.length != 0) {
 				if (thisClass != null && thisClass.attributeList != null && thisClass.attributeList.length != 0) {
 					for (int i = 0; i < thisClass.attributeList.length; i++) {
 						model_1.addElement(thisClass.attributeList[i].getName());
@@ -254,13 +266,9 @@ public class AttributesPage {
 			}
 		} catch (NullPointerException e1) {
 		}
-		
-
 
 		attributesPage.setVisible(true);
 	}
-
-
 
 	private static boolean containsAlphaNumeric(String input) {
 		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
