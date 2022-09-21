@@ -25,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.ComboBoxModel;
@@ -65,8 +66,13 @@ public class ClassesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (e == null && e.getSource().toString() != null)
+				{
+					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
+					return;
+				}
 				// Checks for empty text field.
-				if (comboBox_2.getSelectedItem().toString().equals("")
+				if (comboBox_2.getSelectedItem() == null || comboBox_2.getSelectedItem().toString().equals("")
 						|| !containsAlphaNumeric(comboBox_2.getSelectedItem().toString())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
@@ -97,10 +103,9 @@ public class ClassesPage {
 					return;
 				}
 
-				if (thisInstance.removeClass(comboBox_2.getSelectedItem().toString())) {
-					model.removeElement(comboBox_2.getSelectedItem().toString());
-					model_1.removeElement(comboBox_2.getSelectedItem().toString());
-					model_2.removeElement(comboBox_2.getSelectedItem().toString());
+				if (thisInstance.removeClass(comboBox_1.getSelectedItem().toString())) {
+					model.removeElement(comboBox_1.getSelectedItem().toString());
+					model_1.removeElement(comboBox_1.getSelectedItem().toString());
 					JOptionPane.showMessageDialog(classPage, "Class removed successfully.");
 				} else
 					JOptionPane.showMessageDialog(classPage, "Class removal failed, class not found.");
@@ -180,27 +185,27 @@ public class ClassesPage {
 				}
 
 				// Sets up table for pop-up
-				DefaultTableModel model = new DefaultTableModel();
-				model.addColumn("Name");
-				model.addColumn("Attribute");
-				model.addColumn("Relationship Source");
-				model.addColumn("Relationship Destination");
+				DefaultTableModel model_3 = new DefaultTableModel();
+				model_3.addColumn("Name");
+				model_3.addColumn("Attribute");
+				model_3.addColumn("Relationship Source");
+				model_3.addColumn("Relationship Destination");
 				boolean first = true;
 				for (int h = 0; h < thisInstance.classList.length; h++) {
 					// Adds a blank line between classes.
 					if (first) {
 						first = false;
 					} else {
-						model.addRow(new Object[] { " ", " ", " ", " "});
+						model_3.addRow(new Object[] { " ", " ", " ", " "});
 					}
 					Classes thisClass = thisInstance.classList[h];
 					// Adds class name
-					model.addRow(new Object[] { thisClass.getName() });
+					model_3.addRow(new Object[] { thisClass.getName() });
 					// Adds all class's attributes
 					if (thisClass.attributeList != null) {
 						if (thisClass.attributeList.length != 0) {
 							for (int i = 0; i < thisClass.attributeList.length; i++) {
-								model.addRow(new Object[] { " ", thisClass.attributeList[i].getName() });
+								model_3.addRow(new Object[] { " ", thisClass.attributeList[i].getName() });
 							}
 						}
 					}
@@ -208,7 +213,7 @@ public class ClassesPage {
 					if (thisClass.relationshipList != null) {
 						if (thisClass.relationshipList.length != 0) {
 							for (int i = 0; i < thisClass.relationshipList.length; i++) {
-								model.addRow(new Object[] { " ", " ", thisClass.relationshipList[i].getSource(),
+								model_3.addRow(new Object[] { " ", " ", thisClass.relationshipList[i].getSource(),
 										thisClass.relationshipList[i].getDestination() });
 
 							}
@@ -217,7 +222,7 @@ public class ClassesPage {
 
 				}
 				// Adjusting table so the headers are fully visible
-				JTable table = new JTable(model);
+				JTable table = new JTable(model_3);
 				table.getColumnModel().getColumn(2).setPreferredWidth(110);
 				table.getColumnModel().getColumn(3).setPreferredWidth(135);
 				JOptionPane.showMessageDialog(null, new JScrollPane(table));

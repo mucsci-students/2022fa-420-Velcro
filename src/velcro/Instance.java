@@ -28,7 +28,6 @@ public class Instance {
 
 	// Overloaded constructor; for use with loading option or other import
 	// strategies.
-  
 	Instance(Instance input) {
 		if (input.classList == null || input.classList.length == 0)
 			return;
@@ -64,9 +63,9 @@ public class Instance {
 	public boolean removeClass(String elementRemoved) {
 		if (this.classList == null || this.classList.length == 0)
 			return false;
-		Classes[] output = new Classes[classList.length - 1];
+		Classes[] output = new Classes[this.classList.length - 1];
 		boolean found = false;
-		for (int i = 0, j = 0; !found && i < classList.length; i++) {
+		for (int i = 0, j = 0; i < classList.length; i++) {
 			if (classList[i].getName().equals(elementRemoved)) {
 				found = true;
 				continue;
@@ -130,8 +129,9 @@ public class Instance {
 		if (this.classList == null || this.classList.length == 0)
 			return null;
 		for (int i = 0; i < classList.length; i++) {
-			if (classList[i].getName().equals(elementChecked))
+			if (classList[i].getName().equals(elementChecked)) {
 				return classList[i];
+			}
 		}
 		return null;
 	}
@@ -168,7 +168,6 @@ public class Instance {
 	public Instance copy(Instance source) {
 		Instance newInstance = new Instance(source);
 		return newInstance;
-
 	}
 
 	// Loads Json into this Instance
