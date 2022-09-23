@@ -27,7 +27,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
-import javax.swing.ComboBoxModel;
 
 public class ClassesPage {
 
@@ -166,65 +165,6 @@ public class ClassesPage {
 			}
 		});
 		classPage.getContentPane().add(btnHomepage);
-
-		// Button to display class list and contents.
-		JButton btnClassList = new JButton("All Class Contents");
-		btnClassList.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnClassList.setBounds(54, 359, 159, 69);
-		btnClassList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Aborts if classList is empty
-				if (thisInstance.classList == null || thisInstance.classList.length == 0) {
-					JOptionPane.showMessageDialog(classPage, "Please enter classes first.");
-					return;
-				}
-
-				// Sets up table for pop-up
-				DefaultTableModel model = new DefaultTableModel();
-				model.addColumn("Name");
-				model.addColumn("Attribute");
-				model.addColumn("Relationship Source");
-				model.addColumn("Relationship Destination");
-				boolean first = true;
-				for (int h = 0; h < thisInstance.classList.length; h++) {
-					// Adds a blank line between classes.
-					if (first) {
-						first = false;
-					} else {
-						model.addRow(new Object[] { " ", " ", " ", " "});
-					}
-					Classes thisClass = thisInstance.classList[h];
-					// Adds class name
-					model.addRow(new Object[] { thisClass.getName() });
-					// Adds all class's attributes
-					if (thisClass.attributeList != null) {
-						if (thisClass.attributeList.length != 0) {
-							for (int i = 0; i < thisClass.attributeList.length; i++) {
-								model.addRow(new Object[] { " ", thisClass.attributeList[i].getName() });
-							}
-						}
-					}
-					// Adds all class's relationships
-					if (thisClass.relationshipList != null) {
-						if (thisClass.relationshipList.length != 0) {
-							for (int i = 0; i < thisClass.relationshipList.length; i++) {
-								model.addRow(new Object[] { " ", " ", thisClass.relationshipList[i].getSource(),
-										thisClass.relationshipList[i].getDestination() });
-
-							}
-						}
-					}
-
-				}
-				// Adjusting table so the headers are fully visible
-				JTable table = new JTable(model);
-				table.getColumnModel().getColumn(2).setPreferredWidth(110);
-				table.getColumnModel().getColumn(3).setPreferredWidth(135);
-				JOptionPane.showMessageDialog(null, new JScrollPane(table));
-
-			}
-		});
-		classPage.getContentPane().add(btnClassList);
 
 		// Button to display Class contents.
 		JButton btnListContents = new JButton("Class Contents");
