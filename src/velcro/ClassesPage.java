@@ -25,6 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 
@@ -64,8 +65,13 @@ public class ClassesPage {
 		btnNewButton.setBounds(54, 247, 159, 69);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (e == null && e.getSource().toString() != null)
+				{
+					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
+					return;
+				}
 				// Checks for empty text field.
-				if (comboBox_2.getSelectedItem().toString().equals("")
+				if (comboBox_2.getSelectedItem() == null || comboBox_2.getSelectedItem().toString().equals("")
 						|| !containsAlphaNumeric(comboBox_2.getSelectedItem().toString())) {
 					JOptionPane.showMessageDialog(classPage, "Please enter a class name.");
 					return;
@@ -96,10 +102,9 @@ public class ClassesPage {
 					return;
 				}
 
-				if (thisInstance.removeClass(comboBox_2.getSelectedItem().toString())) {
-					model.removeElement(comboBox_2.getSelectedItem().toString());
-					model_1.removeElement(comboBox_2.getSelectedItem().toString());
-					model_2.removeElement(comboBox_2.getSelectedItem().toString());
+				if (thisInstance.removeClass(comboBox_1.getSelectedItem().toString())) {
+					model.removeElement(comboBox_1.getSelectedItem().toString());
+					model_1.removeElement(comboBox_1.getSelectedItem().toString());
 					JOptionPane.showMessageDialog(classPage, "Class removed successfully.");
 				} else
 					JOptionPane.showMessageDialog(classPage, "Class removal failed, class not found.");
@@ -175,7 +180,7 @@ public class ClassesPage {
 				// Checks if classes exist.
 				Classes thisClass;
 				try {
-					thisClass = thisInstance.getClass(comboBox_1.getSelectedItem().toString());
+					thisClass = thisInstance.getClass(comboBox.getSelectedItem().toString());
 				} catch (NullPointerException e1) {
 					JOptionPane.showMessageDialog(classPage, "Please enter classes first.");
 					return;
