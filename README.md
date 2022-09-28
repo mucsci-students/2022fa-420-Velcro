@@ -18,7 +18,7 @@ directory you wish to work from.
 ###REQUIREMENTS
 
  * Eclipse IDE version: 2019-06 (4.12.0)
- * Current version of the GUI downloadable from github
+ * Current version of the GUI downloadable from ![github](https://github.com/mucsci-students/2022fa-420-Velcro)
  * Java version 18.0.2.1
  
 ###INSTALLATION
