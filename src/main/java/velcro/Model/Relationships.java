@@ -7,11 +7,22 @@
  * 
  */
 
-package velcro;
+package velcro.Model;
+
+import java.util.List;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Relationships {
-	String source;
-	String destination;
+	
+	@SerializedName("source")
+	@Expose
+	public String source;
+	
+	@SerializedName("destination")
+	@Expose
+	public String destination;
 	
 	// Constructor.
 	Relationships(String source, String destination) {
