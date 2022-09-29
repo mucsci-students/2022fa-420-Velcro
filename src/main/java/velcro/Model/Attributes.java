@@ -9,9 +9,15 @@
 
 
 
-package velcro;
+package velcro.Model;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Attributes {
+	
+	@SerializedName("name")
+	@Expose
 	String name;
 	String parentClass;
 	
