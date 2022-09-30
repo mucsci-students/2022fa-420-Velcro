@@ -23,11 +23,21 @@ public class Relationships {
 	@SerializedName("destination")
 	@Expose
 	public String destination;
+
+	@SerializedName("type")
+	@Expose
+	public String type;
 	
 	// Constructor.
-	Relationships(String source, String destination) {
+	Relationships(String source, String destination, String type) {
 		this.source = source;
 		this.destination = destination;
+		this.type = type;
+	}
+	
+	// Returns type as String.
+	public String getType() {
+		return type;
 	}
 	
 	// Returns source as String.

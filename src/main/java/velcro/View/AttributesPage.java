@@ -42,8 +42,6 @@ public class AttributesPage {
 	public static JComboBox<String> comboBox;
 	public static JComboBox<String> comboBox_1;
 	public static Instance thisInstance;
-	public static DefaultComboBoxModel<String> model_1;
-	public static DefaultComboBoxModel<String> model;
 	public static JButton btnNewButton;
 	public static JButton btnDelete;
 	public static JButton btnRename;
@@ -52,11 +50,9 @@ public class AttributesPage {
 	public AttributesPage(Instance thisInstance) {
 
 		this.thisInstance = thisInstance;
-		// Models for combo boxes made here so they can be updated live
-		model = new DefaultComboBoxModel<String>();
-		comboBox = new JComboBox<String>(model);
-		model_1 = new DefaultComboBoxModel<String>();
-		comboBox_1 = new JComboBox<String>(model_1);
+		// Models for combo boxes assigned here so they can be updated live
+		comboBox = new JComboBox<String>(thisInstance.model);
+		comboBox_1 = new JComboBox<String>(thisInstance.model_1);
 		
 		// Initial pane setup.
 		attributesPage.setTitle("Velcro CSCI 420 :: Attributes");
@@ -115,10 +111,9 @@ public class AttributesPage {
 		attributesPage.getContentPane().add(lblNewLabel_1);
 
 		// Creates classes field.
-		Controller.populateClasses();
 		comboBox.setEditable(false);
 		comboBox.setBounds(400, 119, 231, 51);
-		comboBox.setModel(model);
+		comboBox.setModel(thisInstance.model);
 		attributesPage.getContentPane().add(comboBox);
 
 		// Class label.

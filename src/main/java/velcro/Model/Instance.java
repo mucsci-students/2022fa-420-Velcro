@@ -17,9 +17,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import velcro.View.RelationshipsPage;
 
 public class Instance {
 
@@ -27,10 +31,22 @@ public class Instance {
 	@SerializedName("classList")
 	@Expose
 	public List<Classes> classList;
+	public static DefaultComboBoxModel<String> model;
+	public static DefaultComboBoxModel<String> model_1;
+	public static DefaultComboBoxModel<String> model_2;
+	public static DefaultComboBoxModel<String> model1;
+	public static DefaultComboBoxModel<String> model2;
+	public static DefaultComboBoxModel<String> model3;
 
 	// Constructor.
 	public Instance() {
 		classList = new ArrayList<Classes>();
+		model = new DefaultComboBoxModel<String>();
+		model_1 = new DefaultComboBoxModel<String>();
+		model_2 = new DefaultComboBoxModel<String>();
+		model1 = new DefaultComboBoxModel<String>();
+		model2 = new DefaultComboBoxModel<String>();
+		model3 = new DefaultComboBoxModel<String>();
 	}
 
 	// Overloaded constructor; for use with loading option or other import
@@ -47,7 +63,7 @@ public class Instance {
 			}
 			if (input.classList.get(i).relationshipList != null && input.classList.get(i).relationshipList.size() != 0) {
 				for (int j = 0; j < input.classList.get(i).relationshipList.size(); j++) {
-					this.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(),input.classList.get(i).relationshipList.get(j).getDestination() );
+					this.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(),input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType() );
 				}
 			}
 		}
