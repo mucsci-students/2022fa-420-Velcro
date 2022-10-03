@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -63,7 +64,6 @@ public class Controller {
 			break;
 		case "AttributesPage":
 			AttributesPage attributesWindow = new AttributesPage(mode);
-			initAttributesPage();
 			break;
 		case "ClassesPage":
 			ClassesPage classesWindow = new ClassesPage(mode);
@@ -76,6 +76,7 @@ public class Controller {
 			break;
 		case "RelationshipsPage":
 			RelationshipsPage relationshipsWindow = new RelationshipsPage(mode);
+			Controller.setGroup();
 			break;
 		}
 
@@ -85,9 +86,17 @@ public class Controller {
 
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
 
 
-	/** Methods related to AttributesPage.
+	/** Methods related to #AttributesPage.
 	**
 	**
 	**/
@@ -108,36 +117,6 @@ public class Controller {
 		public void mouseEntered(MouseEvent e) {
 		}
 	};
-
-	// Initially populates Attributes combo box
-	public static void initAttributesPage() {
-		Classes thisClass;
-		try {
-			thisClass = AttributesPage.thisInstance.getClass(AttributesPage.comboBox.getSelectedItem().toString());
-			if (AttributesPage.thisInstance.getClass(AttributesPage.comboBox.getSelectedItem().toString()) != null
-					&& AttributesPage.thisInstance.classList.size() != 0) {
-				if (thisClass != null && thisClass.attributeList != null && thisClass.attributeList.size() != 0) {
-					for (int i = 0; i < thisClass.attributeList.size(); i++) {
-						AttributesPage.model_1.addElement(thisClass.attributeList.get(i).getName());
-					}
-					AttributesPage.comboBox_1.setMaximumRowCount(thisClass.attributeList.size());
-				}
-			}
-		} catch (NullPointerException e1) {
-		}
-	}
-
-	// Initially populates class combo box
-	public static void populateClasses() {
-		if (AttributesPage.thisInstance.classList != null) {
-			if (AttributesPage.thisInstance.classList.size() != 0) {
-				for (int i = 0; i < AttributesPage.thisInstance.classList.size(); i++) {
-					AttributesPage.model.addElement(AttributesPage.thisInstance.classList.get(i).getName());
-				}
-				AttributesPage.comboBox.setMaximumRowCount(AttributesPage.thisInstance.classList.size());
-			}
-		}
-	}
 
 	// Prevent button use with empty text field.
 	public static ActionListener att = new ActionListener() {
@@ -172,7 +151,7 @@ public class Controller {
 				}
 				att = new Controller.AddAttribute(AttributesPage.thisInstance,
 						AttributesPage.comboBox.getSelectedItem(), AttributesPage.comboBox_1.getSelectedItem(),
-						AttributesPage.attributesPage, AttributesPage.model_1);
+						AttributesPage.attributesPage, AttributesPage.thisInstance.model_1);
 				input.addActionListener(att);
 			}
 		}
@@ -189,7 +168,7 @@ public class Controller {
 				}
 				delAtt = new Controller.DelAttribute(AttributesPage.thisInstance,
 						AttributesPage.comboBox.getSelectedItem(), AttributesPage.comboBox_1.getSelectedItem(),
-						AttributesPage.attributesPage, AttributesPage.model_1);
+						AttributesPage.attributesPage, AttributesPage.thisInstance.model_1);
 				input.addActionListener(delAtt);
 			}
 		}
@@ -206,7 +185,7 @@ public class Controller {
 				}
 				renAtt = new Controller.RenameAttribute(AttributesPage.thisInstance,
 						AttributesPage.comboBox.getSelectedItem(), AttributesPage.comboBox_1.getSelectedItem(),
-						AttributesPage.attributesPage, AttributesPage.model_1, renameTextField);
+						AttributesPage.attributesPage, AttributesPage.thisInstance.model_1, renameTextField);
 				input.addActionListener(renAtt);
 			}
 		}
@@ -344,7 +323,7 @@ public class Controller {
 			JButton input = AttributesPage.btnRename;
 			renAtt = new Controller.RenameAttribute(AttributesPage.thisInstance,
 					AttributesPage.comboBox.getSelectedItem(), AttributesPage.comboBox_1.getSelectedItem(),
-					AttributesPage.attributesPage, AttributesPage.model_1, renameTextField);
+					AttributesPage.attributesPage, AttributesPage.thisInstance.model_1, renameTextField);
 			input.addActionListener(renAtt);
 		}
 	};
@@ -424,7 +403,35 @@ public class Controller {
 
 	}
 	
-	/** Methods related to ClassesPage.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Methods related to #ClassesPage.
 	**
 	**
 	**/
@@ -464,7 +471,7 @@ public class Controller {
 				} catch (Exception e1) {
 				}
 				cla = new Controller.AddClass(ClassesPage.thisInstance, ClassesPage.comboBox_2.getSelectedItem(),
-						ClassesPage.classPage, ClassesPage.model, ClassesPage.model_1, ClassesPage.model_2);
+						ClassesPage.classPage, ClassesPage.thisInstance.model, ClassesPage.thisInstance.model_1, ClassesPage.thisInstance.model_2);
 				input.addActionListener(cla);
 			}
 		}
@@ -533,7 +540,7 @@ public class Controller {
 				} catch (Exception e1) {
 				}
 				delCla = new Controller.DelClass(ClassesPage.thisInstance, ClassesPage.comboBox_1.getSelectedItem(),
-						ClassesPage.classPage, ClassesPage.model, ClassesPage.model_1, ClassesPage.model_2);
+						ClassesPage.classPage, ClassesPage.thisInstance.model, ClassesPage.thisInstance.model_1, ClassesPage.thisInstance.model_2);
 				input.addActionListener(delCla);
 			}
 		}
@@ -580,24 +587,10 @@ public class Controller {
 	// add/remove from it to update it live.
 	public static void initClasses(Instance inputInstance) {
 		ClassesPage.thisInstance = inputInstance;
-		ClassesPage.model = new DefaultComboBoxModel<String>();
-		ClassesPage.model_1 = new DefaultComboBoxModel<String>();
-		ClassesPage.model_2 = new DefaultComboBoxModel<String>();
-		ClassesPage.comboBox = new JComboBox<String>(ClassesPage.model);
-		ClassesPage.comboBox_1 = new JComboBox<String>(ClassesPage.model_1);
-		ClassesPage.comboBox_2 = new JComboBox<String>(ClassesPage.model_2);
-
-		// Populates combo boxes initially
-		if (ClassesPage.thisInstance.classList != null) {
-			if (ClassesPage.thisInstance.classList.size() != 0) {
-				for (int i = 0; i < ClassesPage.thisInstance.classList.size(); i++) {
-					ClassesPage.model.addElement(ClassesPage.thisInstance.classList.get(i).getName());
-					ClassesPage.model_1.addElement(ClassesPage.thisInstance.classList.get(i).getName());
-					ClassesPage.model_2.addElement(ClassesPage.thisInstance.classList.get(i).getName());
-				}
-				ClassesPage.comboBox.setMaximumRowCount(ClassesPage.thisInstance.classList.size());
-			}
-		}
+		ClassesPage.comboBox = new JComboBox<String>(inputInstance.model);
+		ClassesPage.comboBox_1 = new JComboBox<String>(inputInstance.model_1);
+		ClassesPage.comboBox_2 = new JComboBox<String>(inputInstance.model_2);
+		ClassesPage.comboBox.setMaximumRowCount(inputInstance.classList.size());
 	}
 
 	// Method for displaying class contents.
@@ -623,6 +616,7 @@ public class Controller {
 			model.addColumn("Attribute");
 			model.addColumn("Relationship Source");
 			model.addColumn("Relationship Destination");
+			model.addColumn("Relationship Type");
 			// Adds class name
 			model.addRow(new Object[] { thisClass.getName() });
 			// Adds all of class's attributes
@@ -647,6 +641,7 @@ public class Controller {
 			JTable table = new JTable(model);
 			table.getColumnModel().getColumn(2).setPreferredWidth(110);
 			table.getColumnModel().getColumn(3).setPreferredWidth(135);
+			table.getColumnModel().getColumn(4).setPreferredWidth(110);
 			JOptionPane.showMessageDialog(null, new JScrollPane(table));
 		}
 
@@ -669,8 +664,8 @@ public class Controller {
 				} catch (Exception e1) {
 				}
 				renCla = new Controller.RenClass(ClassesPage.thisInstance, ClassesPage.comboBox_1.getSelectedItem(),
-						renameTextField, ClassesPage.comboBox_2, ClassesPage.classPage, ClassesPage.model,
-						ClassesPage.model_1, ClassesPage.model_2);
+						renameTextField, ClassesPage.comboBox_2, ClassesPage.classPage, ClassesPage.thisInstance.model,
+						ClassesPage.thisInstance.model_1, ClassesPage.thisInstance.model_2);
 				input.addActionListener(renCla);
 			}
 		}
@@ -702,8 +697,8 @@ public class Controller {
 			renameTextField = ClassesPage.textField2.getText();
 			JButton input = ClassesPage.btnRename;
 			renCla = new Controller.RenClass(ClassesPage.thisInstance, ClassesPage.comboBox_1.getSelectedItem(),
-					renameTextField, ClassesPage.comboBox_2, ClassesPage.classPage, ClassesPage.model,
-					ClassesPage.model_1, ClassesPage.model_2);
+					renameTextField, ClassesPage.comboBox_2, ClassesPage.classPage, ClassesPage.thisInstance.model,
+					ClassesPage.thisInstance.model_1, ClassesPage.thisInstance.model_2);
 			input.addActionListener(renCla);
 		}
 	};
@@ -784,7 +779,31 @@ public class Controller {
 	};
 
 	
-	/** Methods related to LoadPage.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Methods related to #LoadPage.
 	**
 	**
 	**/
@@ -923,7 +942,26 @@ public class Controller {
 		}
 	};
 
-	/** Methods related to SavePage.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Methods related to #SavePage.
 	**
 	**
 	**/
@@ -1145,7 +1183,27 @@ public class Controller {
 		}
 	};
 
-	/** Methods related to LandingPage.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Methods related to #LandingPage. 
 	**
 	**
 	**/
@@ -1245,6 +1303,7 @@ public class Controller {
 			model.addColumn("Attribute");
 			model.addColumn("Relationship Source");
 			model.addColumn("Relationship Destination");
+			model.addColumn("Relationship Type");
 			boolean first = true;
 			for (int h = 0; h < LandingPage.thisInstance.classList.size(); h++) {
 				// Adds a blank line between classes.
@@ -1269,7 +1328,7 @@ public class Controller {
 					if (thisClass.relationshipList.size() != 0) {
 						for (int i = 0; i < thisClass.relationshipList.size(); i++) {
 							model.addRow(new Object[] { " ", " ", thisClass.relationshipList.get(i).getSource(),
-									thisClass.relationshipList.get(i).getDestination() });
+									thisClass.relationshipList.get(i).getDestination(), thisClass.relationshipList.get(i).getType() });
 
 						}
 					}
@@ -1280,6 +1339,7 @@ public class Controller {
 			JTable table = new JTable(model);
 			table.getColumnModel().getColumn(2).setPreferredWidth(110);
 			table.getColumnModel().getColumn(3).setPreferredWidth(135);
+			table.getColumnModel().getColumn(4).setPreferredWidth(110);
 			JOptionPane.showMessageDialog(null, new JScrollPane(table));
 
 		}
@@ -1303,7 +1363,35 @@ public class Controller {
 		}
 	};
 
-	/** Methods related to RelationshipsPage.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** Methods related to #RelationshipsPage.
 	**
 	**
 	**/
@@ -1326,20 +1414,44 @@ public class Controller {
 		}
 	};
 	
-	// Home button action for attributes page.
-	public static ActionListener relationshipHomeButton = new ActionListener() {
+	
+	// Action Listener for adding relationships.
+	public static ActionListener finalRel = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			RelationshipsPage.relationPage.dispose();
-			try {
-				initController(RelationshipsPage.thisInstance, "LandingPage");
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if (!e.getActionCommand().equals("")) {
+				JButton input1 = RelationshipsPage.btnNewButton;
+				JButton input2 = RelationshipsPage.btnDelete;
+				try {
+					input1.removeActionListener(rel);
+					input2.removeActionListener(delRela);
+				} catch (Exception e1) {
+				}
+				rel = addRel;
+				input1.addActionListener(rel);
+				delRela = delRel;
+				input2.addActionListener(delRela);
 			}
 		}
 	};
 	
+	
+	// Prevent button use with empty Classes field.
+	public static ActionListener rel = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, "Please enter classes first!");
+		}
+	};
+
+	// Prevent button use with empty text field.
+	public static ActionListener delRela = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, "Please enter classes first!");
+		}
+	};
+	
+	
 	// Home button action for Relationships page.
-	public static ActionListener relationshipsHomeButton = new ActionListener() {
+	public static ActionListener relationshipHomeButton = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			RelationshipsPage.relationPage.dispose();
 			try {
@@ -1353,21 +1465,17 @@ public class Controller {
 	// Initial creation of Relationship models.
 	public static void relInit(Instance inputInstance) {
 		RelationshipsPage.thisInstance = inputInstance;
-		RelationshipsPage.model = new DefaultComboBoxModel<String>();
-		RelationshipsPage.model_1 = new DefaultComboBoxModel<String>();
-		RelationshipsPage.comboBox = new JComboBox<String>(RelationshipsPage.model);
-		RelationshipsPage.comboBox_1 = new JComboBox<String>(RelationshipsPage.model_1);
-
-		// Populates comboBoxes
-		if (RelationshipsPage.thisInstance.classList != null) {
-			if (RelationshipsPage.thisInstance.classList.size() != 0) {
-				for (int i = 0; i < RelationshipsPage.thisInstance.classList.size(); i++) {
-					RelationshipsPage.model.addElement(RelationshipsPage.thisInstance.classList.get(i).getName());
-					RelationshipsPage.model_1.addElement(RelationshipsPage.thisInstance.classList.get(i).getName());
-				}
-				RelationshipsPage.comboBox.setMaximumRowCount(RelationshipsPage.thisInstance.classList.size());
-			}
-		}
+		RelationshipsPage.comboBox = new JComboBox<String>(inputInstance.model);
+		RelationshipsPage.comboBox_1 = new JComboBox<String>(inputInstance.model_1);
+	}
+	
+	// Set group must be called after button initialization.
+	public static void setGroup() {
+		RelationshipsPage.group = new ButtonGroup();
+		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton);
+		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_1);
+		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_2);
+		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_3);
 	}
 
 	// Action listener to add relationship
@@ -1376,9 +1484,11 @@ public class Controller {
 			// Checks that classes exist
 			String sourceClassName;
 			String destinationClassName;
+			String type;
 			try {
 				sourceClassName = RelationshipsPage.comboBox.getSelectedItem().toString();
 				destinationClassName = RelationshipsPage.comboBox_1.getSelectedItem().toString();
+				type = RelationshipsPage.group.getSelection().getActionCommand();
 			} catch (NullPointerException e1) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Please enter classes first.");
 				return;
@@ -1398,14 +1508,14 @@ public class Controller {
 				return;
 			}
 			// Checks to see if relationship already exists
-			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName);
+			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName, type);
 			if (orig != null) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship already exists!");
 				return;
 			}
 			// Adds relationship
-			sourceClass.addRelationship(sourceClassName, destinationClassName);
-			destinationClass.addRelationship(sourceClassName, destinationClassName);
+			sourceClass.addRelationship(sourceClassName, destinationClassName, type);
+			destinationClass.addRelationship(sourceClassName, destinationClassName, type);
 			JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship added successfully.");
 		}
 	};
@@ -1416,9 +1526,11 @@ public class Controller {
 			// Check that classes exist
 			String sourceClassName;
 			String destinationClassName;
+			String type;
 			try {
 				sourceClassName = RelationshipsPage.comboBox.getSelectedItem().toString();
 				destinationClassName = RelationshipsPage.comboBox_1.getSelectedItem().toString();
+				type = RelationshipsPage.group.getSelection().getActionCommand();
 			} catch (NullPointerException e1) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Please enter classes first.");
 				return;
@@ -1438,14 +1550,14 @@ public class Controller {
 				return;
 			}
 			// Looks for relationship
-			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName);
+			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName, type);
 			if (orig == null) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship not found!");
 				return;
 			}
 			// Removes relationship
-			if (sourceClass.removeRelationship(sourceClassName, destinationClassName)
-					&& destinationClass.removeRelationship(sourceClassName, destinationClassName))
+			if (sourceClass.removeRelationship(sourceClassName, destinationClassName, type)
+					&& destinationClass.removeRelationship(sourceClassName, destinationClassName, type))
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship removed successfully.");
 			else
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship removal failed.");
@@ -1460,6 +1572,7 @@ public class Controller {
 				DefaultTableModel model = new DefaultTableModel();
 				model.addColumn("Source");
 				model.addColumn("Destination");
+				model.addColumn("Type");
 				// Creates list of already-listed relationships
 				Object[][] allRelations = new Object[0][2];
 				for (int i = 0; i < RelationshipsPage.thisInstance.classList.size(); i++) {
@@ -1468,7 +1581,7 @@ public class Controller {
 					if (thisClass.relationshipList != null && thisClass.relationshipList.size() != 0) {
 						for (int j = 0; j < thisClass.relationshipList.size(); j++) {
 							Object[] newObject = new Object[] { thisClass.relationshipList.get(j).source,
-									thisClass.relationshipList.get(j).destination };
+									thisClass.relationshipList.get(j).destination, thisClass.relationshipList.get(j).type  };
 							// Checks if relationship was already printed
 							if (!containsElement(allRelations, newObject)) {
 								model.addRow(newObject);
@@ -1487,7 +1600,20 @@ public class Controller {
 		}
 	};
 
-	/** Utility methods.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/** #Utility methods.
 	**
 	**
 	**/

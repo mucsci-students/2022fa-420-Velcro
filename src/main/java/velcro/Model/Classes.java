@@ -25,7 +25,7 @@ public class Classes {
 	@Expose
 	public List<Attributes> attributeList = new ArrayList<Attributes>();
 	
-	@SerializedName("relationshipList")
+	@SerializedName("relationships")
 	@Expose
 	public List<Relationships> relationshipList = new ArrayList<Relationships>();
 	
@@ -109,20 +109,21 @@ public class Classes {
 	}
 
 	// Adds a relationship to RelationshipsList array.
-	public void addRelationship(String source, String destination) {
-		Relationships newRel = new Relationships(source, destination);
+	public void addRelationship(String source, String destination, String type) {
+		Relationships newRel = new Relationships(source, destination, type);
 		relationshipList.add(newRel);
 	}
 
 	// Removes the first relationship matching given input source and destination.
-	public boolean removeRelationship(String sourceRemoved, String destinationRemoved) {
+	public boolean removeRelationship(String sourceRemoved, String destinationRemoved, String typeRemoved) {
 		if (this.relationshipList == null || relationshipList.size() == 0)
 			return false;
 		List<Relationships> output = new ArrayList<Relationships>();
 		boolean found = false;
 		for (int i = 0; !found && i < relationshipList.size(); i++) {
 			if (relationshipList.get(i).getSource().equals(sourceRemoved)
-					&& relationshipList.get(i).getDestination().equals(destinationRemoved)) {
+					&& relationshipList.get(i).getDestination().equals(destinationRemoved)
+					&& relationshipList.get(i).getType().equals(typeRemoved)) {
 				found = true;
 				relationshipList.remove(relationshipList.get(i));
 				continue;
@@ -133,24 +134,25 @@ public class Classes {
 
 
 	// Boolean that returns true if the relationshipList contains input.
-	public boolean checkRelationship(String sourceChecked, String destinationChecked) {
+	public boolean checkRelationship(String sourceChecked, String destinationChecked, String typeChecked) {
 		if (this.relationshipList == null || relationshipList.size() == 0)
 			return false;
 		for (int i = 0; i < relationshipList.size(); i++) {
 			if (relationshipList.get(i).getSource().equals(sourceChecked)
-					&& relationshipList.get(i).getDestination().equals(destinationChecked))
+					&& relationshipList.get(i).getDestination().equals(destinationChecked)
+					&& relationshipList.get(i).getType().equals(typeChecked))
 				return true;
 		}
 		return false;
 	}
 
 	// Returns matching Relationship.
-	public Relationships getRelationship(String source, String destination) {
+	public Relationships getRelationship(String source, String destination, String type) {
 		if (this.relationshipList == null || relationshipList.size() == 0)
 			return null;
 		for (int i = 0; i < relationshipList.size(); i++) {
 			if (relationshipList.get(i).getSource().equals(source)
-					&& relationshipList.get(i).getDestination().equals(destination))
+					&& relationshipList.get(i).getDestination().equals(destination) && relationshipList.get(i).getType().equals(type))
 				return relationshipList.get(i);
 		}
 		return null;

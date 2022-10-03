@@ -40,9 +40,9 @@ public class ClassesPage {
 	public static JTextField textField2;
 	public static JButton btnNewButton;
 	public static JButton btnDelete;
-	public static DefaultComboBoxModel<String> model;
-	public static DefaultComboBoxModel<String> model_1;
-	public static DefaultComboBoxModel<String> model_2;
+//	public static DefaultComboBoxModel<String> model;
+//	public static DefaultComboBoxModel<String> model_1;
+//	public static DefaultComboBoxModel<String> model_2;
 	public static JComboBox<String> comboBox;
 	public static JComboBox<String> comboBox_1;
 	public static JComboBox<String> comboBox_2;

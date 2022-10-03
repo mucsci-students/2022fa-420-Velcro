@@ -32,17 +32,25 @@ import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
+import javax.swing.JRadioButton;
 
 public class RelationshipsPage {
 
 	// JFrame creation and needed attributes.
 	public static JFrame relationPage = new JFrame();
-	public static DefaultComboBoxModel<String> model;
-	public static DefaultComboBoxModel<String> model_1;
+	public static DefaultComboBoxModel<String> inputInstance;
+	public static JRadioButton rdbtnNewRadioButton;
+	public static JRadioButton rdbtnNewRadioButton_1;
+	public static JRadioButton rdbtnNewRadioButton_2;
+	public static JRadioButton rdbtnNewRadioButton_3;
+	public static ButtonGroup group;
 	public static JComboBox<String> comboBox;
 	public static JComboBox<String> comboBox_1;
 	public static JButton btnNewButton;
+	public static JButton btnDelete;
 	public static Instance thisInstance;
 
 	// Constructor.
@@ -60,26 +68,26 @@ public class RelationshipsPage {
 		btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton.setBounds(66, 247, 159, 69);
-		btnNewButton.addActionListener(Controller.addRel);
+		btnNewButton.addActionListener(Controller.rel);
 		relationPage.getContentPane().add(btnNewButton);
 
 		// Button to remove relationship from Instance.
-		JButton btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnDelete.setBounds(265, 247, 159, 69);
-		btnDelete.addActionListener(Controller.delRel);
+		btnDelete.addActionListener(Controller.delRela);
 		relationPage.getContentPane().add(btnDelete);
 
 		// Source label
 		JLabel lblNewLabel = new JLabel("Source Class Name");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel.setBounds(107, 63, 150, 45);
+		lblNewLabel.setBounds(67, 63, 150, 45);
 		relationPage.getContentPane().add(lblNewLabel);
 
 		// Destination label
 		JLabel lblReplaceClassName = new JLabel("Destination Class Name");
 		lblReplaceClassName.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblReplaceClassName.setBounds(409, 63, 191, 45);
+		lblReplaceClassName.setBounds(449, 63, 191, 45);
 		relationPage.getContentPane().add(lblReplaceClassName);
 
 		// Button returns to landing page.
@@ -106,14 +114,48 @@ public class RelationshipsPage {
 
 
 		comboBox.setEditable(false);
-		comboBox.setBounds(66, 113, 222, 69);
-		comboBox.setModel(model);
+		comboBox.setBounds(46, 113, 182, 69);
+		comboBox.setModel(thisInstance.model);
+		comboBox.addActionListener(Controller.finalRel);
 		relationPage.getContentPane().add(comboBox);
 
 		comboBox_1.setEditable(false);
-		comboBox_1.setBounds(387, 113, 222, 69);
+		comboBox_1.setBounds(447, 113, 182, 69);
+		comboBox_1.setModel(thisInstance.model_1);
+		comboBox_1.addActionListener(Controller.finalRel);
 		relationPage.getContentPane().add(comboBox_1);
+		
+		rdbtnNewRadioButton = new JRadioButton("Aggregation");
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnNewRadioButton.setBounds(284, 119, 115, 23);
+		rdbtnNewRadioButton.setActionCommand("Aggregation");
+		relationPage.getContentPane().add(rdbtnNewRadioButton);
+		
+		rdbtnNewRadioButton_1 = new JRadioButton("Composition");
+		rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnNewRadioButton_1.setBounds(284, 145, 115, 23);
+		rdbtnNewRadioButton_1.setActionCommand("Composition");
+		relationPage.getContentPane().add(rdbtnNewRadioButton_1);
+		
+		rdbtnNewRadioButton_2 = new JRadioButton("Inheritance");
+		rdbtnNewRadioButton_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnNewRadioButton_2.setBounds(284, 171, 115, 23);
+		rdbtnNewRadioButton_2.setActionCommand("Inheritance");
+		relationPage.getContentPane().add(rdbtnNewRadioButton_2);
+		
+		rdbtnNewRadioButton_3 = new JRadioButton("Realization");
+		rdbtnNewRadioButton_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnNewRadioButton_3.setBounds(284, 197, 115, 23);
+		rdbtnNewRadioButton_3.setActionCommand("Realization");
+		relationPage.getContentPane().add(rdbtnNewRadioButton_3);
+		
+		JLabel lblRelationshipType = new JLabel("Relationship Type");
+		lblRelationshipType.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblRelationshipType.setBounds(277, 63, 138, 45);
+		relationPage.getContentPane().add(lblRelationshipType);
 
+		
 		relationPage.setVisible(true);
 	}
 }
