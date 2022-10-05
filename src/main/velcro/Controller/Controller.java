@@ -2643,12 +2643,13 @@ public class Controller {
 				try {
 					input1.removeActionListener(rel);
 					input2.removeActionListener(delRela);
+
+					input1.removeActionListener(addRel);
+					input2.removeActionListener(delRel);
 				} catch (Exception e1) {
 				}
-				rel = addRel;
-				input1.addActionListener(rel);
-				delRela = delRel;
-				input2.addActionListener(delRela);
+				input1.addActionListener(addRel);
+				input2.addActionListener(delRel);
 			}
 		}
 	};
@@ -2695,6 +2696,11 @@ public class Controller {
 		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_1);
 		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_2);
 		RelationshipsPage.group.add(RelationshipsPage.rdbtnNewRadioButton_3);
+
+		RelationshipsPage.rdbtnNewRadioButton.addActionListener(Controller.finalRel);
+		RelationshipsPage.rdbtnNewRadioButton_1.addActionListener(Controller.finalRel);
+		RelationshipsPage.rdbtnNewRadioButton_2.addActionListener(Controller.finalRel);
+		RelationshipsPage.rdbtnNewRadioButton_3.addActionListener(Controller.finalRel);
 	}
 
 	// Action listener to add relationship
@@ -2843,7 +2849,7 @@ public class Controller {
 		if (array == null || array.length == 0)
 			return false;
 		for (int i = 0; i < array.length; i++) {
-			if (array[i][0].equals(search[0]) && array[i][1].equals(search[1]))
+			if (array[i][0].equals(search[0]) && array[i][1].equals(search[1]) && array[i][2].equals(search[2]))
 				return true;
 		}
 		return false;
