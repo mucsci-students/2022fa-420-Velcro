@@ -1,4 +1,4 @@
-package main.java;
+package main;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import main.java.velcro.Model.*;
+import main.velcro.Model.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
