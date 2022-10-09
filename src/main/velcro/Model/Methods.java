@@ -38,7 +38,7 @@ public class Methods {
 	public static DefaultComboBoxModel<String> paramModel1;
 	
 	// Method's constructor.
-	Methods(String name, String type, List<Fields> params) {
+	public Methods(String name, String type, List<Fields> params) {
 		this.name = name;
 		this.type = type;
 		this.paramList = params;

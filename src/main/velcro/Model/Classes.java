@@ -41,7 +41,7 @@ public class Classes {
 	public static DefaultComboBoxModel<String> methodModel_1;
 	
 	// Classes constructor.
-	Classes(String name) {
+	public Classes(String name) {
 		this.name = name;
 		fieldModel = new DefaultComboBoxModel<String>();
 		fieldModel_1 = new DefaultComboBoxModel<String>();

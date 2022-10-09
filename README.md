@@ -47,7 +47,7 @@ directory you wish to work from.
 * Create a new folder on your desktop (or other easily-accessible location). Inside the new folder, create another folder entitled “jre.”
 * Right-click and drag the “bin” and “lib” folders from your Java folder to the jre folder, and select “copy here.”
 * Within Eclipse, right-click the project name and select “Export…” -> “Runnable JAR file” (within the Java Folder).
-* Under Launch configuration, navigate to and select the App file of the Velcro project. In the export destination section, navigate to the desktop folder you created that contains the “jre” folder, and select “Extract required libraries into generated JAR.” Make sure the destination includes a memorable file name ending with “.jar”. Click Finish. If asked about repacking referenced libraries, select Okay.
+* Under Launch configuration, navigate to and select the "cli" file of the Velcro project. In the export destination section, navigate to the desktop folder you created that contains the “jre” folder, and select “Extract required libraries into generated JAR.” Make sure the destination includes a memorable file name ending with “.jar”. Click Finish. If asked about repacking referenced libraries, select Okay.
 * Your desktop folder should now contain a jar file and a jre folder, which contains two folders named bin and lib. 
 * Run Launch4j.
 * In the “Output file” field at the top, click the folder icon, navigate to your desktop folder, and enter a name for the finished .exe. Note: the filename *must* end in “.exe”. In the “Jar” field, click the folder icon and navigate to/select the .jar file you saved in the desktop folder.
