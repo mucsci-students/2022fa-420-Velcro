@@ -52,6 +52,7 @@ directory you wish to work from.
 * Run Launch4j.
 * In the “Output file” field at the top, click the folder icon, navigate to your desktop folder, and enter a name for the finished .exe. Note: the filename *must* end in “.exe”. In the “Jar” field, click the folder icon and navigate to/select the .jar file you saved in the desktop folder.
 * Click the “Classpath” header item at the top, check the “Custom classpath” toggle, click the folder icon, and again select the .jar file in your desktop folder.
+* Click the “Header” header item at the top, click the option for Header Type: Console.
 * Click the “JRE” header item at the top, and in the “Bundled JRE paths” field type in the three letters: jre.
 * Click the “Build Wrapper” button at the top (it looks like a gear). Navigate to the desktop folder you created earlier, and give the textbox a name for the Launch4j config file that it creates.
 * The .exe file should now be created in the desktop folder. You can run it by double-clicking the .exe file or, without leaving Launch4j, by clicking the “Test wrapper” button that looks like a play button at the top.
