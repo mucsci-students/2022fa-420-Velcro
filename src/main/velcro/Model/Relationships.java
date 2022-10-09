@@ -29,7 +29,7 @@ public class Relationships {
 	public String type;
 	
 	// Constructor.
-	Relationships(String source, String destination, String type) {
+	public Relationships(String source, String destination, String type) {
 		this.source = source;
 		this.destination = destination;
 		this.type = type;
