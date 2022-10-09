@@ -26,7 +26,7 @@ public class Parameters {
 	String type;
 	
 	// Fields constructor.
-	Parameters(String name, String type) {
+	public Parameters(String name, String type) {
 		this.name = name;
 		this.type = type;
 	}
