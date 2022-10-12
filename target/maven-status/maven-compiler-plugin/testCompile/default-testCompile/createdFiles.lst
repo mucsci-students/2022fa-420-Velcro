@@ -1,0 +1,17 @@
+velcro/View/LandingPageTest.class
+velcro/View/MethodsPageTest.class
+velcro/View/FieldsPageTest.class
+velcro/Model/InstanceTest.class
+velcro/Model/ClassesTest.class
+velcro/Controller/ControllerTest.class
+velcro/Model/RelationshipsTest.class
+velcro/Model/FieldsTest.class
+velcro/View/ParametersPageTest.class
+velcro/Model/ParametersTest.class
+velcro/View/RelationshipsPageTest.class
+velcro/View/LoadPageTest.class
+velcro/View/ClassesPageTest.class
+velcro/View/SavePageTest.class
+appTest.class
+cliTest.class
+velcro/Model/MethodsTest.class
