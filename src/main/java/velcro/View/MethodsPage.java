@@ -7,11 +7,11 @@
  * 
  */
 
-package velcro.View;
+package main.java.velcro.View;
 
-import velcro.Controller.*;
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Controller.*;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,9 +19,9 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import velcro.Model.Methods;
-import velcro.Model.Classes;
-import velcro.Model.Instance;
+import main.java.velcro.Model.Methods;
+import main.java.velcro.Model.Classes;
+import main.java.velcro.Model.Instance;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

@@ -1,10 +1,12 @@
+package main;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import velcro.Model.*;
+import main.java.velcro.Model.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -50,7 +52,7 @@ public class cli {
 		String renameField = " -\t renameField <classname> <fieldname> <newfieldname>\n";
 		String deleteField = " -\t removeField <classname> <fieldname>\n";
 		String addRelation = " -\t addRelation <classname> <sourceclass> <destinationclass> <relationshiptype>\n";
-		String deleteRelation = " -\t deleteRelation <sourceclass> <destinationclass> <relationshiptype>\n";
+		String deleteRelation = " -\t deleteRelation <sourceclass> <destinationclass>\n";
 		String classContents = " -\t classContents <classname>\n";
 		String save = " -\t save <filename>\n";
 		String load = " -\t load <filename>\n";
@@ -223,13 +225,13 @@ public class cli {
 				}
 				Relationships relobj7;
 				try {
-					relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2], param[3]);
+					relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
 				} catch (NullPointerException e) {
 					System.out.println("Relationship not found!");
 					break;
 				}
-				classobj7.removeRelationship(param[1], param[2], param[3]);
-				classobj8.removeRelationship(param[1], param[2], param[3]);
+				classobj7.removeRelationship(param[1], param[2]);
+				classobj8.removeRelationship(param[1], param[2]);
 				System.out.println("Relationship removed.");
 				break;
 			case "deleteField":

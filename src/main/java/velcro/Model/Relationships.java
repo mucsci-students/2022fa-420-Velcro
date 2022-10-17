@@ -7,7 +7,7 @@
  * 
  */
 
-package velcro.Model;
+package main.java.velcro.Model;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class Relationships {
 	public String type;
 	
 	// Constructor.
-	public Relationships(String source, String destination, String type) {
+	Relationships(String source, String destination, String type) {
 		this.source = source;
 		this.destination = destination;
 		this.type = type;
