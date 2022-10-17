@@ -6,7 +6,7 @@
  * Description: A page for exporting the current Instance into a Json file.
  * 
  */
-package velcro.View;
+package main.java.velcro.View;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,9 +15,9 @@ import javax.swing.ListSelectionModel;
 
 import com.google.gson.Gson;
 
-import velcro.Controller.Controller;
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Controller.Controller;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
 
 import org.apache.commons.io.FileUtils;
 

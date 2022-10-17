@@ -1,9 +1,9 @@
 /**
- * Filename: Fields.java.
+ * Filename: Attributes.java.
  * 
  * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
  * Course: CSCI 420 (Section 01) 
- * Description: Fields class.
+ * Description: Attributes class.
  * 
  */
 
@@ -14,39 +14,30 @@ package main.java.velcro.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Fields {
+public class Attributes {
 	
 	@SerializedName("name")
 	@Expose
 	String name;
 	String parentClass;
 	
-	@SerializedName("type")
-	@Expose
-	String type;
-	
-	// Fields constructor.
-	public Fields(String name, String type) {
+	// Attributes constructor.
+	Attributes(String name) {
 		this.name = name;
-		this.type = type;
 	}
 	
-	// Returns Fields name.
+	// Returns Attributes name.
 	public String getName() {
 		return name;
 	}
 
-	// Returns Fields type.
-	public String getType() {
-		return type;
+	
+	// Returns boolean of whether input Attributes object equals this Attributes object.
+	public boolean equals(Attributes input) {
+		return (input.name.equals(this.name));
 	}
 	
-	// Returns boolean of whether input Fields object equals this Fields object.
-	public boolean equals(Fields input) {
-		return (input.name.equals(this.name) && input.type.equals(this.type));
-	}
-	
-	// Renames Field.
+	// Renames Attribute.
 	public boolean rename(String newName) {
 		if (newName.equals(""))
 			return false;

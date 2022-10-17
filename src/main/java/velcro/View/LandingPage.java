@@ -7,7 +7,7 @@
  * 
  */
 
-package velcro.View;
+package main.java.velcro.View;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -17,9 +17,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import velcro.Controller.Controller;
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Controller.Controller;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
 
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
