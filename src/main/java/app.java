@@ -1,10 +1,12 @@
+package main;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import velcro.Controller.*;
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Controller.*;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
 
 public class app {
 	public JFrame homepage;

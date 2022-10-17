@@ -1,4 +1,4 @@
-package velcro.Controller;
+package main.java.velcro.Controller;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -45,8 +45,15 @@ import org.apache.commons.io.FileUtils;
 
 import com.google.gson.Gson;
 
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
+ 
+
+
+/*
+* import main.java.velcro.Model.*;
+* import main.java.velcro.View.*;
+*/
 
 public class Controller {
 
@@ -112,7 +119,7 @@ public class Controller {
 	
 	
 	
-	/** Fields related to #FieldsPage.
+	/** Methods related to #FieldsPage.
 	**
 	**
 	**/
@@ -1350,7 +1357,7 @@ public class Controller {
 				String test = orig.getName();
 			} catch (NullPointerException e1) {
 				// Adds method, updates combo box
-				List<Fields> newFields = new ArrayList<Fields>();
+				List<Parameters> newFields = new ArrayList<Parameters>();
 				//newFields.add(new Fields("hello", "world"));
 				thisClass.addMethod(comboBox_1SelectedItem, comboBox_2SelectedItem, newFields);
 				model.addElement(comboBox_1SelectedItem);
@@ -2237,7 +2244,7 @@ public class Controller {
 			}
 			// Checks if Parameter already exists.
 			try {
-				Fields orig = thisMethod.getParam(comboBox_1SelectedItem);
+				Parameters orig = thisMethod.getParam(comboBox_1SelectedItem);
 				String test = orig.getName();
 			} catch (NullPointerException e1) {
 				// Adds parameter, updates combo box
@@ -2356,7 +2363,7 @@ public class Controller {
 			
 			// Checks if Parameter exists.
 			try {
-				Fields orig = thisMethod.getParam(comboBox_1SelectedItem);
+				Parameters orig = thisMethod.getParam(comboBox_1SelectedItem);
 				String test = orig.getName();
 			} catch (NullPointerException e1) {
 				JOptionPane.showMessageDialog(page, "Parameter not found.");
@@ -2364,12 +2371,12 @@ public class Controller {
 			}
 
 			// Checks if rename is already taken.
-			Fields orig2 = thisMethod.getParam(comboBox_2Contents);
+			Parameters orig2 = thisMethod.getParam(comboBox_2Contents);
 			try {
 				String test2 = orig2.getName();
 			} catch (NullPointerException e1) {
 				// Renames parameter, updates Parameter combo box
-				Fields orig3 = thisMethod.getParam(comboBox_1SelectedItem);
+				Parameters orig3 = thisMethod.getParam(comboBox_1SelectedItem);
 				if (orig3.rename(comboBox_2Contents)) {
 					model.addElement(comboBox_2Contents);
 					model.removeElement(comboBox_1SelectedItem);
@@ -2492,6 +2499,8 @@ public class Controller {
 			// Sets up table for pop-up
 			DefaultTableModel model = new DefaultTableModel();
 			model.addColumn("Class Name");
+			model.addColumn("x");
+			model.addColumn("y");
 			model.addColumn("Relationship Source");
 			model.addColumn("Relationship Destination");
 			model.addColumn("Relationship Type");
@@ -2511,12 +2520,13 @@ public class Controller {
 				}
 				Classes thisClass = LandingPage.thisInstance.classList.get(h);
 				// Adds class name
-				model.addRow(new Object[] { thisClass.getName() });
+				model.addRow(new Object[] { thisClass.getName(), thisClass.point.x, thisClass.point.y });
+
 				// Adds all class's relationships
 				if (thisClass.relationshipList != null) {
 					if (thisClass.relationshipList.size() != 0) {
 						for (int i = 0; i < thisClass.relationshipList.size(); i++) {
-							model.addRow(new Object[] { " ", thisClass.relationshipList.get(i).getSource(),
+							model.addRow(new Object[] { " "," "," ", thisClass.relationshipList.get(i).getSource(),
 									thisClass.relationshipList.get(i).getDestination(), thisClass.relationshipList.get(i).getType() });
 
 						}
@@ -2526,7 +2536,7 @@ public class Controller {
 				if (thisClass.fieldList != null) {
 					if (thisClass.fieldList.size() != 0) {
 						for (int i = 0; i < thisClass.fieldList.size(); i++) {
-							model.addRow(new Object[] { " ", " ", " ", " ", thisClass.fieldList.get(i).getName(), thisClass.fieldList.get(i).getType() });
+							model.addRow(new Object[] { " "," "," ", " ", " ", " ", thisClass.fieldList.get(i).getName(), thisClass.fieldList.get(i).getType() });
 						}
 					}
 				}
@@ -2536,10 +2546,10 @@ public class Controller {
 					if (thisClass.methodList.size() != 0) {
 						for (int i = 0; i < thisClass.methodList.size(); i++) {
 							Methods thisMethod = thisClass.methodList.get(i);
-							model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", thisMethod.getName(), thisMethod.getType() });
+							model.addRow(new Object[] { " "," "," ", " ", " ", " ", " ", " ", thisMethod.getName(), thisMethod.getType() });
 							if (thisMethod.paramList.size() != 0)
 								for (int j = 0; j<thisMethod.paramList.size(); j++) {
-									model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", " ", " ", thisMethod.paramList.get(j).getName(), thisMethod.paramList.get(j).getType() });
+									model.addRow(new Object[] { " "," "," ", " ", " ", " ", " ", " ", " ", " ", thisMethod.paramList.get(j).getName(), thisMethod.paramList.get(j).getType() });
 								}
 						}
 					}
@@ -2548,15 +2558,17 @@ public class Controller {
 			// Adjusting table so the headers are fully visible
 			JTable table = new JTable(model);
 			table.getColumnModel().getColumn(0).setPreferredWidth(110);
-			table.getColumnModel().getColumn(1).setPreferredWidth(150);
-			table.getColumnModel().getColumn(2).setPreferredWidth(150);
+			table.getColumnModel().getColumn(1).setPreferredWidth(40);
+			table.getColumnModel().getColumn(2).setPreferredWidth(40);
 			table.getColumnModel().getColumn(3).setPreferredWidth(150);
-			table.getColumnModel().getColumn(4).setPreferredWidth(110);
-			table.getColumnModel().getColumn(5).setPreferredWidth(110);
-			table.getColumnModel().getColumn(6).setPreferredWidth(150);
-			table.getColumnModel().getColumn(7).setPreferredWidth(150);
+			table.getColumnModel().getColumn(4).setPreferredWidth(150);
+			table.getColumnModel().getColumn(5).setPreferredWidth(150);
+			table.getColumnModel().getColumn(6).setPreferredWidth(110);
+			table.getColumnModel().getColumn(7).setPreferredWidth(110);
 			table.getColumnModel().getColumn(8).setPreferredWidth(150);
 			table.getColumnModel().getColumn(9).setPreferredWidth(150);
+			table.getColumnModel().getColumn(10).setPreferredWidth(150);
+			table.getColumnModel().getColumn(11).setPreferredWidth(150);
 			table.setPreferredScrollableViewportSize(table.getPreferredSize());
 			table.setFillsViewportHeight(true);
 			JOptionPane.showMessageDialog(null, new JScrollPane(table));
@@ -2733,7 +2745,7 @@ public class Controller {
 				return;
 			}
 			// Checks to see if relationship already exists
-			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName, type);
+			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName);
 			if (orig != null) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship already exists!");
 				return;
@@ -2775,14 +2787,14 @@ public class Controller {
 				return;
 			}
 			// Looks for relationship
-			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName, type);
+			Relationships orig = sourceClass.getRelationship(sourceClassName, destinationClassName);
 			if (orig == null) {
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship not found!");
 				return;
 			}
 			// Removes relationship
-			if (sourceClass.removeRelationship(sourceClassName, destinationClassName, type)
-					&& destinationClass.removeRelationship(sourceClassName, destinationClassName, type))
+			if (sourceClass.removeRelationship(sourceClassName, destinationClassName)
+					&& destinationClass.removeRelationship(sourceClassName, destinationClassName))
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship removed successfully.");
 			else
 				JOptionPane.showMessageDialog(RelationshipsPage.relationPage, "Relationship removal failed.");

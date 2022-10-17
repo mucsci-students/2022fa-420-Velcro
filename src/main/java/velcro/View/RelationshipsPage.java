@@ -7,7 +7,7 @@
  * 
  */
 
-package velcro.View;
+package main.java.velcro.View;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,9 +17,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import velcro.Controller.Controller;
-import velcro.Model.*;
-import velcro.View.*;
+import main.java.velcro.Controller.Controller;
+import main.java.velcro.Model.*;
+import main.java.velcro.View.*;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

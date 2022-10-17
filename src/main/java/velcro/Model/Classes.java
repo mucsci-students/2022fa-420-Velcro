@@ -7,8 +7,9 @@
  * 
  */
 
-package velcro.Model;
+package main.java.velcro.Model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,10 @@ public class Classes {
 	public static DefaultComboBoxModel<String> methodModel;
 	public static DefaultComboBoxModel<String> methodModel_1;
 	
+	@SerializedName("location")
+	@Expose
+	public Point point;
+	
 	// Classes constructor.
 	public Classes(String name) {
 		this.name = name;
@@ -47,6 +52,7 @@ public class Classes {
 		fieldModel_1 = new DefaultComboBoxModel<String>();
 		methodModel = new DefaultComboBoxModel<String>();
 		methodModel_1 = new DefaultComboBoxModel<String>();
+		point = new Point(0,0);
 	}
 	
 	// Overloaded classes constructor.
@@ -59,6 +65,11 @@ public class Classes {
 		fieldModel_1 = new DefaultComboBoxModel<String>();
 		methodModel = new DefaultComboBoxModel<String>();
 		methodModel_1 = new DefaultComboBoxModel<String>();
+		point = new Point(0,0);
+	}
+	
+	public void setLocation(int x, int y) {
+		point = new Point(x,y);
 	}
 	
 	// Returns Classes object name.
@@ -99,7 +110,7 @@ public class Classes {
 	}
 	
 	// Adds an input Method to the MethodList array.
-	public void addMethod(String elementAdded, String type, List<Fields> params) {
+	public void addMethod(String elementAdded, String type, List<Parameters> params) {
 		methodList.add(new Methods(elementAdded, type, params));
 	}
 
@@ -164,15 +175,14 @@ public class Classes {
 	}
 
 	// Removes the first relationship matching given input source and destination.
-	public boolean removeRelationship(String sourceRemoved, String destinationRemoved, String typeRemoved) {
+	public boolean removeRelationship(String sourceRemoved, String destinationRemoved) {
 		if (this.relationshipList == null || relationshipList.size() == 0)
 			return false;
 		List<Relationships> output = new ArrayList<Relationships>();
 		boolean found = false;
 		for (int i = 0; !found && i < relationshipList.size(); i++) {
 			if (relationshipList.get(i).getSource().equals(sourceRemoved)
-					&& relationshipList.get(i).getDestination().equals(destinationRemoved)
-					&& relationshipList.get(i).getType().equals(typeRemoved)) {
+					&& relationshipList.get(i).getDestination().equals(destinationRemoved)) {
 				found = true;
 				relationshipList.remove(relationshipList.get(i));
 				continue;
@@ -196,12 +206,12 @@ public class Classes {
 	}
 
 	// Returns matching Relationship.
-	public Relationships getRelationship(String source, String destination, String type) {
+	public Relationships getRelationship(String source, String destination) {
 		if (this.relationshipList == null || relationshipList.size() == 0)
 			return null;
 		for (int i = 0; i < relationshipList.size(); i++) {
 			if (relationshipList.get(i).getSource().equals(source)
-					&& relationshipList.get(i).getDestination().equals(destination) && relationshipList.get(i).getType().equals(type))
+					&& relationshipList.get(i).getDestination().equals(destination))
 				return relationshipList.get(i);
 		}
 		return null;
