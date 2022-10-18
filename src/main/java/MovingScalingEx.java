@@ -114,9 +114,6 @@ class Surface extends JPanel {
 
 		thisMemento.add(input);
 
-
-		// arr.add(new ZEllipse(150, 70, 80, 80, "class2"));
-
 	}
 
 	protected Point2D center(Rectangle2D bounds) {
@@ -140,7 +137,6 @@ class Surface extends JPanel {
 
 	protected Point2D getPointOnCircle(Shape shape, double radians) {
 		Rectangle2D bounds = shape.getBounds();
-//      Point2D point = new Point2D.Double(bounds.getX(), bounds.getY());
 		Point2D point = center(bounds);
 		return getPointOnCircle(point, radians, Math.max(bounds.getWidth(), bounds.getHeight()) / 2d);
 	}
@@ -216,7 +212,6 @@ class Surface extends JPanel {
 	
 	public void loadInstance(Instance input) {
 		thisInstance = input;
-		//thisMemento.add(thisInstance);
 		repaint();
 	}
 	
@@ -271,8 +266,6 @@ class Surface extends JPanel {
 			g2d.setPaint(new Color(255, 0, 0));
 			g2d.drawString("Source", (int) source.getX() + 15, (int) source.getY() + 47);
 		}
-		//thisMemento.add(thisInstance);
-		//System.out.println(thisMemento.count());
 		g2d.dispose();
 	}
 
@@ -353,15 +346,6 @@ class Surface extends JPanel {
 			y = e.getY();
 
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-//				if (!missAllLines(lnLst, 0, x, y)) {
-//					ZLine hit = lineItHit(lnLst, x, y);
-//					Object[] types = { "Aggregation", "Composition", "Inheritance", "Realization" };
-//			        String n = (String)JOptionPane.showInputDialog(null, "Relationship Type?", 
-//			                "Set Relationship Type", JOptionPane.QUESTION_MESSAGE, null, types, types[0]);
-//			        hit.setType(n);
-//			        return;
-//				}
-
 				if (!allIsMiss(arr, 0)) {
 					thisMemento.add(thisInstance);
 					ZEllipse hit = whatItHit(arr);
@@ -600,11 +584,11 @@ public class MovingScalingEx extends JFrame {
 
 				MovingScalingEx ex = new MovingScalingEx(thisInstance);
 				ex.resize();
-				Frame test = new Frame(thisInstance, ex);
-				ex.setFrame(test);
+				Frame menuFrame = new Frame(thisInstance, ex);
+				ex.setFrame(menuFrame);
 				ex.setVisible(true);
-				test.setSize(300, 800);
-				test.setVisible(true);
+				menuFrame.setSize(300, 900);
+				menuFrame.setVisible(true);
 			}
 		});
 	}
@@ -678,10 +662,12 @@ class Frame extends JFrame {
 				}
 			}
 		}
-		comboBox.addActionListener(new ActionListener() {
+		
+		
+		Observer comboObserver = new Observer(comboBox, new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				thisInstance.setHighlight(thisInstance.getClass((String) comboBox.getSelectedItem()));
-				//thisMemento.add(thisInstance);
 				thisObject.repaint();
 
 				Classes thisClass;
@@ -726,7 +712,7 @@ class Frame extends JFrame {
 		comboBox_1 = new JComboBox(relationshipsModel);
 		comboBox_1.putClientProperty("i", 3);
 		comboBox_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 172, resizeHeight);
-		comboBox_1.addActionListener(new ActionListener() {
+		Observer combo_1Observer = new Observer(comboBox_1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				Classes thisClass;
@@ -760,7 +746,7 @@ class Frame extends JFrame {
 		comboBox_1_1_1 = new JComboBox(fieldModel);
 		comboBox_1_1_1.putClientProperty("i", 1);
 		comboBox_1_1_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 172, resizeHeight);
-		comboBox_1_1_1.addActionListener(new ActionListener() {
+		Observer combo_1_1_1Observer = new Observer(comboBox_1_1_1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Fields thisField;
@@ -779,7 +765,7 @@ class Frame extends JFrame {
 		JComboBox comboBox_1_1_2 = new JComboBox(methodsModel);
 		comboBox_1_1_2.putClientProperty("i", 5);
 		comboBox_1_1_2.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2.getClientProperty("i")), 172, resizeHeight);
-		comboBox_1_1_2.addActionListener(new ActionListener() {
+		Observer combo_1_1_2Observer = new Observer(comboBox_1_1_2, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Methods thisMethod;
@@ -814,7 +800,7 @@ class Frame extends JFrame {
 		JComboBox comboBox_1_1_2_1 = new JComboBox(paramsModel);
 		comboBox_1_1_2_1.putClientProperty("i", 7);
 		comboBox_1_1_2_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 172, resizeHeight);
-		comboBox_1_1_2_1.addActionListener(new ActionListener() {
+		Observer combo_1_1_2_1Observer = new Observer(comboBox_1_1_2_1,new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Parameters thisParam;
@@ -893,7 +879,7 @@ class Frame extends JFrame {
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 51, resizeHeight);
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-        btnNewButton.addActionListener( new ActionListener() {
+        Observer btnNewObserver = new Observer(btnNewButton, new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String message = "Please enter the field name and type.";
         		JTextField fieldName = new JTextField("Field Name");
@@ -929,7 +915,7 @@ class Frame extends JFrame {
         JButton btnNewButton_1 = new JButton("Add");
         btnNewButton_1.setBounds(205, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2.getClientProperty("i")), 51, resizeHeight);
         btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-        btnNewButton_1.addActionListener( new ActionListener() {
+        Observer btnNew_1Observer = new Observer(btnNewButton_1, new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String message = "Please enter the method name and type.";
         		JTextField fieldName = new JTextField("Method Name");
@@ -964,7 +950,7 @@ class Frame extends JFrame {
         JButton btnNewButton_2 = new JButton("Add");
         btnNewButton_2.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 52, resizeHeight);
         btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-        btnNewButton_2.addActionListener( new ActionListener() {
+        Observer btnNewObserver_2 = new Observer(btnNewButton_2, new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String message = "Please enter the parameter name and type.";
         		JTextField fieldName = new JTextField("Parameter Name");
@@ -1005,7 +991,7 @@ class Frame extends JFrame {
         JButton btnNewButton_3 = new JButton("Add");
         btnNewButton_3.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 51, resizeHeight);
         btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-        btnNewButton_3.addActionListener( new ActionListener() {
+        Observer btnNewObserver_3 = new Observer(btnNewButton_3, new ActionListener() {
         	public void actionPerformed(ActionEvent e) { 
         		JOptionPane.showInternalMessageDialog(null, "To add a relationship, right-click on the source class, then right-click on the destination class, then choose the relationship type.",
         				"Adding Relationships", JOptionPane.INFORMATION_MESSAGE);
@@ -1017,14 +1003,14 @@ class Frame extends JFrame {
         btnNewButton_4.setBounds(22, (int) (10+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
         getContentPane().add(btnNewButton_4);
         btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
-        btnNewButton_4.addActionListener(new ActionListener() {
+        Observer btnNewObserver_4 = new Observer(btnNewButton_4, new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			thisInstance.showContents();
     		}
     	});
         
         JButton btnNewButton_5 = new JButton("Undo");
-        btnNewButton_5.setBounds(22, (int) (10+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
+        btnNewButton_5.setBounds(22, (int) (15+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
         btnNewButton_5.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			Instance newInstance = thisMemento.undo(thisSurface.thisInstance);
@@ -1033,14 +1019,13 @@ class Frame extends JFrame {
     				thisInstance = copyInstance(newInstance);	
         			thisSurface.revalidate();
         			thisSurface.repaint();
-        			//thisMemento.seeAll();
     			}
     		}});
         getContentPane().add(btnNewButton_5);
         
         JButton btnNewButton_6 = new JButton("Redo");
-        btnNewButton_6.setBounds(155, (int) (10+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
-        btnNewButton_6.addActionListener(new ActionListener() {
+        btnNewButton_6.setBounds(155, (int) (15+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
+        Observer btnNewObserver_6 = new Observer(btnNewButton_6, new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			Instance newInstance = thisMemento.redo();
     			if (newInstance != null) {
@@ -1053,7 +1038,7 @@ class Frame extends JFrame {
         getContentPane().add(btnNewButton_6);
         
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, (int) (5+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 284, 2); //herehere
+		separator.setBounds(0, (int) (5+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 284, 2);
 		getContentPane().add(separator);
 
         setVisible(true);
