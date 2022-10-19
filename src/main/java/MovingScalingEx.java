@@ -52,20 +52,22 @@ class Surface extends JPanel {
 	public Instance thisInstance;
 
 	public Memento thisMemento;
-	
-	public List<ZEllipse> arr = new ArrayList<ZEllipse>();
+
 	public List<ZEllipse> pntLst = new ArrayList<ZEllipse>();
 	public List<ZLine> lnLst = new ArrayList<ZLine>();
 	public List<String> relLst = new ArrayList<String>();
+	public IteratorList arr = new IteratorList();
 	public Graphics pubG;
+	public int keycode = -1;
 	
 	private Point2D source;
 	private String sourceName;
-	
-	
+
 	public Surface(Instance input) {
 		thisInstance = input;
 	}
+
+	
 
 	public void setFrame(Frame input2) {
 		thisFrame = input2;
@@ -75,14 +77,14 @@ class Surface extends JPanel {
 
 	public ZEllipse getEll(String name) {
 		if (arr.size() > 0) {
-			for (int i = 0; i < arr.size(); i++)
-				if (arr.get(i).className.equals(name))
-					return arr.get(i);
+			IteratorList.Iterator first = arr.getIterator();
+			for (first.first(); !first.isDone(); first.next())
+				if (first.currentValue().className.equals(name))
+					return first.currentValue();
 		}
 		return null;
 	}
-	
-	
+
 	class ZLine extends Line2D.Float {
 		String type;
 		String source;
@@ -105,15 +107,12 @@ class Surface extends JPanel {
 	}
 
 	public void initUI(Instance input, Frame input2) {
-
 		thisFrame = input2;
 		MovingAdapter ma = new MovingAdapter();
 		addMouseMotionListener(ma);
 		addMouseListener(ma);
 		addMouseWheelListener(new ScaleHandler());
-
 		thisMemento.add(input);
-
 	}
 
 	protected Point2D center(Rectangle2D bounds) {
@@ -155,8 +154,8 @@ class Surface extends JPanel {
 
 	}
 
-	
-	private ZLine addLine(ZEllipse ell1, ZEllipse ell2, Graphics2D g2d, String type, String source, String destination) {
+	private ZLine addLine(ZEllipse ell1, ZEllipse ell2, Graphics2D g2d, String type, String source,
+			String destination) {
 		if (ell1 == null || ell2 == null || ell1.equals(ell2))
 			return null;
 		// Draw relationship line
@@ -193,7 +192,7 @@ class Surface extends JPanel {
 				return arr.get(i);
 		return null;
 	}
-	
+
 	public boolean missAllLines2(List<ZLine> arr, int count, double x, double y) {
 		if (count >= arr.size())
 			return true;
@@ -201,7 +200,7 @@ class Surface extends JPanel {
 			return false;
 		return missAllLines(arr, count + 1, x, y);
 	}
-	
+
 	public ZLine lineItHit2(List<ZLine> arr, double x, double y) {
 		for (int i = 0; i < arr.size(); i++)
 			if (arr.get(i).getBounds2D().contains(x, y))
@@ -209,12 +208,11 @@ class Surface extends JPanel {
 		return null;
 	}
 
-	
 	public void loadInstance(Instance input) {
 		thisInstance = input;
 		repaint();
 	}
-	
+
 	public void doDrawing(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
@@ -224,37 +222,44 @@ class Surface extends JPanel {
 
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		
+
 		arr.clear();
 		for (int i = 0; i < thisInstance.classList.size(); i++) {
-			arr.add(new ZEllipse(thisInstance.classList.get(i).point.x, thisInstance.classList.get(i).point.y, 80, 80, thisInstance.classList.get(i).getName(), thisInstance));
+			arr.add(new ZEllipse(thisInstance.classList.get(i).point.x, thisInstance.classList.get(i).point.y, 80, 80,
+					thisInstance.classList.get(i).getName(), thisInstance));
 		}
+
 		
-		for (int i = 0; i < arr.size(); i++) {
+		IteratorList.Iterator iter = arr.getIterator();
+		for (iter.first(); !iter.isDone(); iter.next()) {
 			g2d.setPaint(new Color(0, 0, 0));
-			if (arr.get(i).className != null) {
-				g2d.drawString(arr.get(i).className, (int) arr.get(i).getX() + 10, (int) arr.get(i).getY() + 100);
+			if (iter.currentValue() != null && iter.currentValue().className != null) {
+				g2d.drawString(iter.currentValue().className, (int) iter.currentValue().getX() + 10,
+						(int) iter.currentValue().getY() + 100);
 
 			}
 			if (thisInstance.highlight != null) {
-				if (arr.get(i).className.equals(thisInstance.highlight.getName())) {
+				if (iter.currentValue().className.equals(thisInstance.highlight.getName())) {
 					g2d.setPaint(new Color(255, 0, 0));
-					g2d.draw(new ZRectangle((float) arr.get(i).getX(), (float) arr.get(i).getY(), 80, 80));
+					g2d.draw(new ZRectangle((float) iter.currentValue().getX(), (float) iter.currentValue().getY(), 80,
+							80));
 				}
 			}
 
 			g2d.setPaint(new Color(0, 0, 200));
-			g2d.fill(arr.get(i));
+			g2d.fill(iter.currentValue());
 		}
 
 		lnLst.clear();
-		for (int i = 0; i<thisInstance.classList.size(); i++) {
-			for (int j = 0; j<thisInstance.classList.get(i).relationshipList.size(); j++) {
+		for (int i = 0; i < thisInstance.classList.size(); i++) {
+			for (int j = 0; j < thisInstance.classList.get(i).relationshipList.size(); j++) {
 				ZEllipse source = getEll(thisInstance.classList.get(i).relationshipList.get(j).getSource());
 				ZEllipse destination = getEll(thisInstance.classList.get(i).relationshipList.get(j).getDestination());
 				String type = thisInstance.classList.get(i).relationshipList.get(j).getType();
 				g2d.setColor(Color.RED);
-				ZLine line = addLine(source, destination, g2d, type, thisInstance.classList.get(i).relationshipList.get(j).getSource(), thisInstance.classList.get(i).relationshipList.get(j).getDestination());
+				ZLine line = addLine(source, destination, g2d, type,
+						thisInstance.classList.get(i).relationshipList.get(j).getSource(),
+						thisInstance.classList.get(i).relationshipList.get(j).getDestination());
 				if (source == null || destination == null || source.equals(destination))
 					continue;
 				g2d.draw(line);
@@ -276,8 +281,6 @@ class Surface extends JPanel {
 
 		doDrawing(g);
 	}
-
-
 
 	public class ArrowHead extends Path2D.Double {
 
@@ -324,6 +327,8 @@ class Surface extends JPanel {
 
 	}
 
+	
+	
 	class MovingAdapter extends MouseAdapter {
 
 		private int x;
@@ -337,7 +342,7 @@ class Surface extends JPanel {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			
+
 			doMove(e);
 		}
 
@@ -345,8 +350,9 @@ class Surface extends JPanel {
 			x = e.getX();
 			y = e.getY();
 
+			
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				if (!allIsMiss(arr, 0)) {
+				if (whatItHit(arr) != null) {]
 					thisMemento.add(thisInstance);
 					ZEllipse hit = whatItHit(arr);
 					String newName;
@@ -360,18 +366,17 @@ class Surface extends JPanel {
 							thisFrame.classModel.addElement(newName);
 						}
 					} catch (NullPointerException e2) {
-
 					}
 					repaint();
 					return;
 				}
 
-			} else if (e.getButton() == MouseEvent.BUTTON3) {
+			} else if (e.getButton() == MouseEvent.BUTTON3 || e.isShiftDown() ) {
 				if (!missAllLines(lnLst, 0, (double) x, (double) y)) {
 					thisMemento.add(thisInstance);
 					ZLine line = lineItHit(lnLst, x, y);
 					if (JOptionPane.showConfirmDialog(null, "Delete Relationship?", "Delete Relationship",
-					        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						thisInstance.getClass(line.source).removeRelationship(line.source, line.destination);
 						thisInstance.getClass(line.destination).removeRelationship(line.source, line.destination);
 						lnLst.remove(line);
@@ -379,21 +384,18 @@ class Surface extends JPanel {
 					} else {
 						return;
 					}
-					
+
 					return;
 				}
-				
-				
-				
-				if (allIsMiss(arr, 0)) {
 
+				if (whatItHit(arr) == null) {
 					thisMemento.add(thisInstance);
 					ZEllipse newEllipse = new ZEllipse(x - 40, y - 40, 80, 80, "", thisInstance);
 					if (newEllipse.className != null && !newEllipse.className.equals("")) {
 						arr.add(newEllipse);
-						
+
 						thisInstance.addClass(newEllipse.className);
-						thisInstance.getClass(newEllipse.className).setLocation(x-40, y-40);
+						thisInstance.getClass(newEllipse.className).setLocation(x - 40, y - 40);
 						thisFrame.classModel.addElement(newEllipse.className);
 					}
 					repaint();
@@ -420,17 +422,15 @@ class Surface extends JPanel {
 				}
 				return;
 			} else if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON1) {
-				if (allIsMiss(arr, 0)) {
+				if (whatItHit(arr) == null) {
 					return;
 				}
 				thisMemento.add(thisInstance);
 				ZEllipse hit = whatItHit(arr);
 				if (thisInstance.getClass(hit.className) != null) {
-
 					thisInstance.setHighlight(thisInstance.getClass(hit.className));
 					thisFrame.comboBox.setSelectedItem(thisInstance.getClass(hit.className).getName());
 				}
-				
 
 				Classes thisClass;
 				if (thisInstance.getClass((String) thisFrame.comboBox.getSelectedItem()) != null) {
@@ -456,19 +456,14 @@ class Surface extends JPanel {
 
 		}
 
-		public ZEllipse whatItHit(List<ZEllipse> arr) {
-			for (int i = 0; i < arr.size(); i++)
-				if (arr.get(i).isHit(x, y))
-					return arr.get(i);
+		public ZEllipse whatItHit(IteratorList arr) {
+			IteratorList.Iterator iter = arr.getIterator();
+			for (iter.first(); !iter.isDone(); iter.next()) {
+				if (iter.currentValue().isHit(x, y)) {
+					return iter.currentValue();
+				}
+			}
 			return null;
-		}
-
-		public boolean allIsMiss(List<ZEllipse> arr, int count) {
-			if (count >= arr.size())
-				return true;
-			if (arr.get(count).isHit(x, y))
-				return false;
-			return allIsMiss(arr, count + 1);
 		}
 
 		private void doMove(MouseEvent e) {
@@ -476,8 +471,9 @@ class Surface extends JPanel {
 			int dx = e.getX() - x;
 			int dy = e.getY() - y;
 
-			for (int i = 0; i < arr.size(); i++) {
-				ZEllipse thisOne = arr.get(i);
+			IteratorList.Iterator iter = arr.getIterator();
+			for (iter.first(); !iter.isDone(); iter.next()) {
+				ZEllipse thisOne = iter.currentValue();
 				if (thisOne.isHit(x, y)) {
 					thisOne.addX(dx);
 					thisOne.addY(dy);
@@ -504,9 +500,9 @@ class Surface extends JPanel {
 			int y = e.getY();
 
 			if (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-
-				for (int i = 0; i < arr.size(); i++) {
-					ZEllipse thisOne = arr.get(i);
+				IteratorList.Iterator iter = arr.getIterator();
+				for (iter.first(); !iter.isDone(); iter.next()) {
+					ZEllipse thisOne = iter.currentValue();
 					float amount = e.getWheelRotation() * 5f;
 					if (thisOne.isHit(x, y)) {
 						thisOne.addWidth(amount);
@@ -526,13 +522,14 @@ public class MovingScalingEx extends JFrame {
 	public Instance thisInstance;
 	public static int panelHeight = 800;
 	public static int panelWidth = 1200;
+	public int keycode = -1;
 
 	public void resize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		panelHeight = (int) Math.min(screenSize.getHeight()-50, panelHeight);
-		panelWidth = (int) Math.min(screenSize.getWidth()-300, panelWidth);
+		panelHeight = (int) Math.min(screenSize.getHeight() - 50, panelHeight);
+		panelWidth = (int) Math.min(screenSize.getWidth() - 300, panelWidth);
 	}
-	
+
 	public MovingScalingEx(Instance input) {
 
 		thisInstance = input;
@@ -637,22 +634,22 @@ class Frame extends JFrame {
 		for (int i = 0; i < thisInstance.classList.size(); i++) {
 			classModel.addElement(thisInstance.classList.get(i).getName());
 		}
-		
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		double sizeChangeRatio = 1-((double) (panelHeight - screenSize.getHeight())/panelHeight);
-		
+		double sizeChangeRatio = 1 - ((double) (panelHeight - screenSize.getHeight()) / panelHeight);
+
 		if (sizeChangeRatio < 0)
 			sizeChangeRatio = 1;
-		int resizeHeight = (int) (43*(sizeChangeRatio));
-		
-		
+		int resizeHeight = (int) (43 * (sizeChangeRatio));
+
 		setSize(panelWidth, panelHeight);
 
 		getContentPane().setLayout(null);
 
 		comboBox = new JComboBox<String>(classModel);
 		comboBox.putClientProperty("i", 0);
-		comboBox.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox.getClientProperty("i")), 234, resizeHeight);
+		comboBox.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox.getClientProperty("i")), 234,
+				resizeHeight);
 		comboBox.setModel(classModel);
 
 		if (thisInstance.highlight != null) {
@@ -662,10 +659,7 @@ class Frame extends JFrame {
 				}
 			}
 		}
-		
-		
 		Observer comboObserver = new Observer(comboBox, new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				thisInstance.setHighlight(thisInstance.getClass((String) comboBox.getSelectedItem()));
 				thisObject.repaint();
@@ -689,7 +683,7 @@ class Frame extends JFrame {
 						}
 					}
 				}
-				
+
 				if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
 					methodsModel.removeAllElements();
 					thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
@@ -707,11 +701,10 @@ class Frame extends JFrame {
 		lblNewLabel.setBounds(22, 0, 234, 27);
 		getContentPane().add(lblNewLabel);
 
-
-
 		comboBox_1 = new JComboBox(relationshipsModel);
 		comboBox_1.putClientProperty("i", 3);
 		comboBox_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 172, resizeHeight);
+
 		Observer combo_1Observer = new Observer(comboBox_1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -733,19 +726,19 @@ class Frame extends JFrame {
 		JLabel lblRelationshipDestination = new JLabel("Relationship Destination");
 		lblRelationshipDestination.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRelationshipDestination.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblRelationshipDestination.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 234, 27);
+		lblRelationshipDestination.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1.getClientProperty("i")),
+				234, 27);
 		getContentPane().add(lblRelationshipDestination);
 
-
-
 		comboBox_1_1.putClientProperty("i", 4);
-		comboBox_1_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1.getClientProperty("i")), 234, resizeHeight);
+		comboBox_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1.getClientProperty("i")), 234,
+				resizeHeight);
 		getContentPane().add(comboBox_1_1);
-
 
 		comboBox_1_1_1 = new JComboBox(fieldModel);
 		comboBox_1_1_1.putClientProperty("i", 1);
-		comboBox_1_1_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 172, resizeHeight);
+		comboBox_1_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty("i")),
+				172, resizeHeight);
 		Observer combo_1_1_1Observer = new Observer(comboBox_1_1_1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
@@ -789,14 +782,12 @@ class Frame extends JFrame {
 
 		getContentPane().add(comboBox_1_1_2);
 
-
-
 		JLabel lblMethod = new JLabel("Method");
 		lblMethod.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMethod.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMethod.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1_2.getClientProperty("i")), 234, 27);
+		lblMethod.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty("i")), 234, 27);
 		getContentPane().add(lblMethod);
-		
+
 		JComboBox comboBox_1_1_2_1 = new JComboBox(paramsModel);
 		comboBox_1_1_2_1.putClientProperty("i", 7);
 		comboBox_1_1_2_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 172, resizeHeight);
@@ -821,61 +812,64 @@ class Frame extends JFrame {
 		});
 		getContentPane().add(comboBox_1_1_2_1);
 
-
 		JLabel lblParameter = new JLabel("Parameter");
 		lblParameter.setHorizontalAlignment(SwingConstants.CENTER);
 		lblParameter.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblParameter.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 234, 27);
+		lblParameter.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty("i")), 234,
+				27);
 		getContentPane().add(lblParameter);
-		
+
 		JComboBox comboBox_1_1_2_2 = new JComboBox(methodsTypeModel);
 		comboBox_1_1_2_2.putClientProperty("i", 6);
-		comboBox_1_1_2_2.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_2.getClientProperty("i")), 234, resizeHeight);
+		comboBox_1_1_2_2.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty("i")),
+				234, resizeHeight);
 		getContentPane().add(comboBox_1_1_2_2);
 
 		JLabel lblMethodType = new JLabel("Method Type");
 		lblMethodType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMethodType.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMethodType.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1_2_2.getClientProperty("i")), 234, 27);
+		lblMethodType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty("i")), 234,
+				27);
 		getContentPane().add(lblMethodType);
 
 		JComboBox comboBox_1_1_1_1 = new JComboBox(fieldTypeModel);
 		comboBox_1_1_1_1.putClientProperty("i", 2);
-		comboBox_1_1_1_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1_1.getClientProperty("i")), 234, resizeHeight);
+		comboBox_1_1_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty("i")),
+				234, resizeHeight);
 		getContentPane().add(comboBox_1_1_1_1);
 
 		JLabel lblFieldType = new JLabel("Field Type");
 		lblFieldType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFieldType.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblFieldType.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1_1_1.getClientProperty("i")), 234, 27);
+		lblFieldType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty("i")), 234,
+				27);
 		getContentPane().add(lblFieldType);
-
-		
 
 		JLabel lblField = new JLabel("Field");
 		lblField.setHorizontalAlignment(SwingConstants.CENTER);
 		lblField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblField.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 234, 27);
+		lblField.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty("i")), 234, 27);
 		getContentPane().add(lblField);
-		
-		
+
 		JLabel lblRelationshipType = new JLabel("Relationship Type");
 		lblRelationshipType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRelationshipType.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblRelationshipType.setBounds(22, (int) ((resizeHeight+27)*(int) comboBox_1_1.getClientProperty("i")), 234, 27);
+		lblRelationshipType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1.getClientProperty("i")), 234,
+				27);
 		getContentPane().add(lblRelationshipType);
-		
+
 		JComboBox comboBox_1_1_2_1_1 = new JComboBox(paramsTypeModel);
 		comboBox_1_1_2_1_1.putClientProperty("i", 8);
-		comboBox_1_1_2_1_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 234, resizeHeight);
+		comboBox_1_1_2_1_1.setBounds(22,
+				(int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")), 234, resizeHeight);
 		getContentPane().add(comboBox_1_1_2_1_1);
 
 		JLabel lblParameterType = new JLabel("Parameter Type");
 		lblParameterType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblParameterType.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblParameterType.setBounds(22,  (int) ((resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 234, 27);
+		lblParameterType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
+				234, 27);
 		getContentPane().add(lblParameterType);
-		
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 51, resizeHeight);
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -963,13 +957,15 @@ class Frame extends JFrame {
         		    }
         		});
 
+
 				String[] types = { "int", "float", "String", "void", "double" };
 				JComboBox type = new JComboBox(new DefaultComboBoxModel<String>(types));
-        		
-        		int result = JOptionPane.showOptionDialog(null, new Object[] {message, fieldName, type},
-        			      "Add Parameter", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 
-        		if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null && !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
+				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type },
+						"Add Parameter", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+				if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null
+						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
 					thisMemento.add(thisInstance);
         			 if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
     					Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
@@ -1039,43 +1035,47 @@ class Frame extends JFrame {
         
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, (int) (5+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 284, 2);
+
 		getContentPane().add(separator);
 
-        setVisible(true);
+		setVisible(true);
 	}
-	
+
 	public Instance copyInstance(Instance input) {
 		Instance fakeInstance = new Instance();
-		
-		for (int i = 0; i<input.classList.size(); i++) {
+
+		for (int i = 0; i < input.classList.size(); i++) {
 			fakeInstance.addClass(input.classList.get(i).getName());
 			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);
-			for (int j = 0; j<input.classList.get(i).fieldList.size(); j++) {
-				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(), input.classList.get(i).fieldList.get(j).getType());
+			for (int j = 0; j < input.classList.get(i).fieldList.size(); j++) {
+				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(),
+						input.classList.get(i).fieldList.get(j).getType());
 			}
-			for (int j = 0; j<input.classList.get(i).relationshipList.size(); j++) {
-				fakeInstance.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(), input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType());
+			for (int j = 0; j < input.classList.get(i).relationshipList.size(); j++) {
+				fakeInstance.classList.get(i).addRelationship(
+						input.classList.get(i).relationshipList.get(j).getSource(),
+						input.classList.get(i).relationshipList.get(j).getDestination(),
+						input.classList.get(i).relationshipList.get(j).getType());
 			}
-			for (int j = 0; j<input.classList.get(i).methodList.size(); j++) {
+			for (int j = 0; j < input.classList.get(i).methodList.size(); j++) {
 				List<Parameters> newParamList = new ArrayList<Parameters>();
-				for (int k = 0; k<input.classList.get(i).methodList.get(j).paramList.size(); k++) {
-					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(), input.classList.get(i).methodList.get(j).paramList.get(k).getType()));
+				for (int k = 0; k < input.classList.get(i).methodList.get(j).paramList.size(); k++) {
+					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(),
+							input.classList.get(i).methodList.get(j).paramList.get(k).getType()));
 				}
-				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(), input.classList.get(i).methodList.get(j).getType(), newParamList);
+				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(),
+						input.classList.get(i).methodList.get(j).getType(), newParamList);
 			}
 		}
 		fakeInstance.setHighlight(input.highlight);
-		
+
 		return fakeInstance;
 	}
-	
 
 	public void setSurface(Surface input, MovingScalingEx input2) {
 		this.thisSurface = input;
 		this.mainClass = input2;
 	}
-
-
 
 }
 
