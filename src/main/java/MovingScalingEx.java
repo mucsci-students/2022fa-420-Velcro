@@ -352,7 +352,7 @@ class Surface extends JPanel {
 
 			
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				if (whatItHit(arr) != null) {
+				if (whatItHit(arr) != null) {]
 					thisMemento.add(thisInstance);
 					ZEllipse hit = whatItHit(arr);
 					String newName;
@@ -659,9 +659,7 @@ class Frame extends JFrame {
 				}
 			}
 		}
-
 		Observer comboObserver = new Observer(comboBox, new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				thisInstance.setHighlight(thisInstance.getClass((String) comboBox.getSelectedItem()));
 				thisObject.repaint();
@@ -705,8 +703,8 @@ class Frame extends JFrame {
 
 		comboBox_1 = new JComboBox(relationshipsModel);
 		comboBox_1.putClientProperty("i", 3);
-		comboBox_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty("i")), 172,
-				resizeHeight);
+		comboBox_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 172, resizeHeight);
+
 		Observer combo_1Observer = new Observer(comboBox_1, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -759,8 +757,7 @@ class Frame extends JFrame {
 
 		JComboBox comboBox_1_1_2 = new JComboBox(methodsModel);
 		comboBox_1_1_2.putClientProperty("i", 5);
-		comboBox_1_1_2.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty("i")),
-				172, resizeHeight);
+		comboBox_1_1_2.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2.getClientProperty("i")), 172, resizeHeight);
 		Observer combo_1_1_2Observer = new Observer(comboBox_1_1_2, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
@@ -793,9 +790,8 @@ class Frame extends JFrame {
 
 		JComboBox comboBox_1_1_2_1 = new JComboBox(paramsModel);
 		comboBox_1_1_2_1.putClientProperty("i", 7);
-		comboBox_1_1_2_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty("i")),
-				172, resizeHeight);
-		Observer combo_1_1_2_1Observer = new Observer(comboBox_1_1_2_1, new ActionListener() {
+		comboBox_1_1_2_1.setBounds(22, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 172, resizeHeight);
+		Observer combo_1_1_2_1Observer = new Observer(comboBox_1_1_2_1,new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Parameters thisParam;
@@ -874,98 +870,93 @@ class Frame extends JFrame {
 		lblParameterType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				234, 27);
 		getContentPane().add(lblParameterType);
+        JButton btnNewButton = new JButton("Add");
+        btnNewButton.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_1.getClientProperty("i")), 51, resizeHeight);
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        Observer btnNewObserver = new Observer(btnNewButton, new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String message = "Please enter the field name and type.";
+        		JTextField fieldName = new JTextField("Field Name");
+        		fieldName.addFocusListener((FocusListener) new FocusListener() {
+        		    public void focusGained(FocusEvent e) {
+        		    	fieldName.setText("");
+        		    }
 
-		JButton btnNewButton = new JButton("Add");
-		btnNewButton.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty("i")), 51,
-				resizeHeight);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		Observer btnNewObserver = new Observer(btnNewButton, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String message = "Please enter the field name and type.";
-				JTextField fieldName = new JTextField("Field Name");
-				fieldName.addFocusListener((FocusListener) new FocusListener() {
-					public void focusGained(FocusEvent e) {
-						fieldName.setText("");
-					}
+        		    public void focusLost(FocusEvent e) {
+        		    }
+        		});
+        		
+        		
+				String[] types = { "int", "float", "String", "void", "double" };
+				JComboBox type = new JComboBox(new DefaultComboBoxModel<String>(types));
 
-					public void focusLost(FocusEvent e) {
-					}
-				});
+        		int result = JOptionPane.showOptionDialog(null, new Object[] {message, fieldName, type},
+        			      "Add Field", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+        		if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null && !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
+    				thisMemento.add(thisInstance);
+        			if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
+    					Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
+    					thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
+    					fieldModel.addElement(fieldName.getText());
+    					repaint();
+        			}
+        		}
+        	}
+        });
+        getContentPane().add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Add");
+        btnNewButton_1.setBounds(205, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2.getClientProperty("i")), 51, resizeHeight);
+        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        Observer btnNew_1Observer = new Observer(btnNewButton_1, new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String message = "Please enter the method name and type.";
+        		JTextField fieldName = new JTextField("Method Name");
+        		fieldName.addFocusListener((FocusListener) new FocusListener() {
+        		    public void focusGained(FocusEvent e) {
+        		    	fieldName.setText("");
+        		    }
+
+        		    public void focusLost(FocusEvent e) {
+        		    }
+        		});
 
 				String[] types = { "int", "float", "String", "void", "double" };
 				JComboBox type = new JComboBox(new DefaultComboBoxModel<String>(types));
 
-				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type }, "Add Field",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        		int result = JOptionPane.showOptionDialog(null, new Object[] {message, fieldName, type},
+        			      "Add Method", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 
-				if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null
-						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
-					thisMemento.add(thisInstance);
-					if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
-						Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
-						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
-						fieldModel.addElement(fieldName.getText());
-						repaint();
-					}
-				}
-			}
-		});
-		getContentPane().add(btnNewButton);
+        		if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null && !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
+    				thisMemento.add(thisInstance);
+        			if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
+    					Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
+    					thisClass.addMethod(fieldName.getText(), (String) type.getSelectedItem(), new ArrayList<Parameters>());
+    					methodsModel.addElement(fieldName.getText());
+    					repaint();
+        			}
+        		}
+        	}
+        });
+        getContentPane().add(btnNewButton_1);
+        
+        JButton btnNewButton_2 = new JButton("Add");
+        btnNewButton_2.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1_1_2_1.getClientProperty("i")), 52, resizeHeight);
+        btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        Observer btnNewObserver_2 = new Observer(btnNewButton_2, new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String message = "Please enter the parameter name and type.";
+        		JTextField fieldName = new JTextField("Parameter Name");
+        		fieldName.addFocusListener((FocusListener) new FocusListener() {
+        		    public void focusGained(FocusEvent e) {
+        		    	fieldName.setText("");
+        		    }
 
-		JButton btnNewButton_1 = new JButton("Add");
-		btnNewButton_1.setBounds(205, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty("i")),
-				51, resizeHeight);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		Observer btnNew_1Observer = new Observer(btnNewButton_1, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String message = "Please enter the method name and type.";
-				JTextField fieldName = new JTextField("Method Name");
-				fieldName.addFocusListener((FocusListener) new FocusListener() {
-					public void focusGained(FocusEvent e) {
-						fieldName.setText("");
-					}
+        		    public void focusLost(FocusEvent e) {
+        		    }
+        		});
 
-					public void focusLost(FocusEvent e) {
-					}
-				});
-
-				String[] types = { "int", "float", "String", "void", "double" };
-				JComboBox type = new JComboBox(new DefaultComboBoxModel<String>(types));
-
-				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type }, "Add Method",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-
-				if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null
-						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
-					thisMemento.add(thisInstance);
-					if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
-						Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
-						thisClass.addMethod(fieldName.getText(), (String) type.getSelectedItem(),
-								new ArrayList<Parameters>());
-						methodsModel.addElement(fieldName.getText());
-						repaint();
-					}
-				}
-			}
-		});
-		getContentPane().add(btnNewButton_1);
-
-		JButton btnNewButton_2 = new JButton("Add");
-		btnNewButton_2.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty("i")),
-				52, resizeHeight);
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		Observer btnNewObserver_2 = new Observer(btnNewButton_2, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String message = "Please enter the parameter name and type.";
-				JTextField fieldName = new JTextField("Parameter Name");
-				fieldName.addFocusListener((FocusListener) new FocusListener() {
-					public void focusGained(FocusEvent e) {
-						fieldName.setText("");
-					}
-
-					public void focusLost(FocusEvent e) {
-					}
-				});
 
 				String[] types = { "int", "float", "String", "void", "double" };
 				JComboBox type = new JComboBox(new DefaultComboBoxModel<String>(types));
@@ -976,87 +967,75 @@ class Frame extends JFrame {
 				if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null
 						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
 					thisMemento.add(thisInstance);
-					if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
-						Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
-						if (thisClass.getMethod((String) comboBox_1_1_2.getSelectedItem()) != null) {
-							Methods thisMethod = thisClass.getMethod((String) comboBox_1_1_2.getSelectedItem());
-							thisMethod.addParam(fieldName.getText(), (String) type.getSelectedItem());
-							paramsModel.addElement(fieldName.getText());
-							repaint();
-						} else {
-							JOptionPane.showInternalMessageDialog(null,
-									"A method must exist prior to adding a parameter.", "Adding Parameter",
-									JOptionPane.ERROR_MESSAGE);
-						}
-					}
-				}
-			}
-		});
-		getContentPane().add(btnNewButton_2);
-
-		JButton btnNewButton_3 = new JButton("Add");
-		btnNewButton_3.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty("i")), 51,
-				resizeHeight);
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		Observer btnNewObserver_3 = new Observer(btnNewButton_3, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showInternalMessageDialog(null,
-						"To add a relationship, right-click (or shift-click) on the source class, then right-click (or shift-click) on the destination class, then choose the relationship type.",
-						"Adding Relationships", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-		getContentPane().add(btnNewButton_3);
-
-		JButton btnNewButton_4 = new JButton("All Class Contents");
-		btnNewButton_4.setBounds(22,
-				(int) (10 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
-				119, resizeHeight / 2);
-		getContentPane().add(btnNewButton_4);
-		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Observer btnNewObserver_4 = new Observer(btnNewButton_4, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				thisInstance.showContents();
-			}
-		});
-
-		JButton btnNewButton_5 = new JButton("Undo");
-		btnNewButton_5.setBounds(22,
-				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
-				119, resizeHeight / 2);
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Instance newInstance = thisMemento.undo(thisSurface.thisInstance);
-				if (newInstance != null) {
-					thisSurface.thisInstance = copyInstance(newInstance);
-					thisInstance = copyInstance(newInstance);
-					thisSurface.revalidate();
-					thisSurface.repaint();
-				}
-			}
-		});
-		getContentPane().add(btnNewButton_5);
-
-		JButton btnNewButton_6 = new JButton("Redo");
-		btnNewButton_6.setBounds(155,
-				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
-				119, resizeHeight / 2);
-		Observer btnNewObserver_6 = new Observer(btnNewButton_6, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Instance newInstance = thisMemento.redo();
-				if (newInstance != null) {
-					thisSurface.thisInstance = copyInstance(newInstance);
-					thisInstance = copyInstance(newInstance);
-					thisSurface.revalidate();
-					thisSurface.repaint();
-				}
-			}
-		});
-		getContentPane().add(btnNewButton_6);
-
+        			 if (thisInstance.getClass((String) comboBox.getSelectedItem()) != null) {
+    					Classes thisClass = thisInstance.getClass((String) comboBox.getSelectedItem());
+    					if (thisClass.getMethod((String) comboBox_1_1_2.getSelectedItem()) != null) {
+    						Methods thisMethod = thisClass.getMethod((String) comboBox_1_1_2.getSelectedItem());
+    						thisMethod.addParam(fieldName.getText(), (String) type.getSelectedItem());
+    						paramsModel.addElement(fieldName.getText());
+    					repaint();
+    					} else {
+    						JOptionPane.showInternalMessageDialog(null, "A method must exist prior to adding a parameter.",
+    		        				"Adding Parameter", JOptionPane.ERROR_MESSAGE);
+    					}
+        			}
+        		}
+        	}
+        });
+        getContentPane().add(btnNewButton_2);
+        
+        JButton btnNewButton_3 = new JButton("Add");
+        btnNewButton_3.setBounds(204, (int) (27+(resizeHeight+27)*(int) comboBox_1.getClientProperty("i")), 51, resizeHeight);
+        btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
+        Observer btnNewObserver_3 = new Observer(btnNewButton_3, new ActionListener() {
+        	public void actionPerformed(ActionEvent e) { 
+        		JOptionPane.showInternalMessageDialog(null, "To add a relationship, right-click on the source class, then right-click on the destination class, then choose the relationship type.",
+        				"Adding Relationships", JOptionPane.INFORMATION_MESSAGE);
+        	}
+        });
+        getContentPane().add(btnNewButton_3);
+        
+        JButton btnNewButton_4 = new JButton("All Class Contents");
+        btnNewButton_4.setBounds(22, (int) (10+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
+        getContentPane().add(btnNewButton_4);
+        btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        Observer btnNewObserver_4 = new Observer(btnNewButton_4, new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			thisInstance.showContents();
+    		}
+    	});
+        
+        JButton btnNewButton_5 = new JButton("Undo");
+        btnNewButton_5.setBounds(22, (int) (15+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
+        btnNewButton_5.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			Instance newInstance = thisMemento.undo(thisSurface.thisInstance);
+    			if (newInstance != null) {
+    				thisSurface.thisInstance = copyInstance(newInstance);
+    				thisInstance = copyInstance(newInstance);	
+        			thisSurface.revalidate();
+        			thisSurface.repaint();
+    			}
+    		}});
+        getContentPane().add(btnNewButton_5);
+        
+        JButton btnNewButton_6 = new JButton("Redo");
+        btnNewButton_6.setBounds(155, (int) (15+resizeHeight+54+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 119, resizeHeight/2);
+        Observer btnNewObserver_6 = new Observer(btnNewButton_6, new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			Instance newInstance = thisMemento.redo();
+    			if (newInstance != null) {
+    				thisSurface.thisInstance = copyInstance(newInstance);
+    				thisInstance = copyInstance(newInstance);
+    				thisSurface.revalidate();
+    				thisSurface.repaint();
+    			}
+    		}});
+        getContentPane().add(btnNewButton_6);
+        
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0,
-				(int) (5 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
-				284, 2);
+		separator.setBounds(0, (int) (5+resizeHeight+27+(resizeHeight+27)*(int) comboBox_1_1_2_1_1.getClientProperty("i")), 284, 2);
+
 		getContentPane().add(separator);
 
 		setVisible(true);
@@ -1096,6 +1075,76 @@ class Frame extends JFrame {
 	public void setSurface(Surface input, MovingScalingEx input2) {
 		this.thisSurface = input;
 		this.mainClass = input2;
+	}
+
+}
+
+class ZEllipse extends Ellipse2D.Float {
+
+	public String className;
+	public List<ZEllipse> destinations;
+	public Classes thisClass;
+
+	public ZEllipse(float x, float y, float width, float height, String name, Instance thisInstance) {
+		destinations = new ArrayList<ZEllipse>();
+		setFrame(x, y, width, height);
+		if (name == null || name.equals("")) {
+			String input = JOptionPane.showInputDialog("Please enter a class name!");
+			if (input == null || input.equals("")) {
+				return;
+			}
+			this.className = input;
+		} else {
+			this.className = name;
+		}
+		thisClass = thisInstance.getClass(name);
+	}
+	
+	public Point2D center() {
+		return new Point2D.Float(this.x, this.y);
+	}
+
+	public boolean isHit(float x, float y) {
+
+		return getBounds2D().contains(x, y);
+	}
+
+	public void addX(float x) {
+
+		this.x += x;
+		if (this.x < 0) {
+			this.x = 0;
+		}
+		if (this.x >= MovingScalingEx.panelWidth - 100) {
+			this.x = MovingScalingEx.panelWidth - 100;
+		}
+		thisClass.setLocation((int) this.x, (int) this.y);
+	}
+
+	public void addY(float y) {
+
+		this.y += y;
+		if (this.y >= MovingScalingEx.panelHeight - 150) {
+			this.y = MovingScalingEx.panelHeight - 150;
+		}
+		if (this.y < 0) {
+			this.y = 0;
+		}
+		thisClass.setLocation((int) this.x, (int) this.y);
+	}
+
+	public void addWidth(float w) {
+
+		this.width += w;
+	}
+
+	public void addHeight(float h) {
+
+		this.height += h;
+	}
+
+	public void setName(String input) {
+		this.className = input;
 	}
 
 }
