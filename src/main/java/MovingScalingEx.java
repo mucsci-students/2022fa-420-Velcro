@@ -352,7 +352,7 @@ class Surface extends JPanel {
 
 			
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				if (whatItHit(arr) != null) {]
+				if (whatItHit(arr) != null) {
 					thisMemento.add(thisInstance);
 					ZEllipse hit = whatItHit(arr);
 					String newName;
