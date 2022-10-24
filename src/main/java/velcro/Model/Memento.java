@@ -51,7 +51,7 @@ public class Memento {
 		}
 		fakeInstance.setHighlight(input.highlight);
 		
-
+		redoStack.clear();
 		undoStack.push(fakeInstance);
 	}
 	
