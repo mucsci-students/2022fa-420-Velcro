@@ -1,3 +1,12 @@
+/**
+ * Filename: DrawingGUI.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Initialization of new GUI for sprint three.
+ * 
+ */
+
 package main.java.velcro.main;
 
 import java.awt.Color;

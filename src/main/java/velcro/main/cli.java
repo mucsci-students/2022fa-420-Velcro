@@ -1,3 +1,13 @@
+/**
+ * Filename: cli.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Command line interface initialization and interpreter.
+ * 
+ */
+
+
 package main.java.velcro.main;
 
 import java.io.BufferedWriter;
@@ -14,12 +24,38 @@ import com.google.gson.Gson;
 
 public class cli {
 	
-	static String[] command = {"help", "launchGUI", "addClass", "deleteClass", "renameClass", "renameMethod", "methodAddParam", "methodRemoveParam", "methodClearParam", "addField", "renameField", "deleteField", "addRelation", "deleteRelation", "classContents", "save", "load", "exit"};
 	
+	// Help line descriptions.
+	static String launch = " -\t launchGUI (launches GUI; prompts user to save current state)\n";
+	static String addClass = " -\t addClass <classname>\n";
+	static String deleteClass = " -\t deleteClass <classname>\n";
+	static String renameClass = " -\t renameClass <classname> <newclassname>\n";
+	static String renameMethod = " -\t renameMethod <classname> <methodname> <methodnewname>\n";
+	static String methodAddParam = " -\t methodAddParam <classname> <methodname> <parametername> <parametertype>\n";
+	static String methodRemoveParam = " -\t methodRemoveParam <classname> <methodname> <parametername>\n";
+	static String methodClearParam = " -\t methodClearParam <classname> <methodname>\n";
+	static String addField = " -\t addField <classname> <fieldname> <fieldtype>\n";
+	static String renameField = " -\t renameField <classname> <fieldname> <newfieldname>\n";
+	static String deleteField = " -\t removeField <classname> <fieldname>\n";
+	static String addRelation = " -\t addRelation <classname> <sourceclass> <destinationclass> <relationshiptype>\n";
+	static String deleteRelation = " -\t deleteRelation <sourceclass> <destinationclass>\n";
+	static String listAllRelationships = " -\t listAllRelationships\n";
+	static String updateRelation = " -\t updateRelation <sourceclass> <destinationclass> <newrelationshiptype\n";
+	static String classContents = " -\t classContents <classname>\n";
+	static String listAllClassContents = " -\t listAllClassContents\n";
+	static String save = " -\t save <filename>\n";
+	static String load = " -\t load <filename>\n";
+	static String exit = " -\t exit";
+	
+	static String[] command = {"help", "launchGUI", "addClass", "deleteClass", "renameClass", "renameMethod", "methodAddParam", "methodRemoveParam", "methodClearParam", "addField", "renameField", "deleteField", "addRelation", "deleteRelation", "updateRelation", "listAllRelationships", "classContents", "listAllClassContents", "save", "load", "exit"};
+	
+	
+	// Prompt definition.
 	public static void printPrompt() {
 		System.out.print("> ");
 	}
 
+	// Robot actions, for use in auto-completion.
 	public static void roboPrint(String match) throws AWTException {
 		Robot robot = new Robot();
 		robot.delay(200);
@@ -249,8 +285,84 @@ public class cli {
 				robot.keyPress(KeyEvent.VK_O);
 				robot.keyPress(KeyEvent.VK_N);
 				return;
+			case "listAllRelationships":
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyRelease(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_R);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_E);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyPress(KeyEvent.VK_O);
+				robot.keyPress(KeyEvent.VK_N);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyPress(KeyEvent.VK_H);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyPress(KeyEvent.VK_P);
+				robot.keyPress(KeyEvent.VK_S);
+				return;
+			case "updateRelation":
+				robot.keyPress(KeyEvent.VK_U);
+				robot.keyPress(KeyEvent.VK_P);
+				robot.keyPress(KeyEvent.VK_D);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_E);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_R);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_E);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyPress(KeyEvent.VK_O);
+				robot.keyPress(KeyEvent.VK_N);
+				return;
 			case "classContents":
 				robot.keyPress(KeyEvent.VK_C);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyRelease(KeyEvent.VK_S);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_C);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_O);
+				robot.keyPress(KeyEvent.VK_N);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_E);
+				robot.keyPress(KeyEvent.VK_N);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_S);
+				return;
+			case "listAllClassContents":
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyRelease(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyRelease(KeyEvent.VK_L);
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_C);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
 				robot.keyPress(KeyEvent.VK_L);
 				robot.keyPress(KeyEvent.VK_A);
 				robot.keyPress(KeyEvent.VK_S);
@@ -287,6 +399,8 @@ public class cli {
 				return;
 		}	
 	}
+	
+	// Prints auto-filled suggestion and command prompt.
 	public static void printCommand(String[] match) throws AWTException {
 		if (match[0] == null) {
 			System.out.println("Command not found");
@@ -309,6 +423,7 @@ public class cli {
 		}
 	}
 	
+	// Finds closest match of input string.
 	public static String[] search(String user) {
 		int matches = 0;
 		int index = 0;
@@ -333,6 +448,7 @@ public class cli {
 		return closestMatch;
 	}
 	
+	// Main execution of input command.
 	public static boolean executeProgram(Scanner in, String user, Instance thisInstance) throws IOException {
 		String param[] = user.split(" ");
 		if (param[0].equals("")) 
@@ -347,16 +463,16 @@ public class cli {
 				Gson gsons = new Gson();
 				writers.append(gsons.toJson((thisInstance)));
 				writers.close();
-				app.main(null);
+				DrawingGUI.main(null);
 				return true;
 			} else {
-				app.main(null);
+				DrawingGUI.main(null);
 				return true;
 			}
 		case "help":
 			System.out.println(launch + addClass + deleteClass + renameClass + renameMethod
 					+ methodAddParam + methodRemoveParam + methodClearParam + addField + renameField + deleteField
-					+ addRelation + deleteRelation + save + load + exit);
+					+ addRelation + deleteRelation + updateRelation + listAllRelationships + listAllClassContents+ save + load + exit);
 			return true;
 		case "addClass":
 			thisInstance.addClass(param[1]);
@@ -499,14 +615,42 @@ public class cli {
 			}
 			Relationships relobj7;
 			try {
-				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2], param[3]);
+				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Relationship not found!");
 				return true;
 			}
-			classobj7.removeRelationship(param[1], param[2], param[3]);
-			classobj8.removeRelationship(param[1], param[2], param[3]);
+			classobj7.removeRelationship(param[1], param[2]);
+			classobj8.removeRelationship(param[1], param[2]);
 			System.out.println("Relationship removed.");
+			return true;
+		case "updateRelation":
+			Classes classobj17;
+			try {
+				classobj17 = thisInstance.getClass(param[1]);
+			} catch (NullPointerException e) {
+				System.out.println("Class not found!");
+				return true;
+			}
+			Classes classobj18;
+			try {
+				classobj18 = thisInstance.getClass(param[1]);
+			} catch (NullPointerException e) {
+				System.out.println("Class not found!");
+				return true;
+			}
+			Relationships relobj17;
+			try {
+				relobj17 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
+			} catch (NullPointerException e) {
+				System.out.println("Relationship not found!");
+				return true;
+			}
+			classobj17.removeRelationship(param[1], param[2]);
+			classobj18.removeRelationship(param[1], param[2]);
+			classobj17.addRelationship(param[1], param[2], param[3]);
+			classobj18.addRelationship(param[1], param[2], param[3]);
+			System.out.println("Relationship changed.");
 			return true;
 		case "deleteField":
 			Classes classobj9;
@@ -569,7 +713,7 @@ public class cli {
 				}
 			}
 			return true;
-		case "seeAllClassContents":
+		case "listAllClassContents":
 			for (int h = 0; h < thisInstance.classList.size(); h++) {
 				System.out.println(thisInstance.classList.get(h).getName());
 				for (int i = 0; i < thisInstance.classList.get(h).relationshipList.size(); i++) {
@@ -613,34 +757,18 @@ public class cli {
 		return false;
 	}
 	
+	// Main method, initialization.
 	public static void main(String[] args) throws IOException, AWTException {
 		Scanner in = new Scanner(System.in);
 		String user = null;
 		Instance thisInstance = new Instance();
-		
-		String launch = " -\t launchGUI (launches GUI; prompts user to save current state)\n";
-		String addClass = " -\t addClass <classname>\n";
-		String deleteClass = " -\t deleteClass <classname>\n";
-		String renameClass = " -\t renameClass <classname> <newclassname>\n";
-		String renameMethod = " -\t renameMethod <classname> <methodname> <methodnewname>\n";
-		String methodAddParam = " -\t methodAddParam <classname> <methodname> <parametername> <parametertype>\n";
-		String methodRemoveParam = " -\t methodRemoveParam <classname> <methodname> <parametername>\n";
-		String methodClearParam = " -\t methodClearParam <classname> <methodname>\n";
-		String addField = " -\t addField <classname> <fieldname> <fieldtype>\n";
-		String renameField = " -\t renameField <classname> <fieldname> <newfieldname>\n";
-		String deleteField = " -\t removeField <classname> <fieldname>\n";
-		String addRelation = " -\t addRelation <classname> <sourceclass> <destinationclass> <relationshiptype>\n";
-		String deleteRelation = " -\t deleteRelation <sourceclass> <destinationclass> <relationshiptype>\n";
-		String classContents = " -\t classContents <classname>\n";
-		String save = " -\t save <filename>\n";
-		String load = " -\t load <filename>\n";
-		String exit = " -\t exit";
 
+		// Continuing prompt for input.
 		while (true) {
 			System.out.print("Open in GUI mode? (yes/no): ");
 			user = in.next();
 			if (user.equals("yes")) {
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			}
 			if (user.equals("no")) {
