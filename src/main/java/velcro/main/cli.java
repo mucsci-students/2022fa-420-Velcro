@@ -299,7 +299,6 @@ public class cli {
 			return;
 		}
 		else {
-			System.out.println();
 			for (int i = 0; i < match.length; i++) {
 				if (match[i] == null) {
 					printPrompt();
