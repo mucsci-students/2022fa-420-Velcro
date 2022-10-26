@@ -1,4 +1,4 @@
-#Last Updated: 10/19/2022
+#Last Updated: 10/26/2022
 
 ##CONTENTS OF THIS FILE
  
@@ -7,6 +7,8 @@
  * Installation
  * Configuration 
  * Design Pattern Implementations
+ * Build
+ * Command Line Interface Use
  * Maintainers
 
 ###INTRODUCTION
@@ -41,11 +43,21 @@ directory you wish to work from.
  * You can run a program either by clicking on the green button with a white 'play' symbol 	at the top of the IDE, or by right-clicking on any java file in the project, hovering 	over 'Run As', pressing 'Run Configurations' and pressing 'Run'in the bottom-right of 	the opened window.
  * If you run your program using the latter method, make sure that the 'Project Name' 	matches the name of the file containing the program and that 'Main Class:' is 	velcro.LandingPage. 
 
-####Design Pattern Implementations
+####DESIGN PATTERN IMPLEMENTATIONS
  * MVC - as represented by various model, view, and controller classes.
  * Observer - instantiated as the Observer class that acts as a wrapper for the Java native observer ActionListener.
  * Memento - instantiated as the Memento class, which acts to support undo/redo functions by maintaining a list of Instance class objects.
  * Iterator - instantiated as the IteratorList class, which abstracts the trasversal of a list of ZEllipse objects, which represent current classes and are traversed during updates and certain methods.
+
+####BUILD
+POM file provided for Maven build. Installation of Maven required.
+
+To build, open a command line in the project's main folder, and run: mvn clean package
+
+An OS-compatible file, entitled Velcro-3.0.0, will be built in the new Target folder. Windows users are recommended to run the package by running the command: java -jar ./target/Velcro-3.0.0.jar.
+
+###COMMAND LINE INTERFACE USE
+When operating the command line interface, use the command --help to list all available commands.
 
 ####MAINTAINERS
 	* Jon Beare
