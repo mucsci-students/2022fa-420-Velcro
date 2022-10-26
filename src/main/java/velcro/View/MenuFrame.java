@@ -80,7 +80,7 @@ public class MenuFrame extends JFrame {
 		classModel = thisInstance.classModel;
 
 		// Populate ClassModel model.
-		GUIController.initClassModel(classModel);
+		MenuController.initClassModel(classModel);
 		
 		// Resize panel to fit laptops/smaller screens.
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -99,7 +99,7 @@ public class MenuFrame extends JFrame {
 		comboBox.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox.getClientProperty("i")), 172,
 				resizeHeight);
 		comboBox.setModel(classModel);
-		GUIController.setComboBoxListener();
+		MenuController.setComboBoxListener();
 		getContentPane().add(comboBox);
 
 		// Class label.
@@ -114,7 +114,7 @@ public class MenuFrame extends JFrame {
 		comboBox_1.putClientProperty("i", 3);
 		comboBox_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty("i")), 172,
 				resizeHeight);
-		GUIController.setComboBox1Listener();
+		MenuController.setComboBox1Listener();
 		getContentPane().add(comboBox_1);
 
 		// Relationship destination label.
@@ -136,7 +136,7 @@ public class MenuFrame extends JFrame {
 		comboBox_1_1_1.putClientProperty("i", 1);
 		comboBox_1_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty("i")),
 				172, resizeHeight);
-		GUIController.setComboBox111Listener();
+		MenuController.setComboBox111Listener();
 		getContentPane().add(comboBox_1_1_1);
 
 		// Methods combobox.
@@ -144,7 +144,7 @@ public class MenuFrame extends JFrame {
 		comboBox_1_1_2.putClientProperty("i", 5);
 		comboBox_1_1_2.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty("i")),
 				172, resizeHeight);
-		GUIController.setComboBox112Listener();
+		MenuController.setComboBox112Listener();
 		getContentPane().add(comboBox_1_1_2);
 
 		// Methods label.
@@ -159,7 +159,7 @@ public class MenuFrame extends JFrame {
 		comboBox_1_1_2_1.putClientProperty("i", 7);
 		comboBox_1_1_2_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty("i")),
 				172, resizeHeight);
-		GUIController.setComboBox1121Listener();
+		MenuController.setComboBox1121Listener();
 		getContentPane().add(comboBox_1_1_2_1);
 
 		// Parameters label.
@@ -235,7 +235,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty("i")), 60,
 				resizeHeight);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		GUIController.setBtnListener();
+		MenuController.setBtnListener();
 		getContentPane().add(btnNewButton);
 
 		// Add method button.
@@ -243,7 +243,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_1.setBounds(205, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty("i")),
 				60, resizeHeight);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		GUIController.setBtn1Listener();
+		MenuController.setBtn1Listener();
 		getContentPane().add(btnNewButton_1);
 
 		// Add parameter button.
@@ -251,7 +251,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_2.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty("i")),
 				60, resizeHeight);
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		GUIController.setBtn2Listener();
+		MenuController.setBtn2Listener();
 		getContentPane().add(btnNewButton_2);
 
 		// Add relationship button.
@@ -259,7 +259,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_3.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty("i")), 60,
 				resizeHeight);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		GUIController.setBtn3Listener();
+		MenuController.setBtn3Listener();
 		getContentPane().add(btnNewButton_3);
 
 		// Show contents button.
@@ -267,7 +267,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_4.setBounds(22,
 				(int) (10 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn4Listener();
+		MenuController.setBtn4Listener();
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		getContentPane().add(btnNewButton_4);
 
@@ -276,7 +276,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_5.setBounds(22,
 				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn5Listener();
+		MenuController.setBtn5Listener();
 		getContentPane().add(btnNewButton_5);
 
 		// Redo button.
@@ -284,7 +284,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_6.setBounds(155,
 				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn6Listener();
+		MenuController.setBtn6Listener();
 		getContentPane().add(btnNewButton_6);
 
 		// Save button.
@@ -292,7 +292,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_7.setBounds(22,
 				(int) (20 + resizeHeight + 81 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn7Listener();
+		MenuController.setBtn7Listener();
 		getContentPane().add(btnNewButton_7);
 
 		// Load button.
@@ -300,7 +300,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_8.setBounds(155,
 				(int) (20 + resizeHeight + 81 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn8Listener();
+		MenuController.setBtn8Listener();
 		getContentPane().add(btnNewButton_8);
 
 		// Exit button.
@@ -308,7 +308,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_9.setBounds(155,
 				(int) (25 + resizeHeight + 108 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn9Listener();
+		MenuController.setBtn9Listener();
 		getContentPane().add(btnNewButton_9);
 
 		// Class contents button.
@@ -317,7 +317,7 @@ public class MenuFrame extends JFrame {
 				(int) (10 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
 		getContentPane().add(btnNewButton_10);
-		GUIController.setBtn10Listener();
+		MenuController.setBtn10Listener();
 		btnNewButton_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
 		// Load example data button.
@@ -326,7 +326,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_11.setBounds(22,
 				(int) (25 + resizeHeight + 108 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),
 				119, (int) (resizeHeight / 1.2));
-		GUIController.setBtn11Listener();
+		MenuController.setBtn11Listener();
 		getContentPane().add(btnNewButton_11);
 
 		JSeparator separator = new JSeparator();
@@ -342,7 +342,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_12.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		btnNewButton_12.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox.getClientProperty("i")), 60,
 				resizeHeight);
-		GUIController.setBtn12Listener();
+		MenuController.setBtn12Listener();
 		getContentPane().add(btnNewButton_12);
 		
 		// Remove field button.
@@ -350,7 +350,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_13.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		btnNewButton_13.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty("i")),
 				60, resizeHeight);
-		GUIController.setBtn13Listener();
+		MenuController.setBtn13Listener();
 		getContentPane().add(btnNewButton_13);
 		
 		// Remove relationship button.
@@ -358,7 +358,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_14.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		btnNewButton_14.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1.getClientProperty("i")), 60,
 				resizeHeight);
-		GUIController.setBtn14Listener();
+		MenuController.setBtn14Listener();
 		getContentPane().add(btnNewButton_14);
 		
 		// Remove method button.
@@ -366,7 +366,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_15.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		btnNewButton_15.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty("i")),
 				60, resizeHeight);
-		GUIController.setBtn15Listener();
+		MenuController.setBtn15Listener();
 		getContentPane().add(btnNewButton_15);
 		
 		// Remove parameter button.
@@ -374,7 +374,7 @@ public class MenuFrame extends JFrame {
 		btnNewButton_16.setFont(new Font("Tahoma", Font.PLAIN, 7));
 		btnNewButton_16.setBounds(204,
 				(int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")), 60, resizeHeight);
-		GUIController.setBtn16Listener();
+		MenuController.setBtn16Listener();
 		getContentPane().add(btnNewButton_16);
 		
 		
@@ -390,7 +390,7 @@ public class MenuFrame extends JFrame {
 	
 	// Pass method on to controller.
 	public void firstLoad() {
-		GUIController.firstLoad();
+		MenuController.firstLoad();
 	}
 	
 	// Clears static requirement to access repaint from other classes.
