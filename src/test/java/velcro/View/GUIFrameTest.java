@@ -1,4 +1,4 @@
-package velcro.View;
+package main.java.velcro.View;
 
 import org.junit.jupiter.api.Test;
 
