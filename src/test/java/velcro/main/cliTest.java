@@ -1,4 +1,4 @@
-package velcro.main;
+package main.java.velcro.main;
 
 import org.junit.jupiter.api.Test;
 
