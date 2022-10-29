@@ -1,4 +1,4 @@
-package main.java.velcro.Model;
+package main.java.velcro.Controller;
 
 import org.junit.jupiter.api.Test;
 
