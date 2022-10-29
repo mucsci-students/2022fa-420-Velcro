@@ -1,4 +1,4 @@
-package velcro.Model;
+package main.java.velcro.Model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
