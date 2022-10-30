@@ -69,6 +69,20 @@
               </execution>
           </executions>
       </plugin>
+	<plugin>
+            <groupId>dev.alexengrig</groupId>
+            <artifactId>codecov-maven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+                <execution>
+                    <id>upload</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>upload</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
     </build>
     <dependencies>
