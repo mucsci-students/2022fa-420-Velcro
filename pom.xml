@@ -36,6 +36,39 @@
                     </execution>
                 </executions>
             </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+	<configuration>
+		<excludes>
+			<exclude>Controller.java</exclude>
+			<exclude>GUIController.java</exclude>
+			<exclude>app.java</exclude>
+			<exclude>cli.java</exclude>
+			<exclude>DrawingGUI.java</exclude>
+			<exclude>GUIFrame.java</exclude>
+			<exclude>MenuFrame.java</exclude>
+		</excludes>
+	</configuration>
+        <version>0.8.5</version>
+        <executions>
+          <!--first execution : for preparing JaCoCo runtime agent-->
+            <execution>
+              <id>prepare-agent</id>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+            </execution>
+          <!--second execution : for creating code coverage reports-->
+            <execution>
+                  <id>report</id>
+                  <phase>test</phase>
+                    <goals>
+                      <goal>report</goal>
+                    </goals>
+              </execution>
+          </executions>
+      </plugin>
         </plugins>
     </build>
     <dependencies>
