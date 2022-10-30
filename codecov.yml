@@ -1,0 +1,7 @@
+codecov: 
+ token: d40e3d75-a9f2-4e50-8210-0d57226b754c
+ 
+ ignore:
+  - "src/main/java/velcro/Controller"
+  - "src/main/java/velcro/View"
+  - "src/main/java/velcro/main"
