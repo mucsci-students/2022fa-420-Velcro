@@ -1,0 +1,8 @@
+codecov: 
+ token: d40e3d75-a9f2-4e50-8210-0d57226b754c
+ disable_default_path_fixes: no
+
+coverage:
+ precision: 2
+ round: up
+ range: "80...100"

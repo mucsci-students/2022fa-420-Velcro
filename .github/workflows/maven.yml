@@ -24,3 +24,14 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Test with Maven
+      run: mvn -B test --file pom.xml
+      
+    - name: Create report
+      run: mvn -f pom.xml clean jacoco:prepare-agent install jacoco:report
+    - name: Codecov
+      uses: codecov/codecov-action@v3.1.1
+      with:
+          token: d40e3d75-a9f2-4e50-8210-0d57226b754c
+          fail_ci_if_error: true
+          verbose: true

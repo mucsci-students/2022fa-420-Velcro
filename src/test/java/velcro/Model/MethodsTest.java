@@ -1,9 +1,12 @@
-package velcro.Model;
+package main.java.velcro.Model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import velcro.Model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,73 +14,95 @@ class MethodsTest {
 
     @Test
     void getName() {
-        ArrayList params = new ArrayList<>();
-        Parameters test1 = new Parameters("param1", "type1");
-        Parameters test2 = new Parameters("param2", "type2");
-        params.add(test1);
-        params.add(test2);
-        Methods test = new Methods("method1", "type1", params);
-        Assertions.assertEquals("param1", test1.getName());
+        Methods test = new Methods("test","type",null);
+
+        Assertions.assertEquals("test", test.getName());
     }
 
     @Test
     void getType() {
-        ArrayList params = new ArrayList<Parameters>();
-        Parameters test1 = new Parameters("param1", "type1");
-        Parameters test2 = new Parameters("param2", "type2");
-        params.add(test1);
-        params.add(test2);
-        Methods test = new Methods("method1", "type1", params);
-        Assertions.assertEquals("type1", test1.getType());
+        Methods test = new Methods("test","type",null);
+
+        Assertions.assertEquals("type", test.getType());
     }
 
     @Test
     void getParams() {
-        ArrayList params = new ArrayList<Parameters>();
-        Methods test = new Methods("method1", "type1", params);
-        Assertions.assertEquals(0, test.getParams().size());
+        Methods test = new Methods("test","type",null);
+        Parameters test_p = new Parameters("test", "type");
+        List<Parameters> list = new ArrayList<>();
+        list.add(test_p);
+        Methods test1 = new Methods("test1","type1",list);
+
+        Assertions.assertEquals(null, test.getParams());
+        Assertions.assertEquals(list, test1.getParams());
     }
 
     @Test
     void testEquals() {
-        ArrayList params = new ArrayList<Parameters>();
-        Methods testParam = new Methods("method1", "type1", params);
-        ArrayList params1 = new ArrayList<Parameters>();
-        Methods testParam1 = new Methods("method2", "type2", params1);
-        Assertions.assertEquals(true, testParam.equals(testParam));
-        Assertions.assertEquals(false, testParam.equals(testParam1));
+        Methods test = new Methods("test","type",null);
+        Parameters test_p = new Parameters("test", "type");
+        List<Parameters> list = new ArrayList<>();
+        list.add(test_p);
+        Methods test1 = new Methods("test","type",list);
+        Methods test2 = new Methods("test2","type2",null);
+
+        Assertions.assertEquals(true, test.equals(test));
+        Assertions.assertEquals(true, test.equals(test1));
+        Assertions.assertEquals(false, test.equals(test2));
     }
 
     @Test
     void rename() {
-        ArrayList params = new ArrayList<Parameters>();
-        Methods test = new Methods("method1", "type1", params);
+        Methods test = new Methods("name", "type",null);
+
         Assertions.assertEquals(false, test.rename(""));
-        Assertions.assertEquals(true, test.rename("test1"));
+        Assertions.assertEquals(true,test.rename("newName"));
     }
 
     @Test
     void addParam() {
-        ArrayList params = new ArrayList<>();
-        Methods test = new Methods("method1", "type1", params);
-        test.addParam("elem1", "type1");
-        Assertions.assertEquals(1, test.paramList.size());
+        List<Parameters> list = new ArrayList<>();
+        Methods test = new Methods("test","type",list);
+        test.addParam("testName","testType");
+
+        Assertions.assertEquals("testName",test.getParams().get(0).getName());
+        Assertions.assertEquals("testType",test.getParams().get(0).getType());
     }
 
     @Test
     void removeParam() {
-        ArrayList params = new ArrayList<>();
-        Methods test = new Methods("method1", "type1", params);
-        test.addParam("elem1", "type1");
-        test.removeParam("elem1");
-        Assertions.assertEquals(0, test.paramList.size());
+        List<Parameters> list = new ArrayList<>();
+        Methods test = new Methods("test","type",list);
+        test.addParam("testName","testType");
+
+        Assertions.assertEquals(true,test.removeParam("testName"));
+        Assertions.assertEquals(false,test.removeParam("Name"));
     }
 
     @Test
     void clearParam() {
+        List<Parameters> list = new ArrayList<>();
+        Methods test = new Methods("test","type",list);
+        test.addParam("testName","testType");
+
+        Assertions.assertEquals(1,test.getParams().size());
+        test.clearParam();
+        Assertions.assertEquals(0,test.getParams().size());
     }
 
     @Test
     void getParam() {
+        List<Parameters> list = new ArrayList<>();
+        Methods test = new Methods("test","type",list);
+        Methods test1 = new Methods("test","type",null);
+        List<Parameters> list1 = new ArrayList<>();
+        Methods test2 = new Methods("test","type",list1);
+        test2.addParam("testName","testType");
+
+        Assertions.assertEquals(null, test.getParam("testCheck"));
+        Assertions.assertEquals(null, test1.getParam("testCheck"));
+        Assertions.assertEquals(null, test2.getParam("testCheck"));
+        Assertions.assertEquals(test2.getParams().get(0), test2.getParam("testName"));
     }
 }

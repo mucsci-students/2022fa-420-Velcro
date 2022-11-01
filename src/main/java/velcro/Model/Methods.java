@@ -9,7 +9,15 @@
 
 
 
-package velcro.Model;
+package main.java.velcro.Model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +40,13 @@ public class Methods {
 	
 	@SerializedName("params")
 	@Expose
-	public List<Fields> paramList = new ArrayList<Fields>();
+	public List<Parameters> paramList = new ArrayList<Parameters>();
 	
 	public static DefaultComboBoxModel<String> paramModel;
 	public static DefaultComboBoxModel<String> paramModel1;
 	
 	// Method's constructor.
-	public Methods(String name, String type, List<Fields> params) {
+	Methods(String name, String type, List<Parameters> params) {
 		this.name = name;
 		this.type = type;
 		this.paramList = params;
@@ -57,7 +65,7 @@ public class Methods {
 	}
 	
 	// Returns Method's parameter list.
-	public List<Fields> getParams() {
+	public List<Parameters> getParams() {
 		return paramList;
 	}
 	
@@ -76,7 +84,7 @@ public class Methods {
 	
 	// Adds an input Method to the MethodList array.
 	public void addParam(String elementAdded, String type) {
-		paramList.add(new Fields(elementAdded, type));
+		paramList.add(new Parameters(elementAdded, type));
 	}
 
 	// Removes an input Field from the FieldsList array.
@@ -94,12 +102,12 @@ public class Methods {
 	
 	// Clears all parameters
 	public void clearParam() {
-		paramList = new ArrayList<Fields>();
+		paramList = new ArrayList<Parameters>();
 		return;
 	}
 	
 	// Returns matching Parameter.
-	public Fields getParam(String elementChecked) {
+	public Parameters getParam(String elementChecked) {
 		if (this.paramList == null || this.paramList.size() == 0)
 			return null;
 		for (int i = 0; i < paramList.size(); i++) {

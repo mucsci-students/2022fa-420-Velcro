@@ -1,36 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>2022fa-420-Velcro</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>org.springframework</groupId>
+    <artifactId>Velcro</artifactId>
+    <packaging>jar</packaging>
+    <version>3.0.0</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.10.0</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>main.java.velcro.main.cli</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.2.1</version>
-            </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+	<configuration>
+		<excludes>
+			<exclude>Controller.java</exclude>
+			<exclude>GUIController.java</exclude>
+			<exclude>app.java</exclude>
+			<exclude>cli.java</exclude>
+			<exclude>DrawingGUI.java</exclude>
+			<exclude>GUIFrame.java</exclude>
+			<exclude>MenuFrame.java</exclude>
+		</excludes>
+	</configuration>
+        <version>0.8.5</version>
+        <executions>
+          <!--first execution : for preparing JaCoCo runtime agent-->
+            <execution>
+              <id>prepare-agent</id>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+            </execution>
+          <!--second execution : for creating code coverage reports-->
+            <execution>
+                  <id>report</id>
+                  <phase>test</phase>
+                    <goals>
+                      <goal>report</goal>
+                    </goals>
+              </execution>
+          </executions>
+      </plugin>
+        <!-- Codecov Plugin -->
+        <plugin>
+            <groupId>dev.alexengrig</groupId>
+            <artifactId>codecov-maven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+                <execution>
+                    <id>upload</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>upload</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
@@ -61,5 +116,4 @@
         </dependency>
 
     </dependencies>
-
 </project>

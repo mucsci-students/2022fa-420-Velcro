@@ -1,4 +1,4 @@
-#Last Updated: 9/28/2022
+#Last Updated: 10/26/2022
 
 ##CONTENTS OF THIS FILE
  
@@ -6,7 +6,9 @@
  * Requirements
  * Installation
  * Configuration 
- * Creating an .Exe
+ * Design Pattern Implementations
+ * Build
+ * Command Line Interface Use
  * Maintainers
 
 ###INTRODUCTION
@@ -41,21 +43,21 @@ directory you wish to work from.
  * You can run a program either by clicking on the green button with a white 'play' symbol 	at the top of the IDE, or by right-clicking on any java file in the project, hovering 	over 'Run As', pressing 'Run Configurations' and pressing 'Run'in the bottom-right of 	the opened window.
  * If you run your program using the latter method, make sure that the 'Project Name' 	matches the name of the file containing the program and that 'Main Class:' is 	velcro.LandingPage. 
 
-####CREATING AN .EXE
-* Install Launch4j to the host machine from this location: https://sourceforge.net/projects/launch4j/files/launch4j-3/3.14/
-* Open a new Windows Explorer page (Windows + E keys). Open your Java folder, which is located in your Program Files folder (paste %ProgramFiles(x86)% into your explorer address bar, or %ProgramFiles% on 32-bit systems). Open the latest-numbered JRE folder in your Java folder.
-* Create a new folder on your desktop (or other easily-accessible location). Inside the new folder, create another folder entitled “jre.”
-* Right-click and drag the “bin” and “lib” folders from your Java folder to the jre folder, and select “copy here.”
-* Within Eclipse, right-click the project name and select “Export…” -> “Runnable JAR file” (within the Java Folder).
-* Under Launch configuration, navigate to and select the "cli" file of the Velcro project. In the export destination section, navigate to the desktop folder you created that contains the “jre” folder, and select “Extract required libraries into generated JAR.” Make sure the destination includes a memorable file name ending with “.jar”. Click Finish. If asked about repacking referenced libraries, select Okay.
-* Your desktop folder should now contain a jar file and a jre folder, which contains two folders named bin and lib. 
-* Run Launch4j.
-* In the “Output file” field at the top, click the folder icon, navigate to your desktop folder, and enter a name for the finished .exe. Note: the filename *must* end in “.exe”. In the “Jar” field, click the folder icon and navigate to/select the .jar file you saved in the desktop folder.
-* Click the “Classpath” header item at the top, check the “Custom classpath” toggle, click the folder icon, and again select the .jar file in your desktop folder.
-* Click the “Header” header item at the top, click the option for Header Type: Console.
-* Click the “JRE” header item at the top, and in the “Bundled JRE paths” field type in the three letters: jre.
-* Click the “Build Wrapper” button at the top (it looks like a gear). Navigate to the desktop folder you created earlier, and give the textbox a name for the Launch4j config file that it creates.
-* The .exe file should now be created in the desktop folder. You can run it by double-clicking the .exe file or, without leaving Launch4j, by clicking the “Test wrapper” button that looks like a play button at the top.
+####DESIGN PATTERN IMPLEMENTATIONS
+ * MVC - as represented by various model, view, and controller classes.
+ * Observer - instantiated as the Observer class that acts as a wrapper for the Java native observer ActionListener.
+ * Memento - instantiated as the Memento class, which acts to support undo/redo functions by maintaining a list of Instance class objects.
+ * Iterator - instantiated as the IteratorList class, which abstracts the trasversal of a list of ZEllipse objects, which represent current classes and are traversed during updates and certain methods.
+
+####BUILD
+POM file provided for Maven build. Installation of Maven required.
+
+To build, open a command line in the project's main folder, and run: mvn clean package
+
+An OS-compatible file, entitled Velcro-3.0.0, will be built in the new Target folder. Windows users are recommended to run the package by running the command: java -jar ./target/Velcro-3.0.0.jar.
+
+###COMMAND LINE INTERFACE USE
+When operating the command line interface, use the command --help to list all available commands.
 
 ####MAINTAINERS
 	* Jon Beare
