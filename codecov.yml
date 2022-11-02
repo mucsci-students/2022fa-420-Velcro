@@ -5,6 +5,10 @@ codecov:
 coverage:
  precision: 2
  round: up
- range: 
- -80.0
- -100.0
+ range: "80...100"
+ 
+ ignore:
+  - "src/main/java/velcro/Controller"
+  - "src/main/java/velcro/DrawingGUI.java"
+  - "src/main/java/velcro/Obsolete"
+  - "src/main/java/velcro/View"
