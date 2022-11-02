@@ -41,20 +41,6 @@
         <artifactId>jacoco-maven-plugin</artifactId>
 	<configuration>
 		<excludes>
-			<exclude>MenuController.java</exclude>
-			<exclude>GUIController.java</exclude>
-			<exclude>ClassesPage.java</exclude>
-			<exclude>Controller.java</exclude>
-			<exclude>FieldsPage.java</exclude>
-			<exclude>LandingPage.java</exclude>
-			<exclude>LoadPage.java</exclude>
-			<exclude>MethodsPage.java</exclude>
-			<exclude>ParametersPage.java</exclude>
-			<exclude>RelationshipsPage.java</exclude>
-			<exclude>SavePage.java</exclude>
-			<exclude>app.java</exclude>
-			<exclude>GUIFrame.java</exclude>
-			<exclude>MenuFrame.java</exclude>
 		</excludes>
 	</configuration>
         <version>0.8.5</version>
