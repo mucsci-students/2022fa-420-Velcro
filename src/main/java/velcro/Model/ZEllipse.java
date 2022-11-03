@@ -1,5 +1,6 @@
 package main.java.velcro.Model;
 
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
 import java.awt.geom.Point2D;
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import main.java.velcro.main.DrawingGUI;
 
-public class ZEllipse extends Ellipse2D.Float {
+public class ZEllipse extends Rectangle.Float {
 
 	public String className;
 	public List<ZEllipse> destinations;

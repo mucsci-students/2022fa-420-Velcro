@@ -124,8 +124,8 @@ public class GUIController {
 			if (GUIFrame.thisInstance.highlight != null) {
 				if (iter.currentValue().className.equals(GUIFrame.thisInstance.highlight.getName())) {
 					g2d.setPaint(new Color(255, 0, 0));
-					g2d.draw(new ZRectangle((float) iter.currentValue().getX(), (float) iter.currentValue().getY(), 80,
-							80));
+					g2d.draw(new ZRectangle((float) iter.currentValue().getX() -2, (float) iter.currentValue().getY() -2, 83,
+							83));
 				}
 			}
 			g2d.setPaint(new Color(0, 0, 200));
