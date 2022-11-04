@@ -19,19 +19,21 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Memento {
-
+	private NullInstance NullInstance = new NullInstance();
 	private Stack<Instance> undoStack;
 	private Stack<Instance> redoStack;
 
+	// Constructor. Initiates undo and redo stack with NullInstance.
 	public Memento() {
 		undoStack = new Stack<Instance>();
+		undoStack.add(NullInstance.getInstance());
 		redoStack = new Stack<Instance>();
+		redoStack.add(NullInstance.getInstance());
 	}
 	
+	// 	Add method to be called to manually clone an Instance following every meaningful action in the Controller.
 	public void add(Instance input) {
 		Instance fakeInstance = new Instance();
-		
-		
 		for (int i = 0; i<input.classList.size(); i++) {
 			fakeInstance.addClass(input.classList.get(i).getName());
 			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);
@@ -50,16 +52,14 @@ public class Memento {
 			}
 		}
 		fakeInstance.setHighlight(input.highlight);
-		
 		redoStack.clear();
+		redoStack.push(NullInstance.getInstance());
 		undoStack.push(fakeInstance);
 	}
 	
-	
+	// Adds a redo action as a manually-cloned Instance, to be called whenever Undo is performed.
 	public void addRedo(Instance input) {
 		Instance fakeInstance = new Instance();
-		
-		
 		for (int i = 0; i<input.classList.size(); i++) {
 			fakeInstance.addClass(input.classList.get(i).getName());
 			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);
@@ -78,45 +78,41 @@ public class Memento {
 			}
 		}
 		fakeInstance.setHighlight(input.highlight);
-		
-
 		redoStack.push(fakeInstance);
 	}
 	
+	// Loading of the latest-stored undo memento.
 	public Instance undo(Instance thisInstance) {
-		if (undoStack == null || undoStack.size() == 0)
+		// Checks that undoStack exists (this should never fail) and if the next item is the NullInstance.
+		if (undoStack == null || undoStack.peek().equals(NullInstance.getInstance()))
 			return null;
 		Instance newInstance = new Instance();
 		newInstance = copyInstance(thisInstance);
+		// Pushes instance to redo stack.
 		redoStack.push(newInstance);
 		return undoStack.pop();
 	}
 	
+	// Loading of the latest-stored redo memento.
 	public Instance redo() {
-		if (redoStack == null || redoStack.size() == 0)
+		// Checks that redoStack exists (this should never fail) and if the next item is the NullInstance.
+		if (redoStack == null || redoStack.peek().equals(NullInstance.getInstance()))
 			return null;
 		Instance newInstance = new Instance();
 		newInstance = copyInstance(redoStack.peek());
-		
+		// Pushes instance to undo stack.
 		undoStack.push(newInstance);
 		return redoStack.pop();
 	}
 	
+	// Returns count of undo stack.
 	public int count() {
-		return undoStack.size();
+		return undoStack.size()-1;
 	}
 	
-	public void seeAll() {
-		for (int i = 0; i<redoStack.size(); i++) {
-
-			redoStack.get(i).showContents();
-		}
-		
-	}
-	
+	// Makes a manual clone of input Instance, since Java passes by reference and the mementos should be unedited by subsequent edits to the Instance.
 	public Instance copyInstance(Instance input) {
 		Instance fakeInstance = new Instance();
-		
 		for (int i = 0; i<input.classList.size(); i++) {
 			fakeInstance.addClass(input.classList.get(i).getName());
 			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);
@@ -135,7 +131,24 @@ public class Memento {
 			}
 		}
 		fakeInstance.setHighlight(input.highlight);
-		
 		return fakeInstance;
+	}
+	
+	
+	// NullInstance is implemented below as a nested class. It acts as both a Null Object (an Instance
+	// with declared, but not impactful, attributes) and as a Singleton (its creation and accessor
+	// force the existence of only one NullInstance). In this implementation, it is inserted as an uneditable
+	// bookend for the undo and redo stacks to signify the end of the stack, avoiding NullPointer
+	// errors or the need to count the undo/redo stacks as preliminary checks.
+	static class NullInstance extends Instance {
+	    private NullInstance() {}
+
+	    private static class NullInstanceHolder {
+	        private static final NullInstance INSTANCE = new NullInstance();
+	    }
+
+	    public static NullInstance getInstance() {
+	        return NullInstanceHolder.INSTANCE;
+	    }
 	}
 }
