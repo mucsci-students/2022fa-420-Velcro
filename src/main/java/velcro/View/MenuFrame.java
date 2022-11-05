@@ -320,8 +320,8 @@ public class MenuFrame extends JFrame {
 		MenuController.setBtn10Listener();
 		btnNewButton_10.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
-		// Load example data button.
-		btnNewButton_11 = new JButton("Load Example Data");
+		// Screenshot button.
+		btnNewButton_11 = new JButton("Screenshot");
 		btnNewButton_11.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnNewButton_11.setBounds(22,
 				(int) (25 + resizeHeight + 108 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty("i")),

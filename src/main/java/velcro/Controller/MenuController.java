@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -21,10 +22,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.google.gson.Gson;
@@ -46,7 +49,7 @@ public class MenuController {
 	/**
 	 * MenuFrame methods.
 	 */
-	
+
 	// Populate initial ClassModel model.
 	public static void initClassModel(DefaultComboBoxModel<String> classModel) {
 		for (int i = 0; i < MenuFrame.thisInstance.classList.size(); i++) {
@@ -76,7 +79,8 @@ public class MenuController {
 
 	// Method to run on first load to ensure comboboxes match instance data.
 	public static void firstLoad() {
-		MenuFrame.thisInstance.setHighlight(MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()));
+		MenuFrame.thisInstance
+				.setHighlight(MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()));
 		MenuFrame.thisObject.repaint();
 
 		Classes thisClass;
@@ -216,9 +220,12 @@ public class MenuController {
 				if (result == JOptionPane.OK_OPTION && fieldName.getText() != null && type.getSelectedItem() != null
 						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
 					MenuFrame.thisMemento.add(MenuFrame.thisInstance);
+
 					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
 						Classes thisClass = MenuFrame.thisInstance
 								.getClass((String) MenuFrame.comboBox.getSelectedItem());
+						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
+						thisClass = GUIFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
 						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
 						MenuFrame.fieldModel.addElement(fieldName.getText());
 					}
@@ -289,9 +296,11 @@ public class MenuController {
 						&& !fieldName.getText().equals("") && !((String) type.getSelectedItem()).equals("")) {
 					MenuFrame.thisMemento.add(MenuFrame.thisInstance);
 					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
-						Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
+						Classes thisClass = MenuFrame.thisInstance
+								.getClass((String) MenuFrame.comboBox.getSelectedItem());
 						if (thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem()) != null) {
-							Methods thisMethod = thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem());
+							Methods thisMethod = thisClass
+									.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem());
 							thisMethod.addParam(fieldName.getText(), (String) type.getSelectedItem());
 							MenuFrame.paramsModel.addElement(fieldName.getText());
 
@@ -306,7 +315,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Pop-up instructions for adding relationship.
 	public static void setBtn3Listener() {
 		Observer btnNewObserver_3 = new Observer(MenuFrame.btnNewButton_3, new ActionListener() {
@@ -317,7 +326,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Show contents listener.
 	public static void setBtn4Listener() {
 		Observer btnNewObserver_4 = new Observer(MenuFrame.btnNewButton_4, new ActionListener() {
@@ -326,7 +335,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Undo button listener.
 	public static void setBtn5Listener() {
 		MenuFrame.btnNewButton_5.addActionListener(new ActionListener() {
@@ -341,7 +350,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Method for copying instance.
 	public static Instance copyInstance(Instance input) {
 		Instance fakeInstance = new Instance();
@@ -372,7 +381,7 @@ public class MenuController {
 		fakeInstance.setHighlight(input.highlight);
 		return fakeInstance;
 	}
-	
+
 	// Redo button listener.
 	public static void setBtn6Listener() {
 		Observer btnNewObserver_6 = new Observer(MenuFrame.btnNewButton_6, new ActionListener() {
@@ -387,7 +396,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Save button listener.
 	public static void setBtn7Listener() {
 		MenuFrame.btnNewButton_7.addActionListener(new ActionListener() {
@@ -404,9 +413,9 @@ public class MenuController {
 						if (newFile.exists()) {
 							Object[] options = { "OK", "CANCEL" };
 							// Option to overwrite file.
-							int n = JOptionPane.showOptionDialog(null,
-									"File already exists! Click OK to overwrite!", "WARNING", JOptionPane.YES_NO_OPTION,
-									JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+							int n = JOptionPane.showOptionDialog(null, "File already exists! Click OK to overwrite!",
+									"WARNING", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+									options[1]);
 							if (n == 1) {
 								JOptionPane.showMessageDialog(null, "Save file cancelled.");
 								return;
@@ -437,7 +446,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Affix ".json" to end of file name if not already present.
 	private static String affixJson(String input) {
 		if (input.length() > 5 && input.substring(input.length() - 5).equals(".json")) {
@@ -445,13 +454,13 @@ public class MenuController {
 		}
 		return input += ".json";
 	}
-	
+
 	// Method to convert object to String.
 	public static String convertToGsonString(Object obj) {
 		Gson gson = new Gson();
 		return gson.toJson(obj);
 	}
-	
+
 	// Method for translating json file into a Instance object.
 	private static Instance jsonReader(File file) throws Exception {
 		Instance newInstance = new Instance();
@@ -459,7 +468,7 @@ public class MenuController {
 		newInstance = gson.fromJson(new FileReader(file), Instance.class);
 		return newInstance;
 	}
-	
+
 	// Method for updating the class model on demand.
 	private static void rebuildClassModel(Instance input) {
 		DefaultComboBoxModel<String> newClassModel = new DefaultComboBoxModel<String>();
@@ -471,7 +480,7 @@ public class MenuController {
 		MenuFrame.classModel = newClassModel;
 		MenuFrame.comboBox.setModel(newClassModel);
 	}
-	
+
 	// Load button listener.
 	public static void setBtn8Listener() {
 		Observer btnNewObserver_8 = new Observer(MenuFrame.btnNewButton_8, new ActionListener() {
@@ -508,10 +517,9 @@ public class MenuController {
 				}
 				MenuFrame.repaintMe();
 			}
-			
+
 		});
 	}
-	
 
 	// Exit button listener.
 	public static void setBtn9Listener() {
@@ -521,7 +529,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Exit button listener.
 	public static void setBtn10Listener() {
 		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_10, new ActionListener() {
@@ -532,61 +540,62 @@ public class MenuController {
 			}
 		});
 	}
-	
-	// Load example data listener.
+
+	// Take a screenshot of the current GUI.
 	public static void setBtn11Listener() {
 		Observer btnNewObserver_11 = new Observer(MenuFrame.btnNewButton_11, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Instance thisInstance1 = new Instance();
-				thisInstance1.addClass("class1");
-				thisInstance1.getClass("class1").addField("field1", "String");
-				thisInstance1.getClass("class1").addField("field2", "int");
-				thisInstance1.addClass("class2");
-				thisInstance1.addClass("class3");
-				thisInstance1.addClass("class4");
-				thisInstance1.addClass("class5");
-				thisInstance1.addClass("class6");
-				List<Parameters> params2 = new ArrayList<Parameters>();
-				params2.add(new Parameters("param2", "double"));
-				params2.add(new Parameters("param3", "String"));
-				params2.add(new Parameters("param4", "int"));
-				thisInstance1.getClass("class5").addMethod("method2", "int", params2);
-				thisInstance1.getClass("class5").addMethod("method3", "String", new ArrayList<Parameters>());
-				thisInstance1.getClass("class5").addMethod("method4", "float", new ArrayList<Parameters>());
-				thisInstance1.getClass("class6").addField("field3", "double");
-				thisInstance1.getClass("class6").addField("field4", "int");
-				List<Parameters> params1 = new ArrayList<Parameters>();
-				params1.add(new Parameters("param1", "float"));
-				thisInstance1.getClass("class1").setLocation(40, 40);
-				thisInstance1.getClass("class2").setLocation(80, 340);
-				thisInstance1.getClass("class3").setLocation(180, 140);
-				thisInstance1.getClass("class4").setLocation(540, 540);
-				thisInstance1.getClass("class5").setLocation(380, 190);
-				thisInstance1.getClass("class6").setLocation(540, 240);
-				thisInstance1.getClass("class3").addMethod("method1", "int", params1);
-				thisInstance1.getClass("class3").addRelationship("class3", "class2", "Realization");
-				thisInstance1.getClass("class2").addRelationship("class3", "class2", "Realization");
-				thisInstance1.getClass("class2").addRelationship("class1", "class2", "Aggregation");
-				thisInstance1.getClass("class1").addRelationship("class1", "class2", "Aggregation");
-				thisInstance1.getClass("class2").addRelationship("class2", "class4", "Inheritance");
-				thisInstance1.getClass("class4").addRelationship("class2", "class4", "Inheritance");
-				thisInstance1.setHighlight(thisInstance1.getClass("class2"));
-				MenuFrame.thisSurface.thisInstance = copyInstance(thisInstance1);
-				MenuFrame.thisInstance = copyInstance(thisInstance1);
-
-				MenuFrame.thisSurface.arr.clear();
-				for (int i = 0; i < MenuFrame.thisInstance.classList.size(); i++) {
-					MenuFrame.thisSurface.arr.add(
-							new ZEllipse(MenuFrame.thisInstance.classList.get(i).point.x, MenuFrame.thisInstance.classList.get(i).point.y,
-									80, 80, MenuFrame.thisInstance.classList.get(i).getName(), MenuFrame.thisInstance));
+				JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
+				fileChooser.setDialogTitle("Specify a save location");
+				int userSelection = fileChooser.showSaveDialog(null);
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File fileToSave = fileChooser.getSelectedFile();
+					String savelocation;
+					if (!(savelocation = fileToSave.getAbsolutePath()).equals("")) {
+						if (savelocation.length() <4 || !savelocation.substring(savelocation.length() - 4).equals(".png")) {
+							savelocation = savelocation + ".png";
+						}
+						File newFile = new File(savelocation);
+						// Check to make sure file doesn't already exist.
+						if (newFile.exists()) {
+							Object[] options = { "OK", "CANCEL" };
+							// Option to overwrite file.
+							int n = JOptionPane.showOptionDialog(null,
+									"File already exists! Click OK to overwrite!", "WARNING", JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+							if (n == 1) {
+								JOptionPane.showMessageDialog(null, "Save file cancelled.");
+								return;
+							} else {
+									JPanel input = GUIFrame.myFrame;
+									BufferedImage screenshotImage = new BufferedImage(input.getBounds().width, input.getBounds().height, BufferedImage.TYPE_INT_RGB);
+									input.paint(screenshotImage.getGraphics());
+									try {
+										ImageIO.write(screenshotImage, "png", new File(fileToSave.getAbsolutePath()));
+									} catch (IOException ex) {
+										System.out.println("Error saving screenshot");
+										return;
+									}
+								JOptionPane.showMessageDialog(null, "File overwritten successfully.");
+								return;
+							}
+						}
+									JPanel input = GUIFrame.myFrame;
+									BufferedImage screenshotImage = new BufferedImage(input.getBounds().width, input.getBounds().height, BufferedImage.TYPE_INT_RGB);
+									input.paint(screenshotImage.getGraphics());
+									try {
+										ImageIO.write(screenshotImage, "png", new File(savelocation));
+									} catch (IOException ex) {
+										System.out.println("Error saving screenshot");
+										return;
+									}
+						JOptionPane.showMessageDialog(null, "Screenshot saved successfully.");
+					}
 				}
-				MenuFrame.thisSurface.revalidate();
-				MenuFrame.thisSurface.repaint();
-				rebuildClassModel(MenuFrame.thisInstance);
 			}
 		});
 	}
-	
+
 	// Remove class button listener.
 	public static void setBtn12Listener() {
 		Observer btnNewObserver_12 = new Observer(MenuFrame.btnNewButton_12, new ActionListener() {
@@ -594,7 +603,8 @@ public class MenuController {
 				if (MenuFrame.comboBox.getSelectedItem() == null)
 					return;
 				String className;
-				if (MenuFrame.thisInstance.getClass(className = (String) MenuFrame.comboBox.getSelectedItem()) != null) {
+				if (MenuFrame.thisInstance
+						.getClass(className = (String) MenuFrame.comboBox.getSelectedItem()) != null) {
 					MenuFrame.thisInstance.removeClass(className);
 					MenuFrame.classModel.removeElement(className);
 					GUIFrame.thisInstance.removeClass(className);
@@ -605,7 +615,7 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Remove field button listener.
 	public static void setBtn13Listener() {
 		Observer btnNewObserver_13 = new Observer(MenuFrame.btnNewButton_13, new ActionListener() {
@@ -615,8 +625,7 @@ public class MenuController {
 				String fieldName = MenuFrame.comboBox_1_1_1.getSelectedItem().toString();
 				MenuFrame.thisMemento.add(MenuFrame.thisInstance);
 				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
-					Classes thisClass = MenuFrame.thisInstance
-							.getClass((String) MenuFrame.comboBox.getSelectedItem());
+					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
 					if (thisClass.getField(fieldName) == null)
 						return;
 					thisClass.removeField(fieldName);
@@ -626,15 +635,17 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Remove relationship button listener.
 	public static void setBtn14Listener() {
 		Observer btnNewObserver_14 = new Observer(MenuFrame.btnNewButton_14, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "To remove a relationship, right-click (or shift-click) on the relationship line.");			}
+				JOptionPane.showMessageDialog(null,
+						"To remove a relationship, right-click (or shift-click) on the relationship line.");
+			}
 		});
 	}
-	
+
 	// Remove method button listener.
 	public static void setBtn15Listener() {
 		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_15, new ActionListener() {
@@ -644,8 +655,7 @@ public class MenuController {
 				String methodName = MenuFrame.comboBox_1_1_2.getSelectedItem().toString();
 				MenuFrame.thisMemento.add(MenuFrame.thisInstance);
 				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
-					Classes thisClass = MenuFrame.thisInstance
-							.getClass((String) MenuFrame.comboBox.getSelectedItem());
+					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
 					if (thisClass.getMethod(methodName) == null)
 						return;
 					thisClass.removeMethod(methodName);
@@ -656,27 +666,27 @@ public class MenuController {
 			}
 		});
 	}
-	
+
 	// Remove parameter button listener.
 	public static void setBtn16Listener() {
 		Observer btnNewObserver_16 = new Observer(MenuFrame.btnNewButton_16, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2_1.getSelectedItem() == null || MenuFrame.comboBox_1_1_2.getSelectedItem() == null)
+				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2_1.getSelectedItem() == null
+						|| MenuFrame.comboBox_1_1_2.getSelectedItem() == null)
 					return;
 				String methodName = MenuFrame.comboBox_1_1_2.getSelectedItem().toString();
 				MenuFrame.thisMemento.add(MenuFrame.thisInstance);
 				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
-					Classes thisClass = MenuFrame.thisInstance
-							.getClass((String) MenuFrame.comboBox.getSelectedItem());
+					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
 					Methods thisMethod;
 					if ((thisMethod = thisClass.getMethod(methodName)) == null)
 						return;
-					
+
 					String paramName = MenuFrame.comboBox_1_1_2_1.getSelectedItem().toString();
 					Parameters thisParam;
 					if ((thisParam = thisMethod.getParam(paramName)) == null)
 						return;
-					
+
 					thisMethod.removeParam(paramName);
 					MenuFrame.paramsModel.removeElement(paramName);
 					firstLoad();
@@ -685,6 +695,5 @@ public class MenuController {
 			}
 		});
 	}
-	
-	
+
 }
