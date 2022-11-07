@@ -1,4 +1,4 @@
-#Last Updated: 10/26/2022
+#Last Updated: 11/4/2022
 
 ##CONTENTS OF THIS FILE
  
@@ -48,6 +48,8 @@ directory you wish to work from.
  * Observer - instantiated as the Observer class that acts as a wrapper for the Java native observer ActionListener.
  * Memento - instantiated as the Memento class, which acts to support undo/redo functions by maintaining a list of Instance class objects.
  * Iterator - instantiated as the IteratorList class, which abstracts the trasversal of a list of ZEllipse objects, which represent current classes and are traversed during updates and certain methods.
+ * Null Object - inside the Memento class, a nested class entitled NullInstance has been created. The Null Object acts as a bookend for the undo and redo stacks and serves functionally to prevent NullPointer exceptions, is immutable and contains declared attributes that do not alter the program, and, through its constructor and getter implementations, exactly one NullInstance exists during the lifecycle of the application (thereby satisfying the Singleton requirement).
+ * Singleton - See Null Object above.
 
 ####BUILD
 POM file provided for Maven build. Installation of Maven required.
