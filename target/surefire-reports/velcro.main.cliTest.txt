@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: velcro.main.cliTest
 -------------------------------------------------------------------------------
-<<<<<<< Updated upstream
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in velcro.main.cliTest
-=======
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
->>>>>>> Stashed changes
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in velcro.main.cliTest

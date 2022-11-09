@@ -1,48 +1,35 @@
 package velcro.Model;
 
-<<<<<<< Updated upstream
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-=======
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
->>>>>>> Stashed changes
 public class ClassesTest {
 
     @Test
     public void setLocation() {
-<<<<<<< Updated upstream
-=======
+
         Classes test = new Classes("test");
         test.setLocation(0,0);
 
         assertEquals(0,test.point.x);
         assertEquals(0,test.point.y);
->>>>>>> Stashed changes
     }
 
     @Test
     public void getName() {
-<<<<<<< Updated upstream
-        main.java.velcro.Model.Classes test = new main.java.velcro.Model.Classes("class1");
+        Classes test = new Classes("class1");
         assertEquals("class1",test.getName());
     }
 
-    @Test
-    public void testEquals() {
-    }
-=======
-        Classes test = new Classes("test");
 
-        assertEquals("test", test.getName());
-    }
 
     @Test
     public void testEquals() {/*
@@ -162,72 +149,18 @@ public class ClassesTest {
     public void removeMethod() {
         Classes test = new Classes("test1");
         ArrayList<Parameters> params = null;
-        test.addMethod("test1", "field1",params);
+        test.addMethod("test1", "field1", params);
 
         assertEquals(true, test.removeMethod("test1"));
         assertEquals(false, test.removeMethod("notThere"));
->>>>>>> Stashed changes
-
-    @Test
-    public void testSetLocation() {
-    }
-
-    @Test
-<<<<<<< Updated upstream
-    public void testGetName() {
-    }
-
-    @Test
-    public void testEquals1() {
-    }
-
-    @Test
-    public void testRename() {
-    }
-
-    @Test
-    public void testAddField() {
-    }
-
-    @Test
-    public void testAddMethod() {
-    }
-
-    @Test
-    public void testRemoveField1() {
-    }
-
-    @Test
-    public void testRemoveMethod() {
-    }
-
-    @Test
-    public void testRemoveField2() {
-    }
-
-    @Test
-    public void testGetField() {
-    }
-
-    @Test
-    public void testGetMethod() {
-    }
-
-    @Test
-    public void testAddRelationship() {
-    }
-
-    @Test
-    public void testRemoveRelationship() {
-    }
-
-    @Test
-    public void testCheckRelationship() {
     }
 
     @Test
     public void testGetRelationship() {
-=======
+
+    }
+
+    @Test
     public void testRemoveField() {
         Classes test = new Classes("test1");
         test.addField("test1", "field1");
@@ -296,6 +229,5 @@ public class ClassesTest {
 
         assertEquals(null,test.getRelationship("",""));
         assertEquals(test1.relationshipList.get(0),test1.getRelationship("source","destination"));
->>>>>>> Stashed changes
     }
 }

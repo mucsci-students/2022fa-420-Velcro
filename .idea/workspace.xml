@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f284baf9-f4a2-4108-b0d4-e79c517e3e8a" name="Changes" comment="">
-<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/main/java/velcro/Controller/ControllerTest.class" beforeDir="false" />
@@ -38,7 +37,6 @@
       <change beforePath="$PROJECT_DIR$/target/test-classes/main/java/velcro/View/MenuFrameTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/main/java/velcro/main/DrawingGUITest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/main/java/velcro/main/cliTest.class" beforeDir="false" />
-=======
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Controller/MenuControllerTest.java" afterDir="false" />
@@ -285,7 +283,6 @@
       <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/ParametersPageTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/RelationshipsPageTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/SavePageTest.class" beforeDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,10 +296,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-<<<<<<< Updated upstream
-=======
         <option value="Class" />
->>>>>>> Stashed changes
         <option value="JUnit4 Test Class" />
       </list>
     </option>
@@ -341,7 +335,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< Updated upstream
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -373,10 +366,8 @@
       <recent name="$PROJECT_DIR$/src/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-<<<<<<< Updated upstream
-=======
+
       <recent name="$PROJECT_DIR$/src/test/mavenjunit5tests" />
->>>>>>> Stashed changes
       <recent name="$PROJECT_DIR$/src/test/junit5tests" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
@@ -384,22 +375,18 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-<<<<<<< Updated upstream
       <recent name="velcro.Model" />
       <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ClassesTest">
-=======
       <recent name="velcro.View" />
       <recent name="velcro.Model" />
       <recent name="velcro.main" />
       <recent name="velcro.Controller" />
       <recent name="" />
-    </key>
   </component>
   <component name="RunManager" selected="JUnit.RelationshipsTest">
->>>>>>> Stashed changes
     <configuration name="ClassesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
@@ -415,11 +402,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< Updated upstream
     <configuration name="ClassesTest.getName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-=======
     <configuration name="FieldsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
->>>>>>> Stashed changes
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
@@ -428,14 +412,11 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="velcro.Model" />
-<<<<<<< Updated upstream
       <option name="MAIN_CLASS_NAME" value="velcro.Model.ClassesTest" />
       <option name="METHOD_NAME" value="getName" />
       <option name="TEST_OBJECT" value="method" />
-=======
       <option name="MAIN_CLASS_NAME" value="velcro.Model.FieldsTest" />
       <option name="TEST_OBJECT" value="class" />
->>>>>>> Stashed changes
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -487,19 +468,17 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< Updated upstream
         <item itemvalue="JUnit.ClassesTest" />
         <item itemvalue="JUnit.ClassesTest.getName" />
         <item itemvalue="JUnit.MethodsTest" />
         <item itemvalue="JUnit.MethodsTest.testEquals" />
         <item itemvalue="JUnit.MethodsTest.removeParam" />
-=======
+
         <item itemvalue="JUnit.RelationshipsTest" />
         <item itemvalue="JUnit.ParametersTest" />
         <item itemvalue="JUnit.MethodsTest" />
         <item itemvalue="JUnit.FieldsTest" />
         <item itemvalue="JUnit.ClassesTest" />
->>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>

@@ -1,11 +1,3 @@
-<<<<<<< Updated upstream
-velcro/main/DrawingGUITest.class
-velcro/Model/ParametersTest.class
-velcro/Model/FieldsTest.class
-velcro/Controller/GUIControllerTest.class
-velcro/Model/ZEllipseTest.class
-velcro/Model/ZRectangleTest.class
-=======
 velcro/Controller/MenuControllerTest.class
 velcro/Model/ArrowHeadTest.class
 velcro/View/MenuFrameTest.class
@@ -26,4 +18,3 @@ velcro/View/GUIFrameTest.class
 velcro/Model/IteratorListTest.class
 velcro/Controller/GUIControllerTest.class
 velcro/Model/MethodsTest.class
->>>>>>> Stashed changes

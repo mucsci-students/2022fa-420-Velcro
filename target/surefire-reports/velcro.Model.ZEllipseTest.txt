@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: velcro.Model.ZEllipseTest
 -------------------------------------------------------------------------------
-<<<<<<< Updated upstream
 Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in velcro.Model.ZEllipseTest
-=======
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
->>>>>>> Stashed changes

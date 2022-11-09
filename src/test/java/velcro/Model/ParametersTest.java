@@ -8,26 +8,18 @@ public class ParametersTest {
 
     @Test
     public void getName() {
-<<<<<<< Updated upstream
-=======
         Parameters test = new Parameters("test", "type");
         assertEquals("test", test.getName());
->>>>>>> Stashed changes
     }
 
     @Test
     public void getType() {
-<<<<<<< Updated upstream
-=======
         Parameters test = new Parameters("test", "type");
         assertEquals("type", test.getType());
->>>>>>> Stashed changes
     }
 
     @Test
     public void testEquals() {
-<<<<<<< Updated upstream
-=======
         /*
         Parameters test = new Parameters("name", "type");
         Parameters test1 = new Parameters("name", "type");
@@ -38,17 +30,13 @@ public class ParametersTest {
         assertEquals(false,test1.equals(test2));
 
          */
->>>>>>> Stashed changes
     }
 
     @Test
     public void rename() {
-<<<<<<< Updated upstream
-=======
         Parameters test = new Parameters("name", "type");
 
         assertEquals(false,test.rename(""));
         assertEquals(true,test.rename("newName"));
->>>>>>> Stashed changes
     }
 }

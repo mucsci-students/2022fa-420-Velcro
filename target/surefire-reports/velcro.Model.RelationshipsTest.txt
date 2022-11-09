@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: velcro.Model.RelationshipsTest
 -------------------------------------------------------------------------------
-<<<<<<< Updated upstream
 Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in velcro.Model.RelationshipsTest
-=======
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
->>>>>>> Stashed changes
