@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="main.java.velcro.Model.FieldsTest" time="0" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="gopherProxySet" value="false"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/test-classes:/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/classes:/Users/b.wagenlehner/.m2/repository/com/google/code/gson/gson/2.9.1/gson-2.9.1.jar:/Users/b.wagenlehner/.m2/repository/commons-io/commons-io/20030203.000550/commons-io-20030203.000550.jar:/Users/b.wagenlehner/.m2/repository/org/apache/maven/doxia/doxia-sink-api/2.0.0-M3/doxia-sink-api-2.0.0-M3.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/b.wagenlehner/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:"/>
+    <property name="java.vm.vendor" value="BellSoft"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://bell-sw.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.boot.library.path" value="/Users/b.wagenlehner/Library/Java/JavaVirtualMachines/liberica-11.0.13/lib"/>
+    <property name="sun.java.command" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/surefire/surefirebooter9066068307332885403.jar /Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/surefire 2022-11-07T16-50-42_683-jvmRun1 surefire1453918028235715592tmp surefire_03536339818414137303tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/test-classes:/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/classes:/Users/b.wagenlehner/.m2/repository/com/google/code/gson/gson/2.9.1/gson-2.9.1.jar:/Users/b.wagenlehner/.m2/repository/commons-io/commons-io/20030203.000550/commons-io-20030203.000550.jar:/Users/b.wagenlehner/.m2/repository/org/apache/maven/doxia/doxia-sink-api/2.0.0-M3/doxia-sink-api-2.0.0-M3.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/b.wagenlehner/.m2/repository/org/junit/platform/junit-platform-commons/1.9.1/junit-platform-commons-1.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.1/junit-jupiter-params-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.1/junit-jupiter-engine-5.9.1.jar:/Users/b.wagenlehner/.m2/repository/org/junit/platform/junit-platform-engine/1.9.1/junit-platform-engine-1.9.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/b.wagenlehner"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.home" value="/Users/b.wagenlehner/Library/Java/JavaVirtualMachines/liberica-11.0.13"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro/target/surefire/surefirebooter9066068307332885403.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.13+8-LTS"/>
+    <property name="user.name" value="b.wagenlehner"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="13.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/b.wagenlehner/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bell-sw.com/support"/>
+    <property name="java.io.tmpdir" value="/var/folders/p8/b_06tdbd1m75dx5vyz0z4khm0000gn/T/"/>
+    <property name="idea.version" value="2022.2.3"/>
+    <property name="java.version" value="11.0.13"/>
+    <property name="user.dir" value="/Users/b.wagenlehner/Developer/UNI_CODE/UNI_Millersville/Modul_SOFTWARE_Engineering/UNI_Repos/SOFTWARE_Engineering/GIT_Repos/2022fa-420-Velcro"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/Users/b.wagenlehner/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="BellSoft"/>
+    <property name="java.vm.version" value="11.0.13+8-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="rename" classname="main.java.velcro.Model.FieldsTest" time="0"/>
+  <testcase name="getName" classname="main.java.velcro.Model.FieldsTest" time="0"/>
+  <testcase name="getType" classname="main.java.velcro.Model.FieldsTest" time="0"/>
+  <testcase name="testEquals" classname="main.java.velcro.Model.FieldsTest" time="0"/>
+</testsuite>

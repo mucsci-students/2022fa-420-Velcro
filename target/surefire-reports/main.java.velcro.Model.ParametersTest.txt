@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: main.java.velcro.Model.ParametersTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! - in main.java.velcro.Model.ParametersTest
+testEquals  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at main.java.velcro.Model.ParametersTest.testEquals(ParametersTest.java:29)
+
