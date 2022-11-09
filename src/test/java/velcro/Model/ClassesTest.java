@@ -13,7 +13,7 @@ public class ClassesTest {
 
     @Test
     public void getName() {
-        Classes test = new Classes("class1");
+        main.java.velcro.Model.Classes test = new main.java.velcro.Model.Classes("class1");
         assertEquals("class1",test.getName());
     }
 
@@ -67,5 +67,65 @@ public class ClassesTest {
 
     @Test
     public void getRelationship() {
+    }
+
+    @Test
+    public void testSetLocation() {
+    }
+
+    @Test
+    public void testGetName() {
+    }
+
+    @Test
+    public void testEquals1() {
+    }
+
+    @Test
+    public void testRename() {
+    }
+
+    @Test
+    public void testAddField() {
+    }
+
+    @Test
+    public void testAddMethod() {
+    }
+
+    @Test
+    public void testRemoveField1() {
+    }
+
+    @Test
+    public void testRemoveMethod() {
+    }
+
+    @Test
+    public void testRemoveField2() {
+    }
+
+    @Test
+    public void testGetField() {
+    }
+
+    @Test
+    public void testGetMethod() {
+    }
+
+    @Test
+    public void testAddRelationship() {
+    }
+
+    @Test
+    public void testRemoveRelationship() {
+    }
+
+    @Test
+    public void testCheckRelationship() {
+    }
+
+    @Test
+    public void testGetRelationship() {
     }
 }

@@ -11,10 +11,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="2022fa-420-Velcro" target="1.8" />
-<<<<<<< Updated upstream
-      <module name="Velcro" target="1.8" />
-=======
->>>>>>> Stashed changes
     </bytecodeTargetLevel>
   </component>
 </project>
