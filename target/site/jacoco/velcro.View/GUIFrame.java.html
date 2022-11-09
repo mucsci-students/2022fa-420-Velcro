@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GUIFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.View</a> &gt; <span class="el_source">GUIFrame.java</span></div><h1>GUIFrame.java</h1><pre class="source lang-java linenums">/**
+ * Filename: GUIFrame.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: View portion of GUIFrame panel.
+ * 
+ */
+package velcro.View;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import velcro.Controller.*;
+import velcro.Model.*;
+
+public class GUIFrame extends JPanel {
+
+		public static MenuFrame thisFrame;
+		public static Instance thisInstance;
+		public static GUIFrame myFrame;
+		public static Memento thisMemento;
+<span class="nc" id="L41">		public static List&lt;ZEllipse&gt; pntLst = new ArrayList&lt;ZEllipse&gt;();</span>
+<span class="nc" id="L42">		public static List&lt;ZLine&gt; lnLst = new ArrayList&lt;ZLine&gt;();</span>
+<span class="nc" id="L43">		public static List&lt;String&gt; relLst = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L44">		public static IteratorList arr = new IteratorList();</span>
+		public Graphics pubG;
+<span class="nc" id="L46">		public int keycode = -1;</span>
+		public static Point2D source;
+		public static String sourceName;
+
+		// Constructor.
+<span class="nc" id="L51">		public GUIFrame(Instance input) {</span>
+<span class="nc" id="L52">			thisInstance = input;</span>
+<span class="nc" id="L53">			myFrame = this;</span>
+<span class="nc" id="L54">		}</span>
+		
+		// Access to repaint method.
+		public static void draw() {
+<span class="nc" id="L58">			myFrame.repaint();</span>
+<span class="nc" id="L59">		}</span>
+
+		// Sets access to frame panel.
+		public void setFrame(MenuFrame input2) {
+<span class="nc" id="L63">			thisFrame = input2;</span>
+<span class="nc" id="L64">			thisMemento = thisFrame.thisMemento;</span>
+<span class="nc" id="L65">			initUI(thisInstance, input2);</span>
+<span class="nc" id="L66">		}</span>
+
+		// Initialize panel.
+		public void initUI(Instance input, MenuFrame input2) {
+<span class="nc" id="L70">			thisFrame = input2;</span>
+<span class="nc" id="L71">			MovingAdapter ma = new MovingAdapter();</span>
+<span class="nc" id="L72">			addMouseMotionListener(ma);</span>
+<span class="nc" id="L73">			addMouseListener(ma);</span>
+<span class="nc" id="L74">			thisMemento.add(input);</span>
+<span class="nc" id="L75">		}</span>
+
+		// Access methods for frame.
+		public static Point2D center(Rectangle2D bounds) {
+<span class="nc" id="L79">			return new Point2D.Double(bounds.getCenterX(), bounds.getCenterY());</span>
+		}
+
+		// Access methods for frame.
+		public static double angleBetween(Shape from, Shape to) {
+<span class="nc" id="L84">			return angleBetween(center(from.getBounds2D()), center(to.getBounds2D()));</span>
+		}
+
+		// Access methods for frame.
+		public static double angleBetween(Point2D from, Point2D to) {
+<span class="nc" id="L89">			double x = from.getX();</span>
+<span class="nc" id="L90">			double y = from.getY();</span>
+<span class="nc" id="L91">			double deltaX = to.getX() - x;</span>
+<span class="nc" id="L92">			double deltaY = to.getY() - y;</span>
+<span class="nc" id="L93">			double rotation = -Math.atan2(deltaX, deltaY);</span>
+<span class="nc" id="L94">			rotation = Math.toRadians(Math.toDegrees(rotation) + 180);</span>
+<span class="nc" id="L95">			return rotation;</span>
+		}
+
+		// Access methods for frame.
+		public static Point2D getPointOnCircle(Shape shape, double radians) {
+<span class="nc" id="L100">			Rectangle2D bounds = shape.getBounds();</span>
+<span class="nc" id="L101">			Point2D point = center(bounds);</span>
+<span class="nc" id="L102">			return getPointOnCircle(point, radians, Math.max(bounds.getWidth(), bounds.getHeight()) / 2d);</span>
+		}
+
+		// Access methods for frame.
+		public static Point2D getPointOnCircle(Point2D center, double radians, double radius) {
+<span class="nc" id="L107">			double x = center.getX();</span>
+<span class="nc" id="L108">			double y = center.getY();</span>
+<span class="nc" id="L109">			radians = radians - Math.toRadians(90.0);</span>
+<span class="nc" id="L110">			double xPosy = Math.round((float) (x + Math.cos(radians) * radius));</span>
+<span class="nc" id="L111">			double yPosy = Math.round((float) (y + Math.sin(radians) * radius));</span>
+<span class="nc" id="L112">			return new Point2D.Double(xPosy, yPosy);</span>
+
+		}
+		
+		// Draw lines and arrows method.
+		public static ZLine addLine(ZEllipse ell1, ZEllipse ell2, Graphics2D g2d, String type, String source,
+				String destination) {
+<span class="nc bnc" id="L119" title="All 6 branches missed.">			if (ell1 == null || ell2 == null || ell1.equals(ell2))</span>
+<span class="nc" id="L120">				return null;</span>
+			// Draw relationship line
+<span class="nc" id="L122">			double from = angleBetween(ell1, ell2);</span>
+<span class="nc" id="L123">			double to = angleBetween(ell2, ell1);</span>
+<span class="nc" id="L124">			Point2D pointFrom = getPointOnCircle(ell1, from);</span>
+<span class="nc" id="L125">			Point2D pointTo = getPointOnCircle(ell2, to);</span>
+			// Draw relationship type
+<span class="nc" id="L127">			g2d.setColor(Color.darkGray);</span>
+<span class="nc" id="L128">			ZLine line = new ZLine(pointFrom, pointTo, source, destination);</span>
+<span class="nc" id="L129">			g2d.drawString(type, (int) line.getCenter().getX() - 40, (int) line.getCenter().getY());</span>
+<span class="nc" id="L130">			g2d.setColor(Color.RED);</span>
+			// Draw arrowheads
+<span class="nc" id="L132">			ArrowHead arrowHead = new ArrowHead();</span>
+<span class="nc" id="L133">			AffineTransform at = AffineTransform</span>
+<span class="nc" id="L134">					.getTranslateInstance(pointTo.getX() - (arrowHead.getBounds2D().getWidth() / 2d), pointTo.getY());</span>
+<span class="nc" id="L135">			at.rotate(from, arrowHead.getBounds2D().getCenterX(), 0);</span>
+<span class="nc" id="L136">			arrowHead.transform(at);</span>
+<span class="nc" id="L137">			g2d.draw(arrowHead);</span>
+<span class="nc" id="L138">			return line;</span>
+		}
+
+		// Required override.
+		@Override
+		public void paintComponent(Graphics g) {
+<span class="nc" id="L144">			pubG = g;</span>
+<span class="nc" id="L145">			super.paintComponent(g);</span>
+<span class="nc" id="L146">			GUIController.doDrawing(g);</span>
+<span class="nc" id="L147">		}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

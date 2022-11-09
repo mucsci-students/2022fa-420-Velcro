@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.main;
+package velcro.main;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -46,9 +46,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import main.java.velcro.Controller.*;
-import main.java.velcro.Model.*;
-import main.java.velcro.View.*;
+import velcro.Controller.*;
+import velcro.Model.*;
+import velcro.View.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;

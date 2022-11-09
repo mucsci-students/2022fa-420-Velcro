@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.Controller</a> &gt; <span class="el_source">MenuController.java</span></div><h1>MenuController.java</h1><pre class="source lang-java linenums">/**
+ * Filename: MenuController.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Controller for the menu GUI.
+ * 
+ */
+
+package velcro.Controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.google.gson.Gson;
+
+import velcro.Model.Classes;
+import velcro.Model.Fields;
+import velcro.Model.Instance;
+import velcro.Model.IteratorList;
+import velcro.Model.Methods;
+import velcro.Model.Observer;
+import velcro.Model.Parameters;
+import velcro.Model.Relationships;
+import velcro.Model.ZEllipse;
+import velcro.View.GUIFrame;
+import velcro.View.MenuFrame;
+
+<span class="nc" id="L47">public class MenuController {</span>
+	/**
+	 * MenuFrame methods.
+	 */
+
+	// Populate initial ClassModel model.
+	public static void initClassModel(DefaultComboBoxModel&lt;String&gt; classModel) {
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		for (int i = 0; i &lt; MenuFrame.thisInstance.classList.size(); i++) {</span>
+<span class="nc" id="L55">			classModel.addElement(MenuFrame.thisInstance.classList.get(i).getName());</span>
+		}
+<span class="nc" id="L57">	}</span>
+
+	// Matches first combobox with class specified as highlight.
+	public static void setHighlight() {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		if (MenuFrame.thisInstance.highlight != null) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">			for (int i = 0; i &lt; MenuFrame.thisInstance.classList.size(); i++) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">				if (MenuFrame.thisInstance.highlight.equals(MenuFrame.thisInstance.classList.get(i))) {</span>
+<span class="nc" id="L64">					MenuFrame.comboBox.setSelectedItem(MenuFrame.thisInstance.classList.get(i).getName());</span>
+				}
+			}
+		}
+<span class="nc" id="L68">	}</span>
+
+	// Add Observer to class combobox.
+	public static void setComboBoxListener() {
+<span class="nc" id="L72">		Observer comboObserver = new Observer(MenuFrame.comboBox, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L74">				firstLoad();</span>
+<span class="nc" id="L75">			}</span>
+		});
+<span class="nc" id="L77">	}</span>
+
+	// Method to run on first load to ensure comboboxes match instance data.
+	public static void firstLoad() {
+<span class="nc" id="L81">		MenuFrame.thisInstance</span>
+<span class="nc" id="L82">				.setHighlight(MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()));</span>
+<span class="nc" id="L83">		MenuFrame.thisObject.repaint();</span>
+
+		Classes thisClass;
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L87">			MenuFrame.fieldModel.removeAllElements();</span>
+<span class="nc" id="L88">			thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">			for (int i = 0; i &lt; thisClass.fieldList.size(); i++) {</span>
+<span class="nc" id="L90">				MenuFrame.fieldModel.addElement(thisClass.fieldList.get(i).getName());</span>
+			}
+		}
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L95">			MenuFrame.relationshipsModel.removeAllElements();</span>
+<span class="nc" id="L96">			thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">			for (int i = 0; i &lt; thisClass.relationshipList.size(); i++) {</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">				if (!thisClass.relationshipList.get(i).getDestination().equals(thisClass.getName())) {</span>
+<span class="nc" id="L100">					MenuFrame.relationshipsModel.addElement(thisClass.relationshipList.get(i).getDestination());</span>
+				}
+			}
+		}
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">		if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L106">			MenuFrame.methodsModel.removeAllElements();</span>
+<span class="nc" id="L107">			thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">			for (int i = 0; i &lt; thisClass.methodList.size(); i++) {</span>
+<span class="nc" id="L109">				MenuFrame.methodsModel.addElement(thisClass.methodList.get(i).getName());</span>
+			}
+		}
+<span class="nc" id="L112">	}</span>
+
+	// Set observer for Relationships combobox.
+	public static void setComboBox1Listener() {
+<span class="nc" id="L116">		Observer combo_1Observer = new Observer(MenuFrame.comboBox_1, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				Classes thisClass;
+				Relationships thisRelationship;
+<span class="nc bnc" id="L120" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L121">					MenuFrame.relationshipsTypeModel.removeAllElements();</span>
+<span class="nc" id="L122">					thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">					if (thisClass.getRelationship(thisClass.getName(),</span>
+<span class="nc" id="L124">							(String) MenuFrame.comboBox_1.getSelectedItem()) != null) {</span>
+<span class="nc" id="L125">						thisRelationship = thisClass.getRelationship(thisClass.getName(),</span>
+<span class="nc" id="L126">								(String) MenuFrame.comboBox_1.getSelectedItem());</span>
+<span class="nc" id="L127">						MenuFrame.relationshipsTypeModel.addElement(thisRelationship.getType());</span>
+					}
+				}
+<span class="nc" id="L130">			}</span>
+		});
+<span class="nc" id="L132">	}</span>
+
+	// Set field combobox listener.
+	public static void setComboBox111Listener() {
+<span class="nc" id="L136">		Observer combo_1_1_1Observer = new Observer(MenuFrame.comboBox_1_1_1, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				Classes thisClass;
+				Fields thisField;
+<span class="nc bnc" id="L140" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L141">					MenuFrame.fieldTypeModel.removeAllElements();</span>
+<span class="nc" id="L142">					thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">					if (thisClass.getField((String) MenuFrame.comboBox_1_1_1.getSelectedItem()) != null) {</span>
+<span class="nc" id="L144">						thisField = thisClass.getField((String) MenuFrame.comboBox_1_1_1.getSelectedItem());</span>
+<span class="nc" id="L145">						MenuFrame.fieldTypeModel.addElement(thisField.getType());</span>
+					}
+				}
+<span class="nc" id="L148">			}</span>
+		});
+<span class="nc" id="L150">	}</span>
+
+	// Set methods combobox listener.
+	public static void setComboBox112Listener() {
+<span class="nc" id="L154">		Observer combo_1_1_2Observer = new Observer(MenuFrame.comboBox_1_1_2, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				Classes thisClass;
+				Methods thisMethod;
+<span class="nc" id="L158">				MenuFrame.methodsTypeModel.removeAllElements();</span>
+<span class="nc" id="L159">				MenuFrame.paramsModel.removeAllElements();</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L161">					thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">					if (thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem()) != null) {</span>
+<span class="nc" id="L163">						thisMethod = thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem());</span>
+<span class="nc" id="L164">						MenuFrame.methodsTypeModel.addElement(thisMethod.getType());</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">						if (thisMethod.paramList != null) {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">							for (int i = 0; i &lt; thisMethod.paramList.size(); i++) {</span>
+<span class="nc" id="L167">								MenuFrame.paramsModel.addElement(thisMethod.paramList.get(i).getName());</span>
+							}
+						}
+					}
+
+				}
+<span class="nc" id="L173">			}</span>
+		});
+
+<span class="nc" id="L176">	}</span>
+
+	// Set parameters combobox listener.
+	public static void setComboBox1121Listener() {
+<span class="nc" id="L180">		Observer combo_1_1_2_1Observer = new Observer(MenuFrame.comboBox_1_1_2_1, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				Classes thisClass;
+				Parameters thisParam;
+				Methods thisMethod;
+<span class="nc" id="L185">				MenuFrame.paramsTypeModel.removeAllElements();</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L187">					thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">					if (thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem()) != null) {</span>
+<span class="nc" id="L189">						thisMethod = thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem());</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">						if (thisMethod.getParam((String) MenuFrame.comboBox_1_1_2_1.getSelectedItem()) != null) {</span>
+<span class="nc" id="L191">							thisParam = thisMethod.getParam((String) MenuFrame.comboBox_1_1_2_1.getSelectedItem());</span>
+<span class="nc" id="L192">							MenuFrame.paramsTypeModel.addElement(thisParam.getType());</span>
+						}
+					}
+
+				}
+<span class="nc" id="L197">			}</span>
+		});
+<span class="nc" id="L199">	}</span>
+
+	// Button logic for adding new field.
+	public static void setBtnListener() {
+<span class="nc" id="L203">		Observer btnNewObserver = new Observer(MenuFrame.btnNewButton, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L205">				String message = &quot;Please enter the field name and type.&quot;;</span>
+<span class="nc" id="L206">				JTextField fieldName = new JTextField(&quot;Field Name&quot;);</span>
+<span class="nc" id="L207">				fieldName.addFocusListener((FocusListener) new FocusListener() {</span>
+					public void focusGained(FocusEvent e) {
+<span class="nc" id="L209">						fieldName.setText(&quot;&quot;);</span>
+<span class="nc" id="L210">					}</span>
+
+					public void focusLost(FocusEvent e) {
+<span class="nc" id="L213">					}</span>
+				});
+<span class="nc" id="L215">				String[] types = { &quot;int&quot;, &quot;float&quot;, &quot;String&quot;, &quot;void&quot;, &quot;double&quot; };</span>
+<span class="nc" id="L216">				JComboBox type = new JComboBox(new DefaultComboBoxModel&lt;String&gt;(types));</span>
+<span class="nc" id="L217">				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type }, &quot;Add Field&quot;,</span>
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+<span class="nc bnc" id="L219" title="All 6 branches missed.">				if (result == JOptionPane.OK_OPTION &amp;&amp; fieldName.getText() != null &amp;&amp; type.getSelectedItem() != null</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">						&amp;&amp; !fieldName.getText().equals(&quot;&quot;) &amp;&amp; !((String) type.getSelectedItem()).equals(&quot;&quot;)) {</span>
+<span class="nc" id="L221">					MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+
+<span class="nc bnc" id="L223" title="All 2 branches missed.">					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L224">						Classes thisClass = MenuFrame.thisInstance</span>
+<span class="nc" id="L225">								.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc" id="L226">						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());</span>
+<span class="nc" id="L227">						thisClass = GUIFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc" id="L228">						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());</span>
+<span class="nc" id="L229">						MenuFrame.fieldModel.addElement(fieldName.getText());</span>
+					}
+				}
+
+<span class="nc" id="L233">				MenuFrame.repaintMe();</span>
+<span class="nc" id="L234">			}</span>
+		});
+<span class="nc" id="L236">	}</span>
+
+	// Button logic for adding new method.
+	public static void setBtn1Listener() {
+<span class="nc" id="L240">		Observer btnNew_1Observer = new Observer(MenuFrame.btnNewButton_1, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L242">				String message = &quot;Please enter the method name and type.&quot;;</span>
+<span class="nc" id="L243">				JTextField fieldName = new JTextField(&quot;Method Name&quot;);</span>
+<span class="nc" id="L244">				fieldName.addFocusListener((FocusListener) new FocusListener() {</span>
+					public void focusGained(FocusEvent e) {
+<span class="nc" id="L246">						fieldName.setText(&quot;&quot;);</span>
+<span class="nc" id="L247">					}</span>
+
+					public void focusLost(FocusEvent e) {
+<span class="nc" id="L250">					}</span>
+				});
+<span class="nc" id="L252">				String[] types = { &quot;int&quot;, &quot;float&quot;, &quot;String&quot;, &quot;void&quot;, &quot;double&quot; };</span>
+<span class="nc" id="L253">				JComboBox type = new JComboBox(new DefaultComboBoxModel&lt;String&gt;(types));</span>
+<span class="nc" id="L254">				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type }, &quot;Add Method&quot;,</span>
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+<span class="nc bnc" id="L256" title="All 6 branches missed.">				if (result == JOptionPane.OK_OPTION &amp;&amp; fieldName.getText() != null &amp;&amp; type.getSelectedItem() != null</span>
+<span class="nc bnc" id="L257" title="All 4 branches missed.">						&amp;&amp; !fieldName.getText().equals(&quot;&quot;) &amp;&amp; !((String) type.getSelectedItem()).equals(&quot;&quot;)) {</span>
+<span class="nc" id="L258">					MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L260">						Classes thisClass = MenuFrame.thisInstance</span>
+<span class="nc" id="L261">								.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc" id="L262">						thisClass.addMethod(fieldName.getText(), (String) type.getSelectedItem(),</span>
+								new ArrayList&lt;Parameters&gt;());
+<span class="nc" id="L264">						MenuFrame.methodsModel.addElement(fieldName.getText());</span>
+					}
+				}
+
+<span class="nc" id="L268">				MenuFrame.repaintMe();</span>
+<span class="nc" id="L269">			}</span>
+		});
+<span class="nc" id="L271">	}</span>
+
+	// Button logic for adding new parameter.
+	public static void setBtn2Listener() {
+<span class="nc" id="L275">		Observer btnNewObserver_2 = new Observer(MenuFrame.btnNewButton_2, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L277">				String message = &quot;Please enter the parameter name and type.&quot;;</span>
+<span class="nc" id="L278">				JTextField fieldName = new JTextField(&quot;Parameter Name&quot;);</span>
+<span class="nc" id="L279">				fieldName.addFocusListener((FocusListener) new FocusListener() {</span>
+					public void focusGained(FocusEvent e) {
+<span class="nc" id="L281">						fieldName.setText(&quot;&quot;);</span>
+<span class="nc" id="L282">					}</span>
+
+					public void focusLost(FocusEvent e) {
+<span class="nc" id="L285">					}</span>
+				});
+
+<span class="nc" id="L288">				String[] types = { &quot;int&quot;, &quot;float&quot;, &quot;String&quot;, &quot;void&quot;, &quot;double&quot; };</span>
+<span class="nc" id="L289">				JComboBox type = new JComboBox(new DefaultComboBoxModel&lt;String&gt;(types));</span>
+
+<span class="nc" id="L291">				int result = JOptionPane.showOptionDialog(null, new Object[] { message, fieldName, type },</span>
+						&quot;Add Parameter&quot;, JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+<span class="nc bnc" id="L294" title="All 6 branches missed.">				if (result == JOptionPane.OK_OPTION &amp;&amp; fieldName.getText() != null &amp;&amp; type.getSelectedItem() != null</span>
+<span class="nc bnc" id="L295" title="All 4 branches missed.">						&amp;&amp; !fieldName.getText().equals(&quot;&quot;) &amp;&amp; !((String) type.getSelectedItem()).equals(&quot;&quot;)) {</span>
+<span class="nc" id="L296">					MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L298">						Classes thisClass = MenuFrame.thisInstance</span>
+<span class="nc" id="L299">								.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">						if (thisClass.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem()) != null) {</span>
+<span class="nc" id="L301">							Methods thisMethod = thisClass</span>
+<span class="nc" id="L302">									.getMethod((String) MenuFrame.comboBox_1_1_2.getSelectedItem());</span>
+<span class="nc" id="L303">							thisMethod.addParam(fieldName.getText(), (String) type.getSelectedItem());</span>
+<span class="nc" id="L304">							MenuFrame.paramsModel.addElement(fieldName.getText());</span>
+
+<span class="nc" id="L306">						} else {</span>
+<span class="nc" id="L307">							JOptionPane.showInternalMessageDialog(null,</span>
+									&quot;A method must exist prior to adding a parameter.&quot;, &quot;Adding Parameter&quot;,
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+<span class="nc" id="L313">				MenuFrame.repaintMe();</span>
+<span class="nc" id="L314">			}</span>
+		});
+<span class="nc" id="L316">	}</span>
+
+	// Pop-up instructions for adding relationship.
+	public static void setBtn3Listener() {
+<span class="nc" id="L320">		Observer btnNewObserver_3 = new Observer(MenuFrame.btnNewButton_3, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L322">				JOptionPane.showInternalMessageDialog(null,</span>
+						&quot;To add a relationship, right-click (or shift-click) on the source class, then right-click (or shift-click) on the destination class, then choose the relationship type.&quot;,
+						&quot;Adding Relationships&quot;, JOptionPane.INFORMATION_MESSAGE);
+<span class="nc" id="L325">			}</span>
+		});
+<span class="nc" id="L327">	}</span>
+
+	// Show contents listener.
+	public static void setBtn4Listener() {
+<span class="nc" id="L331">		Observer btnNewObserver_4 = new Observer(MenuFrame.btnNewButton_4, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L333">				MenuFrame.thisInstance.showContents();</span>
+<span class="nc" id="L334">			}</span>
+		});
+<span class="nc" id="L336">	}</span>
+
+	// Undo button listener.
+	public static void setBtn5Listener() {
+<span class="nc" id="L340">		MenuFrame.btnNewButton_5.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L342">				Instance newInstance = MenuFrame.thisMemento.undo(MenuFrame.thisSurface.thisInstance);</span>
+<span class="nc bnc" id="L343" title="All 2 branches missed.">				if (newInstance != null) {</span>
+<span class="nc" id="L344">					MenuFrame.thisSurface.thisInstance = copyInstance(newInstance);</span>
+<span class="nc" id="L345">					MenuFrame.thisInstance = copyInstance(newInstance);</span>
+<span class="nc" id="L346">					MenuFrame.thisSurface.revalidate();</span>
+<span class="nc" id="L347">					MenuFrame.thisSurface.repaint();</span>
+				}
+<span class="nc" id="L349">			}</span>
+		});
+<span class="nc" id="L351">	}</span>
+
+	// Method for copying instance.
+	public static Instance copyInstance(Instance input) {
+<span class="nc" id="L355">		Instance fakeInstance = new Instance();</span>
+
+<span class="nc bnc" id="L357" title="All 2 branches missed.">		for (int i = 0; i &lt; input.classList.size(); i++) {</span>
+<span class="nc" id="L358">			fakeInstance.addClass(input.classList.get(i).getName());</span>
+<span class="nc" id="L359">			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);</span>
+<span class="nc bnc" id="L360" title="All 2 branches missed.">			for (int j = 0; j &lt; input.classList.get(i).fieldList.size(); j++) {</span>
+<span class="nc" id="L361">				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(),</span>
+<span class="nc" id="L362">						input.classList.get(i).fieldList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L364" title="All 2 branches missed.">			for (int j = 0; j &lt; input.classList.get(i).relationshipList.size(); j++) {</span>
+<span class="nc" id="L365">				fakeInstance.classList.get(i).addRelationship(</span>
+<span class="nc" id="L366">						input.classList.get(i).relationshipList.get(j).getSource(),</span>
+<span class="nc" id="L367">						input.classList.get(i).relationshipList.get(j).getDestination(),</span>
+<span class="nc" id="L368">						input.classList.get(i).relationshipList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L370" title="All 2 branches missed.">			for (int j = 0; j &lt; input.classList.get(i).methodList.size(); j++) {</span>
+<span class="nc" id="L371">				List&lt;Parameters&gt; newParamList = new ArrayList&lt;Parameters&gt;();</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">				for (int k = 0; k &lt; input.classList.get(i).methodList.get(j).paramList.size(); k++) {</span>
+<span class="nc" id="L373">					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(),</span>
+<span class="nc" id="L374">							input.classList.get(i).methodList.get(j).paramList.get(k).getType()));</span>
+				}
+<span class="nc" id="L376">				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(),</span>
+<span class="nc" id="L377">						input.classList.get(i).methodList.get(j).getType(), newParamList);</span>
+			}
+		}
+<span class="nc" id="L380">		fakeInstance.setHighlight(input.highlight);</span>
+<span class="nc" id="L381">		return fakeInstance;</span>
+	}
+
+	// Redo button listener.
+	public static void setBtn6Listener() {
+<span class="nc" id="L386">		Observer btnNewObserver_6 = new Observer(MenuFrame.btnNewButton_6, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L388">				Instance newInstance = MenuFrame.thisMemento.redo();</span>
+<span class="nc bnc" id="L389" title="All 2 branches missed.">				if (newInstance != null) {</span>
+<span class="nc" id="L390">					MenuFrame.thisSurface.thisInstance = copyInstance(newInstance);</span>
+<span class="nc" id="L391">					MenuFrame.thisInstance = copyInstance(newInstance);</span>
+<span class="nc" id="L392">					MenuFrame.thisSurface.revalidate();</span>
+<span class="nc" id="L393">					MenuFrame.thisSurface.repaint();</span>
+				}
+<span class="nc" id="L395">			}</span>
+		});
+<span class="nc" id="L397">	}</span>
+
+	// Save button listener.
+	public static void setBtn7Listener() {
+<span class="nc" id="L401">		MenuFrame.btnNewButton_7.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L403">				JFileChooser fileChooser = new JFileChooser(System.getProperty(&quot;user.dir&quot;));</span>
+<span class="nc" id="L404">				fileChooser.setDialogTitle(&quot;Specify a file to save&quot;);</span>
+<span class="nc" id="L405">				int userSelection = fileChooser.showSaveDialog(null);</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">				if (userSelection == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L407">					File fileToSave = fileChooser.getSelectedFile();</span>
+<span class="nc bnc" id="L408" title="All 2 branches missed.">					if (!fileToSave.getAbsolutePath().equals(&quot;&quot;)) {</span>
+<span class="nc" id="L409">						String newName = affixJson(fileToSave.getAbsolutePath());</span>
+<span class="nc" id="L410">						File newFile = new File(newName);</span>
+						// Check to make sure file doesn't already exist.
+<span class="nc bnc" id="L412" title="All 2 branches missed.">						if (newFile.exists()) {</span>
+<span class="nc" id="L413">							Object[] options = { &quot;OK&quot;, &quot;CANCEL&quot; };</span>
+							// Option to overwrite file.
+<span class="nc" id="L415">							int n = JOptionPane.showOptionDialog(null, &quot;File already exists! Click OK to overwrite!&quot;,</span>
+									&quot;WARNING&quot;, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+									options[1]);
+<span class="nc bnc" id="L418" title="All 2 branches missed.">							if (n == 1) {</span>
+<span class="nc" id="L419">								JOptionPane.showMessageDialog(null, &quot;Save file cancelled.&quot;);</span>
+<span class="nc" id="L420">								return;</span>
+							} else {
+								BufferedWriter writer;
+								try {
+									// Writes the json file.
+<span class="nc" id="L425">									writer = new BufferedWriter(new FileWriter(newFile, true));</span>
+<span class="nc" id="L426">									writer.append(MenuFrame.thisInstance.printToJson());</span>
+<span class="nc" id="L427">									writer.close();</span>
+<span class="nc" id="L428">								} catch (IOException e1) {</span>
+<span class="nc" id="L429">								}</span>
+<span class="nc" id="L430">								JOptionPane.showMessageDialog(null, &quot;File overwritten successfully.&quot;);</span>
+<span class="nc" id="L431">								return;</span>
+							}
+						}
+						BufferedWriter writer;
+						try {
+							// Writes the json file.
+<span class="nc" id="L437">							writer = new BufferedWriter(new FileWriter(newFile, true));</span>
+<span class="nc" id="L438">							writer.append(convertToGsonString(MenuFrame.thisInstance));</span>
+<span class="nc" id="L439">							writer.close();</span>
+<span class="nc" id="L440">						} catch (IOException e1) {</span>
+<span class="nc" id="L441">						}</span>
+<span class="nc" id="L442">						JOptionPane.showMessageDialog(null, &quot;File saved successfully.&quot;);</span>
+					}
+				}
+<span class="nc" id="L445">			}</span>
+		});
+<span class="nc" id="L447">	}</span>
+
+	// Affix &quot;.json&quot; to end of file name if not already present.
+	private static String affixJson(String input) {
+<span class="nc bnc" id="L451" title="All 4 branches missed.">		if (input.length() &gt; 5 &amp;&amp; input.substring(input.length() - 5).equals(&quot;.json&quot;)) {</span>
+<span class="nc" id="L452">			return input;</span>
+		}
+<span class="nc" id="L454">		return input += &quot;.json&quot;;</span>
+	}
+
+	// Method to convert object to String.
+	public static String convertToGsonString(Object obj) {
+<span class="nc" id="L459">		Gson gson = new Gson();</span>
+<span class="nc" id="L460">		return gson.toJson(obj);</span>
+	}
+
+	// Method for translating json file into a Instance object.
+	private static Instance jsonReader(File file) throws Exception {
+<span class="nc" id="L465">		Instance newInstance = new Instance();</span>
+<span class="nc" id="L466">		Gson gson = new Gson();</span>
+<span class="nc" id="L467">		newInstance = gson.fromJson(new FileReader(file), Instance.class);</span>
+<span class="nc" id="L468">		return newInstance;</span>
+	}
+
+	// Method for updating the class model on demand.
+	private static void rebuildClassModel(Instance input) {
+<span class="nc" id="L473">		DefaultComboBoxModel&lt;String&gt; newClassModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L474">		IteratorList.Iterator iter = MenuFrame.thisSurface.arr.getIterator();</span>
+<span class="nc bnc" id="L475" title="All 2 branches missed.">		for (iter.first(); !iter.isDone(); iter.next()) {</span>
+<span class="nc" id="L476">			newClassModel.addElement(iter.currentValue().className);</span>
+		}
+
+<span class="nc" id="L479">		MenuFrame.classModel = newClassModel;</span>
+<span class="nc" id="L480">		MenuFrame.comboBox.setModel(newClassModel);</span>
+<span class="nc" id="L481">	}</span>
+
+	// Load button listener.
+	public static void setBtn8Listener() {
+<span class="nc" id="L485">		Observer btnNewObserver_8 = new Observer(MenuFrame.btnNewButton_8, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L487">				JFileChooser fileChooser = new JFileChooser(System.getProperty(&quot;user.dir&quot;));</span>
+<span class="nc" id="L488">				fileChooser.setDialogTitle(&quot;Specify a file to load&quot;);</span>
+<span class="nc" id="L489">				int userSelection = fileChooser.showSaveDialog(null);</span>
+<span class="nc bnc" id="L490" title="All 2 branches missed.">				if (userSelection == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L491">					File fileToLoad = fileChooser.getSelectedFile();</span>
+<span class="nc bnc" id="L492" title="All 2 branches missed.">					if (!fileToLoad.getAbsolutePath().equals(&quot;&quot;)) {</span>
+						Instance newInstance;
+						try {
+<span class="nc" id="L495">							newInstance = jsonReader(fileToLoad);</span>
+<span class="nc" id="L496">						} catch (Exception e1) {</span>
+<span class="nc" id="L497">							JOptionPane.showMessageDialog(null, &quot;Error detected, no file loaded.&quot;);</span>
+<span class="nc" id="L498">							return;</span>
+<span class="nc" id="L499">						}</span>
+<span class="nc" id="L500">						MenuFrame.thisSurface.thisInstance = copyInstance(newInstance);</span>
+<span class="nc" id="L501">						MenuFrame.thisInstance = copyInstance(newInstance);</span>
+
+<span class="nc" id="L503">						MenuFrame.thisSurface.arr.clear();</span>
+<span class="nc bnc" id="L504" title="All 2 branches missed.">						for (int i = 0; i &lt; MenuFrame.thisInstance.classList.size(); i++) {</span>
+<span class="nc" id="L505">							MenuFrame.thisSurface.arr.add(new ZEllipse(MenuFrame.thisInstance.classList.get(i).point.x,</span>
+<span class="nc" id="L506">									MenuFrame.thisInstance.classList.get(i).point.y, 80, 80,</span>
+<span class="nc" id="L507">									MenuFrame.thisInstance.classList.get(i).getName(), MenuFrame.thisInstance));</span>
+						}
+
+<span class="nc" id="L510">						rebuildClassModel(MenuFrame.thisInstance);</span>
+<span class="nc" id="L511">						MenuFrame.thisSurface.revalidate();</span>
+<span class="nc" id="L512">						MenuFrame.thisSurface.repaint();</span>
+
+<span class="nc" id="L514">						JOptionPane.showMessageDialog(null, &quot;File loaded successfully.&quot;);</span>
+					}
+				}
+<span class="nc" id="L517">				MenuFrame.repaintMe();</span>
+<span class="nc" id="L518">			}</span>
+
+		});
+<span class="nc" id="L521">	}</span>
+
+	// Exit button listener.
+	public static void setBtn9Listener() {
+<span class="nc" id="L525">		Observer btnNewObserver_9 = new Observer(MenuFrame.btnNewButton_9, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L527">				System.exit(0);</span>
+<span class="nc" id="L528">			}</span>
+		});
+<span class="nc" id="L530">	}</span>
+
+	// Exit button listener.
+	public static void setBtn10Listener() {
+<span class="nc" id="L534">		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_10, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L536" title="All 2 branches missed.">				if (MenuFrame.comboBox.getSelectedItem() == null)</span>
+<span class="nc" id="L537">					return;</span>
+<span class="nc" id="L538">				MenuFrame.thisInstance.showContents(MenuFrame.comboBox.getSelectedItem().toString());</span>
+<span class="nc" id="L539">			}</span>
+		});
+<span class="nc" id="L541">	}</span>
+
+	// Take a screenshot of the current GUI.
+	public static void setBtn11Listener() {
+<span class="nc" id="L545">		Observer btnNewObserver_11 = new Observer(MenuFrame.btnNewButton_11, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L547">				JFileChooser fileChooser = new JFileChooser(System.getProperty(&quot;user.dir&quot;));</span>
+<span class="nc" id="L548">				fileChooser.setDialogTitle(&quot;Specify a save location&quot;);</span>
+<span class="nc" id="L549">				int userSelection = fileChooser.showSaveDialog(null);</span>
+<span class="nc bnc" id="L550" title="All 2 branches missed.">				if (userSelection == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L551">					File fileToSave = fileChooser.getSelectedFile();</span>
+					String savelocation;
+<span class="nc bnc" id="L553" title="All 2 branches missed.">					if (!(savelocation = fileToSave.getAbsolutePath()).equals(&quot;&quot;)) {</span>
+<span class="nc bnc" id="L554" title="All 4 branches missed.">						if (savelocation.length() &lt;4 || !savelocation.substring(savelocation.length() - 4).equals(&quot;.png&quot;)) {</span>
+<span class="nc" id="L555">							savelocation = savelocation + &quot;.png&quot;;</span>
+						}
+<span class="nc" id="L557">						File newFile = new File(savelocation);</span>
+						// Check to make sure file doesn't already exist.
+<span class="nc bnc" id="L559" title="All 2 branches missed.">						if (newFile.exists()) {</span>
+<span class="nc" id="L560">							Object[] options = { &quot;OK&quot;, &quot;CANCEL&quot; };</span>
+							// Option to overwrite file.
+<span class="nc" id="L562">							int n = JOptionPane.showOptionDialog(null,</span>
+									&quot;File already exists! Click OK to overwrite!&quot;, &quot;WARNING&quot;, JOptionPane.YES_NO_OPTION,
+									JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+<span class="nc bnc" id="L565" title="All 2 branches missed.">							if (n == 1) {</span>
+<span class="nc" id="L566">								JOptionPane.showMessageDialog(null, &quot;Save file cancelled.&quot;);</span>
+<span class="nc" id="L567">								return;</span>
+							} else {
+<span class="nc" id="L569">									JPanel input = GUIFrame.myFrame;</span>
+<span class="nc" id="L570">									BufferedImage screenshotImage = new BufferedImage(input.getBounds().width, input.getBounds().height, BufferedImage.TYPE_INT_RGB);</span>
+<span class="nc" id="L571">									input.paint(screenshotImage.getGraphics());</span>
+									try {
+<span class="nc" id="L573">										ImageIO.write(screenshotImage, &quot;png&quot;, new File(fileToSave.getAbsolutePath()));</span>
+<span class="nc" id="L574">									} catch (IOException ex) {</span>
+<span class="nc" id="L575">										System.out.println(&quot;Error saving screenshot&quot;);</span>
+<span class="nc" id="L576">										return;</span>
+<span class="nc" id="L577">									}</span>
+<span class="nc" id="L578">								JOptionPane.showMessageDialog(null, &quot;File overwritten successfully.&quot;);</span>
+<span class="nc" id="L579">								return;</span>
+							}
+						}
+<span class="nc" id="L582">									JPanel input = GUIFrame.myFrame;</span>
+<span class="nc" id="L583">									BufferedImage screenshotImage = new BufferedImage(input.getBounds().width, input.getBounds().height, BufferedImage.TYPE_INT_RGB);</span>
+<span class="nc" id="L584">									input.paint(screenshotImage.getGraphics());</span>
+									try {
+<span class="nc" id="L586">										ImageIO.write(screenshotImage, &quot;png&quot;, new File(savelocation));</span>
+<span class="nc" id="L587">									} catch (IOException ex) {</span>
+<span class="nc" id="L588">										System.out.println(&quot;Error saving screenshot&quot;);</span>
+<span class="nc" id="L589">										return;</span>
+<span class="nc" id="L590">									}</span>
+<span class="nc" id="L591">						JOptionPane.showMessageDialog(null, &quot;Screenshot saved successfully.&quot;);</span>
+					}
+				}
+<span class="nc" id="L594">			}</span>
+		});
+<span class="nc" id="L596">	}</span>
+
+	// Remove class button listener.
+	public static void setBtn12Listener() {
+<span class="nc" id="L600">		Observer btnNewObserver_12 = new Observer(MenuFrame.btnNewButton_12, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L602" title="All 2 branches missed.">				if (MenuFrame.comboBox.getSelectedItem() == null)</span>
+<span class="nc" id="L603">					return;</span>
+				String className;
+<span class="nc" id="L605">				if (MenuFrame.thisInstance</span>
+<span class="nc bnc" id="L606" title="All 2 branches missed.">						.getClass(className = (String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L607">					MenuFrame.thisInstance.removeClass(className);</span>
+<span class="nc" id="L608">					MenuFrame.classModel.removeElement(className);</span>
+<span class="nc" id="L609">					GUIFrame.thisInstance.removeClass(className);</span>
+<span class="nc" id="L610">					GUIFrame.arr.remove(className);</span>
+<span class="nc" id="L611">					MenuFrame.repaintMe();</span>
+<span class="nc" id="L612">					GUIFrame.draw();</span>
+				}
+<span class="nc" id="L614">			}</span>
+		});
+<span class="nc" id="L616">	}</span>
+
+	// Remove field button listener.
+	public static void setBtn13Listener() {
+<span class="nc" id="L620">		Observer btnNewObserver_13 = new Observer(MenuFrame.btnNewButton_13, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L622" title="All 4 branches missed.">				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_1.getSelectedItem() == null)</span>
+<span class="nc" id="L623">					return;</span>
+<span class="nc" id="L624">				String fieldName = MenuFrame.comboBox_1_1_1.getSelectedItem().toString();</span>
+<span class="nc" id="L625">				MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+<span class="nc bnc" id="L626" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L627">					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L628" title="All 2 branches missed.">					if (thisClass.getField(fieldName) == null)</span>
+<span class="nc" id="L629">						return;</span>
+<span class="nc" id="L630">					thisClass.removeField(fieldName);</span>
+<span class="nc" id="L631">					MenuFrame.fieldModel.removeElement(fieldName);</span>
+<span class="nc" id="L632">					MenuFrame.repaintMe();</span>
+				}
+<span class="nc" id="L634">			}</span>
+		});
+<span class="nc" id="L636">	}</span>
+
+	// Remove relationship button listener.
+	public static void setBtn14Listener() {
+<span class="nc" id="L640">		Observer btnNewObserver_14 = new Observer(MenuFrame.btnNewButton_14, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L642">				JOptionPane.showMessageDialog(null,</span>
+						&quot;To remove a relationship, right-click (or shift-click) on the relationship line.&quot;);
+<span class="nc" id="L644">			}</span>
+		});
+<span class="nc" id="L646">	}</span>
+
+	// Remove method button listener.
+	public static void setBtn15Listener() {
+<span class="nc" id="L650">		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_15, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L652" title="All 4 branches missed.">				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2.getSelectedItem() == null)</span>
+<span class="nc" id="L653">					return;</span>
+<span class="nc" id="L654">				String methodName = MenuFrame.comboBox_1_1_2.getSelectedItem().toString();</span>
+<span class="nc" id="L655">				MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+<span class="nc bnc" id="L656" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L657">					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L658" title="All 2 branches missed.">					if (thisClass.getMethod(methodName) == null)</span>
+<span class="nc" id="L659">						return;</span>
+<span class="nc" id="L660">					thisClass.removeMethod(methodName);</span>
+<span class="nc" id="L661">					MenuFrame.methodsModel.removeElement(methodName);</span>
+<span class="nc" id="L662">					firstLoad();</span>
+<span class="nc" id="L663">					MenuFrame.repaintMe();</span>
+				}
+<span class="nc" id="L665">			}</span>
+		});
+<span class="nc" id="L667">	}</span>
+
+	// Remove parameter button listener.
+	public static void setBtn16Listener() {
+<span class="nc" id="L671">		Observer btnNewObserver_16 = new Observer(MenuFrame.btnNewButton_16, new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L673" title="All 4 branches missed.">				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2_1.getSelectedItem() == null</span>
+<span class="nc bnc" id="L674" title="All 2 branches missed.">						|| MenuFrame.comboBox_1_1_2.getSelectedItem() == null)</span>
+<span class="nc" id="L675">					return;</span>
+<span class="nc" id="L676">				String methodName = MenuFrame.comboBox_1_1_2.getSelectedItem().toString();</span>
+<span class="nc" id="L677">				MenuFrame.thisMemento.add(MenuFrame.thisInstance);</span>
+<span class="nc bnc" id="L678" title="All 2 branches missed.">				if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L679">					Classes thisClass = MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());</span>
+					Methods thisMethod;
+<span class="nc bnc" id="L681" title="All 2 branches missed.">					if ((thisMethod = thisClass.getMethod(methodName)) == null)</span>
+<span class="nc" id="L682">						return;</span>
+
+<span class="nc" id="L684">					String paramName = MenuFrame.comboBox_1_1_2_1.getSelectedItem().toString();</span>
+					Parameters thisParam;
+<span class="nc bnc" id="L686" title="All 2 branches missed.">					if ((thisParam = thisMethod.getParam(paramName)) == null)</span>
+<span class="nc" id="L687">						return;</span>
+
+<span class="nc" id="L689">					thisMethod.removeParam(paramName);</span>
+<span class="nc" id="L690">					MenuFrame.paramsModel.removeElement(paramName);</span>
+<span class="nc" id="L691">					firstLoad();</span>
+<span class="nc" id="L692">					MenuFrame.repaintMe();</span>
+				}
+<span class="nc" id="L694">			}</span>
+		});
+<span class="nc" id="L696">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

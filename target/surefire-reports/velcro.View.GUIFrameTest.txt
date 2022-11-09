@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: velcro.View.GUIFrameTest
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in velcro.View.GUIFrameTest
+=======
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+>>>>>>> Stashed changes

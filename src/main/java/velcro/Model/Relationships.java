@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.util.List;
 

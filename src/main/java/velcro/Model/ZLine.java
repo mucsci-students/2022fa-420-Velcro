@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;

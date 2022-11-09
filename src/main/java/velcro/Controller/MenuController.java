@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.Controller;
+package velcro.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,18 +32,17 @@ import javax.swing.JTextField;
 
 import com.google.gson.Gson;
 
-import main.java.velcro.Model.Classes;
-import main.java.velcro.Model.Fields;
-import main.java.velcro.Model.Instance;
-import main.java.velcro.Model.IteratorList;
-import main.java.velcro.Model.Methods;
-import main.java.velcro.Model.Observer;
-import main.java.velcro.Model.Parameters;
-import main.java.velcro.Model.Relationships;
-import main.java.velcro.Model.ZEllipse;
-import main.java.velcro.Obsolete.SavePage;
-import main.java.velcro.View.GUIFrame;
-import main.java.velcro.View.MenuFrame;
+import velcro.Model.Classes;
+import velcro.Model.Fields;
+import velcro.Model.Instance;
+import velcro.Model.IteratorList;
+import velcro.Model.Methods;
+import velcro.Model.Observer;
+import velcro.Model.Parameters;
+import velcro.Model.Relationships;
+import velcro.Model.ZEllipse;
+import velcro.View.GUIFrame;
+import velcro.View.MenuFrame;
 
 public class MenuController {
 	/**

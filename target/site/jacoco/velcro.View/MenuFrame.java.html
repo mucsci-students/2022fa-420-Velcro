@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.View</a> &gt; <span class="el_source">MenuFrame.java</span></div><h1>MenuFrame.java</h1><pre class="source lang-java linenums">package velcro.View;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import velcro.main.*;
+import velcro.Model.*;
+import velcro.Controller.*;
+
+// Main class.
+public class MenuFrame extends JFrame {
+	public static Instance thisInstance;
+	public static JComboBox comboBox;
+	public static DrawingGUI thisObject;
+	public static Memento thisMemento;
+	public static JComboBox comboBox_1_1_1;
+	public static JComboBox comboBox_1;
+	public static JComboBox comboBox_1_1;
+	public static GUIFrame thisSurface;
+	public static DrawingGUI mainClass;
+	public static int panelHeight;
+<span class="nc" id="L30">	public static int panelWidth = 300;</span>
+	public static JComboBox comboBox_1_1_2;
+	public static JComboBox comboBox_1_1_2_1;
+	public static JButton btnNewButton;
+	public static JButton btnNewButton_1;
+	public static JButton btnNewButton_2;
+	public static JButton btnNewButton_3;
+	public static JButton btnNewButton_4;
+	public static JButton btnNewButton_5;
+	public static JButton btnNewButton_6;
+	public static JButton btnNewButton_7;
+	public static JButton btnNewButton_8;
+	public static JButton btnNewButton_9;
+	public static JButton btnNewButton_10;
+	public static JButton btnNewButton_11;
+	public static JButton btnNewButton_12;
+	public static JButton btnNewButton_13;
+	public static JButton btnNewButton_14;
+	public static JButton btnNewButton_15;
+	public static JButton btnNewButton_16;
+	public static MenuFrame thisFrame;
+
+	
+	public static DefaultComboBoxModel&lt;String&gt; classModel;
+	public static DefaultComboBoxModel&lt;String&gt; fieldModel;
+	public static DefaultComboBoxModel&lt;String&gt; fieldTypeModel;
+	public static DefaultComboBoxModel&lt;String&gt; relationshipsModel;
+	public static DefaultComboBoxModel&lt;String&gt; relationshipsTypeModel;
+	public static DefaultComboBoxModel&lt;String&gt; methodsModel;
+	public static DefaultComboBoxModel&lt;String&gt; methodsTypeModel;
+	public static DefaultComboBoxModel&lt;String&gt; paramsModel;
+	public static DefaultComboBoxModel&lt;String&gt; paramsTypeModel;
+
+	// Constructor and initial attributes.
+	public MenuFrame(Instance input, DrawingGUI input2, int panelHeight) {
+<span class="nc" id="L65">		super(&quot;Control Frame&quot;);</span>
+<span class="nc" id="L66">		this.panelHeight = panelHeight;</span>
+<span class="nc" id="L67">		thisFrame = this;</span>
+<span class="nc" id="L68">		thisMemento = input2.thisMemento;</span>
+<span class="nc" id="L69">		thisInstance = input;</span>
+<span class="nc" id="L70">		thisObject = input2;</span>
+<span class="nc" id="L71">		fieldModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L72">		relationshipsModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L73">		relationshipsTypeModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L74">		fieldTypeModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L75">		methodsTypeModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L76">		methodsModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L77">		paramsTypeModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L78">		paramsModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L79">		comboBox_1_1 = new JComboBox(relationshipsTypeModel);</span>
+<span class="nc" id="L80">		classModel = thisInstance.classModel;</span>
+
+		// Populate ClassModel model.
+<span class="nc" id="L83">		MenuController.initClassModel(classModel);</span>
+		
+		// Resize panel to fit laptops/smaller screens.
+<span class="nc" id="L86">		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();</span>
+		//double sizeChangeRatio = 1 - ((double) (panelHeight - screenSize.getHeight()) / panelHeight);
+<span class="nc" id="L88">		double sizeChangeRatio = (screenSize.height/panelHeight);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		if (sizeChangeRatio &lt; 0)</span>
+<span class="nc" id="L90">			sizeChangeRatio = 1;</span>
+<span class="nc" id="L91">		int resizeHeight = (int) (33 * (sizeChangeRatio));</span>
+<span class="nc" id="L92">		setSize(panelWidth, screenSize.height);</span>
+
+<span class="nc" id="L94">		getContentPane().setLayout(null);</span>
+
+		// Class combobox.
+<span class="nc" id="L97">		comboBox = new JComboBox&lt;String&gt;(classModel);</span>
+<span class="nc" id="L98">		comboBox.putClientProperty(&quot;i&quot;, 0);</span>
+<span class="nc" id="L99">		comboBox.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox.getClientProperty(&quot;i&quot;)), 172,</span>
+				resizeHeight);
+<span class="nc" id="L101">		comboBox.setModel(classModel);</span>
+<span class="nc" id="L102">		MenuController.setComboBoxListener();</span>
+<span class="nc" id="L103">		getContentPane().add(comboBox);</span>
+
+		// Class label.
+<span class="nc" id="L106">		JLabel lblNewLabel = new JLabel(&quot;Class&quot;);</span>
+<span class="nc" id="L107">		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L108">		lblNewLabel.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L109">		lblNewLabel.setBounds(22, 0, 172, 27);</span>
+<span class="nc" id="L110">		getContentPane().add(lblNewLabel);</span>
+
+		// Relationship combobox.
+<span class="nc" id="L113">		comboBox_1 = new JComboBox(relationshipsModel);</span>
+<span class="nc" id="L114">		comboBox_1.putClientProperty(&quot;i&quot;, 3);</span>
+<span class="nc" id="L115">		comboBox_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty(&quot;i&quot;)), 172,</span>
+				resizeHeight);
+<span class="nc" id="L117">		MenuController.setComboBox1Listener();</span>
+<span class="nc" id="L118">		getContentPane().add(comboBox_1);</span>
+
+		// Relationship destination label.
+<span class="nc" id="L121">		JLabel lblRelationshipDestination = new JLabel(&quot;Relationship Destination&quot;);</span>
+<span class="nc" id="L122">		lblRelationshipDestination.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L123">		lblRelationshipDestination.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L124">		lblRelationshipDestination.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1.getClientProperty(&quot;i&quot;)),</span>
+				219, 27);
+<span class="nc" id="L126">		getContentPane().add(lblRelationshipDestination);</span>
+
+		// Relationship type combobox.
+<span class="nc" id="L129">		comboBox_1_1.putClientProperty(&quot;i&quot;, 4);</span>
+<span class="nc" id="L130">		comboBox_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1.getClientProperty(&quot;i&quot;)), 172,</span>
+				resizeHeight);
+<span class="nc" id="L132">		getContentPane().add(comboBox_1_1);</span>
+
+		// Field combobox.
+<span class="nc" id="L135">		comboBox_1_1_1 = new JComboBox(fieldModel);</span>
+<span class="nc" id="L136">		comboBox_1_1_1.putClientProperty(&quot;i&quot;, 1);</span>
+<span class="nc" id="L137">		comboBox_1_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty(&quot;i&quot;)),</span>
+				172, resizeHeight);
+<span class="nc" id="L139">		MenuController.setComboBox111Listener();</span>
+<span class="nc" id="L140">		getContentPane().add(comboBox_1_1_1);</span>
+
+		// Methods combobox.
+<span class="nc" id="L143">		comboBox_1_1_2 = new JComboBox(methodsModel);</span>
+<span class="nc" id="L144">		comboBox_1_1_2.putClientProperty(&quot;i&quot;, 5);</span>
+<span class="nc" id="L145">		comboBox_1_1_2.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty(&quot;i&quot;)),</span>
+				172, resizeHeight);
+<span class="nc" id="L147">		MenuController.setComboBox112Listener();</span>
+<span class="nc" id="L148">		getContentPane().add(comboBox_1_1_2);</span>
+
+		// Methods label.
+<span class="nc" id="L151">		JLabel lblMethod = new JLabel(&quot;Method&quot;);</span>
+<span class="nc" id="L152">		lblMethod.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L153">		lblMethod.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L154">		lblMethod.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty(&quot;i&quot;)), 172, 27);</span>
+<span class="nc" id="L155">		getContentPane().add(lblMethod);</span>
+
+		// Parameters combobox.
+<span class="nc" id="L158">		comboBox_1_1_2_1 = new JComboBox(paramsModel);</span>
+<span class="nc" id="L159">		comboBox_1_1_2_1.putClientProperty(&quot;i&quot;, 7);</span>
+<span class="nc" id="L160">		comboBox_1_1_2_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty(&quot;i&quot;)),</span>
+				172, resizeHeight);
+<span class="nc" id="L162">		MenuController.setComboBox1121Listener();</span>
+<span class="nc" id="L163">		getContentPane().add(comboBox_1_1_2_1);</span>
+
+		// Parameters label.
+<span class="nc" id="L166">		JLabel lblParameter = new JLabel(&quot;Parameter&quot;);</span>
+<span class="nc" id="L167">		lblParameter.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L168">		lblParameter.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L169">		lblParameter.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty(&quot;i&quot;)), 172,</span>
+				27);
+<span class="nc" id="L171">		getContentPane().add(lblParameter);</span>
+
+		// Methods type combobox.
+<span class="nc" id="L174">		JComboBox comboBox_1_1_2_2 = new JComboBox(methodsTypeModel);</span>
+<span class="nc" id="L175">		comboBox_1_1_2_2.putClientProperty(&quot;i&quot;, 6);</span>
+<span class="nc" id="L176">		comboBox_1_1_2_2.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty(&quot;i&quot;)),</span>
+				172, resizeHeight);
+<span class="nc" id="L178">		getContentPane().add(comboBox_1_1_2_2);</span>
+
+		// Methods label.
+<span class="nc" id="L181">		JLabel lblMethodType = new JLabel(&quot;Method Type&quot;);</span>
+<span class="nc" id="L182">		lblMethodType.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L183">		lblMethodType.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L184">		lblMethodType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty(&quot;i&quot;)), 172,</span>
+				27);
+<span class="nc" id="L186">		getContentPane().add(lblMethodType);</span>
+
+		// Field type combobox.
+<span class="nc" id="L189">		JComboBox comboBox_1_1_1_1 = new JComboBox(fieldTypeModel);</span>
+<span class="nc" id="L190">		comboBox_1_1_1_1.putClientProperty(&quot;i&quot;, 2);</span>
+<span class="nc" id="L191">		comboBox_1_1_1_1.setBounds(22, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty(&quot;i&quot;)),</span>
+				172, resizeHeight);
+<span class="nc" id="L193">		getContentPane().add(comboBox_1_1_1_1);</span>
+
+		// Field type label.
+<span class="nc" id="L196">		JLabel lblFieldType = new JLabel(&quot;Field Type&quot;);</span>
+<span class="nc" id="L197">		lblFieldType.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L198">		lblFieldType.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L199">		lblFieldType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty(&quot;i&quot;)), 172,</span>
+				27);
+<span class="nc" id="L201">		getContentPane().add(lblFieldType);</span>
+
+		// Field label.
+<span class="nc" id="L204">		JLabel lblField = new JLabel(&quot;Field&quot;);</span>
+<span class="nc" id="L205">		lblField.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L206">		lblField.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L207">		lblField.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty(&quot;i&quot;)), 172, 27);</span>
+<span class="nc" id="L208">		getContentPane().add(lblField);</span>
+
+		// Relationship type label.
+<span class="nc" id="L211">		JLabel lblRelationshipType = new JLabel(&quot;Relationship Type&quot;);</span>
+<span class="nc" id="L212">		lblRelationshipType.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L213">		lblRelationshipType.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L214">		lblRelationshipType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1.getClientProperty(&quot;i&quot;)), 172,</span>
+				27);
+<span class="nc" id="L216">		getContentPane().add(lblRelationshipType);</span>
+
+		// Parameters type combobox.
+<span class="nc" id="L219">		JComboBox comboBox_1_1_2_1_1 = new JComboBox(paramsTypeModel);</span>
+<span class="nc" id="L220">		comboBox_1_1_2_1_1.putClientProperty(&quot;i&quot;, 8);</span>
+<span class="nc" id="L221">		comboBox_1_1_2_1_1.setBounds(22,</span>
+<span class="nc" id="L222">				(int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)), 172, resizeHeight);</span>
+<span class="nc" id="L223">		getContentPane().add(comboBox_1_1_2_1_1);</span>
+
+		// Parameters type label.
+<span class="nc" id="L226">		JLabel lblParameterType = new JLabel(&quot;Parameter Type&quot;);</span>
+<span class="nc" id="L227">		lblParameterType.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L228">		lblParameterType.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 17));</span>
+<span class="nc" id="L229">		lblParameterType.setBounds(22, (int) ((resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				172, 27);
+<span class="nc" id="L231">		getContentPane().add(lblParameterType);</span>
+
+		// Add field button.
+<span class="nc" id="L234">		btnNewButton = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L235">		btnNewButton.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1.getClientProperty(&quot;i&quot;)), 60,</span>
+				resizeHeight);
+<span class="nc" id="L237">		btnNewButton.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 9));</span>
+<span class="nc" id="L238">		MenuController.setBtnListener();</span>
+<span class="nc" id="L239">		getContentPane().add(btnNewButton);</span>
+
+		// Add method button.
+<span class="nc" id="L242">		btnNewButton_1 = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L243">		btnNewButton_1.setBounds(205, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2.getClientProperty(&quot;i&quot;)),</span>
+				60, resizeHeight);
+<span class="nc" id="L245">		btnNewButton_1.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 9));</span>
+<span class="nc" id="L246">		MenuController.setBtn1Listener();</span>
+<span class="nc" id="L247">		getContentPane().add(btnNewButton_1);</span>
+
+		// Add parameter button.
+<span class="nc" id="L250">		btnNewButton_2 = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L251">		btnNewButton_2.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1.getClientProperty(&quot;i&quot;)),</span>
+				60, resizeHeight);
+<span class="nc" id="L253">		btnNewButton_2.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 9));</span>
+<span class="nc" id="L254">		MenuController.setBtn2Listener();</span>
+<span class="nc" id="L255">		getContentPane().add(btnNewButton_2);</span>
+
+		// Add relationship button.
+<span class="nc" id="L258">		btnNewButton_3 = new JButton(&quot;Add&quot;);</span>
+<span class="nc" id="L259">		btnNewButton_3.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1.getClientProperty(&quot;i&quot;)), 60,</span>
+				resizeHeight);
+<span class="nc" id="L261">		btnNewButton_3.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 9));</span>
+<span class="nc" id="L262">		MenuController.setBtn3Listener();</span>
+<span class="nc" id="L263">		getContentPane().add(btnNewButton_3);</span>
+
+		// Show contents button.
+<span class="nc" id="L266">		btnNewButton_4 = new JButton(&quot;All Class Contents&quot;);</span>
+<span class="nc" id="L267">		btnNewButton_4.setBounds(22,</span>
+<span class="nc" id="L268">				(int) (10 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L270">		MenuController.setBtn4Listener();</span>
+<span class="nc" id="L271">		btnNewButton_4.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 10));</span>
+<span class="nc" id="L272">		getContentPane().add(btnNewButton_4);</span>
+
+		// Undo button.
+<span class="nc" id="L275">		btnNewButton_5 = new JButton(&quot;Undo&quot;);</span>
+<span class="nc" id="L276">		btnNewButton_5.setBounds(22,</span>
+<span class="nc" id="L277">				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L279">		MenuController.setBtn5Listener();</span>
+<span class="nc" id="L280">		getContentPane().add(btnNewButton_5);</span>
+
+		// Redo button.
+<span class="nc" id="L283">		btnNewButton_6 = new JButton(&quot;Redo&quot;);</span>
+<span class="nc" id="L284">		btnNewButton_6.setBounds(155,</span>
+<span class="nc" id="L285">				(int) (15 + resizeHeight + 54 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L287">		MenuController.setBtn6Listener();</span>
+<span class="nc" id="L288">		getContentPane().add(btnNewButton_6);</span>
+
+		// Save button.
+<span class="nc" id="L291">		btnNewButton_7 = new JButton(&quot;Save&quot;);</span>
+<span class="nc" id="L292">		btnNewButton_7.setBounds(22,</span>
+<span class="nc" id="L293">				(int) (20 + resizeHeight + 81 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L295">		MenuController.setBtn7Listener();</span>
+<span class="nc" id="L296">		getContentPane().add(btnNewButton_7);</span>
+
+		// Load button.
+<span class="nc" id="L299">		btnNewButton_8 = new JButton(&quot;Load&quot;);</span>
+<span class="nc" id="L300">		btnNewButton_8.setBounds(155,</span>
+<span class="nc" id="L301">				(int) (20 + resizeHeight + 81 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L303">		MenuController.setBtn8Listener();</span>
+<span class="nc" id="L304">		getContentPane().add(btnNewButton_8);</span>
+
+		// Exit button.
+<span class="nc" id="L307">		btnNewButton_9 = new JButton(&quot;Exit&quot;);</span>
+<span class="nc" id="L308">		btnNewButton_9.setBounds(155,</span>
+<span class="nc" id="L309">				(int) (25 + resizeHeight + 108 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L311">		MenuController.setBtn9Listener();</span>
+<span class="nc" id="L312">		getContentPane().add(btnNewButton_9);</span>
+
+		// Class contents button.
+<span class="nc" id="L315">		btnNewButton_10 = new JButton(&quot;Class Contents&quot;);</span>
+<span class="nc" id="L316">		btnNewButton_10.setBounds(155,</span>
+<span class="nc" id="L317">				(int) (10 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L319">		getContentPane().add(btnNewButton_10);</span>
+<span class="nc" id="L320">		MenuController.setBtn10Listener();</span>
+<span class="nc" id="L321">		btnNewButton_10.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 10));</span>
+
+		// Screenshot button.
+<span class="nc" id="L324">		btnNewButton_11 = new JButton(&quot;Screenshot&quot;);</span>
+<span class="nc" id="L325">		btnNewButton_11.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 10));</span>
+<span class="nc" id="L326">		btnNewButton_11.setBounds(22,</span>
+<span class="nc" id="L327">				(int) (25 + resizeHeight + 108 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				119, (int) (resizeHeight / 1.2));
+<span class="nc" id="L329">		MenuController.setBtn11Listener();</span>
+<span class="nc" id="L330">		getContentPane().add(btnNewButton_11);</span>
+
+<span class="nc" id="L332">		JSeparator separator = new JSeparator();</span>
+<span class="nc" id="L333">		separator.setBounds(0,</span>
+<span class="nc" id="L334">				(int) (5 + resizeHeight + 27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)),</span>
+				284, 2);
+<span class="nc" id="L336">		getContentPane().add(separator);</span>
+
+		
+		
+		// Remove class button.
+<span class="nc" id="L341">		btnNewButton_12 = new JButton(&quot;Remove&quot;);</span>
+<span class="nc" id="L342">		btnNewButton_12.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 7));</span>
+<span class="nc" id="L343">		btnNewButton_12.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox.getClientProperty(&quot;i&quot;)), 60,</span>
+				resizeHeight);
+<span class="nc" id="L345">		MenuController.setBtn12Listener();</span>
+<span class="nc" id="L346">		getContentPane().add(btnNewButton_12);</span>
+		
+		// Remove field button.
+<span class="nc" id="L349">		btnNewButton_13 = new JButton(&quot;Remove&quot;);</span>
+<span class="nc" id="L350">		btnNewButton_13.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 7));</span>
+<span class="nc" id="L351">		btnNewButton_13.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_1_1.getClientProperty(&quot;i&quot;)),</span>
+				60, resizeHeight);
+<span class="nc" id="L353">		MenuController.setBtn13Listener();</span>
+<span class="nc" id="L354">		getContentPane().add(btnNewButton_13);</span>
+		
+		// Remove relationship button.
+<span class="nc" id="L357">		btnNewButton_14 = new JButton(&quot;Remove&quot;);</span>
+<span class="nc" id="L358">		btnNewButton_14.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 7));</span>
+<span class="nc" id="L359">		btnNewButton_14.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1.getClientProperty(&quot;i&quot;)), 60,</span>
+				resizeHeight);
+<span class="nc" id="L361">		MenuController.setBtn14Listener();</span>
+<span class="nc" id="L362">		getContentPane().add(btnNewButton_14);</span>
+		
+		// Remove method button.
+<span class="nc" id="L365">		btnNewButton_15 = new JButton(&quot;Remove&quot;);</span>
+<span class="nc" id="L366">		btnNewButton_15.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 7));</span>
+<span class="nc" id="L367">		btnNewButton_15.setBounds(204, (int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_2.getClientProperty(&quot;i&quot;)),</span>
+				60, resizeHeight);
+<span class="nc" id="L369">		MenuController.setBtn15Listener();</span>
+<span class="nc" id="L370">		getContentPane().add(btnNewButton_15);</span>
+		
+		// Remove parameter button.
+<span class="nc" id="L373">		btnNewButton_16 = new JButton(&quot;Remove&quot;);</span>
+<span class="nc" id="L374">		btnNewButton_16.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 7));</span>
+<span class="nc" id="L375">		btnNewButton_16.setBounds(204,</span>
+<span class="nc" id="L376">				(int) (27 + (resizeHeight + 27) * (int) comboBox_1_1_2_1_1.getClientProperty(&quot;i&quot;)), 60, resizeHeight);</span>
+<span class="nc" id="L377">		MenuController.setBtn16Listener();</span>
+<span class="nc" id="L378">		getContentPane().add(btnNewButton_16);</span>
+		
+		
+<span class="nc" id="L381">		setVisible(true);</span>
+<span class="nc" id="L382">	}</span>
+
+
+	// Method making parent visible to scope.
+	public void setSurface(GUIFrame input, DrawingGUI input2) {
+<span class="nc" id="L387">		this.thisSurface = input;</span>
+<span class="nc" id="L388">		this.mainClass = input2;</span>
+<span class="nc" id="L389">	}</span>
+	
+	// Pass method on to controller.
+	public void firstLoad() {
+<span class="nc" id="L393">		MenuController.firstLoad();</span>
+<span class="nc" id="L394">	}</span>
+	
+	// Clears static requirement to access repaint from other classes.
+	public static void repaintMe() {
+<span class="nc bnc" id="L398" title="All 2 branches missed.">		if(thisFrame == null) return;</span>
+<span class="nc" id="L399">		thisFrame.repaint();</span>
+<span class="nc" id="L400">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

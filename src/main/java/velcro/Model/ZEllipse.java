@@ -1,4 +1,4 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import main.java.velcro.main.DrawingGUI;
+import velcro.main.DrawingGUI;
 
 public class ZEllipse extends Rectangle.Float {
 

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: velcro.Model.MethodsTest
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in velcro.Model.MethodsTest
+=======
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+>>>>>>> Stashed changes

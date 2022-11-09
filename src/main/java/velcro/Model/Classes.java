@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.Point;
 import java.util.ArrayList;

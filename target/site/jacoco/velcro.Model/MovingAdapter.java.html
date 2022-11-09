@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovingAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.Model</a> &gt; <span class="el_source">MovingAdapter.java</span></div><h1>MovingAdapter.java</h1><pre class="source lang-java linenums">/**
+ * Filename: MovingAdapter.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Adapter class for extending MouseAdapter and handling mouse events.
+ * 
+ */
+
+
+package velcro.Model;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JOptionPane;
+
+import velcro.Controller.*;
+import velcro.main.*;
+import velcro.View.*;
+
+<span class="nc" id="L22">public class MovingAdapter extends MouseAdapter {</span>
+
+	private int x;
+	private int y;
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+<span class="nc" id="L29">		x = e.getX();</span>
+<span class="nc" id="L30">		y = e.getY();</span>
+<span class="nc" id="L31">	}</span>
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+<span class="nc" id="L36">		doMove(e);</span>
+<span class="nc" id="L37">	}</span>
+
+	public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L40">		x = e.getX();</span>
+<span class="nc" id="L41">		y = e.getY();</span>
+
+		
+<span class="nc bnc" id="L44" title="All 4 branches missed.">		if (e.getClickCount() == 2 &amp;&amp; e.getButton() == MouseEvent.BUTTON1) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">			if (whatItHit(GUIFrame.arr) != null) {</span>
+<span class="nc" id="L46">				GUIFrame.thisMemento.add(GUIFrame.thisInstance);</span>
+<span class="nc" id="L47">				ZEllipse hit = whatItHit(GUIFrame.arr);</span>
+				String newName;
+				try {
+<span class="nc" id="L50">					newName = JOptionPane.showInputDialog(&quot;Please enter a new class name!&quot;, hit.className);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">					if (newName != null) {</span>
+						
+						try {
+<span class="nc" id="L54">							String testClass = GUIFrame.thisInstance.getClass(newName).getName();</span>
+<span class="nc" id="L55">							JOptionPane.showInternalMessageDialog(null,</span>
+									&quot;Class name already in use!&quot;, &quot;Renaming Class&quot;,
+									JOptionPane.ERROR_MESSAGE); //herehere
+<span class="nc" id="L58">						} catch (NullPointerException e3) {</span>
+<span class="nc" id="L59">							Classes changed = GUIFrame.thisInstance.getClass(hit.className);</span>
+<span class="nc" id="L60">							changed.rename(hit.className, newName);</span>
+<span class="nc" id="L61">							GUIFrame.thisFrame.classModel.removeElement(hit.className);</span>
+<span class="nc" id="L62">							hit.className = newName;</span>
+<span class="nc" id="L63">							GUIFrame.thisFrame.classModel.addElement(newName);</span>
+<span class="nc" id="L64">							hit.setName(newName);</span>
+<span class="nc" id="L65">							changed = GUIFrame.thisInstance.getClass(newName);</span>
+<span class="nc" id="L66">							GUIFrame.thisInstance.setHighlight(changed);</span>
+<span class="nc" id="L67">						}</span>
+					}
+<span class="nc" id="L69">				} catch (NullPointerException e2) {</span>
+<span class="nc" id="L70">				}</span>
+<span class="nc" id="L71">				GUIFrame.draw();</span>
+<span class="nc" id="L72">				return;</span>
+			}
+
+<span class="nc bnc" id="L75" title="All 4 branches missed.">		} else if (e.getButton() == MouseEvent.BUTTON3 || e.isShiftDown() ) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">			if (!GUIController.missAllLines(GUIFrame.lnLst, 0, (double) x, (double) y)) {</span>
+<span class="nc" id="L77">				GUIFrame.thisMemento.add(GUIFrame.thisInstance);</span>
+<span class="nc" id="L78">				ZLine line = GUIController.lineItHit(GUIFrame.lnLst, x, y);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">				if (JOptionPane.showConfirmDialog(null, &quot;Delete Relationship?&quot;, &quot;Delete Relationship&quot;,</span>
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+<span class="nc" id="L81">					GUIFrame.thisInstance.getClass(line.source).removeRelationship(line.source, line.destination);</span>
+<span class="nc" id="L82">					GUIFrame.thisInstance.getClass(line.destination).removeRelationship(line.source, line.destination);</span>
+<span class="nc" id="L83">					GUIFrame.lnLst.remove(line);</span>
+<span class="nc" id="L84">					GUIFrame.draw();</span>
+				} else {
+<span class="nc" id="L86">					return;</span>
+				}
+
+<span class="nc" id="L89">				return;</span>
+			}
+
+<span class="nc bnc" id="L92" title="All 2 branches missed.">			if (whatItHit(GUIFrame.arr) == null) {</span>
+<span class="nc" id="L93">				GUIFrame.thisMemento.add(GUIFrame.thisInstance);</span>
+<span class="nc" id="L94">				ZEllipse newEllipse = new ZEllipse(x - 40, y - 40, 80, 80, &quot;&quot;, GUIFrame.thisInstance);</span>
+<span class="nc bnc" id="L95" title="All 4 branches missed.">				if (newEllipse.className != null &amp;&amp; !newEllipse.className.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L96">					GUIFrame.arr.add(newEllipse);</span>
+
+<span class="nc" id="L98">					GUIFrame.thisInstance.addClass(newEllipse.className);</span>
+<span class="nc" id="L99">					GUIFrame.thisInstance.getClass(newEllipse.className).setLocation(x - 40, y - 40);</span>
+<span class="nc" id="L100">					GUIFrame.thisFrame.classModel.addElement(newEllipse.className);</span>
+				}
+<span class="nc" id="L102">				GUIFrame.draw();</span>
+<span class="nc" id="L103">			} else {</span>
+<span class="nc" id="L104">				ZEllipse hit = whatItHit(GUIFrame.arr);</span>
+<span class="nc" id="L105">				GUIFrame.thisMemento.add(GUIFrame.thisInstance);</span>
+<span class="nc" id="L106">				GUIFrame.pntLst.add(hit);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">				if (GUIFrame.source == null) {</span>
+<span class="nc" id="L108">					GUIFrame.source = hit.center();</span>
+<span class="nc" id="L109">					GUIFrame.sourceName = hit.className;</span>
+				} else {
+<span class="nc" id="L111">					Object[] types = { &quot;Aggregation&quot;, &quot;Composition&quot;, &quot;Inheritance&quot;, &quot;Realization&quot; };</span>
+<span class="nc" id="L112">					String n = &quot;&quot;;</span>
+<span class="nc" id="L113">					n = (String) JOptionPane.showInputDialog(null, &quot;Relationship Type?&quot;, &quot;Set Relationship Type&quot;,</span>
+							JOptionPane.QUESTION_MESSAGE, null, types, types[0]);
+<span class="nc bnc" id="L115" title="All 4 branches missed.">					if (n == null || n.equals(&quot;&quot;)) {</span>
+					} else {
+<span class="nc" id="L117">						GUIFrame.thisInstance.getClass(hit.className).addRelationship(GUIFrame.sourceName, hit.className, n);</span>
+<span class="nc" id="L118">						GUIFrame.thisInstance.getClass(GUIFrame.sourceName).addRelationship(GUIFrame.sourceName, hit.className, n);</span>
+					}
+<span class="nc" id="L120">					GUIFrame.source = null;</span>
+				}
+<span class="nc" id="L122">				GUIFrame.draw();</span>
+			}
+<span class="nc" id="L124">			return;</span>
+<span class="nc bnc" id="L125" title="All 4 branches missed.">		} else if (e.getClickCount() == 1 &amp;&amp; e.getButton() == MouseEvent.BUTTON1) {</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">			if (whatItHit(GUIFrame.arr) == null) {</span>
+<span class="nc" id="L127">				return;</span>
+			}
+<span class="nc" id="L129">			GUIFrame.thisMemento.add(GUIFrame.thisInstance);</span>
+<span class="nc" id="L130">			ZEllipse hit = whatItHit(GUIFrame.arr);</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">			if (GUIFrame.thisInstance.getClass(hit.className) != null) {</span>
+<span class="nc" id="L132">				GUIFrame.thisFrame.comboBox.setSelectedItem(GUIFrame.thisInstance.getClass(hit.className).getName());</span>
+<span class="nc" id="L133">				GUIFrame.thisInstance.setHighlight(GUIFrame.thisInstance.getClass(hit.className));</span>
+			}
+
+			Classes thisClass;
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			if (GUIFrame.thisInstance.getClass((String) GUIFrame.thisFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L138">				GUIFrame.thisFrame.fieldModel.removeAllElements();</span>
+<span class="nc" id="L139">				thisClass = GUIFrame.thisInstance.getClass((String) GUIFrame.thisFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">				for (int i = 0; i &lt; thisClass.fieldList.size(); i++) {</span>
+<span class="nc" id="L141">					GUIFrame.thisFrame.fieldModel.addElement(thisClass.fieldList.get(i).getName());</span>
+				}
+			}
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">			if (GUIFrame.thisInstance.getClass((String) GUIFrame.thisFrame.comboBox.getSelectedItem()) != null) {</span>
+<span class="nc" id="L146">				GUIFrame.thisFrame.relationshipsModel.removeAllElements();</span>
+<span class="nc" id="L147">				thisClass = GUIFrame.thisInstance.getClass((String) GUIFrame.thisFrame.comboBox.getSelectedItem());</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">				for (int i = 0; i &lt; thisClass.relationshipList.size(); i++) {</span>
+
+<span class="nc bnc" id="L150" title="All 2 branches missed.">					if (!thisClass.relationshipList.get(i).getDestination().equals(thisClass.getName())) {</span>
+<span class="nc" id="L151">						GUIFrame.thisFrame.relationshipsModel.addElement(thisClass.relationshipList.get(i).getDestination());</span>
+					}
+				}
+			}
+<span class="nc" id="L155">			GUIFrame.draw();</span>
+		}
+
+<span class="nc" id="L158">	}</span>
+
+	public ZEllipse whatItHit(IteratorList arr) {
+<span class="nc" id="L161">		IteratorList.Iterator iter = arr.getIterator();</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">		for (iter.first(); !iter.isDone(); iter.next()) {</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">			if (iter.currentValue().isHit(x, y)) {</span>
+<span class="nc" id="L164">				return iter.currentValue();</span>
+			}
+		}
+<span class="nc" id="L167">		return null;</span>
+	}
+
+	private void doMove(MouseEvent e) {
+
+<span class="nc" id="L172">		int dx = e.getX() - x;</span>
+<span class="nc" id="L173">		int dy = e.getY() - y;</span>
+
+<span class="nc" id="L175">		IteratorList.Iterator iter = GUIFrame.arr.getIterator();</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">		for (iter.first(); !iter.isDone(); iter.next()) {</span>
+<span class="nc" id="L177">			ZEllipse thisOne = iter.currentValue();</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">			if (thisOne.isHit(x, y)) {</span>
+<span class="nc" id="L179">				thisOne.addX(dx);</span>
+<span class="nc" id="L180">				thisOne.addY(dy);</span>
+<span class="nc" id="L181">				GUIFrame.draw();;</span>
+			}
+		}
+
+<span class="nc" id="L185">		x += dx;</span>
+<span class="nc" id="L186">		y += dy;</span>
+<span class="nc" id="L187">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -8,7 +8,7 @@
  */
 
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

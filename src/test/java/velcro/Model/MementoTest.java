@@ -27,10 +27,15 @@ public class MementoTest {
     }
 
     @Test
+<<<<<<< Updated upstream
     public void seeAll() {
     }
 
     @Test
     public void copyInstance() {
     }
+=======
+    public void copyInstance() {
+    }
+>>>>>>> Stashed changes
 }

@@ -9,7 +9,7 @@
 
 
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

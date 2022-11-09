@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ZRectangle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.Model</a> &gt; <span class="el_source">ZRectangle.java</span></div><h1>ZRectangle.java</h1><pre class="source lang-java linenums">/**
+ * Filename: ZRectangle.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Rectangle object for drawing squares, extended from Rectangle2D.
+ * 
+ */
+package velcro.Model;
+
+import java.awt.geom.Rectangle2D;
+
+public class ZRectangle extends Rectangle2D.Float {
+<span class="nc" id="L14">	public ZRectangle(float x, float y, float width, float height) {</span>
+<span class="nc" id="L15">		setRect(x, y, width, height);</span>
+<span class="nc" id="L16">	}</span>
+
+	public boolean isHit(float x, float y) {
+<span class="nc" id="L19">		return getBounds2D().contains(x, y);</span>
+	}
+
+	public void addX(float x) {
+<span class="nc" id="L23">		this.x += x;</span>
+<span class="nc" id="L24">	}</span>
+	public void addY(float y) {
+<span class="nc" id="L26">		this.y += y;</span>
+<span class="nc" id="L27">	}</span>
+
+	public void addWidth(float w) {
+<span class="nc" id="L30">		this.width += w;</span>
+<span class="nc" id="L31">	}</span>
+
+	public void addHeight(float h) {
+<span class="nc" id="L34">		this.height += h;</span>
+<span class="nc" id="L35">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -6,7 +6,7 @@
  * Description: Rectangle object for drawing squares, extended from Rectangle2D.
  * 
  */
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.geom.Rectangle2D;
 

@@ -8,7 +8,7 @@
  */
 
 
-package main.java.velcro.Controller;
+package velcro.Controller;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -62,8 +62,8 @@ import org.apache.commons.io.FileUtils;
 
 import com.google.gson.Gson;
 
-import main.java.velcro.Model.*;
-import main.java.velcro.View.*;
+import velcro.Model.*;
+import velcro.View.*;
 
 public class GUIController {
 

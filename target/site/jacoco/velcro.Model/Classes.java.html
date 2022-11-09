@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Classes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.Model</a> &gt; <span class="el_source">Classes.java</span></div><h1>Classes.java</h1><pre class="source lang-java linenums">/**
+ * Filename: Classes.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Classes class.
+ * 
+ */
+
+package velcro.Model;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Classes {
+	
+	@SerializedName(&quot;name&quot;)
+	@Expose
+	String name;
+	
+<span class="pc" id="L27">	@SerializedName(&quot;fields&quot;)</span>
+	@Expose
+	public List&lt;Fields&gt; fieldList = new ArrayList&lt;Fields&gt;();
+	
+<span class="pc" id="L31">	@SerializedName(&quot;methods&quot;)</span>
+	@Expose
+	public List&lt;Methods&gt; methodList = new ArrayList&lt;Methods&gt;();
+	
+<span class="pc" id="L35">	@SerializedName(&quot;relationships&quot;)</span>
+	@Expose
+	public List&lt;Relationships&gt; relationshipList = new ArrayList&lt;Relationships&gt;();
+
+	public static DefaultComboBoxModel&lt;String&gt; fieldModel;
+	public static DefaultComboBoxModel&lt;String&gt; fieldModel_1;
+	public static DefaultComboBoxModel&lt;String&gt; methodModel;
+	public static DefaultComboBoxModel&lt;String&gt; methodModel_1;
+	
+	@SerializedName(&quot;location&quot;)
+	@Expose
+	public Point point;
+	
+	// Classes constructor.
+<span class="fc" id="L49">	public Classes(String name) {</span>
+<span class="fc" id="L50">		this.name = name;</span>
+<span class="fc" id="L51">		fieldModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="fc" id="L52">		fieldModel_1 = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="fc" id="L53">		methodModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="fc" id="L54">		methodModel_1 = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="fc" id="L55">		point = new Point(0,0);</span>
+<span class="fc" id="L56">	}</span>
+	
+	// Overloaded classes constructor.
+<span class="nc" id="L59">	Classes(String name, List&lt;Fields&gt; fieldList, List&lt;Methods&gt; methodList, List&lt;Relationships&gt; relationshipsList) {</span>
+<span class="nc" id="L60">		this.name = name;</span>
+<span class="nc" id="L61">		this.fieldList = fieldList;</span>
+<span class="nc" id="L62">		this.relationshipList = relationshipsList;</span>
+<span class="nc" id="L63">		this.methodList = methodList;</span>
+<span class="nc" id="L64">		fieldModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L65">		fieldModel_1 = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L66">		methodModel = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L67">		methodModel_1 = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L68">		point = new Point(0,0);</span>
+<span class="nc" id="L69">	}</span>
+	
+	public void setLocation(int x, int y) {
+<span class="fc" id="L72">		point = new Point(x,y);</span>
+<span class="fc" id="L73">	}</span>
+	
+	// Returns Classes object name.
+	public String getName() {
+<span class="fc" id="L77">		return name;</span>
+	}
+	
+	// Returns boolean comparing input Classes object to this object.
+	public boolean equals(Classes input) {
+<span class="nc bnc" id="L82" title="All 6 branches missed.">		return (input.name.equals(this.name) &amp;&amp; input.relationshipList.equals(this.relationshipList) &amp;&amp; input.fieldList.equals(this.fieldList));</span>
+	}
+	
+	// Renames Class and all of its relationships that have the same source or destination as the changed class name
+	public boolean rename(String oldName, String newName) {
+<span class="fc bfc" id="L87" title="All 4 branches covered.">		if (newName.equals(&quot;&quot;) || oldName.equals(&quot;&quot;))</span>
+<span class="fc" id="L88">			return false;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		if (this.name.equals(oldName)) {</span>
+<span class="fc" id="L90">			this.name = newName;</span>
+		}
+<span class="pc bpc" id="L92" title="2 of 4 branches missed.">		if (this.relationshipList != null &amp;&amp; relationshipList.size() != 0) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">			for (int i = 0; i&lt;relationshipList.size(); i++) {</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">				if (this.relationshipList.get(i).getSource().equals(oldName)) {</span>
+<span class="nc" id="L95">					this.relationshipList.get(i).setSource(newName);</span>
+				}
+<span class="nc bnc" id="L97" title="All 2 branches missed.">				if (this.relationshipList.get(i).getDestination().equals(oldName)) {</span>
+<span class="nc" id="L98">					this.relationshipList.get(i).setDestination(newName);</span>
+				}
+			}
+			
+		}
+<span class="fc" id="L103">		return true;</span>
+	}
+	
+	
+	// Adds an input Field to the FieldsList array.
+	public void addField(String elementAdded, String typeAdded) {
+<span class="fc" id="L109">		fieldList.add(new Fields(elementAdded, typeAdded));</span>
+<span class="fc" id="L110">	}</span>
+	
+	// Adds an input Method to the MethodList array.
+	public void addMethod(String elementAdded, String type, List&lt;Parameters&gt; params) {
+<span class="fc" id="L114">		methodList.add(new Methods(elementAdded, type, params));</span>
+<span class="fc" id="L115">	}</span>
+
+	// Removes an input Field from the FieldsList array.
+	public boolean removeField(String elementRemoved) {
+<span class="fc" id="L119">		boolean found = false;</span>
+<span class="fc bfc" id="L120" title="All 4 branches covered.">		for (int i = 0; !found &amp;&amp; i &lt; fieldList.size(); i++) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">			if (fieldList.get(i).getName().equals(elementRemoved)) {</span>
+<span class="fc" id="L122">				found = true;</span>
+<span class="fc" id="L123">				fieldList.remove(fieldList.get(i));</span>
+				continue;
+			}
+		}
+<span class="fc" id="L127">		return found;</span>
+	}
+	
+	// Removes an input Method from the MethodsField array.
+	public boolean removeMethod(String elementRemoved) {
+<span class="fc" id="L132">		boolean found = false;</span>
+<span class="fc bfc" id="L133" title="All 4 branches covered.">		for (int i = 0; !found &amp;&amp; i &lt; methodList.size(); i++) {</span>
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">			if (methodList.get(i).getName().equals(elementRemoved)) {</span>
+<span class="fc" id="L135">				found = true;</span>
+<span class="fc" id="L136">				methodList.remove(methodList.get(i));</span>
+				continue;
+			}
+		}
+<span class="fc" id="L140">		return found;</span>
+	}
+
+	// Overloaded removeFields, that accepts an Fields object as input.
+	public void removeField(Fields input) {
+<span class="nc" id="L145">		fieldList.remove(input);</span>
+<span class="nc" id="L146">		return;</span>
+	}
+
+	// Returns matching Field.
+	public Fields getField(String elementChecked) {
+<span class="pc bpc" id="L151" title="1 of 4 branches missed.">		if (fieldList == null || fieldList.size() == 0)</span>
+<span class="fc" id="L152">			return null;</span>
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">		for (int i = 0; i &lt; fieldList.size(); i++) {</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">			if (fieldList.get(i).getName().equals(elementChecked))</span>
+<span class="fc" id="L155">				return fieldList.get(i);</span>
+		}
+<span class="nc" id="L157">		return null;</span>
+	}
+
+	// Returns matching Field.
+	public Methods getMethod(String elementChecked) {
+<span class="nc bnc" id="L162" title="All 4 branches missed.">		if (methodList == null || methodList.size() == 0)</span>
+<span class="nc" id="L163">			return null;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">		for (int i = 0; i &lt; methodList.size(); i++) {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">			if (methodList.get(i).getName().equals(elementChecked))</span>
+<span class="nc" id="L166">				return methodList.get(i);</span>
+		}
+<span class="nc" id="L168">		return null;</span>
+	}
+	
+	// Adds a relationship to RelationshipsList array.
+	public void addRelationship(String source, String destination, String type) {
+<span class="fc" id="L173">		Relationships newRel = new Relationships(source, destination, type);</span>
+<span class="fc" id="L174">		relationshipList.add(newRel);</span>
+<span class="fc" id="L175">	}</span>
+
+	// Removes the first relationship matching given input source and destination.
+	public boolean removeRelationship(String sourceRemoved, String destinationRemoved) {
+<span class="pc bpc" id="L179" title="1 of 4 branches missed.">		if (this.relationshipList == null || relationshipList.size() == 0)</span>
+<span class="fc" id="L180">			return false;</span>
+<span class="fc" id="L181">		List&lt;Relationships&gt; output = new ArrayList&lt;Relationships&gt;();</span>
+<span class="fc" id="L182">		boolean found = false;</span>
+<span class="pc bpc" id="L183" title="1 of 4 branches missed.">		for (int i = 0; !found &amp;&amp; i &lt; relationshipList.size(); i++) {</span>
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">			if (relationshipList.get(i).getSource().equals(sourceRemoved)</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">					&amp;&amp; relationshipList.get(i).getDestination().equals(destinationRemoved)) {</span>
+<span class="fc" id="L186">				found = true;</span>
+<span class="fc" id="L187">				relationshipList.remove(relationshipList.get(i));</span>
+				continue;
+			}
+		}
+<span class="fc" id="L191">		return found;</span>
+	}
+
+
+	// Boolean that returns true if the relationshipList contains input.
+	public boolean checkRelationship(String sourceChecked, String destinationChecked, String typeChecked) {
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">		if (this.relationshipList == null || relationshipList.size() == 0)</span>
+<span class="fc" id="L198">			return false;</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">		for (int i = 0; i &lt; relationshipList.size(); i++) {</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">			if (relationshipList.get(i).getSource().equals(sourceChecked)</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">					&amp;&amp; relationshipList.get(i).getDestination().equals(destinationChecked)</span>
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">					&amp;&amp; relationshipList.get(i).getType().equals(typeChecked))</span>
+<span class="fc" id="L203">				return true;</span>
+		}
+<span class="fc" id="L205">		return false;</span>
+	}
+
+	// Returns matching Relationship.
+	public Relationships getRelationship(String source, String destination) {
+<span class="pc bpc" id="L210" title="1 of 4 branches missed.">		if (this.relationshipList == null || relationshipList.size() == 0)</span>
+<span class="fc" id="L211">			return null;</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">		for (int i = 0; i &lt; relationshipList.size(); i++) {</span>
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">			if (relationshipList.get(i).getSource().equals(source)</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">					&amp;&amp; relationshipList.get(i).getDestination().equals(destination))</span>
+<span class="fc" id="L215">				return relationshipList.get(i);</span>
+		}
+<span class="nc" id="L217">		return null;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

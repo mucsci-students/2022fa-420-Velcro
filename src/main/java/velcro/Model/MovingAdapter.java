@@ -8,16 +8,16 @@
  */
 
 
-package main.java.velcro.Model;
+package velcro.Model;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 
-import main.java.velcro.Controller.*;
-import main.java.velcro.main.*;
-import main.java.velcro.View.*;
+import velcro.Controller.*;
+import velcro.main.*;
+import velcro.View.*;
 
 public class MovingAdapter extends MouseAdapter {
 

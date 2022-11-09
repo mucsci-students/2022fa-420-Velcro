@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: velcro.Model.ZRectangleTest
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in velcro.Model.ZRectangleTest
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+>>>>>>> Stashed changes

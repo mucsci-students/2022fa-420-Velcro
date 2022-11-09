@@ -1,4 +1,4 @@
-package main.java.velcro.View;
+package velcro.View;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import main.java.velcro.main.*;
-import main.java.velcro.Model.*;
-import main.java.velcro.Controller.*;
+import velcro.main.*;
+import velcro.Model.*;
+import velcro.Controller.*;
 
 // Main class.
 public class MenuFrame extends JFrame {

@@ -6,7 +6,7 @@
  * Description: View portion of GUIFrame panel.
  * 
  */
-package main.java.velcro.View;
+package velcro.View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -29,8 +29,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import main.java.velcro.Controller.*;
-import main.java.velcro.Model.*;
+import velcro.Controller.*;
+import velcro.Model.*;
 
 public class GUIFrame extends JPanel {
 

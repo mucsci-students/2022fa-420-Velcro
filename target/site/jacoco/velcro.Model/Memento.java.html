@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Memento.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Velcro</a> &gt; <a href="index.source.html" class="el_package">velcro.Model</a> &gt; <span class="el_source">Memento.java</span></div><h1>Memento.java</h1><pre class="source lang-java linenums">/**
+ * Filename: Memento.java.
+ * 
+ * @author Jon Beare, Dylon McGrann, Greg Sinclair, Cole Stout, Benedikt Wagenlehner
+ * Course: CSCI 420 (Section 01) 
+ * Description: Memento class for implementing undo/redo.
+ * 
+ */
+
+package velcro.Model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class Memento {
+<span class="nc" id="L22">	private NullInstance NullInstance = new NullInstance();</span>
+	private Stack&lt;Instance&gt; undoStack;
+	private Stack&lt;Instance&gt; redoStack;
+
+	// Constructor. Initiates undo and redo stack with NullInstance.
+<span class="nc" id="L27">	public Memento() {</span>
+<span class="nc" id="L28">		undoStack = new Stack&lt;Instance&gt;();</span>
+<span class="nc" id="L29">		undoStack.add(NullInstance.getInstance());</span>
+<span class="nc" id="L30">		redoStack = new Stack&lt;Instance&gt;();</span>
+<span class="nc" id="L31">		redoStack.add(NullInstance.getInstance());</span>
+<span class="nc" id="L32">	}</span>
+	
+	// 	Add method to be called to manually clone an Instance following every meaningful action in the Controller.
+	public void add(Instance input) {
+<span class="nc" id="L36">		Instance fakeInstance = new Instance();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		for (int i = 0; i&lt;input.classList.size(); i++) {</span>
+<span class="nc" id="L38">			fakeInstance.addClass(input.classList.get(i).getName());</span>
+<span class="nc" id="L39">			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).fieldList.size(); j++) {</span>
+<span class="nc" id="L41">				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(), input.classList.get(i).fieldList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L43" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).relationshipList.size(); j++) {</span>
+<span class="nc" id="L44">				fakeInstance.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(), input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L46" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).methodList.size(); j++) {</span>
+<span class="nc" id="L47">				List&lt;Parameters&gt; newParamList = new ArrayList&lt;Parameters&gt;();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">				for (int k = 0; k&lt;input.classList.get(i).methodList.get(j).paramList.size(); k++) {</span>
+<span class="nc" id="L49">					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(), input.classList.get(i).methodList.get(j).paramList.get(k).getType()));</span>
+				}
+<span class="nc" id="L51">				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(), input.classList.get(i).methodList.get(j).getType(), newParamList);</span>
+			}
+		}
+<span class="nc" id="L54">		fakeInstance.setHighlight(input.highlight);</span>
+<span class="nc" id="L55">		redoStack.clear();</span>
+<span class="nc" id="L56">		redoStack.push(NullInstance.getInstance());</span>
+<span class="nc" id="L57">		undoStack.push(fakeInstance);</span>
+<span class="nc" id="L58">	}</span>
+	
+	// Adds a redo action as a manually-cloned Instance, to be called whenever Undo is performed.
+	public void addRedo(Instance input) {
+<span class="nc" id="L62">		Instance fakeInstance = new Instance();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		for (int i = 0; i&lt;input.classList.size(); i++) {</span>
+<span class="nc" id="L64">			fakeInstance.addClass(input.classList.get(i).getName());</span>
+<span class="nc" id="L65">			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).fieldList.size(); j++) {</span>
+<span class="nc" id="L67">				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(), input.classList.get(i).fieldList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).relationshipList.size(); j++) {</span>
+<span class="nc" id="L70">				fakeInstance.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(), input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L72" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).methodList.size(); j++) {</span>
+<span class="nc" id="L73">				List&lt;Parameters&gt; newParamList = new ArrayList&lt;Parameters&gt;();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">				for (int k = 0; k&lt;input.classList.get(i).methodList.get(j).paramList.size(); k++) {</span>
+<span class="nc" id="L75">					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(), input.classList.get(i).methodList.get(j).paramList.get(k).getType()));</span>
+				}
+<span class="nc" id="L77">				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(), input.classList.get(i).methodList.get(j).getType(), newParamList);</span>
+			}
+		}
+<span class="nc" id="L80">		fakeInstance.setHighlight(input.highlight);</span>
+<span class="nc" id="L81">		redoStack.push(fakeInstance);</span>
+<span class="nc" id="L82">	}</span>
+	
+	// Loading of the latest-stored undo memento.
+	public Instance undo(Instance thisInstance) {
+		// Checks that undoStack exists (this should never fail) and if the next item is the NullInstance.
+<span class="nc bnc" id="L87" title="All 4 branches missed.">		if (undoStack == null || undoStack.peek().equals(NullInstance.getInstance()))</span>
+<span class="nc" id="L88">			return null;</span>
+<span class="nc" id="L89">		Instance newInstance = new Instance();</span>
+<span class="nc" id="L90">		newInstance = copyInstance(thisInstance);</span>
+		// Pushes instance to redo stack.
+<span class="nc" id="L92">		redoStack.push(newInstance);</span>
+<span class="nc" id="L93">		return undoStack.pop();</span>
+	}
+	
+	// Loading of the latest-stored redo memento.
+	public Instance redo() {
+		// Checks that redoStack exists (this should never fail) and if the next item is the NullInstance.
+<span class="nc bnc" id="L99" title="All 4 branches missed.">		if (redoStack == null || redoStack.peek().equals(NullInstance.getInstance()))</span>
+<span class="nc" id="L100">			return null;</span>
+<span class="nc" id="L101">		Instance newInstance = new Instance();</span>
+<span class="nc" id="L102">		newInstance = copyInstance(redoStack.peek());</span>
+		// Pushes instance to undo stack.
+<span class="nc" id="L104">		undoStack.push(newInstance);</span>
+<span class="nc" id="L105">		return redoStack.pop();</span>
+	}
+	
+	// Returns count of undo stack.
+	public int count() {
+<span class="nc" id="L110">		return undoStack.size()-1;</span>
+	}
+	
+	// Makes a manual clone of input Instance, since Java passes by reference and the mementos should be unedited by subsequent edits to the Instance.
+	public Instance copyInstance(Instance input) {
+<span class="nc" id="L115">		Instance fakeInstance = new Instance();</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">		for (int i = 0; i&lt;input.classList.size(); i++) {</span>
+<span class="nc" id="L117">			fakeInstance.addClass(input.classList.get(i).getName());</span>
+<span class="nc" id="L118">			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).fieldList.size(); j++) {</span>
+<span class="nc" id="L120">				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(), input.classList.get(i).fieldList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L122" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).relationshipList.size(); j++) {</span>
+<span class="nc" id="L123">				fakeInstance.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(), input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType());</span>
+			}
+<span class="nc bnc" id="L125" title="All 2 branches missed.">			for (int j = 0; j&lt;input.classList.get(i).methodList.size(); j++) {</span>
+<span class="nc" id="L126">				List&lt;Parameters&gt; newParamList = new ArrayList&lt;Parameters&gt;();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">				for (int k = 0; k&lt;input.classList.get(i).methodList.get(j).paramList.size(); k++) {</span>
+<span class="nc" id="L128">					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(), input.classList.get(i).methodList.get(j).paramList.get(k).getType()));</span>
+				}
+<span class="nc" id="L130">				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(), input.classList.get(i).methodList.get(j).getType(), newParamList);</span>
+			}
+		}
+<span class="nc" id="L133">		fakeInstance.setHighlight(input.highlight);</span>
+<span class="nc" id="L134">		return fakeInstance;</span>
+	}
+	
+	
+	// NullInstance is implemented below as a nested class. It acts as both a Null Object (an Instance
+	// with declared, but not impactful, attributes) and as a Singleton (its creation and accessor
+	// force the existence of only one NullInstance). In this implementation, it is inserted as an uneditable
+	// bookend for the undo and redo stacks to signify the end of the stack, avoiding NullPointer
+	// errors or the need to count the undo/redo stacks as preliminary checks.
+	static class NullInstance extends Instance {
+	    private NullInstance() {}
+
+	    private static class NullInstanceHolder {
+<span class="nc" id="L147">	        private static final NullInstance INSTANCE = new NullInstance();</span>
+	    }
+
+	    public static NullInstance getInstance() {
+<span class="nc" id="L151">	        return NullInstanceHolder.INSTANCE;</span>
+	    }
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
