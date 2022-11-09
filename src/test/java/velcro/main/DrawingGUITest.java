@@ -1,24 +1,24 @@
-package main.java.velcro.main;
+package velcro.main;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class DrawingGUITest {
+public class DrawingGUITest {
 
     @Test
-    void main() {
+    public void main() {
     }
 
     @Test
-    void resize() {
+    public void resize() {
     }
 
     @Test
-    void setFrame() {
+    public void setFrame() {
     }
 
     @Test
-    void initUI() {
+    public void initUI() {
     }
 }

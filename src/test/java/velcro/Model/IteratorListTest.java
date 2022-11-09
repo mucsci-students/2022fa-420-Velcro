@@ -1,32 +1,32 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class IteratorListTest {
+public class IteratorListTest {
 
     @Test
-    void add() {
+    public void add() {
     }
 
     @Test
-    void remove() {
+    public void remove() {
     }
 
     @Test
-    void testRemove() {
+    public void testRemove() {
     }
 
     @Test
-    void getIterator() {
+    public void getIterator() {
     }
 
     @Test
-    void size() {
+    public void size() {
     }
 
     @Test
-    void clear() {
+    public void clear() {
     }
 }

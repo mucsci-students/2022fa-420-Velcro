@@ -1,16 +1,16 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ZLineTest {
+public class ZLineTest {
 
     @Test
-    void setType() {
+    public void setType() {
     }
 
     @Test
-    void getCenter() {
+    public void getCenter() {
     }
 }

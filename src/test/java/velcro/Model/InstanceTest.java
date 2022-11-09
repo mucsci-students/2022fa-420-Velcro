@@ -1,64 +1,60 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class InstanceTest {
+public class InstanceTest {
 
     @Test
-    void setInstance() {
-
+    public void setInstance() {
     }
 
     @Test
-    void setHighlight() {
-        Instance test = new Instance();
-
+    public void setHighlight() {
     }
 
     @Test
-    void addClass() {
+    public void addClass() {
     }
 
     @Test
-    void removeClass() {
+    public void removeClass() {
     }
 
     @Test
-    void testRemoveClass() {
+    public void testRemoveClass() {
     }
 
     @Test
-    void checkClass() {
+    public void checkClass() {
     }
 
     @Test
-    void testCheckClass() {
+    public void testCheckClass() {
     }
 
     @Test
-    void testGetClass() {
+    public void testGetClass() {
     }
 
     @Test
-    void printToJson() {
+    public void printToJson() {
     }
 
     @Test
-    void copy() {
+    public void copy() {
     }
 
     @Test
-    void loadJson() {
+    public void loadJson() {
     }
 
     @Test
-    void showContents() {
+    public void showContents() {
     }
 
     @Test
-    void testShowContents() {
+    public void testShowContents() {
     }
 }

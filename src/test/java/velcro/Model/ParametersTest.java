@@ -1,40 +1,24 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ParametersTest {
+public class ParametersTest {
 
     @Test
-    void getName() {
-        Parameters test = new Parameters("test", "type");
-        Assertions.assertEquals("test", test.getName());
+    public void getName() {
     }
 
     @Test
-    void getType() {
-        Parameters test = new Parameters("test", "type");
-        Assertions.assertEquals("type", test.getType());
+    public void getType() {
     }
 
     @Test
-    void testEquals() {
-        Parameters test = new Parameters("name", "type");
-        Parameters test1 = new Parameters("name", "type");
-        Parameters test2 = new Parameters("name2", "type2");
-
-        Assertions.assertEquals(true,test.equals(test));
-        Assertions.assertEquals(true,test.equals(test1));
-        Assertions.assertEquals(false,test1.equals(test2));
+    public void testEquals() {
     }
 
     @Test
-    void rename() {
-        Parameters test = new Parameters("name", "type");
-
-        Assertions.assertEquals(false,test.rename(""));
-        Assertions.assertEquals(true,test.rename("newName"));
+    public void rename() {
     }
 }

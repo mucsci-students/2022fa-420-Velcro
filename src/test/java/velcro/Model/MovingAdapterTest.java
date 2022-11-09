@@ -1,24 +1,24 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MovingAdapterTest {
+public class MovingAdapterTest {
 
     @Test
-    void mousePressed() {
+    public void mousePressed() {
     }
 
     @Test
-    void mouseDragged() {
+    public void mouseDragged() {
     }
 
     @Test
-    void mouseClicked() {
+    public void mouseClicked() {
     }
 
     @Test
-    void whatItHit() {
+    public void whatItHit() {
     }
 }

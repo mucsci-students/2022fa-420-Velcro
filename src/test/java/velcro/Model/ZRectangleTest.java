@@ -1,28 +1,28 @@
-package main.java.velcro.Model;
+package velcro.Model;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ZRectangleTest {
+public class ZRectangleTest {
 
     @Test
-    void isHit() {
+    public void isHit() {
     }
 
     @Test
-    void addX() {
+    public void addX() {
     }
 
     @Test
-    void addY() {
+    public void addY() {
     }
 
     @Test
-    void addWidth() {
+    public void addWidth() {
     }
 
     @Test
-    void addHeight() {
+    public void addHeight() {
     }
 }
