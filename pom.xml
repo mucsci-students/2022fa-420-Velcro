@@ -38,8 +38,24 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<configuration>
-					<destfile>${basedir}/target/coverage-reports/jacoco-unit.exec</destfile>
-					<datafile>${basedir}/target/coverage-reports/jacoco-unit.exec</datafile>
+					<excludes>
+						<excludes>GUIController.java</excludes>
+						<excludes>MenuController.java</excludes>
+						<excludes>ClassesPage.java</excludes>
+						<excludes>Controller.java</excludes>
+						<excludes>FieldsPage.java</excludes>
+						<excludes>LandingPage.java</excludes>
+						<excludes>LoadPage.java</excludes>
+						<excludes>MethodsPage.java</excludes>
+						<excludes>ParametersPage.java</excludes>
+						<excludes>RelationshipsPage.java</excludes>
+						<excludes>SavePage.java</excludes>
+						<excludes>app.java</excludes>
+						<excludes>GUIFrame.java</excludes>
+						<excludes>MenuFrame.java</excludes>
+						<excludes>DrawingGUI.java</excludes>
+						<excludes>cli.java</excludes>
+					</excludes>	
 				</configuration>
 				<version>0.8.5</version>
 				<executions>
