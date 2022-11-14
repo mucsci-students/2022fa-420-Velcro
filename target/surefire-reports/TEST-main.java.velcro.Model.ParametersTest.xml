@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="main.java.velcro.Model.ParametersTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="main.java.velcro.Model.ParametersTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -61,7 +61,7 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="main.java.velcro.Model.ParametersTest" name="rename" time="0.002"/>
+  <testcase classname="main.java.velcro.Model.ParametersTest" name="rename" time="0"/>
   <testcase classname="main.java.velcro.Model.ParametersTest" name="getName" time="0"/>
   <testcase classname="main.java.velcro.Model.ParametersTest" name="getType" time="0"/>
   <testcase classname="main.java.velcro.Model.ParametersTest" name="testEquals" time="0"/>

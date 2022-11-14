@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="main.java.velcro.Model.IteratorListTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="main.java.velcro.Model.IteratorListTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -66,5 +66,5 @@
   <testcase classname="main.java.velcro.Model.IteratorListTest" name="add" time="0"/>
   <testcase classname="main.java.velcro.Model.IteratorListTest" name="size" time="0"/>
   <testcase classname="main.java.velcro.Model.IteratorListTest" name="clear" time="0"/>
-  <testcase classname="main.java.velcro.Model.IteratorListTest" name="testRemove" time="0.001"/>
+  <testcase classname="main.java.velcro.Model.IteratorListTest" name="testRemove" time="0"/>
 </testsuite>

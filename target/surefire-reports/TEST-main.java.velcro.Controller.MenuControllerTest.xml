@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="27" failures="0" name="main.java.velcro.Controller.MenuControllerTest" time="0.004" errors="0" skipped="0">
+<testsuite tests="27" failures="0" name="main.java.velcro.Controller.MenuControllerTest" time="0.01" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -61,16 +61,16 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn11Listener" time="0.002"/>
+  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn11Listener" time="0.01"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn6Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setComboBox1121Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="copyInstance" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn1Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn13Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn8Listener" time="0"/>
-  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn3Listener" time="0.001"/>
+  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn3Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn15Listener" time="0"/>
-  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setComboBox112Listener" time="0.001"/>
+  <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setComboBox112Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn10Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="setBtn5Listener" time="0"/>
   <testcase classname="main.java.velcro.Controller.MenuControllerTest" name="firstLoad" time="0"/>

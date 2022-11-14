@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="main.java.velcro.main.cliTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="main.java.velcro.main.cliTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -65,6 +65,6 @@
   <testcase classname="main.java.velcro.main.cliTest" name="search" time="0"/>
   <testcase classname="main.java.velcro.main.cliTest" name="printPrompt" time="0"/>
   <testcase classname="main.java.velcro.main.cliTest" name="main" time="0"/>
-  <testcase classname="main.java.velcro.main.cliTest" name="roboPrint" time="0.001"/>
+  <testcase classname="main.java.velcro.main.cliTest" name="roboPrint" time="0"/>
   <testcase classname="main.java.velcro.main.cliTest" name="printCommand" time="0"/>
 </testsuite>

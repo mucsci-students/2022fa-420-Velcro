@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="main.java.velcro.Model.RelationshipsTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="main.java.velcro.Model.RelationshipsTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -62,7 +62,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="main.java.velcro.Model.RelationshipsTest" name="getDestination" time="0"/>
-  <testcase classname="main.java.velcro.Model.RelationshipsTest" name="getType" time="0.002"/>
+  <testcase classname="main.java.velcro.Model.RelationshipsTest" name="getType" time="0"/>
   <testcase classname="main.java.velcro.Model.RelationshipsTest" name="setDestination" time="0"/>
   <testcase classname="main.java.velcro.Model.RelationshipsTest" name="setSource" time="0"/>
   <testcase classname="main.java.velcro.Model.RelationshipsTest" name="getSource" time="0"/>

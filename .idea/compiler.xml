@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="2022fa-420-Velcro" />
+        <module name="Velcro" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="2022fa-420-Velcro" target="1.8" />
+      <module name="Velcro" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

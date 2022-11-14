@@ -26,6 +26,10 @@
         </executions>
       </plugin>
       <plugin>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.5</version>
@@ -66,32 +70,16 @@
         </configuration>
       </plugin>
       <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+      <plugin>
         <artifactId>maven-site-plugin</artifactId>
         <version>3.7.1</version>
       </plugin>
     </plugins>
   </build>
   <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.1</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>opentest4j</artifactId>
-          <groupId>org.opentest4j</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>junit-platform-commons</artifactId>
-          <groupId>org.junit.platform</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>apiguardian-api</artifactId>
-          <groupId>org.apiguardian</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
