@@ -1,12 +1,13 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class ObserverTest {
+import static org.junit.Assert.*;
+
+public class ObserverTest {
 
     @Test
-    void actionPerformed() {
+    public void actionPerformed() {
     }
 }

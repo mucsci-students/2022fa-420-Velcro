@@ -1,20 +1,20 @@
 package main.java.velcro.View;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MenuFrameTest {
+public class MenuFrameTest {
 
     @Test
-    void setSurface() {
+    public void setSurface() {
     }
 
     @Test
-    void firstLoad() {
+    public void firstLoad() {
     }
 
     @Test
-    void repaintMe() {
+    public void repaintMe() {
     }
 }

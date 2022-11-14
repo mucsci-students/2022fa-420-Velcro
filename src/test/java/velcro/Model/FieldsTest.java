@@ -1,42 +1,43 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class FieldsTest {
+import static org.junit.Assert.*;
+
+public class FieldsTest {
 
     @Test
-    void getName() {
+    public void getName() {
+
         Fields test = new Fields("name", "type");
 
-        Assertions.assertEquals("name",test.getName());
+        assertEquals("name",test.getName());
     }
 
     @Test
-    void getType() {
+    public void getType() {
         Fields test = new Fields("name", "type");
 
-        Assertions.assertEquals("type",test.getType());
+        assertEquals("type",test.getType());
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         Fields test = new Fields("name", "type");
         Fields test1 = new Fields("name", "type");
         Fields test2 = new Fields("name2", "type2");
 
-        Assertions.assertEquals(true,test.equals(test));
-        Assertions.assertEquals(true,test.equals(test1));
-        Assertions.assertEquals(false,test1.equals(test2));
+        assertEquals(true,test.equals(test));
+        assertEquals(true,test.equals(test1));
+        assertEquals(false,test1.equals(test2));
     }
 
     @Test
-    void rename() {
+    public void rename() {
         Fields test = new Fields("name", "type");
 
-        Assertions.assertEquals(false, test.rename(""));
-        Assertions.assertEquals(true,test.rename("newName"));
+        assertEquals(false, test.rename(""));
+        assertEquals(true,test.rename("newName"));
     }
 }
