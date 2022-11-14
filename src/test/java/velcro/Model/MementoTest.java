@@ -1,36 +1,38 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class MementoTest {
+import static org.junit.Assert.*;
+
+public class MementoTest {
 
     @Test
-    void add() {
+    public void add() {
     }
 
     @Test
-    void addRedo() {
+    public void addRedo() {
     }
 
     @Test
-    void undo() {
+    public void undo() {
     }
 
     @Test
-    void redo() {
+    public void redo() {
     }
 
     @Test
-    void count() {
+    public void count() {
     }
 
     @Test
-    void seeAll() {
+    public void seeAll() {
     }
 
     @Test
-    void copyInstance() {
+    public void copyInstance() {
     }
+
 }

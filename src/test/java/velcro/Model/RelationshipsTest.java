@@ -1,63 +1,65 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class RelationshipsTest {
+import static org.junit.Assert.*;
+
+public class RelationshipsTest {
 
     @Test
-    void getType() {
+    public void getType() {
+
+
         Relationships test = new Relationships("source","destination","type");
 
-        Assertions.assertEquals("type",test.getType());
+        assertEquals("type",test.getType());
     }
 
     @Test
-    void getSource() {
+    public void getSource() {
         Relationships test = new Relationships("source","destination","type");
 
-        Assertions.assertEquals("source",test.getSource());
+        assertEquals("source",test.getSource());
     }
 
     @Test
-    void setSource() {
+    public void setSource() {
         Relationships test = new Relationships("source","destination","type");
         test.setSource("sourceNew");
 
-        Assertions.assertEquals("sourceNew",test.getSource());
+        assertEquals("sourceNew",test.getSource());
     }
 
     @Test
-    void setDestination() {
+    public void setDestination() {
         Relationships test = new Relationships("source","destination","type");
         test.setDestination("destinationNew");
 
-        Assertions.assertEquals("destinationNew",test.getDestination());
+        assertEquals("destinationNew",test.getDestination());
 
     }
 
     @Test
-    void getDestination() {
+    public void getDestination() {
         Relationships test = new Relationships("source","destination","type");
 
-        Assertions.assertEquals("destination",test.getDestination());
+        assertEquals("destination",test.getDestination());
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
         Relationships test = new Relationships("source","destination","type");
         Relationships test1 = new Relationships("source","destination","type");
         Relationships test2 = new Relationships("source1","destination1","type");
         Relationships test3 = new Relationships("source","destination2","type");
         Relationships test4 = new Relationships("source1","destination","type");
 
-        Assertions.assertEquals(true,test.equals(test));
-        Assertions.assertEquals(true,test.equals(test1));
-        Assertions.assertEquals(false,test.equals(test2));
-        Assertions.assertEquals(false,test.equals(test3));
-        Assertions.assertEquals(false,test.equals(test4));
+        assertEquals(true,test.equals(test));
+        assertEquals(true,test.equals(test1));
+        assertEquals(false,test.equals(test2));
+        assertEquals(false,test.equals(test3));
+        assertEquals(false,test.equals(test4));
 
     }
 }
