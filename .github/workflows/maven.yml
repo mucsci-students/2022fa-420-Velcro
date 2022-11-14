@@ -32,6 +32,6 @@ jobs:
     - name: Codecov
       uses: codecov/codecov-action@v3.1.1
       with:
-          token: d40e3d75-a9f2-4e50-8210-0d57226b754c
+          token: 90c8a2d4-f5c0-435a-b4d8-895f3f368268
           fail_ci_if_error: true
           verbose: true
