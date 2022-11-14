@@ -1,64 +1,79 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class InstanceTest {
+import static org.junit.Assert.*;
 
-    @Test
-    void setInstance() {
-
-    }
+public class InstanceTest {
 
     @Test
-    void setHighlight() {
+    public void setInstance() {
         Instance test = new Instance();
 
     }
 
     @Test
-    void addClass() {
+    public void setHighlight() {
+        //Instance test = new Instance();
+        //Classes testClass = new Classes("testClass");
+        //test.setHighlight(testClass);
+        //assertEquals(testClass, test.getClass("testClass"));
     }
 
     @Test
-    void removeClass() {
+    public void addClass() {
+        //Instance test = new Instance();
+        //test.addClass("testClass");
+        //assertEquals("testClass", test.getClass("testClass"));
     }
 
     @Test
-    void testRemoveClass() {
+    public void removeClass() {
+        Instance test = new Instance();
+        test.addClass("testClass");
+        test.removeClass("testClass");
+        assertEquals(0, test.classList.size());
     }
 
     @Test
-    void checkClass() {
+    public void testRemoveClass() {
+        Instance test = new Instance();
+        test.addClass("testClass");
+        Classes testClass = test.getClass("testClass");
+        test.removeClass(testClass);
+        assertEquals(0, test.classList.size());
     }
 
     @Test
-    void testCheckClass() {
+    public void checkClass() {
     }
 
     @Test
-    void testGetClass() {
+    public void testCheckClass() {
     }
 
     @Test
-    void printToJson() {
+    public void testGetClass() {
     }
 
     @Test
-    void copy() {
+    public void printToJson() {
     }
 
     @Test
-    void loadJson() {
+    public void copy() {
     }
 
     @Test
-    void showContents() {
+    public void loadJson() {
     }
 
     @Test
-    void testShowContents() {
+    public void showContents() {
+    }
+
+    @Test
+    public void testShowContents() {
     }
 }

@@ -1,16 +1,32 @@
 package main.java.velcro.main;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class cliTest {
+public class cliTest {
 
     @Test
-    void printPrompt() {
+    public void printPrompt() {
     }
 
     @Test
-    void main() {
+    public void roboPrint() {
+    }
+
+    @Test
+    public void printCommand() {
+    }
+
+    @Test
+    public void search() {
+    }
+
+    @Test
+    public void executeProgram() {
+    }
+
+    @Test
+    public void main() {
     }
 }

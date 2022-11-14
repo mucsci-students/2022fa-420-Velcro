@@ -1,7 +1,7 @@
 package main.java.velcro.Model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ArrowHeadTest {
+public class ArrowHeadTest {
 
 }
