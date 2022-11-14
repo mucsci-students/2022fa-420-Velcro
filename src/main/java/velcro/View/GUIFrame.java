@@ -80,7 +80,7 @@ public class GUIFrame extends JPanel {
 		}
 
 		// Access methods for frame.
-		public static double angleBetween(Shape from, Shape to) {
+		public static double angleBetween(ZEllipse from, ZEllipse to) {
 			return angleBetween(center(from.getBounds2D()), center(to.getBounds2D()));
 		}
 
@@ -99,7 +99,7 @@ public class GUIFrame extends JPanel {
 		public static Point2D getPointOnCircle(Shape shape, double radians) {
 			Rectangle2D bounds = shape.getBounds();
 			Point2D point = center(bounds);
-			return getPointOnCircle(point, radians, Math.max(bounds.getWidth(), bounds.getHeight()) / 2d);
+			return getPointOnCircle(point, radians, Math.max(bounds.getWidth(), bounds.getHeight()) / 1.25d);
 		}
 
 		// Access methods for frame.

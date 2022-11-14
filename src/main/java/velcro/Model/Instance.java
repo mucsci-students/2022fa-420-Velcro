@@ -55,6 +55,8 @@ public class Instance {
 		returnTypes.addElement("char");
 	}
 
+
+	
 	// Overloaded constructor; for use with loading option or other import
 	// strategies.
 	public Instance(Instance input) {

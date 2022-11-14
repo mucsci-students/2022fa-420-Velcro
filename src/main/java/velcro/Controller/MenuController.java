@@ -224,7 +224,6 @@ public class MenuController {
 					if (MenuFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem()) != null) {
 						Classes thisClass = MenuFrame.thisInstance
 								.getClass((String) MenuFrame.comboBox.getSelectedItem());
-						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
 						thisClass = GUIFrame.thisInstance.getClass((String) MenuFrame.comboBox.getSelectedItem());
 						thisClass.addField(fieldName.getText(), (String) type.getSelectedItem());
 						MenuFrame.fieldModel.addElement(fieldName.getText());
@@ -232,6 +231,7 @@ public class MenuController {
 				}
 
 				MenuFrame.repaintMe();
+				GUIFrame.draw();
 			}
 		});
 	}
@@ -267,6 +267,7 @@ public class MenuController {
 				}
 
 				MenuFrame.repaintMe();
+				GUIFrame.draw();
 			}
 		});
 	}
@@ -312,6 +313,7 @@ public class MenuController {
 					}
 				}
 				MenuFrame.repaintMe();
+				GUIFrame.draw();
 			}
 		});
 	}
@@ -516,6 +518,7 @@ public class MenuController {
 					}
 				}
 				MenuFrame.repaintMe();
+				GUIFrame.draw();
 			}
 
 		});
@@ -631,6 +634,9 @@ public class MenuController {
 					thisClass.removeField(fieldName);
 					MenuFrame.fieldModel.removeElement(fieldName);
 					MenuFrame.repaintMe();
+					thisClass.width = 80;
+					thisClass.height = 0;
+					GUIFrame.draw();
 				}
 			}
 		});
@@ -661,7 +667,10 @@ public class MenuController {
 					thisClass.removeMethod(methodName);
 					MenuFrame.methodsModel.removeElement(methodName);
 					firstLoad();
+					thisClass.width = 80;
+					thisClass.height = 0;
 					MenuFrame.repaintMe();
+					GUIFrame.draw();
 				}
 			}
 		});
@@ -690,7 +699,10 @@ public class MenuController {
 					thisMethod.removeParam(paramName);
 					MenuFrame.paramsModel.removeElement(paramName);
 					firstLoad();
+					thisClass.width = 80;
+					thisClass.height = 0;
 					MenuFrame.repaintMe();
+					GUIFrame.draw();
 				}
 			}
 		});
