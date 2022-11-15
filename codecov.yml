@@ -9,6 +9,7 @@ coverage:
  
  ignore:
   - "src/main/java/velcro/Controller"
-  - "src/main/java/velcro/DrawingGUI.java"
+  - "src/main/java/velcro/main/DrawingGUI.java"
+  - "src/main/java/velcro/main/cli.java"
   - "src/main/java/velcro/Obsolete"
   - "src/main/java/velcro/View"
