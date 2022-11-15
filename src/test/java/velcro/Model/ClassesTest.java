@@ -7,10 +7,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
