@@ -76,6 +76,7 @@ public class ClassesTest {
     public void rename() {
 		List<Relationships> relationshipList = new ArrayList<Relationships>();
 		Relationships relationshipTest = new Relationships("test","test3", "testrelation");
+		relationshipList.add(relationshipTest);
         Classes test = new Classes("test", null, null, relationshipList);
         Classes test1 = new Classes("");
         assertEquals(true, test.rename(test.getName(), "new"));
