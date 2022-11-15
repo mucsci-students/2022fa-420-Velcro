@@ -177,6 +177,7 @@ public class ClassesTest {
         assertEquals(null, test.getMethod("test1"));
         test.addMethod("test1","field1", null);
         assertEquals(test.methodList.get(0), test.getMethod("test1"));
+	assertEquals(null, test.getMethod("failtest"));
     }
 
     @Test
