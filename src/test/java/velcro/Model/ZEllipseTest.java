@@ -18,7 +18,6 @@ public class ZEllipseTest {
 		assertEquals(20, newEllipse.y, 0.01);
 		assertEquals(30, newEllipse.width, 0.01);
 		assertEquals(40, newEllipse.height, 0.01);
-		assertEquals([], newEllipse.destinations);
 		assertEquals("name", newEllipse.className);
 		assertEquals("class1", newEllipse.thisClass.getName());
 		ZEllipse newEllipse1 = new ZEllipse(-100000,20,30,40, null, newInstance);

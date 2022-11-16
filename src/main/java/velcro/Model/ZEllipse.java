@@ -15,12 +15,10 @@ import main.java.velcro.main.DrawingGUI;
 public class ZEllipse extends Rectangle.Float {
 
 	public String className;
-	public List<ZEllipse> destinations;
 	public Classes thisClass;
 
 	// Constructor.
 	public ZEllipse(float x, float y, float width, float height, String name, Instance thisInstance) {
-		destinations = new ArrayList<ZEllipse>();
 		setFrame(x, y, width, height);
 		if (name == null || name.equals("")) {
 			String input = GUIFrame.prompt((int) this.x);
