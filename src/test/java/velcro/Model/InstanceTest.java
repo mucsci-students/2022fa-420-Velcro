@@ -39,6 +39,7 @@ public class InstanceTest {
         test.addClass("testClass");
         assertEquals(false, test.removeClass("test"));
         assertEquals(true, test.removeClass("testClass"));
+        assertEquals(false, test.removeClass("testClass"));
         assertEquals(0, test.classList.size());
         Instance test2 = new Instance();
         test2.classList = null;
@@ -64,6 +65,10 @@ public class InstanceTest {
         test3.addClass("test3");
         assertEquals(true, test3.removeClass(test3.getClass("test2")));
         assertEquals(2, test3.classList.size());
+        Instance test4 = new Instance();
+        assertEquals(false, test4.removeClass(test3.getClass("test2")));
+        test4.classList = null;
+        assertEquals(false, test4.removeClass(test3.getClass("test2")));
     }
 
     @Test
@@ -80,10 +85,12 @@ public class InstanceTest {
     	Instance test1 = new Instance();
     	test1.addClass("test1");
     	test1.addClass("test2");
+    	test1.addClass("test4");
     	Classes newClass1 = new Classes("newClass1");
-    	assertEquals(true, test1.checkClass("test2"));
+    	assertEquals(true, test1.checkClass("test4"));
     	assertEquals(false, test1.checkClass("test3"));
     	assertEquals(false, test1.checkClass(newClass1));
+    	assertEquals(true, test1.checkClass(test1.getClass("test1")));
     }
     
     @Test
