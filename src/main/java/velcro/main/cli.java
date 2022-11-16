@@ -211,7 +211,7 @@ public class cli {
 				System.out.println("Please enter a class name");
 				return;
 			}
-		/*case "deleteClass":
+		case "deleteClass":
 			thisInstance.removeClass(param[1]);
 			System.out.println("Class deleted.");
 			return;
@@ -348,13 +348,13 @@ public class cli {
 			}
 			Relationships relobj7;
 			try {
-				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2], param[3]);
+				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Relationship not found!");
 				return;
 			}
-			classobj7.removeRelationship(param[1], param[2], param[3]);
-			classobj8.removeRelationship(param[1], param[2], param[3]);
+			classobj7.removeRelationship(param[1], param[2]);
+			classobj8.removeRelationship(param[1], param[2]);
 			System.out.println("Relationship removed.");
 			return;
 		case "deleteField":
@@ -455,7 +455,7 @@ public class cli {
 				return;
 			}
 			classobj11.addField(param[2], param[3]);
-			System.out.println("Field added."); */
+			System.out.println("Field added.");
 		case "exit":
 			return;
 		}
