@@ -13,6 +13,7 @@ public class ZEllipseTest {
 	public void ZTest() {
 		Instance newInstance = new Instance();
 		newInstance.addClass("name");
+		newInstance.addClass("test");
 		ZEllipse newEllipse = new ZEllipse(10,20,30,40,"name", newInstance);
 		assertEquals(10, newEllipse.x, 0.01);
 		assertEquals(20, newEllipse.y, 0.01);
