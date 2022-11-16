@@ -170,10 +170,10 @@ public class cli {
 				Gson gsons = new Gson();
 				writers.append(gsons.toJson((thisInstance)));
 				writers.close();
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			} else {
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			}
 		case "help":
@@ -478,7 +478,7 @@ public class cli {
 			System.out.print("Open in GUI mode? (yes/no): ");
 			user = in.next();
 			if (user.equals("yes")) {
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			}
 			if (user.equals("no")) {
