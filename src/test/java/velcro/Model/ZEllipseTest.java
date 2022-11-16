@@ -12,14 +12,14 @@ public class ZEllipseTest {
 	@Test
 	public void ZTest() {
 		Instance newInstance = new Instance();
-		newInstance.addClass("class1");
+		newInstance.addClass("name");
 		ZEllipse newEllipse = new ZEllipse(10,20,30,40,"name", newInstance);
 		assertEquals(10, newEllipse.x, 0.01);
 		assertEquals(20, newEllipse.y, 0.01);
 		assertEquals(30, newEllipse.width, 0.01);
 		assertEquals(40, newEllipse.height, 0.01);
 		assertEquals("name", newEllipse.className);
-		assertEquals("class1", newEllipse.thisClass.getName());
+		assertEquals("name", newEllipse.thisClass.getName());
 		ZEllipse newEllipse1 = new ZEllipse(-100000,20,30,40, null, newInstance);
 		ZEllipse newEllipse2 = new ZEllipse(-200000,20,30,40, null, newInstance);
 		ZEllipse newEllipse3 = new ZEllipse(-300000,20,30,40, null, newInstance);
