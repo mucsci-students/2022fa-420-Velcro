@@ -13,3 +13,8 @@ coverage:
   - "src/main/java/velcro/main/cli.java"
   - "src/main/java/velcro/Obsolete"
   - "src/main/java/velcro/View"
+
+  status:
+    patch:
+      default:
+        target: 0%
