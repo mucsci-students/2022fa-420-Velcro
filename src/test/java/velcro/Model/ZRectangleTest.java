@@ -3,7 +3,7 @@ package main.java.velcro.Model;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-class ZRectangleTest {
+public class ZRectangleTest {
 
 	@Test
 	public void setHeightTest() {

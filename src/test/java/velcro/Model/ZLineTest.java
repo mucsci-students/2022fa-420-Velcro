@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import java.awt.geom.Point2D;
 
-class ZLineTest {
+public class ZLineTest {
 
 	@Test
 	public void ZTest() {

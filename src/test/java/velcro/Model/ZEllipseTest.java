@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import main.java.velcro.main.DrawingGUI;
 
-class ZEllipseTest {
+public class ZEllipseTest {
 
 	@Test
 	public void ZTest() {
