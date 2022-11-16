@@ -209,7 +209,7 @@ public class cli {
 				System.out.println("Please enter a class name");
 				return;
 			}
-		case "deleteClass":
+		/*case "deleteClass":
 			thisInstance.removeClass(param[1]);
 			System.out.println("Class deleted.");
 			return;
@@ -453,7 +453,7 @@ public class cli {
 				return;
 			}
 			classobj11.addField(param[2], param[3]);
-			System.out.println("Field added.");
+			System.out.println("Field added."); */
 		case "exit":
 			return;
 		}
