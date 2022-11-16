@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 class ZLineTest {
 
 	@Test
-	public void ZLineTest() {
+	public void ZTest() {
 		ZLine newLine = new ZLine(new Point2D.Float(0,0), new Point2D.Float(0,0), "source", "destination");
 		assertEquals(0, newLine.x1);
 		assertEquals(0, newLine.y1);

@@ -10,7 +10,7 @@ import main.java.velcro.main.DrawingGUI;
 class ZEllipseTest {
 
 	@Test
-	public void ZEllipseTest() {
+	public void ZTest() {
 		Instance newInstance = new Instance();
 		newInstance.addClass("class1");
 		ZEllipse newEllipse = new ZEllipse(10,20,30,40,"name", newInstance);

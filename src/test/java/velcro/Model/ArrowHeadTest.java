@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 class ArrowHeadTest {
 
 	@Test
-	public void ArrowHeadTest() {
+	public void ATest() {
 		ArrowHead newArrow = new ArrowHead();
 		assertEquals(newArrow, newArrow);
 	}

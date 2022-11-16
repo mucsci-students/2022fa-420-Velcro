@@ -6,17 +6,11 @@ import static org.junit.Assert.*;
 class ZRectangleTest {
 
 	@Test
-	public void ZRectangleTest() {
+	public void setHeightTest() {
 		ZRectangle newRect = new ZRectangle(10,20,30,40);
 		assertEquals(10, newRect.x);
 		assertEquals(20, newRect.y);
 		assertEquals(30, newRect.width);
-		assertEquals(40, newRect.height);
-	}
-	
-	@Test
-	public void setHeightTest() {
-		ZRectangle newRect = new ZRectangle(10,20,30,40);
 		assertEquals(40, newRect.height);
 		newRect.setHeight(80);
 		assertEquals(80, newRect.height);
