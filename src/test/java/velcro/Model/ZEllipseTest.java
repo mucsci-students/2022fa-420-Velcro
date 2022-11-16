@@ -14,10 +14,10 @@ public class ZEllipseTest {
 		Instance newInstance = new Instance();
 		newInstance.addClass("class1");
 		ZEllipse newEllipse = new ZEllipse(10,20,30,40,"name", newInstance);
-		assertEquals(10, newEllipse.x);
-		assertEquals(20, newEllipse.y);
-		assertEquals(30, newEllipse.width);
-		assertEquals(40, newEllipse.height);
+		assertEquals(10, newEllipse.x, 0.01);
+		assertEquals(20, newEllipse.y, 0.01);
+		assertEquals(30, newEllipse.width, 0.01);
+		assertEquals(40, newEllipse.height, 0.01);
 		assertEquals(null, newEllipse.destinations);
 		assertEquals("name", newEllipse.className);
 		assertEquals("class1", newEllipse.thisClass.getName());
@@ -54,48 +54,48 @@ public class ZEllipseTest {
 	public void addXTest() {
 		Instance newInstance = new Instance();
 		ZEllipse newEllipse = new ZEllipse(0,0,30,40,"name", newInstance);
-		assertEquals(0, newEllipse.x);
+		assertEquals(0, newEllipse.x, 0.01);
 		newEllipse.addX(10);
-		assertEquals(10, newEllipse.x);
+		assertEquals(10, newEllipse.x, 0.01);
 		newEllipse.addX(-100);
-		assertEquals(0, newEllipse.x);
-		assertEquals(newEllipse.thisClass.point.x, newEllipse.x);
-		assertEquals(newEllipse.thisClass.point.y, newEllipse.y);
+		assertEquals(0, newEllipse.x, 0.01);
+		assertEquals(newEllipse.thisClass.point.x, newEllipse.x, 0.01);
+		assertEquals(newEllipse.thisClass.point.y, newEllipse.y, 0.01);
 		newEllipse.addX(1000000000);
-		assertEquals(DrawingGUI.panelWidth-100, newEllipse.x);
+		assertEquals(DrawingGUI.panelWidth-100, newEllipse.x, 0.01);
 	}
 	
 	@Test
 	public void addYTest() {
 		Instance newInstance = new Instance();
 		ZEllipse newEllipse = new ZEllipse(0,0,30,40,"name", newInstance);
-		assertEquals(0, newEllipse.y);
+		assertEquals(0, newEllipse.y, 0.01);
 		newEllipse.addX(10);
-		assertEquals(10, newEllipse.y);
+		assertEquals(10, newEllipse.y, 0.01);
 		newEllipse.addX(-100);
-		assertEquals(0, newEllipse.y);
-		assertEquals(newEllipse.thisClass.point.x, newEllipse.x);
-		assertEquals(newEllipse.thisClass.point.y, newEllipse.y);
+		assertEquals(0, newEllipse.y, 0.01);
+		assertEquals(newEllipse.thisClass.point.x, newEllipse.x, 0.01);
+		assertEquals(newEllipse.thisClass.point.y, newEllipse.y, 0.01);
 		newEllipse.addX(1000000000);
-		assertEquals(DrawingGUI.panelHeight-150, newEllipse.y);
+		assertEquals(DrawingGUI.panelHeight-150, newEllipse.y, 0.01);
 	}
 	
 	@Test
 	public void addWidthTest() {
 		Instance newInstance = new Instance();
 		ZEllipse newEllipse = new ZEllipse(0,0,30,40,"name", newInstance);
-		assertEquals(30, newEllipse.width);	
+		assertEquals(30, newEllipse.width, 0.01);	
 		newEllipse.addWidth(100);
-		assertEquals(130, newEllipse.width);	
+		assertEquals(130, newEllipse.width, 0.01);	
 	}
 	
 	@Test
 	public void addHeightTest() {
 		Instance newInstance = new Instance();
 		ZEllipse newEllipse = new ZEllipse(0,0,30,40,"name", newInstance);
-		assertEquals(40, newEllipse.height);	
+		assertEquals(40, newEllipse.height, 0.01);	
 		newEllipse.addWidth(100);
-		assertEquals(140, newEllipse.height);	
+		assertEquals(140, newEllipse.height, 0.01);	
 	}
 	
 	@Test
