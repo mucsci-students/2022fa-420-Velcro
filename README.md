@@ -45,7 +45,7 @@ directory you wish to work from.
 
 ####DESIGN PATTERN IMPLEMENTATIONS
  * MVC - as represented by various model, view, and controller classes.
- * Observer - instantiated as the Observer class that acts as a wrapper for the Java native observer ActionListener.
+ * Observer - implemented as native ActionListener class; used extensively in MenuController.
  * Memento - instantiated as the Memento class, which acts to support undo/redo functions by maintaining a list of Instance class objects.
  * Iterator - instantiated as the IteratorList class, which abstracts the trasversal of a list of ZEllipse objects, which represent current classes and are traversed during updates and certain methods.
  * Null Object - inside the Memento class, a nested class entitled NullInstance has been created. The Null Object acts as a bookend for the undo and redo stacks and serves functionally to prevent NullPointer exceptions, is immutable and contains declared attributes that do not alter the program, and, through its constructor and getter implementations, exactly one NullInstance exists during the lifecycle of the application (thereby satisfying the Singleton requirement).
