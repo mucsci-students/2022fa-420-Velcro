@@ -1,10 +1,11 @@
 package main.java.velcro.Model;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 import java.awt.geom.Point2D;
-
-import org.junit.jupiter.api.Test;
 
 class ZLineTest {
 

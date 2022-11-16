@@ -1,10 +1,5 @@
 package main.java.velcro.Model;
 
-
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
