@@ -62,7 +62,7 @@ public class ZRectangleTest {
 	public void addHeightTest() {
 		ZRectangle newRect = new ZRectangle(10,20,30,40);
 		assertEquals(40, newRect.height, 0.01);
-		newRect.addWidth(10);
+		newRect.addHeight(10);
 		assertEquals(50, newRect.height, 0.01);
 	}
 }
