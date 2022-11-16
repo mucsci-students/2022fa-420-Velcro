@@ -19,4 +19,4 @@ coverage:
       default:
         target: auto
         treshold: 0%
-    patch: false
+    patch: off
