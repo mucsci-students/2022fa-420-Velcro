@@ -7,7 +7,7 @@
  * 
  */
 
-package src.main.java.velcro;
+package src.main.java.velcro.main;
 
 import java.io.BufferedWriter;
 import java.io.File;
