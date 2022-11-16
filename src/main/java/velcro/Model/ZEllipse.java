@@ -9,20 +9,19 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import main.java.velcro.View.GUIFrame;
 import main.java.velcro.main.DrawingGUI;
 
 public class ZEllipse extends Rectangle.Float {
 
 	public String className;
-	public List<ZEllipse> destinations;
 	public Classes thisClass;
 
 	// Constructor.
 	public ZEllipse(float x, float y, float width, float height, String name, Instance thisInstance) {
-		destinations = new ArrayList<ZEllipse>();
 		setFrame(x, y, width, height);
 		if (name == null || name.equals("")) {
-			String input = JOptionPane.showInputDialog("Please enter a class name!");
+			String input = GUIFrame.prompt((int) this.x);
 			if (input == null || input.equals("")) {
 				return;
 			}
@@ -35,7 +34,7 @@ public class ZEllipse extends Rectangle.Float {
 	
 	// Returns center of zellipse.
 	public Point2D center() {
-		return new Point2D.Float(this.x, this.y);
+		return new Point2D.Float(this.x +thisClass.width*.5f, this.y);
 	}
 
 	// Unused method for determining if click was inside bounds.

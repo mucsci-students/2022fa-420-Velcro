@@ -62,7 +62,8 @@ public class GUIFrame extends JPanel {
 		public void setFrame(MenuFrame input2) {
 			thisFrame = input2;
 			thisMemento = thisFrame.thisMemento;
-			initUI(thisInstance, input2);
+			initUI(thisInstance, input2);		
+			
 		}
 
 		// Initialize panel.
@@ -72,6 +73,7 @@ public class GUIFrame extends JPanel {
 			addMouseMotionListener(ma);
 			addMouseListener(ma);
 			thisMemento.add(input);
+
 		}
 
 		// Access methods for frame.
@@ -126,7 +128,7 @@ public class GUIFrame extends JPanel {
 			// Draw relationship type
 			g2d.setColor(Color.darkGray);
 			ZLine line = new ZLine(pointFrom, pointTo, source, destination);
-			g2d.drawString(type, (int) line.getCenter().getX() - 40, (int) line.getCenter().getY());
+			g2d.drawString(type, (int) line.getCenter().getX() -40, (int) line.getCenter().getY());
 			g2d.setColor(Color.RED);
 			// Draw arrowheads
 			ArrowHead arrowHead = new ArrowHead();
@@ -138,6 +140,20 @@ public class GUIFrame extends JPanel {
 			return line;
 		}
 
+		// Dialog moved here for testing purposes.
+		public static String prompt(int test) {
+			if (test == -100000) {
+				return "";
+			} else if (test == -200000){
+				return null;
+			} else if (test == -300000){
+				return "test";
+			} else {
+				String input = JOptionPane.showInputDialog("Please enter a class name!");
+				return input;
+			}
+		}
+		
 		// Required override.
 		@Override
 		public void paintComponent(Graphics g) {

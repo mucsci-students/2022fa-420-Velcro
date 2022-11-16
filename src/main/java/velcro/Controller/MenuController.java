@@ -37,7 +37,6 @@ import main.java.velcro.Model.Fields;
 import main.java.velcro.Model.Instance;
 import main.java.velcro.Model.IteratorList;
 import main.java.velcro.Model.Methods;
-import main.java.velcro.Model.Observer;
 import main.java.velcro.Model.Parameters;
 import main.java.velcro.Model.Relationships;
 import main.java.velcro.Model.ZEllipse;
@@ -70,7 +69,7 @@ public class MenuController {
 
 	// Add Observer to class combobox.
 	public static void setComboBoxListener() {
-		Observer comboObserver = new Observer(MenuFrame.comboBox, new ActionListener() {
+		MenuFrame.comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				firstLoad();
 			}
@@ -114,7 +113,7 @@ public class MenuController {
 
 	// Set observer for Relationships combobox.
 	public static void setComboBox1Listener() {
-		Observer combo_1Observer = new Observer(MenuFrame.comboBox_1, new ActionListener() {
+		MenuFrame.comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Relationships thisRelationship;
@@ -134,7 +133,7 @@ public class MenuController {
 
 	// Set field combobox listener.
 	public static void setComboBox111Listener() {
-		Observer combo_1_1_1Observer = new Observer(MenuFrame.comboBox_1_1_1, new ActionListener() {
+		MenuFrame.comboBox_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Fields thisField;
@@ -152,7 +151,7 @@ public class MenuController {
 
 	// Set methods combobox listener.
 	public static void setComboBox112Listener() {
-		Observer combo_1_1_2Observer = new Observer(MenuFrame.comboBox_1_1_2, new ActionListener() {
+		MenuFrame.comboBox_1_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Methods thisMethod;
@@ -178,7 +177,7 @@ public class MenuController {
 
 	// Set parameters combobox listener.
 	public static void setComboBox1121Listener() {
-		Observer combo_1_1_2_1Observer = new Observer(MenuFrame.comboBox_1_1_2_1, new ActionListener() {
+		MenuFrame.comboBox_1_1_2_1.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Classes thisClass;
 				Parameters thisParam;
@@ -201,7 +200,7 @@ public class MenuController {
 
 	// Button logic for adding new field.
 	public static void setBtnListener() {
-		Observer btnNewObserver = new Observer(MenuFrame.btnNewButton, new ActionListener() {
+		MenuFrame.btnNewButton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String message = "Please enter the field name and type.";
 				JTextField fieldName = new JTextField("Field Name");
@@ -238,7 +237,7 @@ public class MenuController {
 
 	// Button logic for adding new method.
 	public static void setBtn1Listener() {
-		Observer btnNew_1Observer = new Observer(MenuFrame.btnNewButton_1, new ActionListener() {
+		MenuFrame.btnNewButton_1.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String message = "Please enter the method name and type.";
 				JTextField fieldName = new JTextField("Method Name");
@@ -274,7 +273,7 @@ public class MenuController {
 
 	// Button logic for adding new parameter.
 	public static void setBtn2Listener() {
-		Observer btnNewObserver_2 = new Observer(MenuFrame.btnNewButton_2, new ActionListener() {
+		MenuFrame.btnNewButton_2.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String message = "Please enter the parameter name and type.";
 				JTextField fieldName = new JTextField("Parameter Name");
@@ -320,7 +319,7 @@ public class MenuController {
 
 	// Pop-up instructions for adding relationship.
 	public static void setBtn3Listener() {
-		Observer btnNewObserver_3 = new Observer(MenuFrame.btnNewButton_3, new ActionListener() {
+		MenuFrame.btnNewButton_3.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showInternalMessageDialog(null,
 						"To add a relationship, right-click (or shift-click) on the source class, then right-click (or shift-click) on the destination class, then choose the relationship type.",
@@ -331,7 +330,7 @@ public class MenuController {
 
 	// Show contents listener.
 	public static void setBtn4Listener() {
-		Observer btnNewObserver_4 = new Observer(MenuFrame.btnNewButton_4, new ActionListener() {
+		MenuFrame.btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuFrame.thisInstance.showContents();
 			}
@@ -386,7 +385,7 @@ public class MenuController {
 
 	// Redo button listener.
 	public static void setBtn6Listener() {
-		Observer btnNewObserver_6 = new Observer(MenuFrame.btnNewButton_6, new ActionListener() {
+		MenuFrame.btnNewButton_6.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Instance newInstance = MenuFrame.thisMemento.redo();
 				if (newInstance != null) {
@@ -485,7 +484,7 @@ public class MenuController {
 
 	// Load button listener.
 	public static void setBtn8Listener() {
-		Observer btnNewObserver_8 = new Observer(MenuFrame.btnNewButton_8, new ActionListener() {
+		MenuFrame.btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 				fileChooser.setDialogTitle("Specify a file to load");
@@ -526,7 +525,7 @@ public class MenuController {
 
 	// Exit button listener.
 	public static void setBtn9Listener() {
-		Observer btnNewObserver_9 = new Observer(MenuFrame.btnNewButton_9, new ActionListener() {
+		MenuFrame.btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -535,7 +534,7 @@ public class MenuController {
 
 	// Exit button listener.
 	public static void setBtn10Listener() {
-		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_10, new ActionListener() {
+		MenuFrame.btnNewButton_10.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MenuFrame.comboBox.getSelectedItem() == null)
 					return;
@@ -546,7 +545,7 @@ public class MenuController {
 
 	// Take a screenshot of the current GUI.
 	public static void setBtn11Listener() {
-		Observer btnNewObserver_11 = new Observer(MenuFrame.btnNewButton_11, new ActionListener() {
+		MenuFrame.btnNewButton_11.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 				fileChooser.setDialogTitle("Specify a save location");
@@ -601,7 +600,7 @@ public class MenuController {
 
 	// Remove class button listener.
 	public static void setBtn12Listener() {
-		Observer btnNewObserver_12 = new Observer(MenuFrame.btnNewButton_12, new ActionListener() {
+		MenuFrame.btnNewButton_12.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MenuFrame.comboBox.getSelectedItem() == null)
 					return;
@@ -621,7 +620,7 @@ public class MenuController {
 
 	// Remove field button listener.
 	public static void setBtn13Listener() {
-		Observer btnNewObserver_13 = new Observer(MenuFrame.btnNewButton_13, new ActionListener() {
+		MenuFrame.btnNewButton_13.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_1.getSelectedItem() == null)
 					return;
@@ -644,7 +643,7 @@ public class MenuController {
 
 	// Remove relationship button listener.
 	public static void setBtn14Listener() {
-		Observer btnNewObserver_14 = new Observer(MenuFrame.btnNewButton_14, new ActionListener() {
+		MenuFrame.btnNewButton_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
 						"To remove a relationship, right-click (or shift-click) on the relationship line.");
@@ -654,7 +653,7 @@ public class MenuController {
 
 	// Remove method button listener.
 	public static void setBtn15Listener() {
-		Observer btnNewObserver_10 = new Observer(MenuFrame.btnNewButton_15, new ActionListener() {
+		MenuFrame.btnNewButton_15.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2.getSelectedItem() == null)
 					return;
@@ -678,7 +677,7 @@ public class MenuController {
 
 	// Remove parameter button listener.
 	public static void setBtn16Listener() {
-		Observer btnNewObserver_16 = new Observer(MenuFrame.btnNewButton_16, new ActionListener() {
+		MenuFrame.btnNewButton_16.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MenuFrame.comboBox.getSelectedItem() == null || MenuFrame.comboBox_1_1_2_1.getSelectedItem() == null
 						|| MenuFrame.comboBox_1_1_2.getSelectedItem() == null)
