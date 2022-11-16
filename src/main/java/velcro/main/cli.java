@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java;
+package src.main.java.velcro;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,8 +17,9 @@ import java.io.IOException;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import main.java.velcro.Model.*;
+import src.main.java.velcro.Model.*;
 import java.util.Scanner;
+import src.main.java.velcro.main.*;
 
 import com.google.gson.Gson;
 
