@@ -2,7 +2,6 @@ package main.java.velcro.Model;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;

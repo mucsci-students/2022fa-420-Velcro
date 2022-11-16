@@ -41,8 +41,8 @@ public class Parameters {
 		return type;
 	}
 	
-	// Returns boolean of whether input Fields object equals this Fields object.
-	public boolean equals(Fields input) {
+	// Returns boolean of whether input Parameters object equals this Fields object.
+	public boolean equals(Parameters input) {
 		return (input.name.equals(this.name) && input.type.equals(this.type));
 	}
 	

@@ -27,10 +27,14 @@ public class FieldsTest {
         Fields test = new Fields("name", "type");
         Fields test1 = new Fields("name", "type");
         Fields test2 = new Fields("name2", "type2");
+        Fields test3 = new Fields("name2", "type1");
+        Fields test4 = new Fields("name1", "type1");
 
         assertEquals(true,test.equals(test));
         assertEquals(true,test.equals(test1));
         assertEquals(false,test1.equals(test2));
+        assertEquals(false, test2.equals(test3));
+        assertEquals(false, test2.equals(test4));
     }
 
     @Test

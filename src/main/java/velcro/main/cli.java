@@ -7,7 +7,6 @@
  * 
  */
 
-
 package main.java.velcro.main;
 
 import java.io.BufferedWriter;
@@ -20,387 +19,38 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import main.java.velcro.Model.*;
 import java.util.Scanner;
+import main.java.velcro.Model.Instance;
+import main.java.velcro.main.*;
+
 import com.google.gson.Gson;
 
 public class cli {
 	
+	static String[] command = {"help", "launchgui", "addclass", "deleteclass", "renameclass", "renamemethod", "methodaddparam", "methodremoveparam", "methodclearparam", "addfield", "renamefield", "deletefield", "addrelation", "deleterelation", "classcontents", "save", "load", "exit"};
+	static String[] names = new String[100];
 	
-	// Help line descriptions.
-	static String launch = " -\t launchGUI (launches GUI; prompts user to save current state)\n";
-	static String addClass = " -\t addClass <classname>\n";
-	static String deleteClass = " -\t deleteClass <classname>\n";
-	static String renameClass = " -\t renameClass <classname> <newclassname>\n";
-	static String renameMethod = " -\t renameMethod <classname> <methodname> <methodnewname>\n";
-	static String methodAddParam = " -\t methodAddParam <classname> <methodname> <parametername> <parametertype>\n";
-	static String methodRemoveParam = " -\t methodRemoveParam <classname> <methodname> <parametername>\n";
-	static String methodClearParam = " -\t methodClearParam <classname> <methodname>\n";
-	static String addField = " -\t addField <classname> <fieldname> <fieldtype>\n";
-	static String renameField = " -\t renameField <classname> <fieldname> <newfieldname>\n";
-	static String deleteField = " -\t removeField <classname> <fieldname>\n";
-	static String addRelation = " -\t addRelation <classname> <sourceclass> <destinationclass> <relationshiptype>\n";
-	static String deleteRelation = " -\t deleteRelation <sourceclass> <destinationclass>\n";
-	static String listAllRelationships = " -\t listAllRelationships\n";
-	static String updateRelation = " -\t updateRelation <sourceclass> <destinationclass> <newrelationshiptype\n";
-	static String classContents = " -\t classContents <classname>\n";
-	static String listAllClassContents = " -\t listAllClassContents\n";
-	static String save = " -\t save <filename>\n";
-	static String load = " -\t load <filename>\n";
-	static String exit = " -\t exit";
-	
-	static String[] command = {"help", "launchGUI", "addClass", "deleteClass", "renameClass", "renameMethod", "methodAddParam", "methodRemoveParam", "methodClearParam", "addField", "renameField", "deleteField", "addRelation", "deleteRelation", "updateRelation", "listAllRelationships", "classContents", "listAllClassContents", "save", "load", "exit"};
-	
-	
-	// Prompt definition.
 	public static void printPrompt() {
 		System.out.print("> ");
 	}
-
-	// Robot actions, for use in auto-completion.
+	
 	public static void roboPrint(String match) throws AWTException {
+		String format = match.toUpperCase();
+		char curr;
+		int value;
+		int index = 0;
 		Robot robot = new Robot();
 		robot.delay(200);
-		switch (match) {
-			case "help":
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_P);
-				return;
-			case "launchGUI":
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_U);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_G);
-				robot.keyPress(KeyEvent.VK_U);
-				robot.keyPress(KeyEvent.VK_I);
-				return;
-			case "addClass":
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "deleteClass":
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "renameClass":
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "renameMethod":
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_D);
-				return;
-			case "methodAddParam":
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				return;
-			case "methodRemoveParam":
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_V);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				return;
-			case "methodClearParam":
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				return;
-			case "addField":
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_F);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_D);
-				return;
-			case "renameField":
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_M);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_F);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_D);
-				return;
-			case "deleteField":
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyRelease(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyRelease(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyRelease(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_F);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_D);
-				return;
-			case "addRelation":
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyRelease(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				return;
-			case "deleteRelation":
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				return;
-			case "listAllRelationships":
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyRelease(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_H);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "updateRelation":
-				robot.keyPress(KeyEvent.VK_U);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyPress(KeyEvent.VK_D);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_R);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				return;
-			case "classContents":
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "listAllClassContents":
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyRelease(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyRelease(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_C);
-				robot.keyRelease(KeyEvent.VK_SHIFT);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_N);
-				robot.keyPress(KeyEvent.VK_T);
-				robot.keyPress(KeyEvent.VK_S);
-				return;
-			case "save":
-				robot.keyPress(KeyEvent.VK_S);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_V);
-				robot.keyPress(KeyEvent.VK_E);
-				return;
-			case "load":
-				robot.keyPress(KeyEvent.VK_L);
-				robot.keyPress(KeyEvent.VK_O);
-				robot.keyPress(KeyEvent.VK_A);
-				robot.keyPress(KeyEvent.VK_D);
-				return;
-			case "exit":
-				robot.keyPress(KeyEvent.VK_E);
-				robot.keyPress(KeyEvent.VK_X);
-				robot.keyPress(KeyEvent.VK_I);
-				robot.keyPress(KeyEvent.VK_T);
-				return;
-		}	
+		
+		while (index < format.length()) {
+			curr = format.charAt(index);
+			value = (int) curr;
+			robot.keyPress(value);
+			robot.keyRelease(value);
+			index++;
+		}
+		return;
 	}
 	
-	// Prints auto-filled suggestion and command prompt.
 	public static void printCommand(String[] match) throws AWTException {
 		if (match[0] == null) {
 			System.out.println("Command not found");
@@ -423,8 +73,44 @@ public class cli {
 		}
 	}
 	
-	// Finds closest match of input string.
-	public static String[] search(String user) {
+	public static void printName(String[] match, String[] ogString) throws AWTException {
+		Robot robot = new Robot();
+		if (match[0] == null) {
+			System.out.println("Name not found");
+			printPrompt();
+			for (int i = 0; i < ogString.length; i++) {
+				roboPrint(ogString[i]);
+				robot.keyPress(KeyEvent.VK_SPACE);
+			}
+			return;
+		}
+		else if (match[1] == null) {
+			int index = 0;
+			printPrompt();
+			while (index != (ogString.length - 2)) {
+				roboPrint(ogString[index]);
+				robot.keyPress(KeyEvent.VK_SPACE);
+				index++;
+			}
+			roboPrint(match[0]);
+			return;
+		}
+		else {
+			for (int i = 0; i < match.length; i++) {
+				if (match[i] == null) {
+					printPrompt();
+					for (int j = 0; j < ogString.length - 1; j++) {
+						roboPrint(ogString[j]);
+						robot.keyPress(KeyEvent.VK_SPACE);
+					}
+					return;
+				}
+				System.out.println("\t" + match[i]);
+			}
+		}
+	}
+	
+	public static String[] searchCommand(String user) {
 		int matches = 0;
 		int index = 0;
 		String[] closestMatch = new String[10];
@@ -448,13 +134,36 @@ public class cli {
 		return closestMatch;
 	}
 	
-	// Main execution of input command.
-	public static boolean executeProgram(Scanner in, String user, Instance thisInstance) throws IOException {
+	public static String[] searchName(String user) {
+		int matches = 0;
+		int index = 0;
+		String[] closestMatch = new String[100];
+		
+		for (int i = 0; i < names.length; i++) {
+			for (int j = 0; j < user.length(); j++) {
+				try {
+					if (user.charAt(j) == names[i].charAt(j)) 
+						matches++;
+				}
+				catch (StringIndexOutOfBoundsException | NullPointerException e) {
+					continue;
+				}
+			}
+			if (matches == user.length()) {
+				closestMatch[index] = names[i];
+				index++;
+			}
+			matches = 0;
+		}
+		return closestMatch;
+	}
+	
+	public static void executeProgram(Scanner in, String user, Instance thisInstance) throws IOException {
 		String param[] = user.split(" ");
 		if (param[0].equals("")) 
-			return true;
+			return;
 		switch (param[0]) {
-		case "launchGUI":
+		case "launchgui":
 			System.out.print("Save? ");
 			user = in.next();
 			if (user.equals("yes")) {
@@ -464,211 +173,207 @@ public class cli {
 				writers.append(gsons.toJson((thisInstance)));
 				writers.close();
 				DrawingGUI.main(null);
-				return true;
+				return;
 			} else {
 				DrawingGUI.main(null);
-				return true;
+				return;
 			}
 		case "help":
+			String launch = " -\t launchgui (launches GUI; prompts user to save current state)\n";
+			String addClass = " -\t addclass <classname>\n";
+			String deleteClass = " -\t deleteclass <classname>\n";
+			String renameClass = " -\t renameclass <classname> <newclassname>\n";
+			String renameMethod = " -\t renamemethod <classname> <methodname> <methodnewname>\n";
+			String methodAddParam = " -\t methodaddparam <classname> <methodname> <parametername> <parametertype>\n";
+			String methodRemoveParam = " -\t methodremoveparam <classname> <methodname> <parametername>\n";
+			String methodClearParam = " -\t methodclearparam <classname> <methodname>\n";
+			String addField = " -\t addfield <classname> <fieldname> <fieldtype>\n";
+			String renameField = " -\t renamefield <classname> <fieldname> <newfieldname>\n";
+			String deleteField = " -\t removefield <classname> <fieldname>\n";
+			String addRelation = " -\t addrelation <classname> <sourceclass> <destinationclass> <relationshiptype>\n";
+			String deleteRelation = " -\t deleterelation <sourceclass> <destinationclass> <relationshiptype>\n";
+			String classContents = " -\t classcontents <classname>\n";
+			String save = " -\t save <filename>\n";
+			String load = " -\t load <filename>\n";
+			String exit = " -\t exit";
 			System.out.println(launch + addClass + deleteClass + renameClass + renameMethod
 					+ methodAddParam + methodRemoveParam + methodClearParam + addField + renameField + deleteField
-					+ addRelation + deleteRelation + updateRelation + listAllRelationships + listAllClassContents+ save + load + exit);
-			return true;
-		case "addClass":
-			thisInstance.addClass(param[1]);
-			System.out.println("Class added.");
-			return true;
-		case "deleteClass":
+					+ addRelation + deleteRelation + save + load + exit);
+			return;
+		case "addclass":
+			try {
+				thisInstance.addClass(param[1]);
+				names[findSpace()] = param[1];
+				System.out.println("Class added.");
+				return;
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("Please enter a class name");
+				return;
+			}
+		/*case "deleteClass":
 			thisInstance.removeClass(param[1]);
 			System.out.println("Class deleted.");
-			return true;
+			return;
 		case "renameClass":
 			Classes classObj1;
 			try {
 				classObj1 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			classObj1.rename(param[1], param[2]);
 			System.out.println("Class renamed.");
-			return true;
+			return;
 		case "renameMethod":
 			Classes classobj1;
 			try {
 				classobj1 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Methods methodObj1;
 			try {
 				methodObj1 = classobj1.getMethod(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Method not found!");
-				return true;
+				return;
 			}				
 			methodObj1.rename(param[3]);
 			System.out.println("Method renamed.");
-			return true;
+			return;
 		case "methodAddParam":
 			Classes classobj2;
 			try {
 				classobj2 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Methods methodObj2;
 			try {
 				methodObj2 = classobj2.getMethod(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Method not found!");
-				return true;
+				return;
 			}
 			methodObj2.addParam(param[3], param[4]);
 			System.out.println("Parameter added.");
-			return true;
+			return;
 		case "methodRemoveParam":
 			Classes classobj3;
 			try {
 				classobj3 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Methods methodObj3;
 			try {
 				methodObj3 = classobj3.getMethod(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Method not found!");
-				return true;
+				return;
 			}		
 			methodObj3.removeParam(param[3]);
 			System.out.println("Parameter removed.");
-			return true;
+			return;
 		case "methodClearParam":
 			Classes classobj4;
 			try {
 				classobj4 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Methods methodObj4;
 			try {
 				methodObj4 = classobj4.getMethod(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Method not found!");
-				return true;
+				return;
 			}		
 			methodObj4.clearParam();
 			System.out.println("Parameters cleared.");
-			return true;
+			return;
 		case "renameField":
 			Classes classobj5;
 			try {
 				classobj5 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Fields fieldObj5;
 			try {
 				fieldObj5 = classobj5.getField(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Field not found!");
-				return true;
+				return;
 			}		
 			fieldObj5.rename(param[3]);
 			System.out.println("Field renamed.");
-			return true;
+			return;
 		case "addRelation":
 			if (!param[3].toLowerCase().equals("aggregation") && !param[3].toLowerCase().equals("composition") && !param[3].toLowerCase().equals("inheritance") && !param[3].toLowerCase().equals("realization")) {
 				System.out.println("Relationships must be one of: Aggregation, Composition, Inheritance, or Realization. Please re-enter command.");
-				return true;
+				return;
 			}
 			Classes classobj6;
 			try {
 				classobj6 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			classobj6.addRelationship(param[1], param[2], param[3]);
 			System.out.println("Relationship added.");
-			return true;
+			return;
 		case "deleteRelation":
 			Classes classobj7;
 			try {
 				classobj7 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Classes classobj8;
 			try {
 				classobj8 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Relationships relobj7;
 			try {
-				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
+				relobj7 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2], param[3]);
 			} catch (NullPointerException e) {
 				System.out.println("Relationship not found!");
-				return true;
+				return;
 			}
-			classobj7.removeRelationship(param[1], param[2]);
-			classobj8.removeRelationship(param[1], param[2]);
+			classobj7.removeRelationship(param[1], param[2], param[3]);
+			classobj8.removeRelationship(param[1], param[2], param[3]);
 			System.out.println("Relationship removed.");
-			return true;
-		case "updateRelation":
-			Classes classobj17;
-			try {
-				classobj17 = thisInstance.getClass(param[1]);
-			} catch (NullPointerException e) {
-				System.out.println("Class not found!");
-				return true;
-			}
-			Classes classobj18;
-			try {
-				classobj18 = thisInstance.getClass(param[1]);
-			} catch (NullPointerException e) {
-				System.out.println("Class not found!");
-				return true;
-			}
-			Relationships relobj17;
-			try {
-				relobj17 = thisInstance.getClass(param[1]).getRelationship(param[1], param[2]);
-			} catch (NullPointerException e) {
-				System.out.println("Relationship not found!");
-				return true;
-			}
-			classobj17.removeRelationship(param[1], param[2]);
-			classobj18.removeRelationship(param[1], param[2]);
-			classobj17.addRelationship(param[1], param[2], param[3]);
-			classobj18.addRelationship(param[1], param[2], param[3]);
-			System.out.println("Relationship changed.");
-			return true;
+			return;
 		case "deleteField":
 			Classes classobj9;
 			try {
 				classobj9 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			Fields fieldObj9;
 			try {
 				fieldObj9 = classobj9.getField(param[2]);
 			} catch (NullPointerException e) {
 				System.out.println("Field not found!");
-				return true;
+				return;
 			}		
 			System.out.println("Field removed.");
-			return true;
+			return;
 		case "save":
 			File newFile = new File(param[1]);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
@@ -676,12 +381,12 @@ public class cli {
 			writer.append(gson1.toJson((thisInstance)));
 			writer.close();
 			System.out.println("File saved.");
-			return true;
+			return;
 		case "load":
 			Gson gson2 = new Gson();
 			thisInstance = gson2.fromJson(new FileReader(param[1]), Instance.class);
 			System.out.println("File loaded.");
-			return true;
+			return;
 		case "listAllRelationships":
 			for (int h = 0; h < thisInstance.classList.size(); h++) {
 				System.out.println(thisInstance.classList.get(h).getName());
@@ -692,7 +397,7 @@ public class cli {
 							+ thisInstance.classList.get(h).relationshipList.get(i).type + " (type)");
 				}
 			}
-			return true;
+			return;
 		case "classContents":
 			Classes classobj0 = thisInstance.getClass(param[1]);
 			System.out.println(classobj0.getName());
@@ -712,8 +417,8 @@ public class cli {
 									+ " (name), " + classobj0.methodList.get(i).paramList.get(j).getType());
 				}
 			}
-			return true;
-		case "listAllClassContents":
+			return;
+		case "seeAllClassContents":
 			for (int h = 0; h < thisInstance.classList.size(); h++) {
 				System.out.println(thisInstance.classList.get(h).getName());
 				for (int i = 0; i < thisInstance.classList.get(h).relationshipList.size(); i++) {
@@ -736,34 +441,41 @@ public class cli {
 					}
 				}
 			}
-			return true;
+			return;
 		case "addField":
 			Classes classobj11;
 			try {
 				classobj11 = thisInstance.getClass(param[1]);
 			} catch (NullPointerException e) {
 				System.out.println("Class not found!");
-				return true;
+				return;
 			}
 			if (!param[3].toLowerCase().equals("string") && !param[3].toLowerCase().equals("void") &&!param[3].toLowerCase().equals("int") &&!param[3].toLowerCase().equals("float") && !param[3].toLowerCase().equals("double") && !param[3].toLowerCase().equals("char")) {
 				System.out.println("Field type must be one of: void, string, int, float, double, or char!");
-				return true;
+				return;
 			}
 			classobj11.addField(param[2], param[3]);
-			System.out.println("Field added.");
+			System.out.println("Field added."); */
 		case "exit":
-			return true;
+			return;
 		}
-		return false;
+		return;
 	}
 	
-	// Main method, initialization.
+	public static int findSpace() {
+		for (int index = 0; index < 100; index++) {
+			if (names[index] == null)
+				return index;
+		}
+		return -1;
+	}
+	
+	
 	public static void main(String[] args) throws IOException, AWTException {
 		Scanner in = new Scanner(System.in);
 		String user = null;
 		Instance thisInstance = new Instance();
-
-		// Continuing prompt for input.
+		
 		while (true) {
 			System.out.print("Open in GUI mode? (yes/no): ");
 			user = in.next();
@@ -781,16 +493,30 @@ public class cli {
 		
 		while (true) {
 			user = in.nextLine();
-			if (!executeProgram(in, user, thisInstance)) {
-				try {
-					printCommand(search(user));
-				}
-				catch (StringIndexOutOfBoundsException e) {
-					System.out.println("Command not found");
-					printPrompt();
-				}
+			if (user.equals("exit")) {
+				System.out.println("Goodbye");
+				return;
 			}
-			else printPrompt();
+			
+			String param[] = user.split(" ");
+			try {
+				if (param[param.length-1].equals("/")) {
+					System.out.println("I am robot. I have 2 fathers.");
+					if (param.length == 2) {
+						printCommand(searchCommand(param[0]));
+						continue;
+					}
+					else if (param.length > 2) {
+						printName(searchName(param[param.length - 2]), param);
+						continue;
+					}
+				}
+				else executeProgram(in, user, thisInstance);
+			}
+			catch (StringIndexOutOfBoundsException e) {
+					System.out.println("Command not found");
+			}
+			printPrompt();
 		}
 	}
 }
