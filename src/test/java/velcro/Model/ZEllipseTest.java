@@ -72,13 +72,13 @@ public class ZEllipseTest {
 		newInstance.addClass("name");
 		ZEllipse newEllipse = new ZEllipse(0,0,30,40,"name", newInstance);
 		assertEquals(0, newEllipse.y, 0.01);
-		newEllipse.addX(10);
+		newEllipse.addY(10);
 		assertEquals(10, newEllipse.y, 0.01);
-		newEllipse.addX(-100);
+		newEllipse.addY(-100);
 		assertEquals(0, newEllipse.y, 0.01);
 		assertEquals(newEllipse.thisClass.point.x, newEllipse.x, 0.01);
 		assertEquals(newEllipse.thisClass.point.y, newEllipse.y, 0.01);
-		newEllipse.addX(1000000000);
+		newEllipse.addY(1000000000);
 		assertEquals(DrawingGUI.panelHeight-150, newEllipse.y, 0.01);
 	}
 	
