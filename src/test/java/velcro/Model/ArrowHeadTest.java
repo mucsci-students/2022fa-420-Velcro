@@ -1,8 +1,15 @@
 package main.java.velcro.Model;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
-public class ArrowHeadTest {
+class ArrowHeadTest {
+
+	@Test
+	public void ArrowHeadTest() {
+		ArrowHead newArrow = new ArrowHead();
+		assertEquals(newArrow, newArrow);
+	}
 
 }

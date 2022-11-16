@@ -20,16 +20,17 @@ public class ParametersTest {
 
     @Test
     public void testEquals() {
-        /*
         Parameters test = new Parameters("name", "type");
         Parameters test1 = new Parameters("name", "type");
         Parameters test2 = new Parameters("name2", "type2");
+        Parameters test3 = new Parameters("name2", "type1");
+        Parameters test4 = new Parameters("name1", "type2");
 
         assertEquals(true,test.equals(test));
         assertEquals(true,test.equals(test1));
         assertEquals(false,test1.equals(test2));
-
-         */
+        assertEquals(false,test3.equals(test2));
+        assertEquals(false,test4.equals(test2));
     }
 
     @Test

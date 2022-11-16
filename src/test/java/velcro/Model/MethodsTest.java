@@ -47,10 +47,14 @@ public class MethodsTest {
         list.add(test_p);
         Methods test1 = new Methods("test","type",list);
         Methods test2 = new Methods("test2","type2",null);
+        Methods test3 = new Methods("test2","type1",null);
+        Methods test4 = new Methods("test1","type2",null);
 
         assertEquals(true, test.equals(test));
         assertEquals(true, test.equals(test1));
         assertEquals(false, test.equals(test2));
+        assertEquals(false, test3.equals(test2));
+        assertEquals(false, test4.equals(test2));
     }
 
     @Test
