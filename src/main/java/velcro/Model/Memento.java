@@ -83,8 +83,8 @@ public class Memento {
 	
 	// Loading of the latest-stored undo memento.
 	public Instance undo(Instance thisInstance) {
-		// Checks that undoStack exists (this should never fail) and if the next item is the NullInstance.
-		if (undoStack == null || undoStack.peek().equals(NullInstance.getInstance()))
+		// Checks if the next item is the NullInstance.
+		if (undoStack.peek().equals(NullInstance.getInstance()))
 			return null;
 		Instance newInstance = new Instance();
 		newInstance = copyInstance(thisInstance);
@@ -95,8 +95,8 @@ public class Memento {
 	
 	// Loading of the latest-stored redo memento.
 	public Instance redo() {
-		// Checks that redoStack exists (this should never fail) and if the next item is the NullInstance.
-		if (redoStack == null || redoStack.peek().equals(NullInstance.getInstance()))
+		// Checks if the next item is the NullInstance.
+		if (redoStack.peek().equals(NullInstance.getInstance()))
 			return null;
 		Instance newInstance = new Instance();
 		newInstance = copyInstance(redoStack.peek());
