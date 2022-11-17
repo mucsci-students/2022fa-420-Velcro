@@ -18,11 +18,11 @@ public class MovingAdapterTest {
 
 	@Test
 	public void movingAdapterTest() {
-		
+		System.setProperty("java.awt.headless", "false");
 		Instance thisInstance = new Instance();
 		DrawingGUI ex = new DrawingGUI(thisInstance);
 		GUIFrame newFrame = new GUIFrame(thisInstance);
-		ex.setVisible(true);
+//		ex.setVisible(true);
 //		ex.resize();
 //		MenuFrame menuFrame = new MenuFrame(thisInstance, ex, 1000);
 //		ex.setFrame(menuFrame);
