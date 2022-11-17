@@ -32,6 +32,7 @@ public class MementoTest {
 		assertEquals(1, test.count());
 	}
 	
+	@Test
 	public void undoTest() {
 		Memento test = new Memento();
 		Instance testInstance = new Instance();
@@ -53,6 +54,7 @@ public class MementoTest {
 		test.addRedo(testInstance1);
 	}
 	
+	@Test
 	public void redoTest1() {
 		Memento test = new Memento();
 		test.redo();
@@ -66,6 +68,7 @@ public class MementoTest {
 		assertNotNull(testInstance2);
 	}
 	
+	@Test
 	public void redoTest2() {
 		Memento test = new Memento();
 		Instance testInstance = new Instance();
