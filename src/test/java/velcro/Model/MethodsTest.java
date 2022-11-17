@@ -81,7 +81,11 @@ public class MethodsTest {
         ArrayList<Parameters> list = new ArrayList<>();
         Methods test = new Methods("test","type",list);
         test.addParam("testName","testType");
+        test.addParam("testName2","testType");
+        test.addParam("testName3","testType");
 
+        assertEquals(false,test.removeParam("Name"));
+        assertEquals(true,test.removeParam("testName2"));
         assertEquals(false,test.removeParam("Name"));
         assertEquals(true,test.removeParam("testName"));
         assertEquals(false,test.removeParam("Name"));
