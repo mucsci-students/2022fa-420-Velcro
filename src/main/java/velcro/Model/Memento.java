@@ -57,30 +57,6 @@ public class Memento {
 		undoStack.push(fakeInstance);
 	}
 	
-	// Adds a redo action as a manually-cloned Instance, to be called whenever Undo is performed.
-	public void addRedo(Instance input) {
-		Instance fakeInstance = new Instance();
-		for (int i = 0; i<input.classList.size(); i++) {
-			fakeInstance.addClass(input.classList.get(i).getName());
-			fakeInstance.classList.get(i).setLocation(input.classList.get(i).point.x, input.classList.get(i).point.y);
-			for (int j = 0; j<input.classList.get(i).fieldList.size(); j++) {
-				fakeInstance.classList.get(i).addField(input.classList.get(i).fieldList.get(j).getName(), input.classList.get(i).fieldList.get(j).getType());
-			}
-			for (int j = 0; j<input.classList.get(i).relationshipList.size(); j++) {
-				fakeInstance.classList.get(i).addRelationship(input.classList.get(i).relationshipList.get(j).getSource(), input.classList.get(i).relationshipList.get(j).getDestination(), input.classList.get(i).relationshipList.get(j).getType());
-			}
-			for (int j = 0; j<input.classList.get(i).methodList.size(); j++) {
-				List<Parameters> newParamList = new ArrayList<Parameters>();
-				for (int k = 0; k<input.classList.get(i).methodList.get(j).paramList.size(); k++) {
-					newParamList.add(new Parameters(input.classList.get(i).methodList.get(j).paramList.get(k).getName(), input.classList.get(i).methodList.get(j).paramList.get(k).getType()));
-				}
-				fakeInstance.classList.get(i).addMethod(input.classList.get(i).methodList.get(j).getName(), input.classList.get(i).methodList.get(j).getType(), newParamList);
-			}
-		}
-		fakeInstance.setHighlight(input.highlight);
-		redoStack.push(fakeInstance);
-	}
-	
 	// Loading of the latest-stored undo memento.
 	public Instance undo(Instance thisInstance) {
 		// Checks that undoStack exists (this should never fail) and if the next item is the NullInstance.
