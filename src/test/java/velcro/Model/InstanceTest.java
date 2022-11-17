@@ -56,6 +56,8 @@ public class InstanceTest {
         Instance test = new Instance();
         test.addClass("testClass");
         Classes testClass = test.getClass("testClass");
+        Classes testClass2 = new Classes("testname");
+        assertEquals(false, test.removeClass(testClass2));
         test.removeClass(testClass);
         assertEquals(0, test.classList.size());
         
