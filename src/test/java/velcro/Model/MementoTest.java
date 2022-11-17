@@ -27,6 +27,9 @@ public class MementoTest {
 		testInstance.getClass("class1").addMethod("method1", "methodtype1", paramList);
 		test.add(testInstance);
 		assertEquals(1, test.count());
+		test.undo(testInstance);
+		test.redo();
+		assertEquals(1, test.count());
 	}
 	
 	public void undoTest() {
