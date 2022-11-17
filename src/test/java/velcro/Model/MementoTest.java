@@ -27,8 +27,12 @@ public class MementoTest {
 		testInstance.getClass("class1").addMethod("method1", "methodtype1", paramList);
 		test.add(testInstance);
 		assertEquals(1, test.count());
+		test.undo(testInstance);
+		test.redo();
+		assertEquals(1, test.count());
 	}
 	
+	@Test
 	public void undoTest() {
 		Memento test = new Memento();
 		Instance testInstance = new Instance();
@@ -45,11 +49,28 @@ public class MementoTest {
 		testInstance.getClass("class1").addMethod("method1", "methodtype1", paramList);
 		test.add(testInstance);
 		test.add(testInstance1);
-		assertEquals(testInstance1, test.undo(testInstance));
-		assertEquals(2, test.count());
+		assertNotNull(test.undo(testInstance));
+		assertEquals(1, test.count());
+		test.addRedo(testInstance1);
+		test.addRedo(testInstance);
 	}
 	
-	public void redoTest() {
+	@Test
+	public void redoTest1() {
+		Memento test = new Memento();
+		test.redo();
+		Instance testInstance = new Instance();
+		Instance testInstance1 = new Instance();
+		assertEquals(null, test.undo(testInstance));
+		test.add(testInstance);
+		test.undo(testInstance1);
+		test.redo();
+		Instance testInstance2 = test.copyInstance(testInstance1);
+		assertNotNull(testInstance2);
+	}
+	
+	@Test
+	public void redoTest2() {
 		Memento test = new Memento();
 		Instance testInstance = new Instance();
 		Instance testInstance1 = new Instance();
@@ -65,7 +86,7 @@ public class MementoTest {
 		test.add(testInstance);
 		test.add(testInstance1);
 		test.undo(testInstance);
-		assertEquals(testInstance, test.redo());
+		assertNotNull(test.redo());
 		//assertNotNull(test.NullInstance.getInstance());
 	}
 	
