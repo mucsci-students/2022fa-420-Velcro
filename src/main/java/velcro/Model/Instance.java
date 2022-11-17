@@ -86,10 +86,11 @@ public class Instance {
 		if (this.classList == null || this.classList.size() == 0)
 			return false;
 		boolean found = false;
-		for (int i = 0; !found && i < classList.size(); i++) {
+		for (int i = 0; i < classList.size(); i++) {
 			if (classList.get(i).getName().equals(input.getName())) {
 				found = true;
 				classList.remove(classList.get(i));
+				return found;
 			}
 		}
 		return found;
