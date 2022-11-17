@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +94,7 @@ public class InstanceTest {
     	assertEquals(true, test1.checkClass("test2"));
     	assertEquals(false, test1.checkClass("test3"));
     	assertEquals(false, test1.checkClass(newClass1));
+    	assertEquals(true, test1.checkClass(test1.getClass("test1")));
     }
     
     @Test
