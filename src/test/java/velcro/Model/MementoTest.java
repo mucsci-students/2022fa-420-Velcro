@@ -52,6 +52,7 @@ public class MementoTest {
 		assertNotNull(test.undo(testInstance));
 		assertEquals(1, test.count());
 		test.addRedo(testInstance1);
+		test.addRedo(testInstance);
 	}
 	
 	@Test
