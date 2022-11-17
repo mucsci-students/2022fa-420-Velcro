@@ -1,7 +1,11 @@
 package main.java.velcro.Model;
 
-import java.util.ArrayList;
+
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -78,6 +82,7 @@ public class MethodsTest {
         Methods test = new Methods("test","type",list);
         test.addParam("testName","testType");
 
+        assertEquals(false,test.removeParam("Name"));
         assertEquals(true,test.removeParam("testName"));
         assertEquals(false,test.removeParam("Name"));
     }
