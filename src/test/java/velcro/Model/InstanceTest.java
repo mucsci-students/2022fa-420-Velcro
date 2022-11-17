@@ -63,6 +63,7 @@ public class InstanceTest {
         assertEquals(false, test2.removeClass("test"));
         test2.classList = null;
         assertEquals(false, test2.removeClass("test"));
+        assertEquals(false, test2.removeClass(testClass));
         
         Instance test3 = new Instance();
         test3.addClass("test1");
