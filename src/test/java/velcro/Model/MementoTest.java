@@ -47,9 +47,23 @@ public class MementoTest {
 		test.add(testInstance1);
 		assertEquals(testInstance1, test.undo(testInstance));
 		assertEquals(2, test.count());
+		test.addRedo(testInstance1);
 	}
 	
-	public void redoTest() {
+	public void redoTest1() {
+		Memento test = new Memento();
+		test.redo();
+		Instance testInstance = new Instance();
+		Instance testInstance1 = new Instance();
+		assertEquals(null, test.undo(testInstance));
+		test.add(testInstance);
+		test.undo(testInstance1);
+		test.redo();
+		Instance testInstance2 = test.copyInstance(testInstance1);
+		assertNotNull(testInstance2);
+	}
+	
+	public void redoTest2() {
 		Memento test = new Memento();
 		Instance testInstance = new Instance();
 		Instance testInstance1 = new Instance();
