@@ -41,6 +41,8 @@ public class ClassesTest {
 		assertEquals(200, test.height);
 		assertEquals(true, check);
 		assertEquals(false, test.resize(200, 200));
+		assertEquals(true, test.resize(300, 200));
+		assertEquals(true, test.resize(300, 400));
 	}
 	
 	
@@ -67,8 +69,14 @@ public class ClassesTest {
     public void equals() {
         Classes test1 = new Classes("class1");
         Classes test2 = new Classes("class2");
+        Classes test3 = new Classes("class1");
         assertEquals(true, test1.equals(test1));
         assertEquals(false, test1.equals(test2));
+        test1.addField("fieldname", "fieldtype");
+        assertEquals(false, test1.equals(test3));
+        test3.addField("fieldname", "fieldtype");
+        test3.addRelationship("source", "desintation", "type");
+        assertEquals(false, test1.equals(test3));
     }
 
     @Test
@@ -85,6 +93,13 @@ public class ClassesTest {
         assertEquals("new2", test.relationshipList.get(0).getDestination());
         assertEquals(false, test1.rename(test.getName(), ""));
         assertEquals(false, test1.rename(test1.getName(), "new"));
+        Classes test2 = new Classes("testclass");
+        test2.relationshipList = null;
+        assertEquals(true, test2.rename("test", "test2"));
+        Classes test3 = new Classes("testclass");
+        test3.addRelationship("source", "destination", "type");
+        test3.removeRelationship("source", "destination");
+        assertEquals(true, test3.rename("testclass", "testclass2"));
     }
     
     @Test
@@ -133,6 +148,7 @@ public class ClassesTest {
         ArrayList<Parameters> params = null;
         test.addMethod("test1", "field1", params);
 
+        assertEquals(false, test.removeMethod("notThere"));
         assertEquals(true, test.removeMethod("test1"));
         assertEquals(false, test.removeMethod("notThere"));
     }
@@ -167,6 +183,11 @@ public class ClassesTest {
         test.addField("test1","field1");
         assertEquals(test.fieldList.get(0), test.getField("test1"));
         assertEquals(null, test.getField("test2"));
+        
+        Classes test2 = new Classes("test3");
+        assertEquals(null, test2.getField("fail"));
+        test2.fieldList = null;
+        assertEquals(null, test2.getField("fail"));
     }
 
     @Test
@@ -176,7 +197,12 @@ public class ClassesTest {
         assertEquals(null, test.getMethod("test1"));
         test.addMethod("test1","field1", null);
         assertEquals(test.methodList.get(0), test.getMethod("test1"));
-	assertEquals(null, test.getMethod("failtest"));
+        assertEquals(null, test.getMethod("failtest"));
+
+        Classes test2 = new Classes("test3");
+		assertEquals(null, test2.getMethod("fail"));
+		test2.methodList = null;
+    	assertEquals(null, test2.getMethod("fail"));
     }
 
     @Test
@@ -198,6 +224,19 @@ public class ClassesTest {
         assertEquals(false, test1.removeRelationship("source1","destination"));
         assertEquals(false, test1.removeRelationship("source","destination1"));
         assertEquals(false, test1.removeRelationship("source1","destination1"));
+
+        test.relationshipList = null;
+        assertEquals(false, test.removeRelationship("a","a"));
+        
+
+        Classes test3 = new Classes("test3");
+        test3.addRelationship("source1", "destination1", "type1");
+        test3.addRelationship("source2", "destination2", "type2");
+        test3.addRelationship("source3", "destination3", "type3");
+        assertEquals(false, test3.removeRelationship("source2", "destination3"));
+        assertEquals(false, test3.removeRelationship("source3", "destination2"));
+        assertEquals(true, test3.removeRelationship("source2", "destination2"));
+        
     }
 
     @Test
@@ -210,7 +249,13 @@ public class ClassesTest {
         assertEquals(true,test1.checkRelationship("source", "destination","type"));
         assertEquals(false,test1.checkRelationship("source1", "destination","type"));
         assertEquals(false,test1.checkRelationship("source", "destination1","type"));
-        assertEquals(false,test1.checkRelationship("source", "destination1","type1"));
+        assertEquals(false,test1.checkRelationship("source", "destination","type1"));
+        
+
+        Classes test2 = new Classes("test3");
+		assertEquals(false, test2.checkRelationship("fail", "fail", "fail"));
+		test2.relationshipList = null;
+		assertEquals(false, test2.checkRelationship("fail", "fail", "fail"));
     }
 
     @Test
@@ -222,5 +267,12 @@ public class ClassesTest {
         assertEquals(null,test.getRelationship("",""));
         assertEquals(test1.relationshipList.get(0),test1.getRelationship("source","destination"));
         assertEquals(null,test1.getRelationship("notsource", "notdestination"));
+        assertEquals(null,test1.getRelationship("source", "notdestination"));
+        
+
+        Classes test2 = new Classes("test3");
+		assertEquals(null, test2.getRelationship("fail", "fail"));
+		test2.relationshipList = null;
+		assertEquals(null, test2.getRelationship("fail", "fail"));
     }
 }
