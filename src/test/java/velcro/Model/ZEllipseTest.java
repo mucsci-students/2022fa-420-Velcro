@@ -20,12 +20,12 @@ public class ZEllipseTest {
 		assertEquals(40, newEllipse.height, 0.01);
 		assertEquals("name", newEllipse.className);
 		assertEquals("name", newEllipse.thisClass.getName());
-		// ZEllipse newEllipse1 = new ZEllipse(-100000,20,30,40, null, newInstance);
-		// ZEllipse newEllipse2 = new ZEllipse(-200000,20,30,40, null, newInstance);
-		// ZEllipse newEllipse3 = new ZEllipse(-300000,20,30,40, null, newInstance);
-		// ZEllipse newEllipse4 = new ZEllipse(-100000,20,30,40, "", newInstance);
-		// ZEllipse newEllipse5 = new ZEllipse(-200000,20,30,40, "", newInstance);
-		// ZEllipse newEllipse6 = new ZEllipse(-300000,20,30,40, "", newInstance);
+		ZEllipse newEllipse1 = new ZEllipse(-100000,20,30,40, null, newInstance);
+		ZEllipse newEllipse2 = new ZEllipse(-200000,20,30,40, null, newInstance);
+		ZEllipse newEllipse3 = new ZEllipse(-300000,20,30,40, null, newInstance);
+		ZEllipse newEllipse4 = new ZEllipse(-100000,20,30,40, "", newInstance);
+		ZEllipse newEllipse5 = new ZEllipse(-200000,20,30,40, "", newInstance);
+		ZEllipse newEllipse6 = new ZEllipse(-300000,20,30,40, "", newInstance);
 		// assertEquals(null, newEllipse1);
 		// assertEquals(null, newEllipse2);
 		// assertEquals(null, newEllipse4);
