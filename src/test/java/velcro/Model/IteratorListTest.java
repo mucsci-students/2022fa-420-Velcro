@@ -94,4 +94,70 @@ public class IteratorListTest {
         list1.clear();
         assertEquals(0, list1.size());
     }
+
+    @Test
+    public void next() {
+        ZEllipse newZEllipse = new ZEllipse(0, 0, 0, 0, "1", null);
+        ZEllipse newZEllipse1 = new ZEllipse(0, 0, 0, 0, "2", null);
+        IteratorList list = new IteratorList();
+        Iterator test = list.getIterator();
+        list.add(newZEllipse);
+        list.add(newZEllipse1);
+        test.first();
+        test.next();
+        assertEquals(newZEllipse1, test.currentValue());
+        test.next();
+        assertEquals(null, test.currentValue());
+    }
+
+    @Test
+    public void first() {
+        ZEllipse newZEllipse = new ZEllipse(0, 0, 0, 0, "1", null);
+        ZEllipse newZEllipse1 = new ZEllipse(0, 0, 0, 0, "2", null);
+        ZEllipse newZEllipse2 = new ZEllipse(0, 0, 0, 0, "3", null);
+        IteratorList list = new IteratorList();
+        Iterator test = list.getIterator();
+        list.add(newZEllipse);
+        list.add(newZEllipse1);
+        list.add(newZEllipse2);
+        test.first();
+        assertEquals(newZEllipse, test.currentValue());
+    }
+
+    @Test
+    public void isDone() {
+        ZEllipse newZEllipse = new ZEllipse(0, 0, 0, 0, "1", null);
+        ZEllipse newZEllipse1 = new ZEllipse(0, 0, 0, 0, "2", null);
+        ZEllipse newZEllipse2 = new ZEllipse(0, 0, 0, 0, "3", null);
+        IteratorList list = new IteratorList();
+        Iterator test = list.getIterator();
+        list.add(newZEllipse);
+        list.add(newZEllipse1);
+        list.add(newZEllipse2);
+        test.first();
+        test.next();
+        assertEquals(false, test.isDone());
+        test.next();
+        test.next();
+        test.next();
+        test.next();
+        test.next();
+        test.next();
+        assertEquals(true, test.isDone());
+    }
+
+    @Test
+    public void currentValue() {
+        ZEllipse newZEllipse = new ZEllipse(0, 0, 0, 0, "1", null);
+        ZEllipse newZEllipse1 = new ZEllipse(0, 0, 0, 0, "2", null);
+        ZEllipse newZEllipse2 = new ZEllipse(0, 0, 0, 0, "3", null);
+        IteratorList list = new IteratorList();
+        Iterator test = list.getIterator();
+        list.add(newZEllipse);
+        list.add(newZEllipse1);
+        list.add(newZEllipse2);
+        test.first();
+        test.next();
+        assertEquals(newZEllipse1, test.currentValue());
+    }
 }

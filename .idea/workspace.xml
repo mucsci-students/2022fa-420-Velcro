@@ -5,190 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f284baf9-f4a2-4108-b0d4-e79c517e3e8a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_cliftonlabs_json_simple_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_enterprise_cdi_api_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_digester3_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_core_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_decoration_model_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_module_xhtml5_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_module_xhtml_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_site_renderer_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_doxia_doxia_skin_model_2_0_0_M3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_artifact_3_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_tools_velocity_tools_generic_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_velocity_velocity_engine_core_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_classworlds_2_5_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_component_annotations_1_5_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_4_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_velocity_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_sisu_org_eclipse_sisu_inject_0_3_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_sisu_org_eclipse_sisu_plexus_0_3_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022fa-420-Velcro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2022fa-420-Velcro.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Controller/ControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Controller/GUIControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Controller/GUIControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ArrowHeadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ArrowHeadTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ClassesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ClassesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/FieldsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/FieldsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/InstanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/InstanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/IteratorListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/IteratorListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/MementoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/MementoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/MethodsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/MethodsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/MovingAdapterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/MovingAdapterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ObserverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ObserverTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ParametersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ParametersTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/RelationshipsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/RelationshipsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ZEllipseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ZEllipseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ZLineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ZLineTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/ZRectangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ZRectangleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/ClassesPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/ControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/FieldsPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/LandingPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/LoadPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/MethodsPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/ParametersPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/RelationshipsPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/SavePageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Obsolete/appTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/View/GUIFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/GUIFrameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/View/MenuFrameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/MenuFrameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/main/DrawingGUITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/main/DrawingGUITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/main/cliTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/main/cliTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cli.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$22.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$23.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$24.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$27.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$28.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$29.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$30.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$31.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$32.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$33.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$34.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$35.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$36.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$37.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$38.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$39.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$40.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$41.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$42.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$43.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$44.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$45.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$46.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$47.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$48.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$49.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$50.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$51.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$52.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$53.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$54.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$55.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$56.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$57.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$58.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$59.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$60.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$61.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$62.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$63.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$64.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$65.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$66.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$67.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$68.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$69.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$70.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$71.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$AddClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$AddField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$AddMethod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$AddParameter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$DelClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$DelField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$DelMethod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$DelParameter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$ParamButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$RenClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$RenameField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$RenameMethod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$RenameParameter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller$load.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Controller/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Classes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Fields.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Instance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Methods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Parameters.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/Model/Relationships.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/ClassesPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/FieldsPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/LandingPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/LoadPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/MethodsPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/ParametersPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/RelationshipsPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/velcro/View/SavePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/appTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/cliTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Controller/ControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/ClassesTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/FieldsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/InstanceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/MethodsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/ParametersTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/Model/RelationshipsTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/ClassesPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/FieldsPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/LandingPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/LoadPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/MethodsPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/ParametersPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/RelationshipsPageTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/velcro/View/SavePageTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,37 +80,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InstanceTest">
-    <configuration name="ClassesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="2022fa-420-Velcro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.java.velcro.Model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.ClassesTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FieldsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="2022fa-420-Velcro" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.java.velcro.Model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.FieldsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.IteratorListTest.next">
     <configuration name="InstanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
@@ -308,32 +96,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.currentValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="currentValue" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest.testEquals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.first" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="METHOD_NAME" value="testEquals" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="first" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IteratorListTest.isDone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2022fa-420-Velcro" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="isDone" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IteratorListTest.next" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="2022fa-420-Velcro" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="next" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -352,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.IteratorListTest.next" />
+        <item itemvalue="JUnit.IteratorListTest.first" />
+        <item itemvalue="JUnit.IteratorListTest.currentValue" />
+        <item itemvalue="JUnit.IteratorListTest.isDone" />
         <item itemvalue="JUnit.InstanceTest" />
-        <item itemvalue="JUnit.FieldsTest" />
-        <item itemvalue="JUnit.ClassesTest" />
-        <item itemvalue="JUnit.MethodsTest" />
-        <item itemvalue="JUnit.MethodsTest.testEquals" />
       </list>
     </recent_temporary>
   </component>
