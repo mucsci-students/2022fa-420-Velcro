@@ -3,6 +3,9 @@ package main.java.velcro.Model;
 
 import org.junit.Test;
 
+import main.java.velcro.Model.IteratorList.Iterator;
+import main.java.velcro.View.GUIFrame;
+
 import static org.junit.Assert.*;
 
 
@@ -45,6 +48,15 @@ public class IteratorListTest {
         Instance instance = new Instance();
         ZEllipse value = new ZEllipse(0F,0F,0F,0F,"name",instance);
         assertEquals(null, list.getIterator().currentValue());
+    }
+    
+    @Test
+    public void iteratorTest() {
+        IteratorList list = new IteratorList();
+        Iterator test = list.getIterator();
+        test.first();
+        test.next();
+        assertEquals(true, test.isDone());
     }
 
     @Test
