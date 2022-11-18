@@ -19,6 +19,8 @@ public class ZEllipse extends Rectangle.Float {
 
 	// Constructor.
 	public ZEllipse(float x, float y, float width, float height, String name, Instance thisInstance) {
+		if (thisInstance == null)
+			return;
 		setFrame(x, y, width, height);
 		if (name == null || name.equals("")) {
 			String input = GUIFrame.prompt((int) this.x);
