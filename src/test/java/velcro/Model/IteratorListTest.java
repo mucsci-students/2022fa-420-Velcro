@@ -52,9 +52,22 @@ public class IteratorListTest {
     
     @Test
     public void iteratorTest() {
+    	ZEllipse newZEllipse = new ZEllipse(0, 0, 0, 0, "1", null);
+    	ZEllipse newZEllipse1 = new ZEllipse(0, 0, 0, 0, "2", null);
+    	ZEllipse newZEllipse2 = new ZEllipse(0, 0, 0, 0, "3", null);
         IteratorList list = new IteratorList();
         Iterator test = list.getIterator();
+        list.add(newZEllipse);
+        list.add(newZEllipse1);
+        list.add(newZEllipse2);
         test.first();
+        test.next();
+        assertEquals(false, test.isDone());
+        test.next();
+        test.next();
+        test.next();
+        test.next();
+        test.next();
         test.next();
         assertEquals(true, test.isDone());
     }
