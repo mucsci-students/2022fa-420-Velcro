@@ -7,7 +7,7 @@
  * 
  */
 
-package main.java.velcro.main;
+package main.java;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,8 +19,6 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import main.java.velcro.Model.*;
 import java.util.Scanner;
-import main.java.velcro.Model.Instance;
-import main.java.velcro.main.*;
 
 import com.google.gson.Gson;
 
@@ -40,7 +38,6 @@ public class cli {
 		int index = 0;
 		Robot robot = new Robot();
 		robot.delay(200);
-		
 		while (index < format.length()) {
 			curr = format.charAt(index);
 			value = (int) curr;
@@ -172,15 +169,15 @@ public class cli {
 				Gson gsons = new Gson();
 				writers.append(gsons.toJson((thisInstance)));
 				writers.close();
-				DrawingGUI.main(null);
+				app.main(null);
 				return;
 			} else {
-				DrawingGUI.main(null);
+				app.main(null);
 				return;
 			}
 		case "help":
 			String launch = " -\t launchgui (launches GUI; prompts user to save current state)\n";
-			String addClass = " -\t addclass <classname>\n";
+			String addClass = " -\t addclass <classname> <x-coordinates> <y-coordinates>\n";
 			String deleteClass = " -\t deleteclass <classname>\n";
 			String renameClass = " -\t renameclass <classname> <newclassname>\n";
 			String renameMethod = " -\t renamemethod <classname> <methodname> <methodnewname>\n";
@@ -198,10 +195,16 @@ public class cli {
 			String exit = " -\t exit";
 			System.out.println(launch + addClass + deleteClass + renameClass + renameMethod
 					+ methodAddParam + methodRemoveParam + methodClearParam + addField + renameField + deleteField
-					+ addRelation + deleteRelation + save + load + exit);
+					+ addRelation + deleteRelation + classContents + save + load + exit);
 			return;
 		case "addclass":
 			try {
+				for (int i = 0; i < 100; i++) {
+					if (names[0].equals(param[1])) {
+						System.out.println("Class already exists");
+						return;
+					}
+				}
 				thisInstance.addClass(param[1]);
 				names[findSpace()] = param[1];
 				System.out.println("Class added.");
@@ -212,8 +215,11 @@ public class cli {
 				return;
 			}
 		case "deleteClass":
-			thisInstance.removeClass(param[1]);
-			System.out.println("Class deleted.");
+			if (thisInstance.removeClass(param[1]) == true) {
+				System.out.println("Class Deleted");
+				return;
+			}
+			System.out.println("Delete Failed");
 			return;
 		case "renameClass":
 			Classes classObj1;
@@ -375,13 +381,19 @@ public class cli {
 			System.out.println("Field removed.");
 			return;
 		case "save":
-			File newFile = new File(param[1]);
-			BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
-			Gson gson1 = new Gson();
-			writer.append(gson1.toJson((thisInstance)));
-			writer.close();
-			System.out.println("File saved.");
-			return;
+			try {
+				File newFile = new File(param[1]);
+				BufferedWriter writer = new BufferedWriter(new FileWriter(newFile, true));
+				Gson gson1 = new Gson();
+				writer.append(gson1.toJson((thisInstance)));
+				writer.close();
+				System.out.println("File saved.");
+				return;
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("Please name the file");
+				return;
+			}
 		case "load":
 			Gson gson2 = new Gson();
 			thisInstance = gson2.fromJson(new FileReader(param[1]), Instance.class);
@@ -455,7 +467,7 @@ public class cli {
 				return;
 			}
 			classobj11.addField(param[2], param[3]);
-			System.out.println("Field added.");
+			System.out.println("Field added."); 
 		case "exit":
 			return;
 		}
@@ -470,7 +482,7 @@ public class cli {
 		return -1;
 	}
 	
-	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws IOException, AWTException {
 		Scanner in = new Scanner(System.in);
 		String user = null;
@@ -480,7 +492,7 @@ public class cli {
 			System.out.print("Open in GUI mode? (yes/no): ");
 			user = in.next();
 			if (user.equals("yes")) {
-				DrawingGUI.main(null);
+				app.main(null);
 				return;
 			}
 			if (user.equals("no")) {
@@ -495,6 +507,8 @@ public class cli {
 			user = in.nextLine();
 			if (user.equals("exit")) {
 				System.out.println("Goodbye");
+				//Runtime.getRuntime().exec("exit");
+				Runtime.getRuntime().exit(0);
 				return;
 			}
 			
