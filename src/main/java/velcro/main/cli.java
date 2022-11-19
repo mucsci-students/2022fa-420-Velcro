@@ -169,10 +169,10 @@ public class cli {
 				Gson gsons = new Gson();
 				writers.append(gsons.toJson((thisInstance)));
 				writers.close();
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			} else {
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			}
 		case "help":
@@ -206,6 +206,8 @@ public class cli {
 					}
 				}
 				thisInstance.addClass(param[1]);
+				Classes o = thisInstance.getClass(param[1]);
+				o.setLocation(param[2], param[3]);
 				names[findSpace()] = param[1];
 				System.out.println("Class added.");
 				return;
@@ -482,7 +484,6 @@ public class cli {
 		return -1;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws IOException, AWTException {
 		Scanner in = new Scanner(System.in);
 		String user = null;
@@ -492,7 +493,7 @@ public class cli {
 			System.out.print("Open in GUI mode? (yes/no): ");
 			user = in.next();
 			if (user.equals("yes")) {
-				app.main(null);
+				DrawingGUI.main(null);
 				return;
 			}
 			if (user.equals("no")) {
