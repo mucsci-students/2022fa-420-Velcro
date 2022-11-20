@@ -51,7 +51,7 @@ public class cli {
 	}
 	
 	public static void printCommand(String[] match) throws AWTException {
-		if (match[0] == null) {
+		if (match[0].equals(null)) {
 			System.out.println("Command not found");
 			printPrompt();
 			return;
