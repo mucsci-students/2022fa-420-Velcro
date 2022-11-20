@@ -59,7 +59,8 @@ To build, open a command line in the project's main folder, and run: mvn clean p
 An OS-compatible file, entitled Velcro-3.0.0, will be built in the new Target folder. Windows users are recommended to run the package by running the command: java -jar ./target/Velcro-3.0.0.jar.
 
 ###COMMAND LINE INTERFACE USE
-When operating the command line interface, use the command --help to list all available commands.
+* When operating the command line interface, use the command --help to list all available commands.
+* In order to initiate autocomplete, enter a space and a "/" character in the command line following any user input. For example: "he /" will autocomplete "help."
 
 ####MAINTAINERS
 	* Jon Beare
