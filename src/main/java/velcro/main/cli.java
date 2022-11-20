@@ -51,7 +51,7 @@ public class cli {
 	}
 	
 	public static void printCommand(String[] match) throws AWTException {
-		if (match[0].equals(null)) {
+		if (match[0] == null) {
 			System.out.println("Command not found");
 			printPrompt();
 			return;
@@ -209,7 +209,9 @@ public class cli {
 				}
 				thisInstance.addClass(param[1]);
 				Classes o = thisInstance.getClass(param[1]);
-				o.setLocation(param[2], param[3]);
+				int x = Integer.parseInt(param[2]);
+				int y = Integer.parseInt(param[3]);
+				o.setLocation(x, y);
 				names[findSpace()] = param[1];
 				System.out.println("Class added.");
 				return;
