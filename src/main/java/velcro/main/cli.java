@@ -520,7 +520,6 @@ public class cli {
 			String param[] = user.split(" ");
 			try {
 				if (param[param.length-1].equals("/")) {
-					System.out.println("I am robot. I have 2 fathers.");
 					if (param.length == 2) {
 						printCommand(searchCommand(param[0]));
 						continue;
