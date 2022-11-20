@@ -194,10 +194,11 @@ public class cli {
 			String classContents = " -\t classcontents <classname>\n";
 			String save = " -\t save <filename>\n";
 			String load = " -\t load <filename>\n";
-			String exit = " -\t exit";
+			String exit = " -\t exit\n";
+			String auto = "To initiate autocomplete: <userinput> /";
 			System.out.println(launch + addClass + deleteClass + renameClass + renameMethod
 					+ methodAddParam + methodRemoveParam + methodClearParam + addField + renameField + deleteField
-					+ addRelation + deleteRelation + classContents + save + load + exit);
+					+ addRelation + deleteRelation + classContents + save + load + exit + auto);
 			return;
 		case "addclass":
 			try {
