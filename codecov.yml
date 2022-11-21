@@ -1,8 +1,15 @@
-codecov: 
- token: d40e3d75-a9f2-4e50-8210-0d57226b754c
+codecov:
+ token: 90c8a2d4-f5c0-435a-b4d8-895f3f368268
  disable_default_path_fixes: no
 
 coverage:
  precision: 2
  round: up
  range: "80...100"
+ 
+ ignore:
+  - "src/main/java/velcro/Controller"
+  - "src/main/java/velcro/main/DrawingGUI.java"
+  - "src/main/java/velcro/main/cli.java"
+  - "src/main/java/velcro/Obsolete"
+  - "src/main/java/velcro/View"

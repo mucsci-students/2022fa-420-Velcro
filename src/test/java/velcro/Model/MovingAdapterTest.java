@@ -1,24 +1,51 @@
 package main.java.velcro.Model;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import main.java.velcro.View.GUIFrame;
+import main.java.velcro.View.MenuFrame;
+import main.java.velcro.main.DrawingGUI;
 
-class MovingAdapterTest {
+import static org.junit.Assert.*;
 
-    @Test
-    void mousePressed() {
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    @Test
-    void mouseDragged() {
-    }
+import java.awt.event.MouseEvent;
 
-    @Test
-    void mouseClicked() {
-    }
 
-    @Test
-    void whatItHit() {
-    }
+public class MovingAdapterTest {
+
+	@Test
+	public void movingAdapterTest() {
+//		System.setProperty("java.awt.headless", "false");
+		Instance thisInstance = new Instance();
+//		DrawingGUI ex = new DrawingGUI(thisInstance);
+		GUIFrame newFrame = new GUIFrame(thisInstance);
+//		ex.setVisible(true);
+//		ex.resize();
+//		MenuFrame menuFrame = new MenuFrame(thisInstance, ex, 1000);
+//		ex.setFrame(menuFrame);
+//		menuFrame.firstLoad();
+//		
+		MouseEvent testClick = new MouseEvent(newFrame, 0, 0, 0, 0, 0, 0, 0, 1, false, 1);
+		MouseEvent testClick2 = new MouseEvent(newFrame, 0, 0, 0, 100, 100, 0, 0, 1, false, 1);
+		MouseEvent testClick3 = new MouseEvent(newFrame, 0, 0, 0, 100, 100, 0, 0, 1, false, 3);
+		MouseEvent testClick4 = new MouseEvent(newFrame, 0, 0, 0, 0, 0, 0, 0, 1, false, 3);
+		MouseEvent testClick5 = new MouseEvent(newFrame, 0, 0, 0, 100, 100, 0, 0, 2, false, 3);
+		MouseEvent testClick6 = new MouseEvent(newFrame, 0, 0, 0, 0, 0, 0, 0, 2, false, 3);
+
+		
+		MovingAdapter test1 = new MovingAdapter();
+		test1.test = true;
+		
+		
+		test1.mousePressed(testClick);
+		test1.mouseDragged(testClick);
+		test1.mouseClicked(testClick);
+		test1.doMove(testClick);
+		test1.whatItHit(null);
+		
+	}
+
 }

@@ -5,56 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f284baf9-f4a2-4108-b0d4-e79c517e3e8a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cliTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Controller/ControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ClassesTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/FieldsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/MethodsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/ParametersTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/velcro/View/MethodsPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/app.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/cli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Attributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Classes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Classes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Fields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Fields.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Instance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Methods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Parameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/Model/Relationships.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/Model/Relationships.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/AttributesPage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/ClassesPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/ClassesPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/FieldsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/FieldsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/LandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/LoadPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/LoadPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/MethodsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/MethodsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/ParametersPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/ParametersPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/RelationshipsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/RelationshipsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/velcro/View/SavePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/velcro/View/SavePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/AttributesPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/LandingPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/AttributesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/ClassesPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/ClassesPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/ClassesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/InstanceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/LandingPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/LoadPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/appTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/RelationshipsPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/ParametersPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/RelationshipsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/RelationshipsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/SavePageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/2022fa-420-Velcro-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/2022fa-420-Velcro-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/AttributesPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/FieldsPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/AttributesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/ClassesPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/SavePageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/ClassesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/InstanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/InstanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/LandingPageTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/LoadPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/LoadPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/RelationshipsPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/View/RelationshipsPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/RelationshipsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velcro/SavePageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/velcro/Model/IteratorListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/velcro/Model/IteratorListTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +33,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="/usr/local/Cellar/maven/3.8.6/libexec" />
+        <option name="useMavenConfig" value="true" />
         <option name="usePluginRegistry" value="true" />
       </MavenGeneralSettings>
     </option>
@@ -127,81 +80,81 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MethodsTest">
-    <configuration name="MethodsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.IteratorListTest.next">
+    <configuration name="InstanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.InstanceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest.addParam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.currentValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="METHOD_NAME" value="addParam" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="currentValue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest.getName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.first" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="METHOD_NAME" value="getName" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="first" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest.removeParam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.isDone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="METHOD_NAME" value="removeParam" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="isDone" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MethodsTest.testEquals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IteratorListTest.next" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="2022fa-420-Velcro" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="velcro.Model.*" />
+          <option name="PATTERN" value="main.java.velcro.Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="velcro.Model" />
-      <option name="MAIN_CLASS_NAME" value="velcro.Model.MethodsTest" />
-      <option name="METHOD_NAME" value="testEquals" />
+      <option name="PACKAGE_NAME" value="main.java.velcro.Model" />
+      <option name="MAIN_CLASS_NAME" value="main.java.velcro.Model.IteratorListTest" />
+      <option name="METHOD_NAME" value="next" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -220,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MethodsTest" />
-        <item itemvalue="JUnit.MethodsTest.testEquals" />
-        <item itemvalue="JUnit.MethodsTest.removeParam" />
-        <item itemvalue="JUnit.MethodsTest.addParam" />
-        <item itemvalue="JUnit.MethodsTest.getName" />
+        <item itemvalue="JUnit.IteratorListTest.next" />
+        <item itemvalue="JUnit.IteratorListTest.first" />
+        <item itemvalue="JUnit.IteratorListTest.currentValue" />
+        <item itemvalue="JUnit.IteratorListTest.isDone" />
+        <item itemvalue="JUnit.InstanceTest" />
       </list>
     </recent_temporary>
   </component>

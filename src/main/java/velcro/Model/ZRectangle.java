@@ -14,7 +14,15 @@ public class ZRectangle extends Rectangle2D.Float {
 	public ZRectangle(float x, float y, float width, float height) {
 		setRect(x, y, width, height);
 	}
-
+	
+	public void setHeight(int y) {
+		setSize((int) this.getWidth(), y);
+	}
+	
+	public void setSize(int width, int height) {
+		setRect(this.x, this.y, width, height);
+	}
+	
 	public boolean isHit(float x, float y) {
 		return getBounds2D().contains(x, y);
 	}

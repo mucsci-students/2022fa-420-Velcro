@@ -1,48 +1,48 @@
 package main.java.velcro.View;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GUIFrameTest {
+public class GUIFrameTest {
 
     @Test
-    void draw() {
+    public void draw() {
     }
 
     @Test
-    void setFrame() {
+    public void setFrame() {
     }
 
     @Test
-    void initUI() {
+    public void initUI() {
     }
 
     @Test
-    void center() {
+    public void center() {
     }
 
     @Test
-    void angleBetween() {
+    public void angleBetween() {
     }
 
     @Test
-    void testAngleBetween() {
+    public void testAngleBetween() {
     }
 
     @Test
-    void getPointOnCircle() {
+    public void getPointOnCircle() {
     }
 
     @Test
-    void testGetPointOnCircle() {
+    public void testGetPointOnCircle() {
     }
 
     @Test
-    void addLine() {
+    public void addLine() {
     }
 
     @Test
-    void paintComponent() {
+    public void paintComponent() {
     }
 }

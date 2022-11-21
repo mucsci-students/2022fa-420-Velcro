@@ -38,6 +38,7 @@ import javax.swing.Timer;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,6 +83,7 @@ public class DrawingGUI extends JFrame {
 				//menuFrame.setSize(300, panelHeight);
 				menuFrame.firstLoad();
 				menuFrame.setVisible(true);
+				JOptionPane.showMessageDialog(null, "Welcome! \nIn order to add a class, right-click (or shift-click) on an open space in the diagram window. \nTo add a relationship, right-click on the source class and then on the destination class. To delete, right-click on an existing relationship line. \nFor adding or removing classes and all other class attributes, use the menu screen on the left.", "Welcome!", JOptionPane.NO_OPTION);
 			}
 		});
 	}

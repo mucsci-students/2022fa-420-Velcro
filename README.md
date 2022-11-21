@@ -1,4 +1,4 @@
-#Last Updated: 10/26/2022
+#Last Updated: 11/4/2022
 
 ##CONTENTS OF THIS FILE
  
@@ -45,9 +45,11 @@ directory you wish to work from.
 
 ####DESIGN PATTERN IMPLEMENTATIONS
  * MVC - as represented by various model, view, and controller classes.
- * Observer - instantiated as the Observer class that acts as a wrapper for the Java native observer ActionListener.
+ * Observer - implemented as native ActionListener class; used extensively in MenuController.
  * Memento - instantiated as the Memento class, which acts to support undo/redo functions by maintaining a list of Instance class objects.
  * Iterator - instantiated as the IteratorList class, which abstracts the trasversal of a list of ZEllipse objects, which represent current classes and are traversed during updates and certain methods.
+ * Null Object - inside the Memento class, a nested class entitled NullInstance has been created. The Null Object acts as a bookend for the undo and redo stacks and serves functionally to prevent NullPointer exceptions, is immutable and contains declared attributes that do not alter the program, and, through its constructor and getter implementations, exactly one NullInstance exists during the lifecycle of the application (thereby satisfying the Singleton requirement).
+ * Singleton - See Null Object above.
 
 ####BUILD
 POM file provided for Maven build. Installation of Maven required.
@@ -57,7 +59,8 @@ To build, open a command line in the project's main folder, and run: mvn clean p
 An OS-compatible file, entitled Velcro-3.0.0, will be built in the new Target folder. Windows users are recommended to run the package by running the command: java -jar ./target/Velcro-3.0.0.jar.
 
 ###COMMAND LINE INTERFACE USE
-When operating the command line interface, use the command --help to list all available commands.
+* When operating the command line interface, use the command --help to list all available commands.
+* In order to initiate autocomplete, enter a space and a "/" character in the command line following any user input. For example: "he /" will autocomplete "help."
 
 ####MAINTAINERS
 	* Jon Beare

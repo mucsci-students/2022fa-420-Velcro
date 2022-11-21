@@ -40,6 +40,8 @@ public class Classes {
 	public static DefaultComboBoxModel<String> fieldModel_1;
 	public static DefaultComboBoxModel<String> methodModel;
 	public static DefaultComboBoxModel<String> methodModel_1;
+	public int width;
+	public int height;
 	
 	@SerializedName("location")
 	@Expose
@@ -53,6 +55,8 @@ public class Classes {
 		methodModel = new DefaultComboBoxModel<String>();
 		methodModel_1 = new DefaultComboBoxModel<String>();
 		point = new Point(0,0);
+		width = 80;
+		height = 0;
 	}
 	
 	// Overloaded classes constructor.
@@ -68,8 +72,21 @@ public class Classes {
 		point = new Point(0,0);
 	}
 	
+	// For setting location
 	public void setLocation(int x, int y) {
 		point = new Point(x,y);
+	}
+	
+	// For resizing in the GUI
+	public boolean resize(int newWidth, int newHeight) {
+		int test1 = this.width;
+		int test2 = this.height;
+		this.width = Math.max(this.width, newWidth);
+		this.height = Math.max(newHeight, this.height);
+		if (test1 != this.width || test2 != this.height) {
+			return true;
+		}
+		return false;
 	}
 	
 	// Returns Classes object name.

@@ -55,17 +55,6 @@ public class Instance {
 		returnTypes.addElement("char");
 	}
 
-	// Overloaded constructor; for use with loading option or other import
-	// strategies.
-	public Instance(Instance input) {
-		if (input.classList == null || input.classList.size() == 0)
-			return;
-		this.classList = input.classList;
-	}
-
-	public void setInstance(Instance input) {
-
-	}
 
 	// Sets Highlight Class.
 	public void setHighlight(Classes input) {
@@ -97,10 +86,11 @@ public class Instance {
 		if (this.classList == null || this.classList.size() == 0)
 			return false;
 		boolean found = false;
-		for (int i = 0; !found && i < classList.size(); i++) {
+		for (int i = 0; i < classList.size(); i++) {
 			if (classList.get(i).getName().equals(input.getName())) {
 				found = true;
 				classList.remove(classList.get(i));
+				return found;
 			}
 		}
 		return found;
@@ -190,167 +180,5 @@ public class Instance {
 	}
 
 	
-	
-	public void showContents() {
 
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Class Name");
-		model.addColumn("x");
-		model.addColumn("y");
-		model.addColumn("Relationship Source");
-		model.addColumn("Relationship Destination");
-		model.addColumn("Relationship Type");
-		model.addColumn("Field Name");
-		model.addColumn("Field Type");
-		model.addColumn("Method Names");
-		model.addColumn("Method Types");
-		model.addColumn("Parameter Names");
-		model.addColumn("Parameter Types");
-		boolean first = true;
-		for (int h = 0; h < this.classList.size(); h++) {
-			// Adds a blank line between classes.
-			if (first) {
-				first = false;
-			} else {
-				model.addRow(new Object[] { " ", " ", " ", " " });
-			}
-			Classes thisClass = this.classList.get(h);
-			// Adds class name
-			model.addRow(new Object[] { thisClass.getName(), thisClass.point.x, thisClass.point.y });
-			// Adds all class's relationships
-			if (thisClass.relationshipList != null) {
-				if (thisClass.relationshipList.size() != 0) {
-					for (int i = 0; i < thisClass.relationshipList.size(); i++) {
-						model.addRow(new Object[] { " ", " ", " ", thisClass.relationshipList.get(i).getSource(),
-								thisClass.relationshipList.get(i).getDestination(),
-								thisClass.relationshipList.get(i).getType() });
-
-					}
-				}
-			}
-			// Adds all class's fields
-			if (thisClass.fieldList != null) {
-				if (thisClass.fieldList.size() != 0) {
-					for (int i = 0; i < thisClass.fieldList.size(); i++) {
-						model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", thisClass.fieldList.get(i).getName(),
-								thisClass.fieldList.get(i).getType() });
-					}
-				}
-			}
-
-			// Adds all class's methods and parameters
-			if (thisClass.methodList != null) {
-				if (thisClass.methodList.size() != 0) {
-					for (int i = 0; i < thisClass.methodList.size(); i++) {
-						Methods thisMethod = thisClass.methodList.get(i);
-						model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", " ", " ", thisMethod.getName(),
-								thisMethod.getType() });
-						if (thisMethod.paramList.size() != 0)
-							for (int j = 0; j < thisMethod.paramList.size(); j++) {
-								model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-										thisMethod.paramList.get(j).getName(), thisMethod.paramList.get(j).getType() });
-							}
-					}
-				}
-			}
-		}
-		// Adjusting table so the headers are fully visible
-		JTable table = new JTable(model);
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(30);
-		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().getColumn(3).setPreferredWidth(120);
-		table.getColumnModel().getColumn(4).setPreferredWidth(120);
-		table.getColumnModel().getColumn(5).setPreferredWidth(120);
-		table.getColumnModel().getColumn(6).setPreferredWidth(80);
-		table.getColumnModel().getColumn(7).setPreferredWidth(80);
-		table.getColumnModel().getColumn(8).setPreferredWidth(120);
-		table.getColumnModel().getColumn(9).setPreferredWidth(120);
-		table.getColumnModel().getColumn(10).setPreferredWidth(120);
-		table.getColumnModel().getColumn(11).setPreferredWidth(120);
-		table.setPreferredScrollableViewportSize(table.getPreferredSize());
-		table.setFillsViewportHeight(true);
-		JOptionPane.showMessageDialog(null, new JScrollPane(table));
-
-	}
-	
-	// Show class contents.
-	public void showContents(String input) {
-		if (this.classList == null || this.classList.size() == 0)
-			return;
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Class Name");
-		model.addColumn("x");
-		model.addColumn("y");
-		model.addColumn("Relationship Source");
-		model.addColumn("Relationship Destination");
-		model.addColumn("Relationship Type");
-		model.addColumn("Field Name");
-		model.addColumn("Field Type");
-		model.addColumn("Method Names");
-		model.addColumn("Method Types");
-		model.addColumn("Parameter Names");
-		model.addColumn("Parameter Types");
-		for (int h = 0; h < this.classList.size(); h++) {
-			Classes thisClass = this.classList.get(h);
-			if (!thisClass.getName().equals(input))
-				continue;
-			// Adds class name
-			model.addRow(new Object[] { thisClass.getName(), thisClass.point.x, thisClass.point.y });
-			// Adds all class's relationships
-			if (thisClass.relationshipList != null) {
-				if (thisClass.relationshipList.size() != 0) {
-					for (int i = 0; i < thisClass.relationshipList.size(); i++) {
-						model.addRow(new Object[] { " ", " ", " ", thisClass.relationshipList.get(i).getSource(),
-								thisClass.relationshipList.get(i).getDestination(),
-								thisClass.relationshipList.get(i).getType() });
-
-					}
-				}
-			}
-			// Adds all class's fields
-			if (thisClass.fieldList != null) {
-				if (thisClass.fieldList.size() != 0) {
-					for (int i = 0; i < thisClass.fieldList.size(); i++) {
-						model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", thisClass.fieldList.get(i).getName(),
-								thisClass.fieldList.get(i).getType() });
-					}
-				}
-			}
-
-			// Adds all class's methods and parameters
-			if (thisClass.methodList != null) {
-				if (thisClass.methodList.size() != 0) {
-					for (int i = 0; i < thisClass.methodList.size(); i++) {
-						Methods thisMethod = thisClass.methodList.get(i);
-						model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", " ", " ", thisMethod.getName(),
-								thisMethod.getType() });
-						if (thisMethod.paramList.size() != 0)
-							for (int j = 0; j < thisMethod.paramList.size(); j++) {
-								model.addRow(new Object[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-										thisMethod.paramList.get(j).getName(), thisMethod.paramList.get(j).getType() });
-							}
-					}
-				}
-			}
-		}
-		// Adjusting table so the headers are fully visible
-		JTable table = new JTable(model);
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(30);
-		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().getColumn(3).setPreferredWidth(120);
-		table.getColumnModel().getColumn(4).setPreferredWidth(120);
-		table.getColumnModel().getColumn(5).setPreferredWidth(120);
-		table.getColumnModel().getColumn(6).setPreferredWidth(80);
-		table.getColumnModel().getColumn(7).setPreferredWidth(80);
-		table.getColumnModel().getColumn(8).setPreferredWidth(120);
-		table.getColumnModel().getColumn(9).setPreferredWidth(120);
-		table.getColumnModel().getColumn(10).setPreferredWidth(120);
-		table.getColumnModel().getColumn(11).setPreferredWidth(120);
-		table.setPreferredScrollableViewportSize(table.getPreferredSize());
-		table.setFillsViewportHeight(true);
-		JOptionPane.showMessageDialog(null, new JScrollPane(table));
-
-	}
 }
