@@ -66,6 +66,6 @@ An OS-compatible file, entitled Velcro-3.0.0, will be built in the new Target fo
 	* Jon Beare
 	* Dylon McGrann
 	* Greg Sinclair
-	* Cole Stoudt
+	* Cole Stout
 	* Benedikt Wagenlehner
 
